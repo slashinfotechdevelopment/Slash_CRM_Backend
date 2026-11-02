@@ -1,0 +1,481 @@
+// Slash Infotech CRM - Prisma schema
+// Stack: NestJS + Prisma 6 + MySQL
+// Authentication: Email OTP only. No password fields.
+// Run: npx prisma format && npx prisma validate
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+// -----------------------------------------------------------------------------
+// ENUMS
+// -----------------------------------------------------------------------------
+
+enum RecordStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum OtpPurpose {
+  LOGIN
+  EMAIL_VERIFICATION
+}
+
+enum OtpStatus {
+  PENDING
+  VERIFIED
+  EXPIRED
+  LOCKED
+  CANCELLED
+}
+
+enum SessionStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
+enum PermissionEffect {
+  ALLOW
+  DENY
+}
+
+enum DataScope {
+  OWN
+  ASSIGNED
+  DEPARTMENT
+  ALL
+}
+
+enum MediaType {
+  IMAGE
+  DOCUMENT
+  VIDEO
+  OTHER
+}
+
+enum MediaStorageProvider {
+  LOCAL
+  S3
+  R2
+  OTHER
+}
+
+enum MediaVisibility {
+  PRIVATE
+  PUBLIC
+}
+
+enum MediaStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  RESTORE
+  LOGIN
+  LOGOUT
+  LOGIN_FAILED
+  PERMISSION_CHANGE
+  ROLE_ASSIGNMENT
+  OTHER
+}
+
+// -----------------------------------------------------------------------------
+// USER TYPES AND USERS
+// -----------------------------------------------------------------------------
+
+model UserType {
+  id          String       @id @default(cuid()) @db.VarChar(30)
+  code        String       @unique @db.VarChar(40) // SUPER_ADMIN, ADMIN, EMPLOYEE, CLIENT
+  name        String       @db.VarChar(100)
+  description String?      @db.VarChar(255)
+  isSystem    Boolean      @default(false) @map("is_system")
+  status      RecordStatus @default(ACTIVE)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  users User[]
+
+  @@index([status])
+  @@map("user_types")
+}
+
+model User {
+  id              String       @id @default(cuid()) @db.VarChar(30)
+  userCode        String       @unique @map("user_code") @db.VarChar(30)
+  userTypeId      String       @map("user_type_id") @db.VarChar(30)
+  name            String       @db.VarChar(150)
+  email           String       @unique @db.VarChar(191)
+  phone           String?      @unique @db.VarChar(25)
+  profileMediaId  String?      @unique @map("profile_media_id") @db.VarChar(30)
+  emailVerifiedAt DateTime?    @map("email_verified_at")
+  status          RecordStatus @default(ACTIVE)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  createdBy String?   @map("created_by") @db.VarChar(30)
+  updatedBy String?   @map("updated_by") @db.VarChar(30)
+  deletedBy String?   @map("deleted_by") @db.VarChar(30)
+
+  userType UserType @relation(fields: [userTypeId], references: [id], onDelete: Restrict)
+
+  profileMedia Media? @relation("UserProfileMedia", fields: [profileMediaId], references: [id], onDelete: SetNull)
+
+  creator      User?  @relation("UserCreatedBy", fields: [createdBy], references: [id], onDelete: SetNull)
+  createdUsers User[] @relation("UserCreatedBy")
+  updater      User?  @relation("UserUpdatedBy", fields: [updatedBy], references: [id], onDelete: SetNull)
+  updatedUsers User[] @relation("UserUpdatedBy")
+  deleter      User?  @relation("UserDeletedBy", fields: [deletedBy], references: [id], onDelete: SetNull)
+  deletedUsers User[] @relation("UserDeletedBy")
+
+  employeeProfile EmployeeProfile?
+  clientProfile   ClientProfile?
+  userRoles       UserRole[]
+  userPermissions UserPermission[]
+  departments     UserDepartment[]
+  otpRequests     OtpRequest[]
+  sessions        UserSession[]
+  uploadedMedia   Media[]          @relation("MediaUploadedBy")
+  activityLogs    ActivityLog[]    @relation("ActivityActor")
+  auditLogs       AuditLog[]       @relation("AuditActor")
+
+  @@index([userTypeId, status])
+  @@index([deletedAt])
+  @@index([createdAt])
+  @@map("users")
+}
+
+// -----------------------------------------------------------------------------
+// USER CODE SEQUENCES
+// -----------------------------------------------------------------------------
+
+model UserCodeSequence {
+  id           String   @id @default(cuid()) @db.VarChar(30)
+  userTypeCode String   @unique @map("user_type_code") @db.VarChar(40)
+  prefix       String   @db.VarChar(10) // SA, A, EMP, CLI
+  lastNumber   Int      @default(0) @map("last_number")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("user_code_sequences")
+}
+
+// -----------------------------------------------------------------------------
+// OTP AUTHENTICATION AND SESSIONS
+// -----------------------------------------------------------------------------
+
+model OtpRequest {
+  id          String     @id @default(cuid()) @db.VarChar(30)
+  userId      String?    @map("user_id") @db.VarChar(30)
+  email       String     @db.VarChar(191)
+  purpose     OtpPurpose @default(LOGIN)
+  otpHash     String     @map("otp_hash") @db.VarChar(255)
+  status      OtpStatus  @default(PENDING)
+  attempts    Int        @default(0)
+  maxAttempts Int        @default(5) @map("max_attempts")
+  expiresAt   DateTime   @map("expires_at")
+  verifiedAt  DateTime?  @map("verified_at")
+  consumedAt  DateTime?  @map("consumed_at")
+  requestIp   String?    @map("request_ip") @db.VarChar(45)
+  userAgent   String?    @map("user_agent") @db.VarChar(500)
+  createdAt   DateTime   @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([email, purpose, status])
+  @@index([userId, createdAt])
+  @@index([expiresAt, status])
+  @@map("otp_requests")
+}
+
+model UserSession {
+  id               String        @id @default(cuid()) @db.VarChar(30)
+  userId           String        @map("user_id") @db.VarChar(30)
+  refreshTokenHash String        @map("refresh_token_hash") @db.VarChar(255)
+  status           SessionStatus @default(ACTIVE)
+  ipAddress        String?       @map("ip_address") @db.VarChar(45)
+  userAgent        String?       @map("user_agent") @db.VarChar(500)
+  deviceName       String?       @map("device_name") @db.VarChar(150)
+  lastUsedAt       DateTime?     @map("last_used_at")
+  expiresAt        DateTime      @map("expires_at")
+  revokedAt        DateTime?     @map("revoked_at")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status])
+  @@index([expiresAt, status])
+  @@map("user_sessions")
+}
+
+// -----------------------------------------------------------------------------
+// ROLES AND PERMISSIONS
+// -----------------------------------------------------------------------------
+
+model Role {
+  id          String       @id @default(cuid()) @db.VarChar(30)
+  code        String       @unique @db.VarChar(60) // SUPER_ADMIN, HR, DEVELOPER, etc.
+  name        String       @db.VarChar(100)
+  description String?      @db.VarChar(255)
+  isSystem    Boolean      @default(false) @map("is_system")
+  status      RecordStatus @default(ACTIVE)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  deletedAt   DateTime?    @map("deleted_at")
+
+  users       UserRole[]
+  permissions RolePermission[]
+
+  @@index([status, deletedAt])
+  @@map("roles")
+}
+
+model Permission {
+  id          String       @id @default(cuid()) @db.VarChar(30)
+  code        String       @unique @db.VarChar(120) // leads.view, leads.create
+  name        String       @db.VarChar(120)
+  module      String       @db.VarChar(80)
+  action      String       @db.VarChar(60)
+  description String?      @db.VarChar(255)
+  status      RecordStatus @default(ACTIVE)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  roles RolePermission[]
+  users UserPermission[]
+
+  @@index([module, action])
+  @@index([status])
+  @@map("permissions")
+}
+
+model UserRole {
+  userId     String   @map("user_id") @db.VarChar(30)
+  roleId     String   @map("role_id") @db.VarChar(30)
+  assignedAt DateTime @default(now()) @map("assigned_at")
+  assignedBy String?  @map("assigned_by") @db.VarChar(30)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Restrict)
+
+  @@id([userId, roleId])
+  @@index([roleId])
+  @@map("user_roles")
+}
+
+model RolePermission {
+  roleId       String    @map("role_id") @db.VarChar(30)
+  permissionId String    @map("permission_id") @db.VarChar(30)
+  dataScope    DataScope @default(ALL) @map("data_scope")
+  assignedAt   DateTime  @default(now()) @map("assigned_at")
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@index([permissionId])
+  @@map("role_permissions")
+}
+
+model UserPermission {
+  userId       String           @map("user_id") @db.VarChar(30)
+  permissionId String           @map("permission_id") @db.VarChar(30)
+  effect       PermissionEffect
+  dataScope    DataScope?       @map("data_scope")
+  reason       String?          @db.VarChar(255)
+  assignedBy   String?          @map("assigned_by") @db.VarChar(30)
+  createdAt    DateTime         @default(now()) @map("created_at")
+  updatedAt    DateTime         @updatedAt @map("updated_at")
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([userId, permissionId])
+  @@index([permissionId, effect])
+  @@map("user_permissions")
+}
+
+// -----------------------------------------------------------------------------
+// DEPARTMENTS AND PROFILES
+// -----------------------------------------------------------------------------
+
+model Department {
+  id          String       @id @default(cuid()) @db.VarChar(30)
+  code        String       @unique @db.VarChar(40)
+  name        String       @db.VarChar(120)
+  description String?      @db.VarChar(255)
+  parentId    String?      @map("parent_id") @db.VarChar(30)
+  status      RecordStatus @default(ACTIVE)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  deletedAt   DateTime?    @map("deleted_at")
+
+  parent   Department?      @relation("DepartmentHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children Department[]     @relation("DepartmentHierarchy")
+  users    UserDepartment[]
+
+  @@index([parentId, status])
+  @@index([deletedAt])
+  @@map("departments")
+}
+
+model UserDepartment {
+  userId       String   @map("user_id") @db.VarChar(30)
+  departmentId String   @map("department_id") @db.VarChar(30)
+  isPrimary    Boolean  @default(false) @map("is_primary")
+  assignedAt   DateTime @default(now()) @map("assigned_at")
+  assignedBy   String?  @map("assigned_by") @db.VarChar(30)
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department Department @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+
+  @@id([userId, departmentId])
+  @@index([departmentId, isPrimary])
+  @@map("user_departments")
+}
+
+model EmployeeProfile {
+  id             String    @id @default(cuid()) @db.VarChar(30)
+  userId         String    @unique @map("user_id") @db.VarChar(30)
+  employeeNumber String?   @unique @map("employee_number") @db.VarChar(40)
+  designation    String?   @db.VarChar(120)
+  dateOfJoining  DateTime? @map("date_of_joining") @db.Date
+  employmentType String?   @map("employment_type") @db.VarChar(50)
+  reportingToId  String?   @map("reporting_to_id") @db.VarChar(30)
+  notes          String?   @db.Text
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([reportingToId])
+  @@map("employee_profiles")
+}
+
+model ClientProfile {
+  id           String   @id @default(cuid()) @db.VarChar(30)
+  userId       String   @unique @map("user_id") @db.VarChar(30)
+  companyName  String?  @map("company_name") @db.VarChar(180)
+  website      String?  @db.VarChar(191)
+  taxNumber    String?  @map("tax_number") @db.VarChar(40)
+  addressLine1 String?  @map("address_line_1") @db.VarChar(255)
+  addressLine2 String?  @map("address_line_2") @db.VarChar(255)
+  city         String?  @db.VarChar(100)
+  state        String?  @db.VarChar(100)
+  postalCode   String?  @map("postal_code") @db.VarChar(20)
+  country      String?  @db.VarChar(100)
+  logoMediaId  String?  @unique @map("logo_media_id") @db.VarChar(30)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logoMedia Media? @relation("ClientLogoMedia", fields: [logoMediaId], references: [id], onDelete: SetNull)
+
+  @@map("client_profiles")
+}
+
+// -----------------------------------------------------------------------------
+// MEDIA METADATA - actual file bytes live in local/cloud object storage
+// -----------------------------------------------------------------------------
+
+model Media {
+  id              String               @id @default(cuid()) @db.VarChar(30)
+  originalName    String               @map("original_name") @db.VarChar(255)
+  storedName      String               @map("stored_name") @db.VarChar(255)
+  storageProvider MediaStorageProvider @default(LOCAL) @map("storage_provider")
+  storageKey      String               @map("storage_key") @db.VarChar(500)
+  fileUrl         String?              @map("file_url") @db.VarChar(1000)
+  mimeType        String               @map("mime_type") @db.VarChar(150)
+  fileSizeBytes   BigInt               @map("file_size_bytes")
+  mediaType       MediaType            @map("media_type")
+  visibility      MediaVisibility      @default(PRIVATE)
+  status          MediaStatus          @default(ACTIVE)
+  uploadedById    String?              @map("uploaded_by_id") @db.VarChar(30)
+  createdAt       DateTime             @default(now()) @map("created_at")
+  updatedAt       DateTime             @updatedAt @map("updated_at")
+  deletedAt       DateTime?            @map("deleted_at")
+
+  uploadedBy   User?             @relation("MediaUploadedBy", fields: [uploadedById], references: [id], onDelete: SetNull)
+  profileOf    User?             @relation("UserProfileMedia")
+  clientLogoOf ClientProfile?    @relation("ClientLogoMedia")
+  attachments  MediaAttachment[]
+
+  @@index([mediaType, status])
+  @@index([uploadedById, createdAt])
+  @@index([deletedAt])
+  @@map("media")
+}
+
+model MediaAttachment {
+  id         String   @id @default(cuid()) @db.VarChar(30)
+  mediaId    String   @map("media_id") @db.VarChar(30)
+  entityType String   @map("entity_type") @db.VarChar(80) // e.g. LEAD, PROJECT, TASK
+  entityId   String   @map("entity_id") @db.VarChar(30)
+  collection String   @default("attachments") @db.VarChar(80)
+  sortOrder  Int      @default(0) @map("sort_order")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  media Media @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@index([entityType, entityId, collection])
+  @@index([mediaId])
+  @@map("media_attachments")
+}
+
+// -----------------------------------------------------------------------------
+// ACTIVITY AND AUDIT LOGS
+// -----------------------------------------------------------------------------
+
+model ActivityLog {
+  id          String   @id @default(cuid()) @db.VarChar(30)
+  actorUserId String?  @map("actor_user_id") @db.VarChar(30)
+  action      String   @db.VarChar(100)
+  module      String   @db.VarChar(80)
+  entityType  String?  @map("entity_type") @db.VarChar(80)
+  entityId    String?  @map("entity_id") @db.VarChar(30)
+  description String   @db.VarChar(500)
+  metadata    Json?
+  ipAddress   String?  @map("ip_address") @db.VarChar(45)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  actor User? @relation("ActivityActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([actorUserId, createdAt])
+  @@index([module, createdAt])
+  @@index([entityType, entityId])
+  @@map("activity_logs")
+}
+
+model AuditLog {
+  id          String      @id @default(cuid()) @db.VarChar(30)
+  actorUserId String?     @map("actor_user_id") @db.VarChar(30)
+  action      AuditAction
+  module      String      @db.VarChar(80)
+  entityType  String      @map("entity_type") @db.VarChar(80)
+  entityId    String?     @map("entity_id") @db.VarChar(30)
+  oldValues   Json?       @map("old_values")
+  newValues   Json?       @map("new_values")
+  ipAddress   String?     @map("ip_address") @db.VarChar(45)
+  userAgent   String?     @map("user_agent") @db.VarChar(500)
+  requestId   String?     @map("request_id") @db.VarChar(100)
+  createdAt   DateTime    @default(now()) @map("created_at")
+
+  actor User? @relation("AuditActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([actorUserId, createdAt])
+  @@index([module, action, createdAt])
+  @@index([entityType, entityId])
+  @@index([requestId])
+  @@map("audit_logs")
+}
