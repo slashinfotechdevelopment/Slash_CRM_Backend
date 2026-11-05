@@ -189,6 +189,7 @@ export class RolesController {
   }
 
   @Post(':id/permissions')
+  @HttpCode(HttpStatus.OK)
   @RequirePermissions('roles.assign')
   @ApiOperation({ summary: 'Add or update a single permission assignment for a role' })
   @ApiResponse({ status: 200, description: 'Permission assigned to role.' })

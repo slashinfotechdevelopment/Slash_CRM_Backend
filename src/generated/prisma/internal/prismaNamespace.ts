@@ -414,7 +414,18 @@ export const ModelName = {
   Media: 'Media',
   MediaAttachment: 'MediaAttachment',
   ActivityLog: 'ActivityLog',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  ShiftDefinition: 'ShiftDefinition',
+  EmployeeShiftAssignment: 'EmployeeShiftAssignment',
+  AttendanceRecord: 'AttendanceRecord',
+  AttendanceSession: 'AttendanceSession',
+  AttendanceBreak: 'AttendanceBreak',
+  AttendanceCorrectionRequest: 'AttendanceCorrectionRequest',
+  AttendanceEvidenceVerification: 'AttendanceEvidenceVerification',
+  AttendanceOvertimeRequest: 'AttendanceOvertimeRequest',
+  AttendanceWfhRequest: 'AttendanceWfhRequest',
+  AttendanceReconciliationRun: 'AttendanceReconciliationRun',
+  AttendanceAnomaly: 'AttendanceAnomaly'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -430,7 +441,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "userType" | "user" | "userCodeSequence" | "otpRequest" | "userSession" | "role" | "permission" | "userRole" | "rolePermission" | "userPermission" | "department" | "userDepartment" | "employeeProfile" | "clientProfile" | "media" | "mediaAttachment" | "activityLog" | "auditLog"
+    modelProps: "userType" | "user" | "userCodeSequence" | "otpRequest" | "userSession" | "role" | "permission" | "userRole" | "rolePermission" | "userPermission" | "department" | "userDepartment" | "employeeProfile" | "clientProfile" | "media" | "mediaAttachment" | "activityLog" | "auditLog" | "shiftDefinition" | "employeeShiftAssignment" | "attendanceRecord" | "attendanceSession" | "attendanceBreak" | "attendanceCorrectionRequest" | "attendanceEvidenceVerification" | "attendanceOvertimeRequest" | "attendanceWfhRequest" | "attendanceReconciliationRun" | "attendanceAnomaly"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1622,6 +1633,732 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ShiftDefinition: {
+      payload: Prisma.$ShiftDefinitionPayload<ExtArgs>
+      fields: Prisma.ShiftDefinitionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ShiftDefinitionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ShiftDefinitionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload>
+        }
+        findFirst: {
+          args: Prisma.ShiftDefinitionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ShiftDefinitionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload>
+        }
+        findMany: {
+          args: Prisma.ShiftDefinitionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload>[]
+        }
+        create: {
+          args: Prisma.ShiftDefinitionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload>
+        }
+        createMany: {
+          args: Prisma.ShiftDefinitionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ShiftDefinitionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload>
+        }
+        update: {
+          args: Prisma.ShiftDefinitionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ShiftDefinitionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ShiftDefinitionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ShiftDefinitionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShiftDefinitionPayload>
+        }
+        aggregate: {
+          args: Prisma.ShiftDefinitionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateShiftDefinition>
+        }
+        groupBy: {
+          args: Prisma.ShiftDefinitionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ShiftDefinitionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ShiftDefinitionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ShiftDefinitionCountAggregateOutputType> | number
+        }
+      }
+    }
+    EmployeeShiftAssignment: {
+      payload: Prisma.$EmployeeShiftAssignmentPayload<ExtArgs>
+      fields: Prisma.EmployeeShiftAssignmentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EmployeeShiftAssignmentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EmployeeShiftAssignmentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload>
+        }
+        findFirst: {
+          args: Prisma.EmployeeShiftAssignmentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EmployeeShiftAssignmentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload>
+        }
+        findMany: {
+          args: Prisma.EmployeeShiftAssignmentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload>[]
+        }
+        create: {
+          args: Prisma.EmployeeShiftAssignmentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload>
+        }
+        createMany: {
+          args: Prisma.EmployeeShiftAssignmentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.EmployeeShiftAssignmentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload>
+        }
+        update: {
+          args: Prisma.EmployeeShiftAssignmentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload>
+        }
+        deleteMany: {
+          args: Prisma.EmployeeShiftAssignmentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EmployeeShiftAssignmentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.EmployeeShiftAssignmentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmployeeShiftAssignmentPayload>
+        }
+        aggregate: {
+          args: Prisma.EmployeeShiftAssignmentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEmployeeShiftAssignment>
+        }
+        groupBy: {
+          args: Prisma.EmployeeShiftAssignmentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmployeeShiftAssignmentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EmployeeShiftAssignmentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmployeeShiftAssignmentCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceRecord: {
+      payload: Prisma.$AttendanceRecordPayload<ExtArgs>
+      fields: Prisma.AttendanceRecordFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceRecordFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceRecordFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceRecordFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceRecordFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceRecordFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceRecordCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceRecordCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceRecordDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload>
+        }
+        update: {
+          args: Prisma.AttendanceRecordUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceRecordDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceRecordUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceRecordUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceRecordPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceRecordAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceRecord>
+        }
+        groupBy: {
+          args: Prisma.AttendanceRecordGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceRecordGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceRecordCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceRecordCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceSession: {
+      payload: Prisma.$AttendanceSessionPayload<ExtArgs>
+      fields: Prisma.AttendanceSessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceSessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload>
+        }
+        update: {
+          args: Prisma.AttendanceSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceSessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceSessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceSessionPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceSession>
+        }
+        groupBy: {
+          args: Prisma.AttendanceSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceSessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceSessionCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceBreak: {
+      payload: Prisma.$AttendanceBreakPayload<ExtArgs>
+      fields: Prisma.AttendanceBreakFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceBreakFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceBreakFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceBreakFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceBreakFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceBreakFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceBreakCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceBreakCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceBreakDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload>
+        }
+        update: {
+          args: Prisma.AttendanceBreakUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceBreakDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceBreakUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceBreakUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceBreakPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceBreakAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceBreak>
+        }
+        groupBy: {
+          args: Prisma.AttendanceBreakGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceBreakGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceBreakCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceBreakCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceCorrectionRequest: {
+      payload: Prisma.$AttendanceCorrectionRequestPayload<ExtArgs>
+      fields: Prisma.AttendanceCorrectionRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceCorrectionRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceCorrectionRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceCorrectionRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceCorrectionRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceCorrectionRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceCorrectionRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceCorrectionRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceCorrectionRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload>
+        }
+        update: {
+          args: Prisma.AttendanceCorrectionRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceCorrectionRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceCorrectionRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceCorrectionRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceCorrectionRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceCorrectionRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceCorrectionRequest>
+        }
+        groupBy: {
+          args: Prisma.AttendanceCorrectionRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceCorrectionRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceCorrectionRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceCorrectionRequestCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceEvidenceVerification: {
+      payload: Prisma.$AttendanceEvidenceVerificationPayload<ExtArgs>
+      fields: Prisma.AttendanceEvidenceVerificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceEvidenceVerificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceEvidenceVerificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceEvidenceVerificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceEvidenceVerificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceEvidenceVerificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceEvidenceVerificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceEvidenceVerificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceEvidenceVerificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload>
+        }
+        update: {
+          args: Prisma.AttendanceEvidenceVerificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceEvidenceVerificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceEvidenceVerificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceEvidenceVerificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceEvidenceVerificationPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceEvidenceVerificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceEvidenceVerification>
+        }
+        groupBy: {
+          args: Prisma.AttendanceEvidenceVerificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceEvidenceVerificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceEvidenceVerificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceEvidenceVerificationCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceOvertimeRequest: {
+      payload: Prisma.$AttendanceOvertimeRequestPayload<ExtArgs>
+      fields: Prisma.AttendanceOvertimeRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceOvertimeRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceOvertimeRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceOvertimeRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceOvertimeRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceOvertimeRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceOvertimeRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceOvertimeRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceOvertimeRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload>
+        }
+        update: {
+          args: Prisma.AttendanceOvertimeRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceOvertimeRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceOvertimeRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceOvertimeRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceOvertimeRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceOvertimeRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceOvertimeRequest>
+        }
+        groupBy: {
+          args: Prisma.AttendanceOvertimeRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceOvertimeRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceOvertimeRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceOvertimeRequestCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceWfhRequest: {
+      payload: Prisma.$AttendanceWfhRequestPayload<ExtArgs>
+      fields: Prisma.AttendanceWfhRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceWfhRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceWfhRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceWfhRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceWfhRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceWfhRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceWfhRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceWfhRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceWfhRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload>
+        }
+        update: {
+          args: Prisma.AttendanceWfhRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceWfhRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceWfhRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceWfhRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceWfhRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceWfhRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceWfhRequest>
+        }
+        groupBy: {
+          args: Prisma.AttendanceWfhRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceWfhRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceWfhRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceWfhRequestCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceReconciliationRun: {
+      payload: Prisma.$AttendanceReconciliationRunPayload<ExtArgs>
+      fields: Prisma.AttendanceReconciliationRunFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceReconciliationRunFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceReconciliationRunFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceReconciliationRunFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceReconciliationRunFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceReconciliationRunFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceReconciliationRunCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceReconciliationRunCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceReconciliationRunDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload>
+        }
+        update: {
+          args: Prisma.AttendanceReconciliationRunUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceReconciliationRunDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceReconciliationRunUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceReconciliationRunUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceReconciliationRunPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceReconciliationRunAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceReconciliationRun>
+        }
+        groupBy: {
+          args: Prisma.AttendanceReconciliationRunGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceReconciliationRunGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceReconciliationRunCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceReconciliationRunCountAggregateOutputType> | number
+        }
+      }
+    }
+    AttendanceAnomaly: {
+      payload: Prisma.$AttendanceAnomalyPayload<ExtArgs>
+      fields: Prisma.AttendanceAnomalyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AttendanceAnomalyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AttendanceAnomalyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload>
+        }
+        findFirst: {
+          args: Prisma.AttendanceAnomalyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AttendanceAnomalyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload>
+        }
+        findMany: {
+          args: Prisma.AttendanceAnomalyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload>[]
+        }
+        create: {
+          args: Prisma.AttendanceAnomalyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload>
+        }
+        createMany: {
+          args: Prisma.AttendanceAnomalyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AttendanceAnomalyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload>
+        }
+        update: {
+          args: Prisma.AttendanceAnomalyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload>
+        }
+        deleteMany: {
+          args: Prisma.AttendanceAnomalyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AttendanceAnomalyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AttendanceAnomalyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AttendanceAnomalyPayload>
+        }
+        aggregate: {
+          args: Prisma.AttendanceAnomalyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendanceAnomaly>
+        }
+        groupBy: {
+          args: Prisma.AttendanceAnomalyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceAnomalyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AttendanceAnomalyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AttendanceAnomalyCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1939,6 +2676,224 @@ export const AuditLogScalarFieldEnum = {
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
+export const ShiftDefinitionScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  isOvernight: 'isOvernight',
+  gracePeriodMinutes: 'gracePeriodMinutes',
+  halfDayThresholdMinutes: 'halfDayThresholdMinutes',
+  fullDayThresholdMinutes: 'fullDayThresholdMinutes',
+  overtimeThresholdMinutes: 'overtimeThresholdMinutes',
+  allowMultipleSessions: 'allowMultipleSessions',
+  autoCloseGraceMinutes: 'autoCloseGraceMinutes',
+  breakPolicySnapshot: 'breakPolicySnapshot',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShiftDefinitionScalarFieldEnum = (typeof ShiftDefinitionScalarFieldEnum)[keyof typeof ShiftDefinitionScalarFieldEnum]
+
+
+export const EmployeeShiftAssignmentScalarFieldEnum = {
+  id: 'id',
+  employeeProfileId: 'employeeProfileId',
+  userId: 'userId',
+  shiftDefinitionId: 'shiftDefinitionId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeShiftAssignmentScalarFieldEnum = (typeof EmployeeShiftAssignmentScalarFieldEnum)[keyof typeof EmployeeShiftAssignmentScalarFieldEnum]
+
+
+export const AttendanceRecordScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  shiftAssignmentId: 'shiftAssignmentId',
+  shiftDefinitionId: 'shiftDefinitionId',
+  attendanceDate: 'attendanceDate',
+  status: 'status',
+  shiftStartTimeSnapshot: 'shiftStartTimeSnapshot',
+  shiftEndTimeSnapshot: 'shiftEndTimeSnapshot',
+  isOvernightSnapshot: 'isOvernightSnapshot',
+  halfDayThresholdSecondsSnapshot: 'halfDayThresholdSecondsSnapshot',
+  fullDayThresholdSecondsSnapshot: 'fullDayThresholdSecondsSnapshot',
+  overtimeThresholdSecondsSnapshot: 'overtimeThresholdSecondsSnapshot',
+  allowMultipleSessionsSnapshot: 'allowMultipleSessionsSnapshot',
+  breakPolicySnapshot: 'breakPolicySnapshot',
+  grossWorkingDurationSeconds: 'grossWorkingDurationSeconds',
+  paidBreakDurationSeconds: 'paidBreakDurationSeconds',
+  unpaidBreakDurationSeconds: 'unpaidBreakDurationSeconds',
+  netWorkingDurationSeconds: 'netWorkingDurationSeconds',
+  verifiedOvertimeSeconds: 'verifiedOvertimeSeconds',
+  hasIntegrityAnomaly: 'hasIntegrityAnomaly',
+  anomalyType: 'anomalyType',
+  anomalyDetails: 'anomalyDetails',
+  version: 'version',
+  lastCorrectionRequestId: 'lastCorrectionRequestId',
+  reconciledAt: 'reconciledAt',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyDetectedAt: 'anomalyDetectedAt',
+  anomalyResolvedAt: 'anomalyResolvedAt',
+  anomalyResolvedByUserId: 'anomalyResolvedByUserId',
+  anomalyResolutionNotes: 'anomalyResolutionNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceRecordScalarFieldEnum = (typeof AttendanceRecordScalarFieldEnum)[keyof typeof AttendanceRecordScalarFieldEnum]
+
+
+export const AttendanceSessionScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  rawCheckInAt: 'rawCheckInAt',
+  rawCheckOutAt: 'rawCheckOutAt',
+  checkInAt: 'checkInAt',
+  checkOutAt: 'checkOutAt',
+  durationSeconds: 'durationSeconds',
+  status: 'status',
+  isSystemClosed: 'isSystemClosed',
+  systemClosureReason: 'systemClosureReason',
+  activeSessionUserId: 'activeSessionUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceSessionScalarFieldEnum = (typeof AttendanceSessionScalarFieldEnum)[keyof typeof AttendanceSessionScalarFieldEnum]
+
+
+export const AttendanceBreakScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  breakTypeId: 'breakTypeId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  paidDurationSeconds: 'paidDurationSeconds',
+  unpaidDurationSeconds: 'unpaidDurationSeconds',
+  isSystemClosed: 'isSystemClosed',
+  systemClosureReason: 'systemClosureReason',
+  rawEndedAt: 'rawEndedAt',
+  activeBreakUserId: 'activeBreakUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceBreakScalarFieldEnum = (typeof AttendanceBreakScalarFieldEnum)[keyof typeof AttendanceBreakScalarFieldEnum]
+
+
+export const AttendanceCorrectionRequestScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  requestedCheckInAt: 'requestedCheckInAt',
+  requestedCheckOutAt: 'requestedCheckOutAt',
+  reason: 'reason',
+  evidenceMetadata: 'evidenceMetadata',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  managerNotes: 'managerNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceCorrectionRequestScalarFieldEnum = (typeof AttendanceCorrectionRequestScalarFieldEnum)[keyof typeof AttendanceCorrectionRequestScalarFieldEnum]
+
+
+export const AttendanceEvidenceVerificationScalarFieldEnum = {
+  id: 'id',
+  correctionRequestId: 'correctionRequestId',
+  reviewerUserId: 'reviewerUserId',
+  evidenceReference: 'evidenceReference',
+  outcome: 'outcome',
+  verificationNotes: 'verificationNotes',
+  verifiedAt: 'verifiedAt',
+  auditLogId: 'auditLogId'
+} as const
+
+export type AttendanceEvidenceVerificationScalarFieldEnum = (typeof AttendanceEvidenceVerificationScalarFieldEnum)[keyof typeof AttendanceEvidenceVerificationScalarFieldEnum]
+
+
+export const AttendanceOvertimeRequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  attendanceDate: 'attendanceDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  approvedDurationMinutes: 'approvedDurationMinutes',
+  reason: 'reason',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceOvertimeRequestScalarFieldEnum = (typeof AttendanceOvertimeRequestScalarFieldEnum)[keyof typeof AttendanceOvertimeRequestScalarFieldEnum]
+
+
+export const AttendanceWfhRequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  reason: 'reason',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceWfhRequestScalarFieldEnum = (typeof AttendanceWfhRequestScalarFieldEnum)[keyof typeof AttendanceWfhRequestScalarFieldEnum]
+
+
+export const AttendanceReconciliationRunScalarFieldEnum = {
+  id: 'id',
+  targetDate: 'targetDate',
+  departmentId: 'departmentId',
+  status: 'status',
+  totalRecordsProcessed: 'totalRecordsProcessed',
+  totalReconciled: 'totalReconciled',
+  totalQuarantined: 'totalQuarantined',
+  totalErrors: 'totalErrors',
+  triggeredByUserId: 'triggeredByUserId',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  notes: 'notes',
+  errorDetails: 'errorDetails'
+} as const
+
+export type AttendanceReconciliationRunScalarFieldEnum = (typeof AttendanceReconciliationRunScalarFieldEnum)[keyof typeof AttendanceReconciliationRunScalarFieldEnum]
+
+
+export const AttendanceAnomalyScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyType: 'anomalyType',
+  details: 'details',
+  status: 'status',
+  detectedAt: 'detectedAt',
+  resolvedAt: 'resolvedAt',
+  resolvedByUserId: 'resolvedByUserId',
+  resolutionNotes: 'resolutionNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceAnomalyScalarFieldEnum = (typeof AttendanceAnomalyScalarFieldEnum)[keyof typeof AttendanceAnomalyScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2191,6 +3146,136 @@ export const AuditLogOrderByRelevanceFieldEnum = {
 export type AuditLogOrderByRelevanceFieldEnum = (typeof AuditLogOrderByRelevanceFieldEnum)[keyof typeof AuditLogOrderByRelevanceFieldEnum]
 
 
+export const ShiftDefinitionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  breakPolicySnapshot: 'breakPolicySnapshot'
+} as const
+
+export type ShiftDefinitionOrderByRelevanceFieldEnum = (typeof ShiftDefinitionOrderByRelevanceFieldEnum)[keyof typeof ShiftDefinitionOrderByRelevanceFieldEnum]
+
+
+export const EmployeeShiftAssignmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  employeeProfileId: 'employeeProfileId',
+  userId: 'userId',
+  shiftDefinitionId: 'shiftDefinitionId'
+} as const
+
+export type EmployeeShiftAssignmentOrderByRelevanceFieldEnum = (typeof EmployeeShiftAssignmentOrderByRelevanceFieldEnum)[keyof typeof EmployeeShiftAssignmentOrderByRelevanceFieldEnum]
+
+
+export const AttendanceRecordOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  shiftAssignmentId: 'shiftAssignmentId',
+  shiftDefinitionId: 'shiftDefinitionId',
+  breakPolicySnapshot: 'breakPolicySnapshot',
+  anomalyType: 'anomalyType',
+  anomalyDetails: 'anomalyDetails',
+  lastCorrectionRequestId: 'lastCorrectionRequestId',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyResolvedByUserId: 'anomalyResolvedByUserId',
+  anomalyResolutionNotes: 'anomalyResolutionNotes'
+} as const
+
+export type AttendanceRecordOrderByRelevanceFieldEnum = (typeof AttendanceRecordOrderByRelevanceFieldEnum)[keyof typeof AttendanceRecordOrderByRelevanceFieldEnum]
+
+
+export const AttendanceSessionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  systemClosureReason: 'systemClosureReason',
+  activeSessionUserId: 'activeSessionUserId'
+} as const
+
+export type AttendanceSessionOrderByRelevanceFieldEnum = (typeof AttendanceSessionOrderByRelevanceFieldEnum)[keyof typeof AttendanceSessionOrderByRelevanceFieldEnum]
+
+
+export const AttendanceBreakOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  breakTypeId: 'breakTypeId',
+  systemClosureReason: 'systemClosureReason',
+  activeBreakUserId: 'activeBreakUserId'
+} as const
+
+export type AttendanceBreakOrderByRelevanceFieldEnum = (typeof AttendanceBreakOrderByRelevanceFieldEnum)[keyof typeof AttendanceBreakOrderByRelevanceFieldEnum]
+
+
+export const AttendanceCorrectionRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  reason: 'reason',
+  reviewedByUserId: 'reviewedByUserId',
+  managerNotes: 'managerNotes'
+} as const
+
+export type AttendanceCorrectionRequestOrderByRelevanceFieldEnum = (typeof AttendanceCorrectionRequestOrderByRelevanceFieldEnum)[keyof typeof AttendanceCorrectionRequestOrderByRelevanceFieldEnum]
+
+
+export const AttendanceEvidenceVerificationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  correctionRequestId: 'correctionRequestId',
+  reviewerUserId: 'reviewerUserId',
+  evidenceReference: 'evidenceReference',
+  verificationNotes: 'verificationNotes',
+  auditLogId: 'auditLogId'
+} as const
+
+export type AttendanceEvidenceVerificationOrderByRelevanceFieldEnum = (typeof AttendanceEvidenceVerificationOrderByRelevanceFieldEnum)[keyof typeof AttendanceEvidenceVerificationOrderByRelevanceFieldEnum]
+
+
+export const AttendanceOvertimeRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  reason: 'reason',
+  reviewedByUserId: 'reviewedByUserId'
+} as const
+
+export type AttendanceOvertimeRequestOrderByRelevanceFieldEnum = (typeof AttendanceOvertimeRequestOrderByRelevanceFieldEnum)[keyof typeof AttendanceOvertimeRequestOrderByRelevanceFieldEnum]
+
+
+export const AttendanceWfhRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  reason: 'reason',
+  reviewedByUserId: 'reviewedByUserId'
+} as const
+
+export type AttendanceWfhRequestOrderByRelevanceFieldEnum = (typeof AttendanceWfhRequestOrderByRelevanceFieldEnum)[keyof typeof AttendanceWfhRequestOrderByRelevanceFieldEnum]
+
+
+export const AttendanceReconciliationRunOrderByRelevanceFieldEnum = {
+  id: 'id',
+  departmentId: 'departmentId',
+  triggeredByUserId: 'triggeredByUserId',
+  notes: 'notes'
+} as const
+
+export type AttendanceReconciliationRunOrderByRelevanceFieldEnum = (typeof AttendanceReconciliationRunOrderByRelevanceFieldEnum)[keyof typeof AttendanceReconciliationRunOrderByRelevanceFieldEnum]
+
+
+export const AttendanceAnomalyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyType: 'anomalyType',
+  details: 'details',
+  resolvedByUserId: 'resolvedByUserId',
+  resolutionNotes: 'resolutionNotes'
+} as const
+
+export type AttendanceAnomalyOrderByRelevanceFieldEnum = (typeof AttendanceAnomalyOrderByRelevanceFieldEnum)[keyof typeof AttendanceAnomalyOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -2320,6 +3405,62 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
  * Reference to a field of type 'AuditAction'
  */
 export type EnumAuditActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuditAction'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceStatus'
+ */
+export type EnumAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceSessionStatus'
+ */
+export type EnumAttendanceSessionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceSessionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceCorrectionStatus'
+ */
+export type EnumAttendanceCorrectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceCorrectionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'VerificationOutcome'
+ */
+export type EnumVerificationOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VerificationOutcome'>
+    
+
+
+/**
+ * Reference to a field of type 'OvertimeApprovalStatus'
+ */
+export type EnumOvertimeApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OvertimeApprovalStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'WfhStatus'
+ */
+export type EnumWfhStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WfhStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ReconciliationRunStatus'
+ */
+export type EnumReconciliationRunStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReconciliationRunStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AnomalyStatus'
+ */
+export type EnumAnomalyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnomalyStatus'>
     
 
 
@@ -2498,6 +3639,17 @@ export type GlobalOmitConfig = {
   mediaAttachment?: Prisma.MediaAttachmentOmit
   activityLog?: Prisma.ActivityLogOmit
   auditLog?: Prisma.AuditLogOmit
+  shiftDefinition?: Prisma.ShiftDefinitionOmit
+  employeeShiftAssignment?: Prisma.EmployeeShiftAssignmentOmit
+  attendanceRecord?: Prisma.AttendanceRecordOmit
+  attendanceSession?: Prisma.AttendanceSessionOmit
+  attendanceBreak?: Prisma.AttendanceBreakOmit
+  attendanceCorrectionRequest?: Prisma.AttendanceCorrectionRequestOmit
+  attendanceEvidenceVerification?: Prisma.AttendanceEvidenceVerificationOmit
+  attendanceOvertimeRequest?: Prisma.AttendanceOvertimeRequestOmit
+  attendanceWfhRequest?: Prisma.AttendanceWfhRequestOmit
+  attendanceReconciliationRun?: Prisma.AttendanceReconciliationRunOmit
+  attendanceAnomaly?: Prisma.AttendanceAnomalyOmit
 }
 
 /* Types for Logging */

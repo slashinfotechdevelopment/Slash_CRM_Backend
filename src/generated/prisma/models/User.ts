@@ -280,6 +280,19 @@ export type UserWhereInput = {
   uploadedMedia?: Prisma.MediaListRelationFilter
   activityLogs?: Prisma.ActivityLogListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  attendanceRecords?: Prisma.AttendanceRecordListRelationFilter
+  attendanceSessions?: Prisma.AttendanceSessionListRelationFilter
+  attendanceBreaks?: Prisma.AttendanceBreakListRelationFilter
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestListRelationFilter
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestListRelationFilter
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestListRelationFilter
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestListRelationFilter
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestListRelationFilter
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestListRelationFilter
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationListRelationFilter
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunListRelationFilter
+  resolvedAnomalies?: Prisma.AttendanceRecordListRelationFilter
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -316,6 +329,19 @@ export type UserOrderByWithRelationInput = {
   uploadedMedia?: Prisma.MediaOrderByRelationAggregateInput
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
+  attendanceRecords?: Prisma.AttendanceRecordOrderByRelationAggregateInput
+  attendanceSessions?: Prisma.AttendanceSessionOrderByRelationAggregateInput
+  attendanceBreaks?: Prisma.AttendanceBreakOrderByRelationAggregateInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestOrderByRelationAggregateInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestOrderByRelationAggregateInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestOrderByRelationAggregateInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestOrderByRelationAggregateInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestOrderByRelationAggregateInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestOrderByRelationAggregateInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationOrderByRelationAggregateInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunOrderByRelationAggregateInput
+  resolvedAnomalies?: Prisma.AttendanceRecordOrderByRelationAggregateInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -356,6 +382,19 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   uploadedMedia?: Prisma.MediaListRelationFilter
   activityLogs?: Prisma.ActivityLogListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  attendanceRecords?: Prisma.AttendanceRecordListRelationFilter
+  attendanceSessions?: Prisma.AttendanceSessionListRelationFilter
+  attendanceBreaks?: Prisma.AttendanceBreakListRelationFilter
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestListRelationFilter
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestListRelationFilter
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestListRelationFilter
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestListRelationFilter
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestListRelationFilter
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestListRelationFilter
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationListRelationFilter
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunListRelationFilter
+  resolvedAnomalies?: Prisma.AttendanceRecordListRelationFilter
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyListRelationFilter
 }, "id" | "userCode" | "email" | "phone" | "profileMediaId">
 
 export type UserOrderByWithAggregationInput = {
@@ -429,6 +468,19 @@ export type UserCreateInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -460,6 +512,19 @@ export type UserUncheckedCreateInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUpdateInput = {
@@ -491,6 +556,19 @@ export type UserUpdateInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -522,6 +600,19 @@ export type UserUncheckedUpdateInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1053,6 +1144,200 @@ export type UserUpdateOneWithoutAuditLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
 }
 
+export type UserCreateNestedOneWithoutAttendanceRecordsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceRecordsInput, Prisma.UserUncheckedCreateWithoutAttendanceRecordsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceRecordsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutResolvedAnomaliesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomaliesInput, Prisma.UserUncheckedCreateWithoutResolvedAnomaliesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResolvedAnomaliesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAttendanceRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceRecordsInput, Prisma.UserUncheckedCreateWithoutAttendanceRecordsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceRecordsInput
+  upsert?: Prisma.UserUpsertWithoutAttendanceRecordsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAttendanceRecordsInput, Prisma.UserUpdateWithoutAttendanceRecordsInput>, Prisma.UserUncheckedUpdateWithoutAttendanceRecordsInput>
+}
+
+export type UserUpdateOneWithoutResolvedAnomaliesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomaliesInput, Prisma.UserUncheckedCreateWithoutResolvedAnomaliesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResolvedAnomaliesInput
+  upsert?: Prisma.UserUpsertWithoutResolvedAnomaliesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutResolvedAnomaliesInput, Prisma.UserUpdateWithoutResolvedAnomaliesInput>, Prisma.UserUncheckedUpdateWithoutResolvedAnomaliesInput>
+}
+
+export type UserCreateNestedOneWithoutAttendanceSessionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceSessionsInput, Prisma.UserUncheckedCreateWithoutAttendanceSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAttendanceSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceSessionsInput, Prisma.UserUncheckedCreateWithoutAttendanceSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceSessionsInput
+  upsert?: Prisma.UserUpsertWithoutAttendanceSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAttendanceSessionsInput, Prisma.UserUpdateWithoutAttendanceSessionsInput>, Prisma.UserUncheckedUpdateWithoutAttendanceSessionsInput>
+}
+
+export type UserCreateNestedOneWithoutAttendanceBreaksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceBreaksInput, Prisma.UserUncheckedCreateWithoutAttendanceBreaksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceBreaksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAttendanceBreaksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceBreaksInput, Prisma.UserUncheckedCreateWithoutAttendanceBreaksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceBreaksInput
+  upsert?: Prisma.UserUpsertWithoutAttendanceBreaksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAttendanceBreaksInput, Prisma.UserUpdateWithoutAttendanceBreaksInput>, Prisma.UserUncheckedUpdateWithoutAttendanceBreaksInput>
+}
+
+export type UserCreateNestedOneWithoutEmployeeCorrectionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEmployeeCorrectionsInput, Prisma.UserUncheckedCreateWithoutEmployeeCorrectionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmployeeCorrectionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutReviewedCorrectionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedCorrectionsInput, Prisma.UserUncheckedCreateWithoutReviewedCorrectionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedCorrectionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutEmployeeCorrectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEmployeeCorrectionsInput, Prisma.UserUncheckedCreateWithoutEmployeeCorrectionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmployeeCorrectionsInput
+  upsert?: Prisma.UserUpsertWithoutEmployeeCorrectionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEmployeeCorrectionsInput, Prisma.UserUpdateWithoutEmployeeCorrectionsInput>, Prisma.UserUncheckedUpdateWithoutEmployeeCorrectionsInput>
+}
+
+export type UserUpdateOneWithoutReviewedCorrectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedCorrectionsInput, Prisma.UserUncheckedCreateWithoutReviewedCorrectionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedCorrectionsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedCorrectionsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedCorrectionsInput, Prisma.UserUpdateWithoutReviewedCorrectionsInput>, Prisma.UserUncheckedUpdateWithoutReviewedCorrectionsInput>
+}
+
+export type UserCreateNestedOneWithoutReviewedEvidenceVerificationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedEvidenceVerificationsInput, Prisma.UserUncheckedCreateWithoutReviewedEvidenceVerificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedEvidenceVerificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReviewedEvidenceVerificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedEvidenceVerificationsInput, Prisma.UserUncheckedCreateWithoutReviewedEvidenceVerificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedEvidenceVerificationsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedEvidenceVerificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedEvidenceVerificationsInput, Prisma.UserUpdateWithoutReviewedEvidenceVerificationsInput>, Prisma.UserUncheckedUpdateWithoutReviewedEvidenceVerificationsInput>
+}
+
+export type UserCreateNestedOneWithoutEmployeeOvertimeRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEmployeeOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeOvertimeRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmployeeOvertimeRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutReviewedOvertimeRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedOvertimeRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedOvertimeRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutEmployeeOvertimeRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEmployeeOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeOvertimeRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmployeeOvertimeRequestsInput
+  upsert?: Prisma.UserUpsertWithoutEmployeeOvertimeRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEmployeeOvertimeRequestsInput, Prisma.UserUpdateWithoutEmployeeOvertimeRequestsInput>, Prisma.UserUncheckedUpdateWithoutEmployeeOvertimeRequestsInput>
+}
+
+export type UserUpdateOneWithoutReviewedOvertimeRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedOvertimeRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedOvertimeRequestsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedOvertimeRequestsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedOvertimeRequestsInput, Prisma.UserUpdateWithoutReviewedOvertimeRequestsInput>, Prisma.UserUncheckedUpdateWithoutReviewedOvertimeRequestsInput>
+}
+
+export type UserCreateNestedOneWithoutEmployeeWfhRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEmployeeWfhRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeWfhRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmployeeWfhRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutReviewedWfhRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedWfhRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedWfhRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedWfhRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutEmployeeWfhRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEmployeeWfhRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeWfhRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEmployeeWfhRequestsInput
+  upsert?: Prisma.UserUpsertWithoutEmployeeWfhRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEmployeeWfhRequestsInput, Prisma.UserUpdateWithoutEmployeeWfhRequestsInput>, Prisma.UserUncheckedUpdateWithoutEmployeeWfhRequestsInput>
+}
+
+export type UserUpdateOneWithoutReviewedWfhRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedWfhRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedWfhRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedWfhRequestsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedWfhRequestsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedWfhRequestsInput, Prisma.UserUpdateWithoutReviewedWfhRequestsInput>, Prisma.UserUncheckedUpdateWithoutReviewedWfhRequestsInput>
+}
+
+export type UserCreateNestedOneWithoutReconciliationRunsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReconciliationRunsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReconciliationRunsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReconciliationRunsInput
+  upsert?: Prisma.UserUpsertWithoutReconciliationRunsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReconciliationRunsInput, Prisma.UserUpdateWithoutReconciliationRunsInput>, Prisma.UserUncheckedUpdateWithoutReconciliationRunsInput>
+}
+
+export type UserCreateNestedOneWithoutResolvedAnomalyItemsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomalyItemsInput, Prisma.UserUncheckedCreateWithoutResolvedAnomalyItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResolvedAnomalyItemsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutResolvedAnomalyItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomalyItemsInput, Prisma.UserUncheckedCreateWithoutResolvedAnomalyItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResolvedAnomalyItemsInput
+  upsert?: Prisma.UserUpsertWithoutResolvedAnomalyItemsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutResolvedAnomalyItemsInput, Prisma.UserUpdateWithoutResolvedAnomalyItemsInput>, Prisma.UserUncheckedUpdateWithoutResolvedAnomalyItemsInput>
+}
+
 export type UserCreateWithoutUserTypeInput = {
   id?: string
   userCode: string
@@ -1081,6 +1366,19 @@ export type UserCreateWithoutUserTypeInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutUserTypeInput = {
@@ -1111,6 +1409,19 @@ export type UserUncheckedCreateWithoutUserTypeInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutUserTypeInput = {
@@ -1188,6 +1499,19 @@ export type UserCreateWithoutCreatedUsersInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedUsersInput = {
@@ -1218,6 +1542,19 @@ export type UserUncheckedCreateWithoutCreatedUsersInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedUsersInput = {
@@ -1253,6 +1590,19 @@ export type UserCreateWithoutCreatorInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatorInput = {
@@ -1283,6 +1633,19 @@ export type UserUncheckedCreateWithoutCreatorInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatorInput = {
@@ -1323,6 +1686,19 @@ export type UserCreateWithoutUpdatedUsersInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedUsersInput = {
@@ -1353,6 +1729,19 @@ export type UserUncheckedCreateWithoutUpdatedUsersInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedUsersInput = {
@@ -1388,6 +1777,19 @@ export type UserCreateWithoutUpdaterInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutUpdaterInput = {
@@ -1418,6 +1820,19 @@ export type UserUncheckedCreateWithoutUpdaterInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutUpdaterInput = {
@@ -1458,6 +1873,19 @@ export type UserCreateWithoutDeletedUsersInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutDeletedUsersInput = {
@@ -1488,6 +1916,19 @@ export type UserUncheckedCreateWithoutDeletedUsersInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutDeletedUsersInput = {
@@ -1523,6 +1964,19 @@ export type UserCreateWithoutDeleterInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutDeleterInput = {
@@ -1553,6 +2007,19 @@ export type UserUncheckedCreateWithoutDeleterInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutDeleterInput = {
@@ -1604,6 +2071,19 @@ export type UserUpdateWithoutCreatedUsersInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedUsersInput = {
@@ -1634,6 +2114,19 @@ export type UserUncheckedUpdateWithoutCreatedUsersInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutCreatorInput = {
@@ -1691,6 +2184,19 @@ export type UserUpdateWithoutUpdatedUsersInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedUsersInput = {
@@ -1721,6 +2227,19 @@ export type UserUncheckedUpdateWithoutUpdatedUsersInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutUpdaterInput = {
@@ -1778,6 +2297,19 @@ export type UserUpdateWithoutDeletedUsersInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDeletedUsersInput = {
@@ -1808,6 +2340,19 @@ export type UserUncheckedUpdateWithoutDeletedUsersInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutDeleterInput = {
@@ -1854,6 +2399,19 @@ export type UserCreateWithoutOtpRequestsInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutOtpRequestsInput = {
@@ -1884,6 +2442,19 @@ export type UserUncheckedCreateWithoutOtpRequestsInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutOtpRequestsInput = {
@@ -1930,6 +2501,19 @@ export type UserUpdateWithoutOtpRequestsInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOtpRequestsInput = {
@@ -1960,6 +2544,19 @@ export type UserUncheckedUpdateWithoutOtpRequestsInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -1990,6 +2587,19 @@ export type UserCreateWithoutSessionsInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -2020,6 +2630,19 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -2066,6 +2689,19 @@ export type UserUpdateWithoutSessionsInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -2096,6 +2732,19 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutUserRolesInput = {
@@ -2126,6 +2775,19 @@ export type UserCreateWithoutUserRolesInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutUserRolesInput = {
@@ -2156,6 +2818,19 @@ export type UserUncheckedCreateWithoutUserRolesInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutUserRolesInput = {
@@ -2202,6 +2877,19 @@ export type UserUpdateWithoutUserRolesInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserRolesInput = {
@@ -2232,6 +2920,19 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutUserPermissionsInput = {
@@ -2262,6 +2963,19 @@ export type UserCreateWithoutUserPermissionsInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutUserPermissionsInput = {
@@ -2292,6 +3006,19 @@ export type UserUncheckedCreateWithoutUserPermissionsInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutUserPermissionsInput = {
@@ -2338,6 +3065,19 @@ export type UserUpdateWithoutUserPermissionsInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserPermissionsInput = {
@@ -2368,6 +3108,19 @@ export type UserUncheckedUpdateWithoutUserPermissionsInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutDepartmentsInput = {
@@ -2398,6 +3151,19 @@ export type UserCreateWithoutDepartmentsInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutDepartmentsInput = {
@@ -2428,6 +3194,19 @@ export type UserUncheckedCreateWithoutDepartmentsInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutDepartmentsInput = {
@@ -2474,6 +3253,19 @@ export type UserUpdateWithoutDepartmentsInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDepartmentsInput = {
@@ -2504,6 +3296,19 @@ export type UserUncheckedUpdateWithoutDepartmentsInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutEmployeeProfileInput = {
@@ -2534,6 +3339,19 @@ export type UserCreateWithoutEmployeeProfileInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutEmployeeProfileInput = {
@@ -2564,6 +3382,19 @@ export type UserUncheckedCreateWithoutEmployeeProfileInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutEmployeeProfileInput = {
@@ -2610,6 +3441,19 @@ export type UserUpdateWithoutEmployeeProfileInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEmployeeProfileInput = {
@@ -2640,6 +3484,19 @@ export type UserUncheckedUpdateWithoutEmployeeProfileInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutClientProfileInput = {
@@ -2670,6 +3527,19 @@ export type UserCreateWithoutClientProfileInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutClientProfileInput = {
@@ -2700,6 +3570,19 @@ export type UserUncheckedCreateWithoutClientProfileInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutClientProfileInput = {
@@ -2746,6 +3629,19 @@ export type UserUpdateWithoutClientProfileInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClientProfileInput = {
@@ -2776,6 +3672,19 @@ export type UserUncheckedUpdateWithoutClientProfileInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutUploadedMediaInput = {
@@ -2806,6 +3715,19 @@ export type UserCreateWithoutUploadedMediaInput = {
   sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutUploadedMediaInput = {
@@ -2836,6 +3758,19 @@ export type UserUncheckedCreateWithoutUploadedMediaInput = {
   sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutUploadedMediaInput = {
@@ -2871,6 +3806,19 @@ export type UserCreateWithoutProfileMediaInput = {
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutProfileMediaInput = {
@@ -2901,6 +3849,19 @@ export type UserUncheckedCreateWithoutProfileMediaInput = {
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutProfileMediaInput = {
@@ -2947,6 +3908,19 @@ export type UserUpdateWithoutUploadedMediaInput = {
   sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedMediaInput = {
@@ -2977,6 +3951,19 @@ export type UserUncheckedUpdateWithoutUploadedMediaInput = {
   sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUpsertWithoutProfileMediaInput = {
@@ -3018,6 +4005,19 @@ export type UserUpdateWithoutProfileMediaInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileMediaInput = {
@@ -3048,6 +4048,19 @@ export type UserUncheckedUpdateWithoutProfileMediaInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutActivityLogsInput = {
@@ -3078,6 +4091,19 @@ export type UserCreateWithoutActivityLogsInput = {
   sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutActivityLogsInput = {
@@ -3108,6 +4134,19 @@ export type UserUncheckedCreateWithoutActivityLogsInput = {
   sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutActivityLogsInput = {
@@ -3154,6 +4193,19 @@ export type UserUpdateWithoutActivityLogsInput = {
   sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityLogsInput = {
@@ -3184,6 +4236,19 @@ export type UserUncheckedUpdateWithoutActivityLogsInput = {
   sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -3214,6 +4279,19 @@ export type UserCreateWithoutAuditLogsInput = {
   sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
   uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -3244,6 +4322,19 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
   uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -3290,6 +4381,19 @@ export type UserUpdateWithoutAuditLogsInput = {
   sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -3320,6 +4424,2463 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutAttendanceRecordsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutAttendanceRecordsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutAttendanceRecordsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceRecordsInput, Prisma.UserUncheckedCreateWithoutAttendanceRecordsInput>
+}
+
+export type UserCreateWithoutResolvedAnomaliesInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutResolvedAnomaliesInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutResolvedAnomaliesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomaliesInput, Prisma.UserUncheckedCreateWithoutResolvedAnomaliesInput>
+}
+
+export type UserUpsertWithoutAttendanceRecordsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceRecordsInput, Prisma.UserUncheckedUpdateWithoutAttendanceRecordsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceRecordsInput, Prisma.UserUncheckedCreateWithoutAttendanceRecordsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAttendanceRecordsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceRecordsInput, Prisma.UserUncheckedUpdateWithoutAttendanceRecordsInput>
+}
+
+export type UserUpdateWithoutAttendanceRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAttendanceRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUpsertWithoutResolvedAnomaliesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutResolvedAnomaliesInput, Prisma.UserUncheckedUpdateWithoutResolvedAnomaliesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomaliesInput, Prisma.UserUncheckedCreateWithoutResolvedAnomaliesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutResolvedAnomaliesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutResolvedAnomaliesInput, Prisma.UserUncheckedUpdateWithoutResolvedAnomaliesInput>
+}
+
+export type UserUpdateWithoutResolvedAnomaliesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutResolvedAnomaliesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutAttendanceSessionsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutAttendanceSessionsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutAttendanceSessionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceSessionsInput, Prisma.UserUncheckedCreateWithoutAttendanceSessionsInput>
+}
+
+export type UserUpsertWithoutAttendanceSessionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceSessionsInput, Prisma.UserUncheckedUpdateWithoutAttendanceSessionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceSessionsInput, Prisma.UserUncheckedCreateWithoutAttendanceSessionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAttendanceSessionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceSessionsInput, Prisma.UserUncheckedUpdateWithoutAttendanceSessionsInput>
+}
+
+export type UserUpdateWithoutAttendanceSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAttendanceSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutAttendanceBreaksInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutAttendanceBreaksInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutAttendanceBreaksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceBreaksInput, Prisma.UserUncheckedCreateWithoutAttendanceBreaksInput>
+}
+
+export type UserUpsertWithoutAttendanceBreaksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceBreaksInput, Prisma.UserUncheckedUpdateWithoutAttendanceBreaksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceBreaksInput, Prisma.UserUncheckedCreateWithoutAttendanceBreaksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAttendanceBreaksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceBreaksInput, Prisma.UserUncheckedUpdateWithoutAttendanceBreaksInput>
+}
+
+export type UserUpdateWithoutAttendanceBreaksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAttendanceBreaksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutEmployeeCorrectionsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutEmployeeCorrectionsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutEmployeeCorrectionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutEmployeeCorrectionsInput, Prisma.UserUncheckedCreateWithoutEmployeeCorrectionsInput>
+}
+
+export type UserCreateWithoutReviewedCorrectionsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutReviewedCorrectionsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutReviewedCorrectionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedCorrectionsInput, Prisma.UserUncheckedCreateWithoutReviewedCorrectionsInput>
+}
+
+export type UserUpsertWithoutEmployeeCorrectionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutEmployeeCorrectionsInput, Prisma.UserUncheckedUpdateWithoutEmployeeCorrectionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutEmployeeCorrectionsInput, Prisma.UserUncheckedCreateWithoutEmployeeCorrectionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutEmployeeCorrectionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutEmployeeCorrectionsInput, Prisma.UserUncheckedUpdateWithoutEmployeeCorrectionsInput>
+}
+
+export type UserUpdateWithoutEmployeeCorrectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutEmployeeCorrectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUpsertWithoutReviewedCorrectionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedCorrectionsInput, Prisma.UserUncheckedUpdateWithoutReviewedCorrectionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedCorrectionsInput, Prisma.UserUncheckedCreateWithoutReviewedCorrectionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedCorrectionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedCorrectionsInput, Prisma.UserUncheckedUpdateWithoutReviewedCorrectionsInput>
+}
+
+export type UserUpdateWithoutReviewedCorrectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedCorrectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutReviewedEvidenceVerificationsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutReviewedEvidenceVerificationsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutReviewedEvidenceVerificationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedEvidenceVerificationsInput, Prisma.UserUncheckedCreateWithoutReviewedEvidenceVerificationsInput>
+}
+
+export type UserUpsertWithoutReviewedEvidenceVerificationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedEvidenceVerificationsInput, Prisma.UserUncheckedUpdateWithoutReviewedEvidenceVerificationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedEvidenceVerificationsInput, Prisma.UserUncheckedCreateWithoutReviewedEvidenceVerificationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedEvidenceVerificationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedEvidenceVerificationsInput, Prisma.UserUncheckedUpdateWithoutReviewedEvidenceVerificationsInput>
+}
+
+export type UserUpdateWithoutReviewedEvidenceVerificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedEvidenceVerificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutEmployeeOvertimeRequestsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutEmployeeOvertimeRequestsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutEmployeeOvertimeRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutEmployeeOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeOvertimeRequestsInput>
+}
+
+export type UserCreateWithoutReviewedOvertimeRequestsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutReviewedOvertimeRequestsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutReviewedOvertimeRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedOvertimeRequestsInput>
+}
+
+export type UserUpsertWithoutEmployeeOvertimeRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutEmployeeOvertimeRequestsInput, Prisma.UserUncheckedUpdateWithoutEmployeeOvertimeRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutEmployeeOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeOvertimeRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutEmployeeOvertimeRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutEmployeeOvertimeRequestsInput, Prisma.UserUncheckedUpdateWithoutEmployeeOvertimeRequestsInput>
+}
+
+export type UserUpdateWithoutEmployeeOvertimeRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutEmployeeOvertimeRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUpsertWithoutReviewedOvertimeRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedOvertimeRequestsInput, Prisma.UserUncheckedUpdateWithoutReviewedOvertimeRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedOvertimeRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedOvertimeRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedOvertimeRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedOvertimeRequestsInput, Prisma.UserUncheckedUpdateWithoutReviewedOvertimeRequestsInput>
+}
+
+export type UserUpdateWithoutReviewedOvertimeRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedOvertimeRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutEmployeeWfhRequestsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutEmployeeWfhRequestsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutEmployeeWfhRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutEmployeeWfhRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeWfhRequestsInput>
+}
+
+export type UserCreateWithoutReviewedWfhRequestsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutReviewedWfhRequestsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutReviewedWfhRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedWfhRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedWfhRequestsInput>
+}
+
+export type UserUpsertWithoutEmployeeWfhRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutEmployeeWfhRequestsInput, Prisma.UserUncheckedUpdateWithoutEmployeeWfhRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutEmployeeWfhRequestsInput, Prisma.UserUncheckedCreateWithoutEmployeeWfhRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutEmployeeWfhRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutEmployeeWfhRequestsInput, Prisma.UserUncheckedUpdateWithoutEmployeeWfhRequestsInput>
+}
+
+export type UserUpdateWithoutEmployeeWfhRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutEmployeeWfhRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUpsertWithoutReviewedWfhRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedWfhRequestsInput, Prisma.UserUncheckedUpdateWithoutReviewedWfhRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedWfhRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedWfhRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedWfhRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedWfhRequestsInput, Prisma.UserUncheckedUpdateWithoutReviewedWfhRequestsInput>
+}
+
+export type UserUpdateWithoutReviewedWfhRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedWfhRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutReconciliationRunsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutReconciliationRunsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutReconciliationRunsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+}
+
+export type UserUpsertWithoutReconciliationRunsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReconciliationRunsInput, Prisma.UserUncheckedUpdateWithoutReconciliationRunsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReconciliationRunsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReconciliationRunsInput, Prisma.UserUncheckedUpdateWithoutReconciliationRunsInput>
+}
+
+export type UserUpdateWithoutReconciliationRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReconciliationRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+}
+
+export type UserCreateWithoutResolvedAnomalyItemsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+}
+
+export type UserUncheckedCreateWithoutResolvedAnomalyItemsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+}
+
+export type UserCreateOrConnectWithoutResolvedAnomalyItemsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomalyItemsInput, Prisma.UserUncheckedCreateWithoutResolvedAnomalyItemsInput>
+}
+
+export type UserUpsertWithoutResolvedAnomalyItemsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutResolvedAnomalyItemsInput, Prisma.UserUncheckedUpdateWithoutResolvedAnomalyItemsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutResolvedAnomalyItemsInput, Prisma.UserUncheckedCreateWithoutResolvedAnomalyItemsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutResolvedAnomalyItemsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutResolvedAnomalyItemsInput, Prisma.UserUncheckedUpdateWithoutResolvedAnomalyItemsInput>
+}
+
+export type UserUpdateWithoutResolvedAnomalyItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutResolvedAnomalyItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
 }
 
 export type UserCreateManyUserTypeInput = {
@@ -3367,6 +6928,19 @@ export type UserUpdateWithoutUserTypeInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserTypeInput = {
@@ -3397,6 +6971,19 @@ export type UserUncheckedUpdateWithoutUserTypeInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutUserTypeInput = {
@@ -3495,6 +7082,19 @@ export type UserUpdateWithoutCreatorInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatorInput = {
@@ -3525,6 +7125,19 @@ export type UserUncheckedUpdateWithoutCreatorInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutCreatorInput = {
@@ -3572,6 +7185,19 @@ export type UserUpdateWithoutUpdaterInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdaterInput = {
@@ -3602,6 +7228,19 @@ export type UserUncheckedUpdateWithoutUpdaterInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutUpdaterInput = {
@@ -3649,6 +7288,19 @@ export type UserUpdateWithoutDeleterInput = {
   uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDeleterInput = {
@@ -3679,6 +7331,19 @@ export type UserUncheckedUpdateWithoutDeleterInput = {
   uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutDeleterInput = {
@@ -3715,6 +7380,19 @@ export type UserCountOutputType = {
   uploadedMedia: number
   activityLogs: number
   auditLogs: number
+  attendanceRecords: number
+  attendanceSessions: number
+  attendanceBreaks: number
+  employeeCorrections: number
+  reviewedCorrections: number
+  employeeOvertimeRequests: number
+  reviewedOvertimeRequests: number
+  employeeWfhRequests: number
+  reviewedWfhRequests: number
+  reviewedEvidenceVerifications: number
+  reconciliationRuns: number
+  resolvedAnomalies: number
+  resolvedAnomalyItems: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3729,6 +7407,19 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   uploadedMedia?: boolean | UserCountOutputTypeCountUploadedMediaArgs
   activityLogs?: boolean | UserCountOutputTypeCountActivityLogsArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  attendanceRecords?: boolean | UserCountOutputTypeCountAttendanceRecordsArgs
+  attendanceSessions?: boolean | UserCountOutputTypeCountAttendanceSessionsArgs
+  attendanceBreaks?: boolean | UserCountOutputTypeCountAttendanceBreaksArgs
+  employeeCorrections?: boolean | UserCountOutputTypeCountEmployeeCorrectionsArgs
+  reviewedCorrections?: boolean | UserCountOutputTypeCountReviewedCorrectionsArgs
+  employeeOvertimeRequests?: boolean | UserCountOutputTypeCountEmployeeOvertimeRequestsArgs
+  reviewedOvertimeRequests?: boolean | UserCountOutputTypeCountReviewedOvertimeRequestsArgs
+  employeeWfhRequests?: boolean | UserCountOutputTypeCountEmployeeWfhRequestsArgs
+  reviewedWfhRequests?: boolean | UserCountOutputTypeCountReviewedWfhRequestsArgs
+  reviewedEvidenceVerifications?: boolean | UserCountOutputTypeCountReviewedEvidenceVerificationsArgs
+  reconciliationRuns?: boolean | UserCountOutputTypeCountReconciliationRunsArgs
+  resolvedAnomalies?: boolean | UserCountOutputTypeCountResolvedAnomaliesArgs
+  resolvedAnomalyItems?: boolean | UserCountOutputTypeCountResolvedAnomalyItemsArgs
 }
 
 /**
@@ -3818,6 +7509,97 @@ export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.AuditLogWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAttendanceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceRecordWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAttendanceSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceSessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAttendanceBreaksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceBreakWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountEmployeeCorrectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceCorrectionRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedCorrectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceCorrectionRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountEmployeeOvertimeRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceOvertimeRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedOvertimeRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceOvertimeRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountEmployeeWfhRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceWfhRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedWfhRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceWfhRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedEvidenceVerificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceEvidenceVerificationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReconciliationRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceReconciliationRunWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountResolvedAnomaliesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceRecordWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountResolvedAnomalyItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceAnomalyWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3853,6 +7635,19 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   uploadedMedia?: boolean | Prisma.User$uploadedMediaArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  attendanceRecords?: boolean | Prisma.User$attendanceRecordsArgs<ExtArgs>
+  attendanceSessions?: boolean | Prisma.User$attendanceSessionsArgs<ExtArgs>
+  attendanceBreaks?: boolean | Prisma.User$attendanceBreaksArgs<ExtArgs>
+  employeeCorrections?: boolean | Prisma.User$employeeCorrectionsArgs<ExtArgs>
+  reviewedCorrections?: boolean | Prisma.User$reviewedCorrectionsArgs<ExtArgs>
+  employeeOvertimeRequests?: boolean | Prisma.User$employeeOvertimeRequestsArgs<ExtArgs>
+  reviewedOvertimeRequests?: boolean | Prisma.User$reviewedOvertimeRequestsArgs<ExtArgs>
+  employeeWfhRequests?: boolean | Prisma.User$employeeWfhRequestsArgs<ExtArgs>
+  reviewedWfhRequests?: boolean | Prisma.User$reviewedWfhRequestsArgs<ExtArgs>
+  reviewedEvidenceVerifications?: boolean | Prisma.User$reviewedEvidenceVerificationsArgs<ExtArgs>
+  reconciliationRuns?: boolean | Prisma.User$reconciliationRunsArgs<ExtArgs>
+  resolvedAnomalies?: boolean | Prisma.User$resolvedAnomaliesArgs<ExtArgs>
+  resolvedAnomalyItems?: boolean | Prisma.User$resolvedAnomalyItemsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3896,6 +7691,19 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   uploadedMedia?: boolean | Prisma.User$uploadedMediaArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  attendanceRecords?: boolean | Prisma.User$attendanceRecordsArgs<ExtArgs>
+  attendanceSessions?: boolean | Prisma.User$attendanceSessionsArgs<ExtArgs>
+  attendanceBreaks?: boolean | Prisma.User$attendanceBreaksArgs<ExtArgs>
+  employeeCorrections?: boolean | Prisma.User$employeeCorrectionsArgs<ExtArgs>
+  reviewedCorrections?: boolean | Prisma.User$reviewedCorrectionsArgs<ExtArgs>
+  employeeOvertimeRequests?: boolean | Prisma.User$employeeOvertimeRequestsArgs<ExtArgs>
+  reviewedOvertimeRequests?: boolean | Prisma.User$reviewedOvertimeRequestsArgs<ExtArgs>
+  employeeWfhRequests?: boolean | Prisma.User$employeeWfhRequestsArgs<ExtArgs>
+  reviewedWfhRequests?: boolean | Prisma.User$reviewedWfhRequestsArgs<ExtArgs>
+  reviewedEvidenceVerifications?: boolean | Prisma.User$reviewedEvidenceVerificationsArgs<ExtArgs>
+  reconciliationRuns?: boolean | Prisma.User$reconciliationRunsArgs<ExtArgs>
+  resolvedAnomalies?: boolean | Prisma.User$resolvedAnomaliesArgs<ExtArgs>
+  resolvedAnomalyItems?: boolean | Prisma.User$resolvedAnomalyItemsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -3920,6 +7728,19 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     uploadedMedia: Prisma.$MediaPayload<ExtArgs>[]
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+    attendanceRecords: Prisma.$AttendanceRecordPayload<ExtArgs>[]
+    attendanceSessions: Prisma.$AttendanceSessionPayload<ExtArgs>[]
+    attendanceBreaks: Prisma.$AttendanceBreakPayload<ExtArgs>[]
+    employeeCorrections: Prisma.$AttendanceCorrectionRequestPayload<ExtArgs>[]
+    reviewedCorrections: Prisma.$AttendanceCorrectionRequestPayload<ExtArgs>[]
+    employeeOvertimeRequests: Prisma.$AttendanceOvertimeRequestPayload<ExtArgs>[]
+    reviewedOvertimeRequests: Prisma.$AttendanceOvertimeRequestPayload<ExtArgs>[]
+    employeeWfhRequests: Prisma.$AttendanceWfhRequestPayload<ExtArgs>[]
+    reviewedWfhRequests: Prisma.$AttendanceWfhRequestPayload<ExtArgs>[]
+    reviewedEvidenceVerifications: Prisma.$AttendanceEvidenceVerificationPayload<ExtArgs>[]
+    reconciliationRuns: Prisma.$AttendanceReconciliationRunPayload<ExtArgs>[]
+    resolvedAnomalies: Prisma.$AttendanceRecordPayload<ExtArgs>[]
+    resolvedAnomalyItems: Prisma.$AttendanceAnomalyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4295,6 +8116,19 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   uploadedMedia<T extends Prisma.User$uploadedMediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$uploadedMediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   activityLogs<T extends Prisma.User$activityLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attendanceRecords<T extends Prisma.User$attendanceRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$attendanceRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attendanceSessions<T extends Prisma.User$attendanceSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$attendanceSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attendanceBreaks<T extends Prisma.User$attendanceBreaksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$attendanceBreaksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceBreakPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employeeCorrections<T extends Prisma.User$employeeCorrectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$employeeCorrectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceCorrectionRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedCorrections<T extends Prisma.User$reviewedCorrectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedCorrectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceCorrectionRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employeeOvertimeRequests<T extends Prisma.User$employeeOvertimeRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$employeeOvertimeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceOvertimeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedOvertimeRequests<T extends Prisma.User$reviewedOvertimeRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedOvertimeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceOvertimeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employeeWfhRequests<T extends Prisma.User$employeeWfhRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$employeeWfhRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceWfhRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedWfhRequests<T extends Prisma.User$reviewedWfhRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedWfhRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceWfhRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedEvidenceVerifications<T extends Prisma.User$reviewedEvidenceVerificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedEvidenceVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceEvidenceVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reconciliationRuns<T extends Prisma.User$reconciliationRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reconciliationRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceReconciliationRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  resolvedAnomalies<T extends Prisma.User$resolvedAnomaliesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$resolvedAnomaliesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  resolvedAnomalyItems<T extends Prisma.User$resolvedAnomalyItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$resolvedAnomalyItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceAnomalyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5062,6 +8896,318 @@ export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * User.attendanceRecords
+ */
+export type User$attendanceRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceRecord
+   */
+  select?: Prisma.AttendanceRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceRecord
+   */
+  omit?: Prisma.AttendanceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceRecordInclude<ExtArgs> | null
+  where?: Prisma.AttendanceRecordWhereInput
+  orderBy?: Prisma.AttendanceRecordOrderByWithRelationInput | Prisma.AttendanceRecordOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceRecordScalarFieldEnum | Prisma.AttendanceRecordScalarFieldEnum[]
+}
+
+/**
+ * User.attendanceSessions
+ */
+export type User$attendanceSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceSession
+   */
+  select?: Prisma.AttendanceSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceSession
+   */
+  omit?: Prisma.AttendanceSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceSessionInclude<ExtArgs> | null
+  where?: Prisma.AttendanceSessionWhereInput
+  orderBy?: Prisma.AttendanceSessionOrderByWithRelationInput | Prisma.AttendanceSessionOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceSessionScalarFieldEnum | Prisma.AttendanceSessionScalarFieldEnum[]
+}
+
+/**
+ * User.attendanceBreaks
+ */
+export type User$attendanceBreaksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceBreak
+   */
+  select?: Prisma.AttendanceBreakSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceBreak
+   */
+  omit?: Prisma.AttendanceBreakOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceBreakInclude<ExtArgs> | null
+  where?: Prisma.AttendanceBreakWhereInput
+  orderBy?: Prisma.AttendanceBreakOrderByWithRelationInput | Prisma.AttendanceBreakOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceBreakWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceBreakScalarFieldEnum | Prisma.AttendanceBreakScalarFieldEnum[]
+}
+
+/**
+ * User.employeeCorrections
+ */
+export type User$employeeCorrectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceCorrectionRequest
+   */
+  select?: Prisma.AttendanceCorrectionRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceCorrectionRequest
+   */
+  omit?: Prisma.AttendanceCorrectionRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceCorrectionRequestInclude<ExtArgs> | null
+  where?: Prisma.AttendanceCorrectionRequestWhereInput
+  orderBy?: Prisma.AttendanceCorrectionRequestOrderByWithRelationInput | Prisma.AttendanceCorrectionRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceCorrectionRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceCorrectionRequestScalarFieldEnum | Prisma.AttendanceCorrectionRequestScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedCorrections
+ */
+export type User$reviewedCorrectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceCorrectionRequest
+   */
+  select?: Prisma.AttendanceCorrectionRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceCorrectionRequest
+   */
+  omit?: Prisma.AttendanceCorrectionRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceCorrectionRequestInclude<ExtArgs> | null
+  where?: Prisma.AttendanceCorrectionRequestWhereInput
+  orderBy?: Prisma.AttendanceCorrectionRequestOrderByWithRelationInput | Prisma.AttendanceCorrectionRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceCorrectionRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceCorrectionRequestScalarFieldEnum | Prisma.AttendanceCorrectionRequestScalarFieldEnum[]
+}
+
+/**
+ * User.employeeOvertimeRequests
+ */
+export type User$employeeOvertimeRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceOvertimeRequest
+   */
+  select?: Prisma.AttendanceOvertimeRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceOvertimeRequest
+   */
+  omit?: Prisma.AttendanceOvertimeRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceOvertimeRequestInclude<ExtArgs> | null
+  where?: Prisma.AttendanceOvertimeRequestWhereInput
+  orderBy?: Prisma.AttendanceOvertimeRequestOrderByWithRelationInput | Prisma.AttendanceOvertimeRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceOvertimeRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceOvertimeRequestScalarFieldEnum | Prisma.AttendanceOvertimeRequestScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedOvertimeRequests
+ */
+export type User$reviewedOvertimeRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceOvertimeRequest
+   */
+  select?: Prisma.AttendanceOvertimeRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceOvertimeRequest
+   */
+  omit?: Prisma.AttendanceOvertimeRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceOvertimeRequestInclude<ExtArgs> | null
+  where?: Prisma.AttendanceOvertimeRequestWhereInput
+  orderBy?: Prisma.AttendanceOvertimeRequestOrderByWithRelationInput | Prisma.AttendanceOvertimeRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceOvertimeRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceOvertimeRequestScalarFieldEnum | Prisma.AttendanceOvertimeRequestScalarFieldEnum[]
+}
+
+/**
+ * User.employeeWfhRequests
+ */
+export type User$employeeWfhRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceWfhRequest
+   */
+  select?: Prisma.AttendanceWfhRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceWfhRequest
+   */
+  omit?: Prisma.AttendanceWfhRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceWfhRequestInclude<ExtArgs> | null
+  where?: Prisma.AttendanceWfhRequestWhereInput
+  orderBy?: Prisma.AttendanceWfhRequestOrderByWithRelationInput | Prisma.AttendanceWfhRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceWfhRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceWfhRequestScalarFieldEnum | Prisma.AttendanceWfhRequestScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedWfhRequests
+ */
+export type User$reviewedWfhRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceWfhRequest
+   */
+  select?: Prisma.AttendanceWfhRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceWfhRequest
+   */
+  omit?: Prisma.AttendanceWfhRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceWfhRequestInclude<ExtArgs> | null
+  where?: Prisma.AttendanceWfhRequestWhereInput
+  orderBy?: Prisma.AttendanceWfhRequestOrderByWithRelationInput | Prisma.AttendanceWfhRequestOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceWfhRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceWfhRequestScalarFieldEnum | Prisma.AttendanceWfhRequestScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedEvidenceVerifications
+ */
+export type User$reviewedEvidenceVerificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceEvidenceVerification
+   */
+  select?: Prisma.AttendanceEvidenceVerificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceEvidenceVerification
+   */
+  omit?: Prisma.AttendanceEvidenceVerificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceEvidenceVerificationInclude<ExtArgs> | null
+  where?: Prisma.AttendanceEvidenceVerificationWhereInput
+  orderBy?: Prisma.AttendanceEvidenceVerificationOrderByWithRelationInput | Prisma.AttendanceEvidenceVerificationOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceEvidenceVerificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceEvidenceVerificationScalarFieldEnum | Prisma.AttendanceEvidenceVerificationScalarFieldEnum[]
+}
+
+/**
+ * User.reconciliationRuns
+ */
+export type User$reconciliationRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceReconciliationRun
+   */
+  select?: Prisma.AttendanceReconciliationRunSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceReconciliationRun
+   */
+  omit?: Prisma.AttendanceReconciliationRunOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceReconciliationRunInclude<ExtArgs> | null
+  where?: Prisma.AttendanceReconciliationRunWhereInput
+  orderBy?: Prisma.AttendanceReconciliationRunOrderByWithRelationInput | Prisma.AttendanceReconciliationRunOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceReconciliationRunWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceReconciliationRunScalarFieldEnum | Prisma.AttendanceReconciliationRunScalarFieldEnum[]
+}
+
+/**
+ * User.resolvedAnomalies
+ */
+export type User$resolvedAnomaliesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceRecord
+   */
+  select?: Prisma.AttendanceRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceRecord
+   */
+  omit?: Prisma.AttendanceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceRecordInclude<ExtArgs> | null
+  where?: Prisma.AttendanceRecordWhereInput
+  orderBy?: Prisma.AttendanceRecordOrderByWithRelationInput | Prisma.AttendanceRecordOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceRecordScalarFieldEnum | Prisma.AttendanceRecordScalarFieldEnum[]
+}
+
+/**
+ * User.resolvedAnomalyItems
+ */
+export type User$resolvedAnomalyItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceAnomaly
+   */
+  select?: Prisma.AttendanceAnomalySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceAnomaly
+   */
+  omit?: Prisma.AttendanceAnomalyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceAnomalyInclude<ExtArgs> | null
+  where?: Prisma.AttendanceAnomalyWhereInput
+  orderBy?: Prisma.AttendanceAnomalyOrderByWithRelationInput | Prisma.AttendanceAnomalyOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceAnomalyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceAnomalyScalarFieldEnum | Prisma.AttendanceAnomalyScalarFieldEnum[]
 }
 
 /**

@@ -1115,13 +1115,29 @@ export class UsersService {
     });
 
     // 2. Count active, non-deleted Super Admins within the locked transaction
-    const activeSuperAdminCount = await tx.user.count({
-      where: {
-        userType: { code: 'SUPER_ADMIN' },
-        status: RecordStatus.ACTIVE,
-        deletedAt: null,
-      },
-    });
+    // In MySQL InnoDB, a locking read (FOR UPDATE) is required to bypass REPEATABLE READ snapshot isolation
+    // and acquire exclusive locks on all active Super Admin rows.
+    let activeSuperAdminCount: number;
+    if (typeof tx.$queryRawUnsafe === 'function') {
+      const activeSuperAdmins = await tx.$queryRawUnsafe(
+        `SELECT u.id 
+         FROM users u 
+         JOIN user_types ut ON u.user_type_id = ut.id 
+         WHERE ut.code = 'SUPER_ADMIN' AND u.status = 'ACTIVE' AND u.deleted_at IS NULL 
+         FOR UPDATE`,
+      );
+      activeSuperAdminCount = Array.isArray(activeSuperAdmins)
+        ? activeSuperAdmins.length
+        : 0;
+    } else {
+      activeSuperAdminCount = await tx.user.count({
+        where: {
+          userType: { code: 'SUPER_ADMIN' },
+          status: RecordStatus.ACTIVE,
+          deletedAt: null,
+        },
+      });
+    }
 
     if (activeSuperAdminCount <= 1) {
       throw new BadRequestException(

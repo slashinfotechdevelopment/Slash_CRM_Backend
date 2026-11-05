@@ -87,6 +87,8 @@ enum AuditAction {
   LOGIN_FAILED
   PERMISSION_CHANGE
   ROLE_ASSIGNMENT
+  STATUS_CHANGE
+  VERIFY_EVIDENCE
   OTHER
 }
 
@@ -149,6 +151,20 @@ model User {
   uploadedMedia   Media[]          @relation("MediaUploadedBy")
   activityLogs    ActivityLog[]    @relation("ActivityActor")
   auditLogs       AuditLog[]       @relation("AuditActor")
+
+  attendanceRecords             AttendanceRecord[]
+  attendanceSessions            AttendanceSession[]
+  attendanceBreaks              AttendanceBreak[]
+  employeeCorrections           AttendanceCorrectionRequest[]    @relation("EmployeeCorrections")
+  reviewedCorrections           AttendanceCorrectionRequest[]    @relation("ReviewedCorrections")
+  employeeOvertimeRequests      AttendanceOvertimeRequest[]      @relation("EmployeeOvertimeRequests")
+  reviewedOvertimeRequests      AttendanceOvertimeRequest[]      @relation("ReviewedOvertimeRequests")
+  employeeWfhRequests           AttendanceWfhRequest[]           @relation("EmployeeWfhRequests")
+  reviewedWfhRequests           AttendanceWfhRequest[]           @relation("ReviewedWfhRequests")
+  reviewedEvidenceVerifications AttendanceEvidenceVerification[] @relation("EvidenceReviewer")
+  reconciliationRuns            AttendanceReconciliationRun[]    @relation("ReconciliationTriggeredBy")
+  resolvedAnomalies             AttendanceRecord[]               @relation("AnomalyResolvedBy")
+  resolvedAnomalyItems          AttendanceAnomaly[]              @relation("AnomalyItemResolvedBy")
 
   @@index([userTypeId, status])
   @@index([deletedAt])
@@ -359,6 +375,9 @@ model EmployeeProfile {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  shiftAssignments EmployeeShiftAssignment[]
+
+  @@unique([id, userId], name: "unique_employee_profile_user")
   @@index([reportingToId])
   @@map("employee_profiles")
 }
@@ -478,4 +497,373 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([requestId])
   @@map("audit_logs")
+}
+
+// =============================================================================
+// STAGE 6: EMPLOYEE OPERATIONS - ATTENDANCE SUBSYSTEM
+// =============================================================================
+
+enum AttendanceStatus {
+  PRESENT
+  HALF_DAY
+  ABSENT
+  ON_LEAVE
+  WEEKLY_OFF
+  HOLIDAY
+  PENDING_RECONCILIATION
+}
+
+enum AttendanceSessionStatus {
+  ACTIVE
+  COMPLETED
+  AUTO_CLOSED
+  QUARANTINED
+  REJECTED
+}
+
+enum AttendanceCorrectionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum OvertimeApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum WfhStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum ReconciliationRunStatus {
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+  PARTIAL
+}
+
+enum VerificationOutcome {
+  VERIFIED
+  REJECTED
+  INCONCLUSIVE
+}
+
+enum AnomalyStatus {
+  ACTIVE
+  RESOLVED
+  DISMISSED
+}
+
+model ShiftDefinition {
+  id                       String   @id @default(cuid()) @db.VarChar(30)
+  code                     String   @unique @db.VarChar(50)
+  name                     String   @db.VarChar(100)
+  startTime                String   @map("start_time") @db.VarChar(5) // "09:00"
+  endTime                  String   @map("end_time") @db.VarChar(5)   // "18:00"
+  isOvernight              Boolean  @default(false) @map("is_overnight")
+  gracePeriodMinutes       Int      @default(15) @map("grace_period_minutes")
+  halfDayThresholdMinutes  Int      @default(240) @map("half_day_threshold_minutes")
+  fullDayThresholdMinutes  Int      @default(480) @map("full_day_threshold_minutes")
+  overtimeThresholdMinutes Int      @default(540) @map("overtime_threshold_minutes")
+  allowMultipleSessions    Boolean  @default(false) @map("allow_multiple_sessions")
+  autoCloseGraceMinutes    Int      @default(30) @map("auto_close_grace_minutes")
+  breakPolicySnapshot      String   @map("break_policy_snapshot") @db.Text
+  createdAt                DateTime @default(now()) @map("created_at")
+  updatedAt                DateTime @updatedAt @map("updated_at")
+
+  assignments       EmployeeShiftAssignment[]
+  attendanceRecords AttendanceRecord[]
+
+  @@map("shift_definitions")
+}
+
+model EmployeeShiftAssignment {
+  id                String    @id @default(cuid()) @db.VarChar(30)
+  employeeProfileId String    @map("employee_profile_id") @db.VarChar(30)
+  userId            String    @map("user_id") @db.VarChar(30)
+  shiftDefinitionId String    @map("shift_definition_id") @db.VarChar(30)
+  startDate         DateTime  @map("start_date") @db.Date
+  endDate           DateTime? @map("end_date") @db.Date
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  employeeProfile   EmployeeProfile    @relation(fields: [employeeProfileId, userId], references: [id, userId], onDelete: Restrict)
+  shiftDefinition   ShiftDefinition    @relation(fields: [shiftDefinitionId], references: [id], onDelete: Restrict)
+  attendanceRecords AttendanceRecord[]
+
+  @@index([employeeProfileId, userId])
+  @@index([userId, startDate, endDate])
+  @@index([shiftDefinitionId])
+  @@map("employee_shift_assignments")
+}
+
+model AttendanceRecord {
+  id                               String           @id @default(cuid()) @db.VarChar(30)
+  userId                           String           @map("user_id") @db.VarChar(30)
+  shiftAssignmentId                String?          @map("shift_assignment_id") @db.VarChar(30)
+  shiftDefinitionId                String           @map("shift_definition_id") @db.VarChar(30)
+  attendanceDate                   DateTime         @map("attendance_date") @db.Date
+  status                           AttendanceStatus @default(PENDING_RECONCILIATION)
+
+  // Historical Snapshots
+  shiftStartTimeSnapshot           DateTime         @map("shift_start_time_snapshot")
+  shiftEndTimeSnapshot             DateTime         @map("shift_end_time_snapshot")
+  isOvernightSnapshot              Boolean          @default(false) @map("is_overnight_snapshot")
+  halfDayThresholdSecondsSnapshot  Int              @map("half_day_threshold_seconds_snapshot")
+  fullDayThresholdSecondsSnapshot  Int              @map("full_day_threshold_seconds_snapshot")
+  overtimeThresholdSecondsSnapshot Int              @map("overtime_threshold_seconds_snapshot")
+  allowMultipleSessionsSnapshot    Boolean          @default(false) @map("allow_multiple_sessions_snapshot")
+  breakPolicySnapshot              String           @map("break_policy_snapshot") @db.Text
+
+  // Authoritative Calculated Durations
+  grossWorkingDurationSeconds      Int              @default(0) @map("gross_working_duration_seconds")
+  paidBreakDurationSeconds         Int              @default(0) @map("paid_break_duration_seconds")
+  unpaidBreakDurationSeconds       Int              @default(0) @map("unpaid_break_duration_seconds")
+  netWorkingDurationSeconds        Int              @default(0) @map("net_working_duration_seconds")
+  verifiedOvertimeSeconds          Int              @default(0) @map("verified_overtime_seconds")
+
+  // Data Integrity & Concurrency Control
+  hasIntegrityAnomaly              Boolean          @default(false) @map("has_integrity_anomaly")
+  anomalyType                      String?          @map("anomaly_type") @db.VarChar(50)
+  anomalyDetails                   String?          @map("anomaly_details") @db.Text
+  version                          Int              @default(1)
+  lastCorrectionRequestId          String?          @map("last_correction_request_id") @db.VarChar(30)
+
+  // Reconciliation & Anomaly Lifecycle
+  reconciledAt                     DateTime?        @map("reconciled_at")
+  reconciliationRunId              String?          @map("reconciliation_run_id") @db.VarChar(30)
+  anomalyDetectedAt                DateTime?        @map("anomaly_detected_at")
+  anomalyResolvedAt                DateTime?        @map("anomaly_resolved_at")
+  anomalyResolvedByUserId          String?          @map("anomaly_resolved_by_user_id") @db.VarChar(30)
+  anomalyResolutionNotes           String?          @map("anomaly_resolution_notes") @db.VarChar(500)
+
+  createdAt                        DateTime         @default(now()) @map("created_at")
+  updatedAt                        DateTime         @updatedAt @map("updated_at")
+
+  user              User                          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  shiftAssignment   EmployeeShiftAssignment?      @relation(fields: [shiftAssignmentId], references: [id], onDelete: SetNull)
+  shiftDefinition   ShiftDefinition               @relation(fields: [shiftDefinitionId], references: [id], onDelete: Restrict)
+  reconciliationRun AttendanceReconciliationRun?  @relation(fields: [reconciliationRunId], references: [id], onDelete: SetNull)
+  anomalyResolvedBy User?                         @relation("AnomalyResolvedBy", fields: [anomalyResolvedByUserId], references: [id], onDelete: SetNull)
+  sessions          AttendanceSession[]
+  breaks            AttendanceBreak[]
+  corrections       AttendanceCorrectionRequest[]
+  anomalies         AttendanceAnomaly[]
+
+  @@unique([id, userId], name: "unique_record_user_composite")
+  @@unique([userId, attendanceDate], name: "unique_user_daily_attendance")
+  @@index([userId, attendanceDate])
+  @@index([shiftAssignmentId])
+  @@index([shiftDefinitionId])
+  @@index([hasIntegrityAnomaly])
+  @@index([reconciliationRunId])
+  @@map("attendance_records")
+}
+
+model AttendanceSession {
+  id                  String                  @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId  String                  @map("attendance_record_id") @db.VarChar(30)
+  userId              String                  @map("user_id") @db.VarChar(30)
+
+  // Raw Telemetry Preservation
+  rawCheckInAt        DateTime                @map("raw_check_in_at")
+  rawCheckOutAt       DateTime?               @map("raw_check_out_at")
+
+  // Authoritative Reconciled Timestamps (Null when QUARANTINED)
+  checkInAt           DateTime?               @map("check_in_at")
+  checkOutAt          DateTime?               @map("check_out_at")
+  durationSeconds     Int?                    @map("duration_seconds")
+  status              AttendanceSessionStatus @default(ACTIVE)
+
+  isSystemClosed      Boolean                 @default(false) @map("is_system_closed")
+  systemClosureReason String?                 @map("system_closure_reason") @db.VarChar(255)
+
+  // Virtual generated column for active session concurrency lock
+  activeSessionUserId String?                 @default(dbgenerated()) @map("active_session_user_id") @db.VarChar(30)
+
+  createdAt           DateTime                @default(now()) @map("created_at")
+  updatedAt           DateTime                @updatedAt @map("updated_at")
+
+  attendanceRecord AttendanceRecord              @relation(fields: [attendanceRecordId, userId], references: [id, userId], onDelete: Cascade)
+  user             User                          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  corrections      AttendanceCorrectionRequest[]
+
+  @@unique([id, attendanceRecordId, userId], name: "unique_session_record_user_composite")
+  @@unique([activeSessionUserId], map: "unique_active_session_per_user")
+  @@index([attendanceRecordId])
+  @@index([userId, status])
+  @@map("attendance_sessions")
+}
+
+model AttendanceBreak {
+  id                    String    @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId    String    @map("attendance_record_id") @db.VarChar(30)
+  userId                String    @map("user_id") @db.VarChar(30)
+  breakTypeId           String    @map("break_type_id") @db.VarChar(50)
+  startedAt             DateTime  @map("started_at")
+  endedAt               DateTime? @map("ended_at")
+
+  paidDurationSeconds   Int       @default(0) @map("paid_duration_seconds")
+  unpaidDurationSeconds Int       @default(0) @map("unpaid_duration_seconds")
+  isSystemClosed        Boolean   @default(false) @map("is_system_closed")
+  systemClosureReason   String?   @map("system_closure_reason") @db.VarChar(255)
+  rawEndedAt            DateTime? @map("raw_ended_at")
+
+  // Virtual generated column for active break concurrency lock
+  activeBreakUserId     String?   @default(dbgenerated()) @map("active_break_user_id") @db.VarChar(30)
+
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  attendanceRecord AttendanceRecord @relation(fields: [attendanceRecordId, userId], references: [id, userId], onDelete: Cascade)
+  user             User             @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@unique([id, attendanceRecordId, userId], name: "unique_break_record_user_composite")
+  @@unique([activeBreakUserId], map: "unique_active_break_per_user")
+  @@index([attendanceRecordId])
+  @@index([userId, startedAt])
+  @@map("attendance_breaks")
+}
+
+model AttendanceCorrectionRequest {
+  id                  String                     @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId  String                     @map("attendance_record_id") @db.VarChar(30)
+  userId              String                     @map("user_id") @db.VarChar(30)
+  attendanceSessionId String?                    @map("attendance_session_id") @db.VarChar(30)
+
+  requestedCheckInAt  DateTime?                  @map("requested_check_in_at")
+  requestedCheckOutAt DateTime?                  @map("requested_check_out_at")
+  reason              String                     @db.VarChar(500)
+  evidenceMetadata    Json?                      @map("evidence_metadata")
+  status              AttendanceCorrectionStatus @default(PENDING)
+  reviewedByUserId    String?                    @map("reviewed_by_user_id") @db.VarChar(30)
+  reviewedAt          DateTime?                  @map("reviewed_at")
+  managerNotes        String?                    @map("manager_notes") @db.VarChar(500)
+  createdAt           DateTime                   @default(now()) @map("created_at")
+  updatedAt           DateTime                   @updatedAt @map("updated_at")
+
+  attendanceRecord     AttendanceRecord                @relation(fields: [attendanceRecordId, userId], references: [id, userId], onDelete: Restrict)
+  session              AttendanceSession?              @relation(fields: [attendanceSessionId, attendanceRecordId, userId], references: [id, attendanceRecordId, userId], onDelete: Restrict)
+  user                 User                            @relation("EmployeeCorrections", fields: [userId], references: [id], onDelete: Restrict)
+  reviewer             User?                           @relation("ReviewedCorrections", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+  evidenceVerification AttendanceEvidenceVerification?
+
+  @@index([attendanceRecordId, userId])
+  @@index([attendanceSessionId, attendanceRecordId, userId])
+  @@index([userId, status])
+  @@map("attendance_correction_requests")
+}
+
+model AttendanceEvidenceVerification {
+  id                  String              @id @default(cuid()) @db.VarChar(30)
+  correctionRequestId String              @unique @map("correction_request_id") @db.VarChar(30)
+  reviewerUserId      String              @map("reviewer_user_id") @db.VarChar(30)
+  evidenceReference   String              @map("evidence_reference") @db.VarChar(500)
+  outcome             VerificationOutcome
+  verificationNotes   String              @map("verification_notes") @db.VarChar(1000)
+  verifiedAt          DateTime            @default(now()) @map("verified_at")
+  auditLogId          String?             @map("audit_log_id") @db.VarChar(30)
+
+  correctionRequest AttendanceCorrectionRequest @relation(fields: [correctionRequestId], references: [id], onDelete: Cascade)
+  reviewer          User                        @relation("EvidenceReviewer", fields: [reviewerUserId], references: [id], onDelete: Restrict)
+
+  @@index([reviewerUserId])
+  @@map("attendance_evidence_verifications")
+}
+
+model AttendanceOvertimeRequest {
+  id                      String                 @id @default(cuid()) @db.VarChar(30)
+  userId                  String                 @map("user_id") @db.VarChar(30)
+  attendanceDate          DateTime               @map("attendance_date") @db.Date
+  startTime               DateTime               @map("start_time")
+  endTime                 DateTime               @map("end_time")
+  approvedDurationMinutes Int                    @default(0) @map("approved_duration_minutes")
+  reason                  String                 @db.VarChar(500)
+  status                  OvertimeApprovalStatus @default(PENDING)
+  reviewedByUserId        String?                @map("reviewed_by_user_id") @db.VarChar(30)
+  reviewedAt              DateTime?              @map("reviewed_at")
+  createdAt               DateTime               @default(now()) @map("created_at")
+  updatedAt               DateTime               @updatedAt @map("updated_at")
+
+  user     User  @relation("EmployeeOvertimeRequests", fields: [userId], references: [id], onDelete: Restrict)
+  reviewer User? @relation("ReviewedOvertimeRequests", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([userId, attendanceDate])
+  @@index([status])
+  @@map("attendance_overtime_requests")
+}
+
+model AttendanceWfhRequest {
+  id               String    @id @default(cuid()) @db.VarChar(30)
+  userId           String    @map("user_id") @db.VarChar(30)
+  startDate        DateTime  @map("start_date") @db.Date
+  endDate          DateTime  @map("end_date") @db.Date
+  reason           String    @db.VarChar(500)
+  status           WfhStatus @default(PENDING)
+  reviewedByUserId String?   @map("reviewed_by_user_id") @db.VarChar(30)
+  reviewedAt       DateTime? @map("reviewed_at")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  user     User  @relation("EmployeeWfhRequests", fields: [userId], references: [id], onDelete: Restrict)
+  reviewer User? @relation("ReviewedWfhRequests", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([userId, startDate, endDate])
+  @@index([status])
+  @@map("attendance_wfh_requests")
+}
+
+model AttendanceReconciliationRun {
+  id                    String                  @id @default(cuid()) @db.VarChar(30)
+  targetDate            DateTime                @map("target_date") @db.Date
+  departmentId          String?                 @map("department_id") @db.VarChar(30)
+  status                ReconciliationRunStatus @default(IN_PROGRESS)
+  totalRecordsProcessed Int                     @default(0) @map("total_records_processed")
+  totalReconciled       Int                     @default(0) @map("total_reconciled")
+  totalQuarantined      Int                     @default(0) @map("total_quarantined")
+  totalErrors           Int                     @default(0) @map("total_errors")
+  triggeredByUserId     String?                 @map("triggered_by_user_id") @db.VarChar(30)
+  startedAt             DateTime                @default(now()) @map("started_at")
+  completedAt           DateTime?               @map("completed_at")
+  notes                 String?                 @db.VarChar(500)
+  errorDetails          Json?                   @map("error_details")
+
+  triggeredBy           User?                   @relation("ReconciliationTriggeredBy", fields: [triggeredByUserId], references: [id], onDelete: SetNull)
+  records               AttendanceRecord[]
+  anomalies             AttendanceAnomaly[]
+
+  @@index([targetDate])
+  @@index([status])
+  @@map("attendance_reconciliation_runs")
+}
+
+model AttendanceAnomaly {
+  id                  String                       @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId  String                       @map("attendance_record_id") @db.VarChar(30)
+  reconciliationRunId String?                      @map("reconciliation_run_id") @db.VarChar(30)
+  anomalyType         String                       @map("anomaly_type") @db.VarChar(50)
+  details             String?                      @db.Text
+  status              AnomalyStatus                @default(ACTIVE)
+  detectedAt          DateTime                     @default(now()) @map("detected_at")
+  resolvedAt          DateTime?                    @map("resolved_at")
+  resolvedByUserId    String?                      @map("resolved_by_user_id") @db.VarChar(30)
+  resolutionNotes     String?                      @map("resolution_notes") @db.VarChar(500)
+  createdAt           DateTime                     @default(now()) @map("created_at")
+  updatedAt           DateTime                     @updatedAt @map("updated_at")
+
+  attendanceRecord    AttendanceRecord             @relation(fields: [attendanceRecordId], references: [id], onDelete: Cascade)
+  reconciliationRun   AttendanceReconciliationRun?  @relation(fields: [reconciliationRunId], references: [id], onDelete: SetNull)
+  resolvedBy          User?                        @relation("AnomalyItemResolvedBy", fields: [resolvedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([attendanceRecordId])
+  @@index([anomalyType])
+  @@index([status])
+  @@map("attendance_anomalies")
 }

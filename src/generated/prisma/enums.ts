@@ -109,7 +109,91 @@ export const AuditAction = {
   LOGIN_FAILED: 'LOGIN_FAILED',
   PERMISSION_CHANGE: 'PERMISSION_CHANGE',
   ROLE_ASSIGNMENT: 'ROLE_ASSIGNMENT',
+  STATUS_CHANGE: 'STATUS_CHANGE',
+  VERIFY_EVIDENCE: 'VERIFY_EVIDENCE',
   OTHER: 'OTHER'
 } as const
 
 export type AuditAction = (typeof AuditAction)[keyof typeof AuditAction]
+
+
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  HALF_DAY: 'HALF_DAY',
+  ABSENT: 'ABSENT',
+  ON_LEAVE: 'ON_LEAVE',
+  WEEKLY_OFF: 'WEEKLY_OFF',
+  HOLIDAY: 'HOLIDAY',
+  PENDING_RECONCILIATION: 'PENDING_RECONCILIATION'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const AttendanceSessionStatus = {
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+  AUTO_CLOSED: 'AUTO_CLOSED',
+  QUARANTINED: 'QUARANTINED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type AttendanceSessionStatus = (typeof AttendanceSessionStatus)[keyof typeof AttendanceSessionStatus]
+
+
+export const AttendanceCorrectionStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type AttendanceCorrectionStatus = (typeof AttendanceCorrectionStatus)[keyof typeof AttendanceCorrectionStatus]
+
+
+export const OvertimeApprovalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type OvertimeApprovalStatus = (typeof OvertimeApprovalStatus)[keyof typeof OvertimeApprovalStatus]
+
+
+export const WfhStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type WfhStatus = (typeof WfhStatus)[keyof typeof WfhStatus]
+
+
+export const ReconciliationRunStatus = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  PARTIAL: 'PARTIAL'
+} as const
+
+export type ReconciliationRunStatus = (typeof ReconciliationRunStatus)[keyof typeof ReconciliationRunStatus]
+
+
+export const VerificationOutcome = {
+  VERIFIED: 'VERIFIED',
+  REJECTED: 'REJECTED',
+  INCONCLUSIVE: 'INCONCLUSIVE'
+} as const
+
+export type VerificationOutcome = (typeof VerificationOutcome)[keyof typeof VerificationOutcome]
+
+
+export const AnomalyStatus = {
+  ACTIVE: 'ACTIVE',
+  RESOLVED: 'RESOLVED',
+  DISMISSED: 'DISMISSED'
+} as const
+
+export type AnomalyStatus = (typeof AnomalyStatus)[keyof typeof AnomalyStatus]

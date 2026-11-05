@@ -107,3 +107,58 @@ export type ActivityLog = Prisma.ActivityLogModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model ShiftDefinition
+ * 
+ */
+export type ShiftDefinition = Prisma.ShiftDefinitionModel
+/**
+ * Model EmployeeShiftAssignment
+ * 
+ */
+export type EmployeeShiftAssignment = Prisma.EmployeeShiftAssignmentModel
+/**
+ * Model AttendanceRecord
+ * 
+ */
+export type AttendanceRecord = Prisma.AttendanceRecordModel
+/**
+ * Model AttendanceSession
+ * 
+ */
+export type AttendanceSession = Prisma.AttendanceSessionModel
+/**
+ * Model AttendanceBreak
+ * 
+ */
+export type AttendanceBreak = Prisma.AttendanceBreakModel
+/**
+ * Model AttendanceCorrectionRequest
+ * 
+ */
+export type AttendanceCorrectionRequest = Prisma.AttendanceCorrectionRequestModel
+/**
+ * Model AttendanceEvidenceVerification
+ * 
+ */
+export type AttendanceEvidenceVerification = Prisma.AttendanceEvidenceVerificationModel
+/**
+ * Model AttendanceOvertimeRequest
+ * 
+ */
+export type AttendanceOvertimeRequest = Prisma.AttendanceOvertimeRequestModel
+/**
+ * Model AttendanceWfhRequest
+ * 
+ */
+export type AttendanceWfhRequest = Prisma.AttendanceWfhRequestModel
+/**
+ * Model AttendanceReconciliationRun
+ * 
+ */
+export type AttendanceReconciliationRun = Prisma.AttendanceReconciliationRunModel
+/**
+ * Model AttendanceAnomaly
+ * 
+ */
+export type AttendanceAnomaly = Prisma.AttendanceAnomalyModel

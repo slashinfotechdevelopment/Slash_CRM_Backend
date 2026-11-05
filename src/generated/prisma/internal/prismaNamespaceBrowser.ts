@@ -68,7 +68,18 @@ export const ModelName = {
   Media: 'Media',
   MediaAttachment: 'MediaAttachment',
   ActivityLog: 'ActivityLog',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  ShiftDefinition: 'ShiftDefinition',
+  EmployeeShiftAssignment: 'EmployeeShiftAssignment',
+  AttendanceRecord: 'AttendanceRecord',
+  AttendanceSession: 'AttendanceSession',
+  AttendanceBreak: 'AttendanceBreak',
+  AttendanceCorrectionRequest: 'AttendanceCorrectionRequest',
+  AttendanceEvidenceVerification: 'AttendanceEvidenceVerification',
+  AttendanceOvertimeRequest: 'AttendanceOvertimeRequest',
+  AttendanceWfhRequest: 'AttendanceWfhRequest',
+  AttendanceReconciliationRun: 'AttendanceReconciliationRun',
+  AttendanceAnomaly: 'AttendanceAnomaly'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -365,6 +376,224 @@ export const AuditLogScalarFieldEnum = {
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
+export const ShiftDefinitionScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  isOvernight: 'isOvernight',
+  gracePeriodMinutes: 'gracePeriodMinutes',
+  halfDayThresholdMinutes: 'halfDayThresholdMinutes',
+  fullDayThresholdMinutes: 'fullDayThresholdMinutes',
+  overtimeThresholdMinutes: 'overtimeThresholdMinutes',
+  allowMultipleSessions: 'allowMultipleSessions',
+  autoCloseGraceMinutes: 'autoCloseGraceMinutes',
+  breakPolicySnapshot: 'breakPolicySnapshot',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShiftDefinitionScalarFieldEnum = (typeof ShiftDefinitionScalarFieldEnum)[keyof typeof ShiftDefinitionScalarFieldEnum]
+
+
+export const EmployeeShiftAssignmentScalarFieldEnum = {
+  id: 'id',
+  employeeProfileId: 'employeeProfileId',
+  userId: 'userId',
+  shiftDefinitionId: 'shiftDefinitionId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeShiftAssignmentScalarFieldEnum = (typeof EmployeeShiftAssignmentScalarFieldEnum)[keyof typeof EmployeeShiftAssignmentScalarFieldEnum]
+
+
+export const AttendanceRecordScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  shiftAssignmentId: 'shiftAssignmentId',
+  shiftDefinitionId: 'shiftDefinitionId',
+  attendanceDate: 'attendanceDate',
+  status: 'status',
+  shiftStartTimeSnapshot: 'shiftStartTimeSnapshot',
+  shiftEndTimeSnapshot: 'shiftEndTimeSnapshot',
+  isOvernightSnapshot: 'isOvernightSnapshot',
+  halfDayThresholdSecondsSnapshot: 'halfDayThresholdSecondsSnapshot',
+  fullDayThresholdSecondsSnapshot: 'fullDayThresholdSecondsSnapshot',
+  overtimeThresholdSecondsSnapshot: 'overtimeThresholdSecondsSnapshot',
+  allowMultipleSessionsSnapshot: 'allowMultipleSessionsSnapshot',
+  breakPolicySnapshot: 'breakPolicySnapshot',
+  grossWorkingDurationSeconds: 'grossWorkingDurationSeconds',
+  paidBreakDurationSeconds: 'paidBreakDurationSeconds',
+  unpaidBreakDurationSeconds: 'unpaidBreakDurationSeconds',
+  netWorkingDurationSeconds: 'netWorkingDurationSeconds',
+  verifiedOvertimeSeconds: 'verifiedOvertimeSeconds',
+  hasIntegrityAnomaly: 'hasIntegrityAnomaly',
+  anomalyType: 'anomalyType',
+  anomalyDetails: 'anomalyDetails',
+  version: 'version',
+  lastCorrectionRequestId: 'lastCorrectionRequestId',
+  reconciledAt: 'reconciledAt',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyDetectedAt: 'anomalyDetectedAt',
+  anomalyResolvedAt: 'anomalyResolvedAt',
+  anomalyResolvedByUserId: 'anomalyResolvedByUserId',
+  anomalyResolutionNotes: 'anomalyResolutionNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceRecordScalarFieldEnum = (typeof AttendanceRecordScalarFieldEnum)[keyof typeof AttendanceRecordScalarFieldEnum]
+
+
+export const AttendanceSessionScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  rawCheckInAt: 'rawCheckInAt',
+  rawCheckOutAt: 'rawCheckOutAt',
+  checkInAt: 'checkInAt',
+  checkOutAt: 'checkOutAt',
+  durationSeconds: 'durationSeconds',
+  status: 'status',
+  isSystemClosed: 'isSystemClosed',
+  systemClosureReason: 'systemClosureReason',
+  activeSessionUserId: 'activeSessionUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceSessionScalarFieldEnum = (typeof AttendanceSessionScalarFieldEnum)[keyof typeof AttendanceSessionScalarFieldEnum]
+
+
+export const AttendanceBreakScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  breakTypeId: 'breakTypeId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  paidDurationSeconds: 'paidDurationSeconds',
+  unpaidDurationSeconds: 'unpaidDurationSeconds',
+  isSystemClosed: 'isSystemClosed',
+  systemClosureReason: 'systemClosureReason',
+  rawEndedAt: 'rawEndedAt',
+  activeBreakUserId: 'activeBreakUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceBreakScalarFieldEnum = (typeof AttendanceBreakScalarFieldEnum)[keyof typeof AttendanceBreakScalarFieldEnum]
+
+
+export const AttendanceCorrectionRequestScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  requestedCheckInAt: 'requestedCheckInAt',
+  requestedCheckOutAt: 'requestedCheckOutAt',
+  reason: 'reason',
+  evidenceMetadata: 'evidenceMetadata',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  managerNotes: 'managerNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceCorrectionRequestScalarFieldEnum = (typeof AttendanceCorrectionRequestScalarFieldEnum)[keyof typeof AttendanceCorrectionRequestScalarFieldEnum]
+
+
+export const AttendanceEvidenceVerificationScalarFieldEnum = {
+  id: 'id',
+  correctionRequestId: 'correctionRequestId',
+  reviewerUserId: 'reviewerUserId',
+  evidenceReference: 'evidenceReference',
+  outcome: 'outcome',
+  verificationNotes: 'verificationNotes',
+  verifiedAt: 'verifiedAt',
+  auditLogId: 'auditLogId'
+} as const
+
+export type AttendanceEvidenceVerificationScalarFieldEnum = (typeof AttendanceEvidenceVerificationScalarFieldEnum)[keyof typeof AttendanceEvidenceVerificationScalarFieldEnum]
+
+
+export const AttendanceOvertimeRequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  attendanceDate: 'attendanceDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  approvedDurationMinutes: 'approvedDurationMinutes',
+  reason: 'reason',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceOvertimeRequestScalarFieldEnum = (typeof AttendanceOvertimeRequestScalarFieldEnum)[keyof typeof AttendanceOvertimeRequestScalarFieldEnum]
+
+
+export const AttendanceWfhRequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  reason: 'reason',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceWfhRequestScalarFieldEnum = (typeof AttendanceWfhRequestScalarFieldEnum)[keyof typeof AttendanceWfhRequestScalarFieldEnum]
+
+
+export const AttendanceReconciliationRunScalarFieldEnum = {
+  id: 'id',
+  targetDate: 'targetDate',
+  departmentId: 'departmentId',
+  status: 'status',
+  totalRecordsProcessed: 'totalRecordsProcessed',
+  totalReconciled: 'totalReconciled',
+  totalQuarantined: 'totalQuarantined',
+  totalErrors: 'totalErrors',
+  triggeredByUserId: 'triggeredByUserId',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  notes: 'notes',
+  errorDetails: 'errorDetails'
+} as const
+
+export type AttendanceReconciliationRunScalarFieldEnum = (typeof AttendanceReconciliationRunScalarFieldEnum)[keyof typeof AttendanceReconciliationRunScalarFieldEnum]
+
+
+export const AttendanceAnomalyScalarFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyType: 'anomalyType',
+  details: 'details',
+  status: 'status',
+  detectedAt: 'detectedAt',
+  resolvedAt: 'resolvedAt',
+  resolvedByUserId: 'resolvedByUserId',
+  resolutionNotes: 'resolutionNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceAnomalyScalarFieldEnum = (typeof AttendanceAnomalyScalarFieldEnum)[keyof typeof AttendanceAnomalyScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -615,4 +844,134 @@ export const AuditLogOrderByRelevanceFieldEnum = {
 } as const
 
 export type AuditLogOrderByRelevanceFieldEnum = (typeof AuditLogOrderByRelevanceFieldEnum)[keyof typeof AuditLogOrderByRelevanceFieldEnum]
+
+
+export const ShiftDefinitionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  breakPolicySnapshot: 'breakPolicySnapshot'
+} as const
+
+export type ShiftDefinitionOrderByRelevanceFieldEnum = (typeof ShiftDefinitionOrderByRelevanceFieldEnum)[keyof typeof ShiftDefinitionOrderByRelevanceFieldEnum]
+
+
+export const EmployeeShiftAssignmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  employeeProfileId: 'employeeProfileId',
+  userId: 'userId',
+  shiftDefinitionId: 'shiftDefinitionId'
+} as const
+
+export type EmployeeShiftAssignmentOrderByRelevanceFieldEnum = (typeof EmployeeShiftAssignmentOrderByRelevanceFieldEnum)[keyof typeof EmployeeShiftAssignmentOrderByRelevanceFieldEnum]
+
+
+export const AttendanceRecordOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  shiftAssignmentId: 'shiftAssignmentId',
+  shiftDefinitionId: 'shiftDefinitionId',
+  breakPolicySnapshot: 'breakPolicySnapshot',
+  anomalyType: 'anomalyType',
+  anomalyDetails: 'anomalyDetails',
+  lastCorrectionRequestId: 'lastCorrectionRequestId',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyResolvedByUserId: 'anomalyResolvedByUserId',
+  anomalyResolutionNotes: 'anomalyResolutionNotes'
+} as const
+
+export type AttendanceRecordOrderByRelevanceFieldEnum = (typeof AttendanceRecordOrderByRelevanceFieldEnum)[keyof typeof AttendanceRecordOrderByRelevanceFieldEnum]
+
+
+export const AttendanceSessionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  systemClosureReason: 'systemClosureReason',
+  activeSessionUserId: 'activeSessionUserId'
+} as const
+
+export type AttendanceSessionOrderByRelevanceFieldEnum = (typeof AttendanceSessionOrderByRelevanceFieldEnum)[keyof typeof AttendanceSessionOrderByRelevanceFieldEnum]
+
+
+export const AttendanceBreakOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  breakTypeId: 'breakTypeId',
+  systemClosureReason: 'systemClosureReason',
+  activeBreakUserId: 'activeBreakUserId'
+} as const
+
+export type AttendanceBreakOrderByRelevanceFieldEnum = (typeof AttendanceBreakOrderByRelevanceFieldEnum)[keyof typeof AttendanceBreakOrderByRelevanceFieldEnum]
+
+
+export const AttendanceCorrectionRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  reason: 'reason',
+  reviewedByUserId: 'reviewedByUserId',
+  managerNotes: 'managerNotes'
+} as const
+
+export type AttendanceCorrectionRequestOrderByRelevanceFieldEnum = (typeof AttendanceCorrectionRequestOrderByRelevanceFieldEnum)[keyof typeof AttendanceCorrectionRequestOrderByRelevanceFieldEnum]
+
+
+export const AttendanceEvidenceVerificationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  correctionRequestId: 'correctionRequestId',
+  reviewerUserId: 'reviewerUserId',
+  evidenceReference: 'evidenceReference',
+  verificationNotes: 'verificationNotes',
+  auditLogId: 'auditLogId'
+} as const
+
+export type AttendanceEvidenceVerificationOrderByRelevanceFieldEnum = (typeof AttendanceEvidenceVerificationOrderByRelevanceFieldEnum)[keyof typeof AttendanceEvidenceVerificationOrderByRelevanceFieldEnum]
+
+
+export const AttendanceOvertimeRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  reason: 'reason',
+  reviewedByUserId: 'reviewedByUserId'
+} as const
+
+export type AttendanceOvertimeRequestOrderByRelevanceFieldEnum = (typeof AttendanceOvertimeRequestOrderByRelevanceFieldEnum)[keyof typeof AttendanceOvertimeRequestOrderByRelevanceFieldEnum]
+
+
+export const AttendanceWfhRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  reason: 'reason',
+  reviewedByUserId: 'reviewedByUserId'
+} as const
+
+export type AttendanceWfhRequestOrderByRelevanceFieldEnum = (typeof AttendanceWfhRequestOrderByRelevanceFieldEnum)[keyof typeof AttendanceWfhRequestOrderByRelevanceFieldEnum]
+
+
+export const AttendanceReconciliationRunOrderByRelevanceFieldEnum = {
+  id: 'id',
+  departmentId: 'departmentId',
+  triggeredByUserId: 'triggeredByUserId',
+  notes: 'notes'
+} as const
+
+export type AttendanceReconciliationRunOrderByRelevanceFieldEnum = (typeof AttendanceReconciliationRunOrderByRelevanceFieldEnum)[keyof typeof AttendanceReconciliationRunOrderByRelevanceFieldEnum]
+
+
+export const AttendanceAnomalyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attendanceRecordId: 'attendanceRecordId',
+  reconciliationRunId: 'reconciliationRunId',
+  anomalyType: 'anomalyType',
+  details: 'details',
+  resolvedByUserId: 'resolvedByUserId',
+  resolutionNotes: 'resolutionNotes'
+} as const
+
+export type AttendanceAnomalyOrderByRelevanceFieldEnum = (typeof AttendanceAnomalyOrderByRelevanceFieldEnum)[keyof typeof AttendanceAnomalyOrderByRelevanceFieldEnum]
 

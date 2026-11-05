@@ -75,6 +75,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message:
         'User created successfully. A verification code has been sent to their email.',
       data: user,
@@ -111,6 +112,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'Users retrieved successfully',
       data: result,
     };
@@ -147,6 +149,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'User details retrieved successfully',
       data: user,
     };
@@ -196,6 +199,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'User updated successfully',
       data: user,
     };
@@ -240,6 +244,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: `User status changed to ${dto.status} successfully.`,
       data: user,
     };
@@ -275,11 +280,15 @@ export class UsersController {
     @Param('id') id: string,
     @CurrentUser() actor: any,
   ) {
-    return this.usersService.remove(
+    const result = await this.usersService.remove(
       id,
       actor?.sub,
       actor?.userType,
     );
+    return {
+      success: true,
+      message: result.message,
+    };
   }
 
   @Patch(':id/restore')
@@ -323,6 +332,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'User restored successfully',
       data: user,
     };
@@ -366,12 +376,14 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'User roles updated successfully',
       data: result,
     };
   }
 
   @Post(':id/roles')
+  @HttpCode(HttpStatus.OK)
   @RequirePermissions('roles.assign')
   @ApiOperation({
     summary: 'Add roles to user',
@@ -409,6 +421,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'Roles added to user successfully',
       data: result,
     };
@@ -441,12 +454,16 @@ export class UsersController {
     @Param('roleId') roleId: string,
     @CurrentUser() actor: any,
   ) {
-    return this.usersService.removeRole(
+    const result = await this.usersService.removeRole(
       id,
       roleId,
       actor?.sub,
       actor?.userType,
     );
+    return {
+      success: true,
+      message: result.message,
+    };
   }
 
   @Put(':id/departments')
@@ -488,6 +505,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'User departments updated successfully',
       data: result,
     };
@@ -531,6 +549,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'User permission overrides updated successfully',
       data: result,
     };
@@ -567,6 +586,7 @@ export class UsersController {
     );
 
     return {
+      success: true,
       message: 'User effective permissions retrieved successfully',
       data: result,
     };

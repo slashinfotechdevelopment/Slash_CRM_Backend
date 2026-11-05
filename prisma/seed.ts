@@ -133,6 +133,28 @@ const modules: Record<string, string[]> = {
   audit_logs: ["view"],
 
   settings: ["view", "update"],
+
+  attendance: [
+    "view",
+    "view_overtime",
+    "view_wfh",
+    "check_in",
+    "check_out",
+    "break_manage",
+    "correct_own",
+    "review_correction",
+    "approve_correction",
+    "request_overtime",
+    "approve_overtime",
+    "override_overtime_limit",
+    "request_wfh",
+    "approve_wfh",
+    "manage_shifts",
+    "resolve_incident",
+    "reconcile",
+    "view_anomalies",
+    "force_reconcile",
+  ],
 };
 
 const permissions = Object.entries(modules).flatMap(
@@ -187,6 +209,25 @@ const rolePermissionMap: Record<string, string[]> = {
     "users.update",
     "departments.view",
     "reports.view",
+    "attendance.view",
+    "attendance.view_overtime",
+    "attendance.view_wfh",
+    "attendance.check_in",
+    "attendance.check_out",
+    "attendance.break_manage",
+    "attendance.correct_own",
+    "attendance.review_correction",
+    "attendance.approve_correction",
+    "attendance.request_overtime",
+    "attendance.approve_overtime",
+    "attendance.override_overtime_limit",
+    "attendance.request_wfh",
+    "attendance.approve_wfh",
+    "attendance.manage_shifts",
+    "attendance.resolve_incident",
+    "attendance.reconcile",
+    "attendance.view_anomalies",
+    "attendance.force_reconcile",
   ],
 
   DEVELOPER: [
@@ -199,6 +240,13 @@ const rolePermissionMap: Record<string, string[]> = {
     "bugs.update",
     "documents.view",
     "documents.upload",
+    "attendance.view",
+    "attendance.check_in",
+    "attendance.check_out",
+    "attendance.break_manage",
+    "attendance.correct_own",
+    "attendance.request_overtime",
+    "attendance.request_wfh",
   ],
 
   SALES: [
@@ -216,6 +264,13 @@ const rolePermissionMap: Record<string, string[]> = {
     "quotations.view",
     "quotations.create",
     "quotations.update",
+    "attendance.view",
+    "attendance.check_in",
+    "attendance.check_out",
+    "attendance.break_manage",
+    "attendance.correct_own",
+    "attendance.request_overtime",
+    "attendance.request_wfh",
   ],
 
   PROJECT_MANAGER: [
@@ -234,6 +289,21 @@ const rolePermissionMap: Record<string, string[]> = {
     "bugs.view",
     "bugs.assign",
     "reports.view",
+    "attendance.view",
+    "attendance.check_in",
+    "attendance.check_out",
+    "attendance.break_manage",
+    "attendance.correct_own",
+    "attendance.review_correction",
+    "attendance.approve_correction",
+    "attendance.request_overtime",
+    "attendance.approve_overtime",
+    "attendance.view_overtime",
+    "attendance.view_wfh",
+    "attendance.request_wfh",
+    "attendance.approve_wfh",
+    "attendance.manage_shifts",
+    "attendance.view_anomalies",
   ],
 
   ACCOUNTS: [
@@ -247,6 +317,13 @@ const rolePermissionMap: Record<string, string[]> = {
     "payments.approve",
     "reports.view",
     "reports.export",
+    "attendance.view",
+    "attendance.check_in",
+    "attendance.check_out",
+    "attendance.break_manage",
+    "attendance.correct_own",
+    "attendance.request_overtime",
+    "attendance.request_wfh",
   ],
 
   SUPPORT: [
@@ -259,6 +336,13 @@ const rolePermissionMap: Record<string, string[]> = {
     "maintenance.create",
     "maintenance.update",
     "documents.view",
+    "attendance.view",
+    "attendance.check_in",
+    "attendance.check_out",
+    "attendance.break_manage",
+    "attendance.correct_own",
+    "attendance.request_overtime",
+    "attendance.request_wfh",
   ],
 };
 
@@ -349,6 +433,18 @@ async function main() {
         );
       }
 
+      let dataScope: "ALL" | "DEPARTMENT" | "ASSIGNED" | "OWN" = "ALL";
+      if (
+        roleCode === "DEVELOPER" ||
+        roleCode === "SALES" ||
+        roleCode === "ACCOUNTS" ||
+        roleCode === "SUPPORT"
+      ) {
+        dataScope = "OWN";
+      } else if (roleCode === "PROJECT_MANAGER") {
+        dataScope = "DEPARTMENT";
+      }
+
       await prisma.rolePermission.upsert({
         where: {
           roleId_permissionId: {
@@ -357,12 +453,12 @@ async function main() {
           },
         },
         update: {
-          dataScope: "ALL",
+          dataScope,
         },
         create: {
           roleId: role.id,
           permissionId: permission.id,
-          dataScope: "ALL",
+          dataScope,
         },
       });
     }
@@ -387,3 +483,4 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+

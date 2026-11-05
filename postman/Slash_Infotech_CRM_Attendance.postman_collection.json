@@ -1,0 +1,1436 @@
+{
+  "info": {
+    "_postman_id": "slash-crm-attendance-subsystem-collection",
+    "name": "Slash Infotech CRM - Employee Attendance Subsystem (Phases 6.2.1 - 6.2.8)",
+    "description": "Complete Postman API Collection covering all 44 endpoints of the Employee Attendance Management subsystem: Lifecycle, Shifts, Overtime, WFH, Corrections, Reconciliation, and Anomalies.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Attendance Lifecycle",
+      "item": [
+        {
+          "name": "1.1 Check-In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"Bengaluru HQ Office\",\n  \"remarks\": \"Regular morning punch in\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/check-in",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "check-in"
+              ]
+            },
+            "description": "Creates a new active attendance session using server-authoritative UTC timestamps."
+          },
+          "response": [
+            {
+              "name": "201 Created - Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Check-in successful.\",\n  \"data\": {\n    \"session\": {\n      \"id\": \"sess_123abc\",\n      \"checkInAt\": \"2026-11-05T03:30:00.000Z\",\n      \"status\": \"ACTIVE\"\n    },\n    \"record\": {\n      \"id\": \"rec_456def\",\n      \"attendanceDate\": \"2026-11-05\",\n      \"status\": \"PENDING_RECONCILIATION\",\n      \"shiftDefinition\": {\n        \"code\": \"SHIFT_STD_9TO6\",\n        \"startTime\": \"09:00\",\n        \"endTime\": \"18:00\"\n      }\n    }\n  }\n}"
+            },
+            {
+              "name": "409 Conflict - Active Session Exists",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"statusCode\": 409,\n  \"message\": \"An active attendance session already exists.\",\n  \"error\": \"Conflict\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.2 Check-Out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"Bengaluru HQ Office\",\n  \"remarks\": \"EOD checkout\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/check-out",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "check-out"
+              ]
+            },
+            "description": "Concludes active attendance session and calculates gross/net duration."
+          },
+          "response": [
+            {
+              "name": "200 OK - Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Check-out successful.\",\n  \"data\": {\n    \"session\": {\n      \"id\": \"sess_123abc\",\n      \"checkOutAt\": \"2026-11-05T12:30:00.000Z\",\n      \"durationSeconds\": 32400,\n      \"status\": \"COMPLETED\"\n    },\n    \"record\": {\n      \"id\": \"rec_456def\",\n      \"grossWorkingDurationSeconds\": 32400,\n      \"netWorkingDurationSeconds\": 28800,\n      \"status\": \"PRESENT\"\n    }\n  }\n}"
+            },
+            {
+              "name": "400 Bad Request - Active Break Ongoing",
+              "status": "Bad Request",
+              "code": 400,
+              "body": "{\n  \"statusCode\": 400,\n  \"message\": \"Cannot check out while a break is active. Please end your break first.\",\n  \"error\": \"Bad Request\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.3 Start Break",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"breakTypeId\": \"TEA\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/breaks/start",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "breaks",
+                "start"
+              ]
+            },
+            "description": "Initiates a break during an active session."
+          },
+          "response": [
+            {
+              "name": "201 Created - Break Started",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Break started.\",\n  \"data\": {\n    \"id\": \"brk_789ghi\",\n    \"breakTypeId\": \"TEA\",\n    \"startedAt\": \"2026-11-05T05:30:00.000Z\",\n    \"endedAt\": null\n  }\n}"
+            },
+            {
+              "name": "409 Conflict - Break Already Active",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"statusCode\": 409,\n  \"message\": \"Employee already has an active break. Please end the current break before starting another.\",\n  \"error\": \"Conflict\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.4 End Break",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/breaks/end",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "breaks",
+                "end"
+              ]
+            },
+            "description": "Concludes active break and allocates paid/unpaid seconds."
+          },
+          "response": [
+            {
+              "name": "200 OK - Break Concluded",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Break ended successfully.\",\n  \"data\": {\n    \"endedBreak\": {\n      \"id\": \"brk_789ghi\",\n      \"startedAt\": \"2026-11-05T05:30:00.000Z\",\n      \"endedAt\": \"2026-11-05T05:45:00.000Z\",\n      \"paidDurationSeconds\": 900,\n      \"unpaidDurationSeconds\": 0\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.5 Get Today Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/today",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "today"
+              ]
+            },
+            "description": "Retrieves current employee live attendance, active session, and breaks."
+          },
+          "response": [
+            {
+              "name": "200 OK - Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"record\": {\n      \"id\": \"rec_456def\",\n      \"status\": \"IN_PROGRESS\"\n    },\n    \"activeSession\": {\n      \"id\": \"sess_123abc\"\n    },\n    \"activeBreak\": null\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.6 Attendance History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/history?startDate=2026-11-01&endDate=2026-11-30&page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "history"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-11-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-11-30"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieves paginated attendance history subject to data scope permissions."
+          },
+          "response": [
+            {
+              "name": "200 OK - Success",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"items\": [],\n    \"total\": 0,\n    \"page\": 1,\n    \"limit\": 20\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.7 Recalculate Attendance Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isReconciled\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/records/{{testRecordId}}/recalculate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "records",
+                "{{testRecordId}}",
+                "recalculate"
+              ]
+            },
+            "description": "Triggers deterministic recalculation using immutable shift snapshot."
+          },
+          "response": [
+            {
+              "name": "200 OK - Recalculated",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"record\": {\n      \"id\": \"rec_456def\",\n      \"status\": \"PRESENT\"\n    }\n  }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02. Shift Management",
+      "item": [
+        {
+          "name": "2.1 Create Shift Definition",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SHIFT_GEN_0918\",\n  \"name\": \"General Shift 09:00 - 18:00\",\n  \"startTime\": \"09:00\",\n  \"endTime\": \"18:00\",\n  \"isOvernight\": false,\n  \"autoCloseGraceMinutes\": 60,\n  \"halfDayThresholdMinutes\": 240,\n  \"fullDayThresholdMinutes\": 480,\n  \"overtimeThresholdMinutes\": 540,\n  \"allowMultipleSessions\": true,\n  \"breakPolicy\": {\n    \"paidAllowanceMinutes\": 60,\n    \"autoCloseGraceMinutes\": 30,\n    \"breakTypes\": [\n      {\n        \"code\": \"TEA\",\n        \"name\": \"Tea Break\",\n        \"maxDurationMinutes\": 15,\n        \"isPaid\": true\n      },\n      {\n        \"code\": \"LUNCH\",\n        \"name\": \"Lunch Break\",\n        \"maxDurationMinutes\": 45,\n        \"isPaid\": true\n      }\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"shift_123\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "2.2 List Shift Definitions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts?page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.3 Get Own Shift Assignments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/my-assignments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "my-assignments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.4 Get Effective Shift For Date",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/effective/{{testUserId}}?date=2026-11-05",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "effective",
+                "{{testUserId}}"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2026-11-05"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.5 Get Employee Shift Assignments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/assignments/{{testUserId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "assignments",
+                "{{testUserId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.6 Assign Shift to Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{testUserId}}\",\n  \"shiftDefinitionId\": \"{{testShiftId}}\",\n  \"startDate\": \"2026-11-01\",\n  \"endDate\": \"2026-12-31\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/assign",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "assign"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.7 Update Shift Assignment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"2026-11-01\",\n  \"endDate\": \"2027-01-31\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/assignments/{{testAssignmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "assignments",
+                "{{testAssignmentId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.8 Delete Shift Assignment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/assignments/{{testAssignmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "assignments",
+                "{{testAssignmentId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.9 Get Shift Definition by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/{{testShiftId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "{{testShiftId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.10 Update Shift Definition",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Shift Name\",\n  \"autoCloseGraceMinutes\": 45\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/{{testShiftId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "{{testShiftId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "2.11 Delete Shift Definition",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/shifts/{{testShiftId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "shifts",
+                "{{testShiftId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Overtime Requests",
+      "item": [
+        {
+          "name": "3.1 Submit Overtime Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attendanceDate\": \"2026-11-05\",\n  \"startTime\": \"2026-11-05T12:30:00.000Z\",\n  \"endTime\": \"2026-11-05T14:30:00.000Z\",\n  \"reason\": \"Critical release deployment support\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/overtime",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "overtime"
+              ]
+            }
+          }
+        },
+        {
+          "name": "3.2 List Own Overtime Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/overtime/my-requests?page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "overtime",
+                "my-requests"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "3.3 List Scoped Overtime Requests (Manager View)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/overtime?status=PENDING&page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "overtime"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "3.4 Approve Overtime Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approvedDurationMinutes\": 120,\n  \"reviewerNotes\": \"Approved deployment overtime\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/overtime/{{testOvertimeId}}/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "overtime",
+                "{{testOvertimeId}}",
+                "approve"
+              ]
+            }
+          }
+        },
+        {
+          "name": "3.5 Reject Overtime Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rejectionReason\": \"Deployment rescheduled by leadership\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/overtime/{{testOvertimeId}}/reject",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "overtime",
+                "{{testOvertimeId}}",
+                "reject"
+              ]
+            }
+          }
+        },
+        {
+          "name": "3.6 Cancel Own Overtime Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/overtime/{{testOvertimeId}}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "overtime",
+                "{{testOvertimeId}}",
+                "cancel"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Work From Home (WFH)",
+      "item": [
+        {
+          "name": "4.1 Submit WFH Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"2026-11-10\",\n  \"endDate\": \"2026-11-12\",\n  \"reason\": \"Home utility repairs\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/wfh",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "wfh"
+              ]
+            }
+          }
+        },
+        {
+          "name": "4.2 List Own WFH Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/wfh/my-requests?page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "wfh",
+                "my-requests"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "4.3 List Scoped WFH Requests (Manager View)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/wfh?status=PENDING&page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "wfh"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "4.4 Approve WFH Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/wfh/{{testWfhId}}/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "wfh",
+                "{{testWfhId}}",
+                "approve"
+              ]
+            }
+          }
+        },
+        {
+          "name": "4.5 Reject WFH Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rejectionReason\": \"Mandatory in-person team workshops\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/wfh/{{testWfhId}}/reject",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "wfh",
+                "{{testWfhId}}",
+                "reject"
+              ]
+            }
+          }
+        },
+        {
+          "name": "4.6 Cancel Own WFH Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/wfh/{{testWfhId}}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "wfh",
+                "{{testWfhId}}",
+                "cancel"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05. Correction Requests & Disputes",
+      "item": [
+        {
+          "name": "5.1 Submit Correction Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attendanceRecordId\": \"{{testRecordId}}\",\n  \"attendanceSessionId\": \"{{testSessionId}}\",\n  \"requestedCheckInAt\": \"2026-11-05T03:30:00.000Z\",\n  \"requestedCheckOutAt\": \"2026-11-05T12:30:00.000Z\",\n  \"reason\": \"Biometric punch reader malfunction\",\n  \"evidenceReference\": \"security_desk_log_page_42.pdf\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/corrections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "corrections"
+              ]
+            }
+          }
+        },
+        {
+          "name": "5.2 List Own Correction Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/corrections/my-requests?page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "corrections",
+                "my-requests"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "5.3 List Scoped Correction Requests (Manager View)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/corrections?status=PENDING&page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "corrections"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "5.4 Get Correction Request Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/corrections/{{testCorrectionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "corrections",
+                "{{testCorrectionId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "5.5 Cancel Own Correction Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/corrections/{{testCorrectionId}}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "corrections",
+                "{{testCorrectionId}}",
+                "cancel"
+              ]
+            }
+          }
+        },
+        {
+          "name": "5.6 Approve Correction Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"managerNotes\": \"Verified with security entry log\",\n  \"evidenceOutcome\": \"VERIFIED\",\n  \"evidenceReference\": \"CCTV_REC_ENTRY_0900.mp4\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/corrections/{{testCorrectionId}}/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "corrections",
+                "{{testCorrectionId}}",
+                "approve"
+              ]
+            }
+          }
+        },
+        {
+          "name": "5.7 Reject Correction Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"managerNotes\": \"Badge access logs do not substantiate stated time\",\n  \"evidenceOutcome\": \"REJECTED\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/corrections/{{testCorrectionId}}/reject",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "corrections",
+                "{{testCorrectionId}}",
+                "reject"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06. EOD Reconciliation & Anomalies",
+      "item": [
+        {
+          "name": "6.1 Trigger EOD Reconciliation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetDate\": \"2026-11-04\",\n  \"forceReconcile\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/reconciliation/run",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "reconciliation",
+                "run"
+              ]
+            }
+          }
+        },
+        {
+          "name": "6.2 List Reconciliation Runs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/reconciliation/runs?page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "reconciliation",
+                "runs"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "6.3 Get Reconciliation Run Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/reconciliation/runs/{{testRunId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "reconciliation",
+                "runs",
+                "{{testRunId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "6.4 Get Reconciliation Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/reconciliation/status?userId={{testUserId}}&date=2026-11-04",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "reconciliation",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{testUserId}}"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-11-04"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "6.5 List Quarantined Anomalies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/anomalies?status=ACTIVE&page=1&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "anomalies"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ACTIVE"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "6.6 Get Anomaly Details for Attendance Record",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attendance/anomalies/{{testRecordId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "anomalies",
+                "{{testRecordId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "6.7 Resolve or Dismiss Quarantined Anomaly",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"RESOLVE\",\n  \"notes\": \"HR verified physical swipe register and authorized resolution\",\n  \"recalculate\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attendance/anomalies/{{testRecordId}}/resolve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attendance",
+                "anomalies",
+                "{{testRecordId}}",
+                "resolve"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
