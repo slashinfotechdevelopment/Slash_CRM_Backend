@@ -79,7 +79,19 @@ export const ModelName = {
   AttendanceOvertimeRequest: 'AttendanceOvertimeRequest',
   AttendanceWfhRequest: 'AttendanceWfhRequest',
   AttendanceReconciliationRun: 'AttendanceReconciliationRun',
-  AttendanceAnomaly: 'AttendanceAnomaly'
+  AttendanceAnomaly: 'AttendanceAnomaly',
+  TaskCodeSequence: 'TaskCodeSequence',
+  Task: 'Task',
+  TaskAssignmentHistory: 'TaskAssignmentHistory',
+  TaskStatusHistory: 'TaskStatusHistory',
+  TaskActivityLog: 'TaskActivityLog',
+  TaskTag: 'TaskTag',
+  TaskTagMapping: 'TaskTagMapping',
+  TaskTimeEntry: 'TaskTimeEntry',
+  TaskTimePause: 'TaskTimePause',
+  TaskTimeCorrectionRequest: 'TaskTimeCorrectionRequest',
+  TaskReview: 'TaskReview',
+  TaskComment: 'TaskComment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -321,6 +333,9 @@ export const MediaScalarFieldEnum = {
   visibility: 'visibility',
   status: 'status',
   uploadedById: 'uploadedById',
+  checksumSha256: 'checksumSha256',
+  scanStatus: 'scanStatus',
+  scanDetails: 'scanDetails',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -594,6 +609,199 @@ export const AttendanceAnomalyScalarFieldEnum = {
 export type AttendanceAnomalyScalarFieldEnum = (typeof AttendanceAnomalyScalarFieldEnum)[keyof typeof AttendanceAnomalyScalarFieldEnum]
 
 
+export const TaskCodeSequenceScalarFieldEnum = {
+  id: 'id',
+  prefix: 'prefix',
+  lastNumber: 'lastNumber',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskCodeSequenceScalarFieldEnum = (typeof TaskCodeSequenceScalarFieldEnum)[keyof typeof TaskCodeSequenceScalarFieldEnum]
+
+
+export const TaskScalarFieldEnum = {
+  id: 'id',
+  taskCode: 'taskCode',
+  title: 'title',
+  description: 'description',
+  priority: 'priority',
+  status: 'status',
+  category: 'category',
+  progress: 'progress',
+  startDate: 'startDate',
+  dueDate: 'dueDate',
+  estimatedHours: 'estimatedHours',
+  createdById: 'createdById',
+  assigneeId: 'assigneeId',
+  assignedById: 'assignedById',
+  assignedAt: 'assignedAt',
+  departmentId: 'departmentId',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const TaskAssignmentHistoryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  previousAssigneeId: 'previousAssigneeId',
+  newAssigneeId: 'newAssigneeId',
+  assignedById: 'assignedById',
+  reason: 'reason',
+  assignedAt: 'assignedAt'
+} as const
+
+export type TaskAssignmentHistoryScalarFieldEnum = (typeof TaskAssignmentHistoryScalarFieldEnum)[keyof typeof TaskAssignmentHistoryScalarFieldEnum]
+
+
+export const TaskStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  previousStatus: 'previousStatus',
+  newStatus: 'newStatus',
+  changedById: 'changedById',
+  comment: 'comment',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskStatusHistoryScalarFieldEnum = (typeof TaskStatusHistoryScalarFieldEnum)[keyof typeof TaskStatusHistoryScalarFieldEnum]
+
+
+export const TaskActivityLogScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  performedBy: 'performedBy',
+  action: 'action',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskActivityLogScalarFieldEnum = (typeof TaskActivityLogScalarFieldEnum)[keyof typeof TaskActivityLogScalarFieldEnum]
+
+
+export const TaskTagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  color: 'color',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskTagScalarFieldEnum = (typeof TaskTagScalarFieldEnum)[keyof typeof TaskTagScalarFieldEnum]
+
+
+export const TaskTagMappingScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  tagId: 'tagId',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskTagMappingScalarFieldEnum = (typeof TaskTagMappingScalarFieldEnum)[keyof typeof TaskTagMappingScalarFieldEnum]
+
+
+export const TaskTimeEntryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  workDate: 'workDate',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  durationSeconds: 'durationSeconds',
+  status: 'status',
+  deviceType: 'deviceType',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  isCorrection: 'isCorrection',
+  isSuperseded: 'isSuperseded',
+  supersededById: 'supersededById',
+  correctionRequestId: 'correctionRequestId',
+  activeUserId: 'activeUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskTimeEntryScalarFieldEnum = (typeof TaskTimeEntryScalarFieldEnum)[keyof typeof TaskTimeEntryScalarFieldEnum]
+
+
+export const TaskTimePauseScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  precedingTimeEntryId: 'precedingTimeEntryId',
+  followingTimeEntryId: 'followingTimeEntryId',
+  pausedAt: 'pausedAt',
+  resumedAt: 'resumedAt',
+  pauseDurationSeconds: 'pauseDurationSeconds',
+  reason: 'reason',
+  customDescription: 'customDescription',
+  openPauseEntryId: 'openPauseEntryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskTimePauseScalarFieldEnum = (typeof TaskTimePauseScalarFieldEnum)[keyof typeof TaskTimePauseScalarFieldEnum]
+
+
+export const TaskTimeCorrectionRequestScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  originalEntryId: 'originalEntryId',
+  requestedStartedAt: 'requestedStartedAt',
+  requestedEndedAt: 'requestedEndedAt',
+  requestedDurationSeconds: 'requestedDurationSeconds',
+  reason: 'reason',
+  status: 'status',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskTimeCorrectionRequestScalarFieldEnum = (typeof TaskTimeCorrectionRequestScalarFieldEnum)[keyof typeof TaskTimeCorrectionRequestScalarFieldEnum]
+
+
+export const TaskReviewScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  roundNumber: 'roundNumber',
+  reviewerId: 'reviewerId',
+  submitterId: 'submitterId',
+  outcome: 'outcome',
+  feedback: 'feedback',
+  rating: 'rating',
+  submissionNotes: 'submissionNotes',
+  submittedAt: 'submittedAt',
+  reviewedAt: 'reviewedAt'
+} as const
+
+export type TaskReviewScalarFieldEnum = (typeof TaskReviewScalarFieldEnum)[keyof typeof TaskReviewScalarFieldEnum]
+
+
+export const TaskCommentScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  parentId: 'parentId',
+  content: 'content',
+  originalContent: 'originalContent',
+  isEdited: 'isEdited',
+  editedAt: 'editedAt',
+  isInternal: 'isInternal',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  deletedById: 'deletedById'
+} as const
+
+export type TaskCommentScalarFieldEnum = (typeof TaskCommentScalarFieldEnum)[keyof typeof TaskCommentScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -784,7 +992,9 @@ export const MediaOrderByRelevanceFieldEnum = {
   storageKey: 'storageKey',
   fileUrl: 'fileUrl',
   mimeType: 'mimeType',
-  uploadedById: 'uploadedById'
+  uploadedById: 'uploadedById',
+  checksumSha256: 'checksumSha256',
+  scanDetails: 'scanDetails'
 } as const
 
 export type MediaOrderByRelevanceFieldEnum = (typeof MediaOrderByRelevanceFieldEnum)[keyof typeof MediaOrderByRelevanceFieldEnum]
@@ -974,4 +1184,143 @@ export const AttendanceAnomalyOrderByRelevanceFieldEnum = {
 } as const
 
 export type AttendanceAnomalyOrderByRelevanceFieldEnum = (typeof AttendanceAnomalyOrderByRelevanceFieldEnum)[keyof typeof AttendanceAnomalyOrderByRelevanceFieldEnum]
+
+
+export const TaskCodeSequenceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  prefix: 'prefix'
+} as const
+
+export type TaskCodeSequenceOrderByRelevanceFieldEnum = (typeof TaskCodeSequenceOrderByRelevanceFieldEnum)[keyof typeof TaskCodeSequenceOrderByRelevanceFieldEnum]
+
+
+export const TaskOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskCode: 'taskCode',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  createdById: 'createdById',
+  assigneeId: 'assigneeId',
+  assignedById: 'assignedById',
+  departmentId: 'departmentId'
+} as const
+
+export type TaskOrderByRelevanceFieldEnum = (typeof TaskOrderByRelevanceFieldEnum)[keyof typeof TaskOrderByRelevanceFieldEnum]
+
+
+export const TaskAssignmentHistoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  previousAssigneeId: 'previousAssigneeId',
+  newAssigneeId: 'newAssigneeId',
+  assignedById: 'assignedById',
+  reason: 'reason'
+} as const
+
+export type TaskAssignmentHistoryOrderByRelevanceFieldEnum = (typeof TaskAssignmentHistoryOrderByRelevanceFieldEnum)[keyof typeof TaskAssignmentHistoryOrderByRelevanceFieldEnum]
+
+
+export const TaskStatusHistoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  changedById: 'changedById',
+  comment: 'comment'
+} as const
+
+export type TaskStatusHistoryOrderByRelevanceFieldEnum = (typeof TaskStatusHistoryOrderByRelevanceFieldEnum)[keyof typeof TaskStatusHistoryOrderByRelevanceFieldEnum]
+
+
+export const TaskActivityLogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  performedBy: 'performedBy',
+  action: 'action'
+} as const
+
+export type TaskActivityLogOrderByRelevanceFieldEnum = (typeof TaskActivityLogOrderByRelevanceFieldEnum)[keyof typeof TaskActivityLogOrderByRelevanceFieldEnum]
+
+
+export const TaskTagOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  color: 'color'
+} as const
+
+export type TaskTagOrderByRelevanceFieldEnum = (typeof TaskTagOrderByRelevanceFieldEnum)[keyof typeof TaskTagOrderByRelevanceFieldEnum]
+
+
+export const TaskTagMappingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  tagId: 'tagId'
+} as const
+
+export type TaskTagMappingOrderByRelevanceFieldEnum = (typeof TaskTagMappingOrderByRelevanceFieldEnum)[keyof typeof TaskTagMappingOrderByRelevanceFieldEnum]
+
+
+export const TaskTimeEntryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  supersededById: 'supersededById',
+  correctionRequestId: 'correctionRequestId',
+  activeUserId: 'activeUserId'
+} as const
+
+export type TaskTimeEntryOrderByRelevanceFieldEnum = (typeof TaskTimeEntryOrderByRelevanceFieldEnum)[keyof typeof TaskTimeEntryOrderByRelevanceFieldEnum]
+
+
+export const TaskTimePauseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  precedingTimeEntryId: 'precedingTimeEntryId',
+  followingTimeEntryId: 'followingTimeEntryId',
+  customDescription: 'customDescription',
+  openPauseEntryId: 'openPauseEntryId'
+} as const
+
+export type TaskTimePauseOrderByRelevanceFieldEnum = (typeof TaskTimePauseOrderByRelevanceFieldEnum)[keyof typeof TaskTimePauseOrderByRelevanceFieldEnum]
+
+
+export const TaskTimeCorrectionRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  originalEntryId: 'originalEntryId',
+  reason: 'reason',
+  reviewedById: 'reviewedById',
+  rejectionReason: 'rejectionReason'
+} as const
+
+export type TaskTimeCorrectionRequestOrderByRelevanceFieldEnum = (typeof TaskTimeCorrectionRequestOrderByRelevanceFieldEnum)[keyof typeof TaskTimeCorrectionRequestOrderByRelevanceFieldEnum]
+
+
+export const TaskReviewOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  reviewerId: 'reviewerId',
+  submitterId: 'submitterId',
+  feedback: 'feedback',
+  submissionNotes: 'submissionNotes'
+} as const
+
+export type TaskReviewOrderByRelevanceFieldEnum = (typeof TaskReviewOrderByRelevanceFieldEnum)[keyof typeof TaskReviewOrderByRelevanceFieldEnum]
+
+
+export const TaskCommentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  parentId: 'parentId',
+  content: 'content',
+  originalContent: 'originalContent',
+  deletedById: 'deletedById'
+} as const
+
+export type TaskCommentOrderByRelevanceFieldEnum = (typeof TaskCommentOrderByRelevanceFieldEnum)[keyof typeof TaskCommentOrderByRelevanceFieldEnum]
 

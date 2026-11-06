@@ -77,6 +77,15 @@ enum MediaStatus {
   INACTIVE
 }
 
+enum MediaScanStatus {
+  PENDING
+  SCANNING
+  CLEAN
+  INFECTED
+  QUARANTINED
+  FAILED
+}
+
 enum AuditAction {
   CREATE
   UPDATE
@@ -165,6 +174,24 @@ model User {
   reconciliationRuns            AttendanceReconciliationRun[]    @relation("ReconciliationTriggeredBy")
   resolvedAnomalies             AttendanceRecord[]               @relation("AnomalyResolvedBy")
   resolvedAnomalyItems          AttendanceAnomaly[]              @relation("AnomalyItemResolvedBy")
+
+  createdTasks                    Task[]                  @relation("TaskCreatedBy")
+  assignedTasks                   Task[]                  @relation("TaskAssignee")
+  assignedByTasks                 Task[]                  @relation("TaskAssignedBy")
+  taskAssignmentHistoryPrev       TaskAssignmentHistory[] @relation("TaskPrevAssignee")
+  taskAssignmentHistoryNew        TaskAssignmentHistory[] @relation("TaskNewAssignee")
+  taskAssignmentHistoryAssignedBy TaskAssignmentHistory[] @relation("TaskHistoryAssignedBy")
+  taskStatusHistoryChangedBy      TaskStatusHistory[]     @relation("TaskStatusChangedBy")
+  taskActivityLogs                TaskActivityLog[]       @relation("TaskActivityActor")
+
+  taskTimeEntries                 TaskTimeEntry[]
+  taskTimePauses                  TaskTimePause[]
+  taskTimeCorrectionRequests      TaskTimeCorrectionRequest[] @relation("TaskTimeCorrectionRequester")
+  reviewedTimeCorrections         TaskTimeCorrectionRequest[] @relation("TaskTimeCorrectionReviewer")
+  reviewedTasks                   TaskReview[]                @relation("TaskReviewer")
+  submittedReviews                TaskReview[]                @relation("TaskSubmitter")
+  taskComments                    TaskComment[]               @relation("UserTaskComments")
+  deletedComments                 TaskComment[]               @relation("CommentDeletedBy")
 
   @@index([userTypeId, status])
   @@index([deletedAt])
@@ -340,6 +367,7 @@ model Department {
   parent   Department?      @relation("DepartmentHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
   children Department[]     @relation("DepartmentHierarchy")
   users    UserDepartment[]
+  tasks    Task[]
 
   @@index([parentId, status])
   @@index([deletedAt])
@@ -421,6 +449,9 @@ model Media {
   visibility      MediaVisibility      @default(PRIVATE)
   status          MediaStatus          @default(ACTIVE)
   uploadedById    String?              @map("uploaded_by_id") @db.VarChar(30)
+  checksumSha256  String?              @map("checksum_sha256") @db.VarChar(64)
+  scanStatus      MediaScanStatus      @default(PENDING) @map("scan_status")
+  scanDetails     String?              @map("scan_details") @db.VarChar(255)
   createdAt       DateTime             @default(now()) @map("created_at")
   updatedAt       DateTime             @updatedAt @map("updated_at")
   deletedAt       DateTime?            @map("deleted_at")
@@ -433,6 +464,7 @@ model Media {
   @@index([mediaType, status])
   @@index([uploadedById, createdAt])
   @@index([deletedAt])
+  @@index([scanStatus])
   @@map("media")
 }
 
@@ -566,7 +598,7 @@ model ShiftDefinition {
   code                     String   @unique @db.VarChar(50)
   name                     String   @db.VarChar(100)
   startTime                String   @map("start_time") @db.VarChar(5) // "09:00"
-  endTime                  String   @map("end_time") @db.VarChar(5)   // "18:00"
+  endTime                  String   @map("end_time") @db.VarChar(5) // "18:00"
   isOvernight              Boolean  @default(false) @map("is_overnight")
   gracePeriodMinutes       Int      @default(15) @map("grace_period_minutes")
   halfDayThresholdMinutes  Int      @default(240) @map("half_day_threshold_minutes")
@@ -605,47 +637,47 @@ model EmployeeShiftAssignment {
 }
 
 model AttendanceRecord {
-  id                               String           @id @default(cuid()) @db.VarChar(30)
-  userId                           String           @map("user_id") @db.VarChar(30)
-  shiftAssignmentId                String?          @map("shift_assignment_id") @db.VarChar(30)
-  shiftDefinitionId                String           @map("shift_definition_id") @db.VarChar(30)
-  attendanceDate                   DateTime         @map("attendance_date") @db.Date
-  status                           AttendanceStatus @default(PENDING_RECONCILIATION)
+  id                String           @id @default(cuid()) @db.VarChar(30)
+  userId            String           @map("user_id") @db.VarChar(30)
+  shiftAssignmentId String?          @map("shift_assignment_id") @db.VarChar(30)
+  shiftDefinitionId String           @map("shift_definition_id") @db.VarChar(30)
+  attendanceDate    DateTime         @map("attendance_date") @db.Date
+  status            AttendanceStatus @default(PENDING_RECONCILIATION)
 
   // Historical Snapshots
-  shiftStartTimeSnapshot           DateTime         @map("shift_start_time_snapshot")
-  shiftEndTimeSnapshot             DateTime         @map("shift_end_time_snapshot")
-  isOvernightSnapshot              Boolean          @default(false) @map("is_overnight_snapshot")
-  halfDayThresholdSecondsSnapshot  Int              @map("half_day_threshold_seconds_snapshot")
-  fullDayThresholdSecondsSnapshot  Int              @map("full_day_threshold_seconds_snapshot")
-  overtimeThresholdSecondsSnapshot Int              @map("overtime_threshold_seconds_snapshot")
-  allowMultipleSessionsSnapshot    Boolean          @default(false) @map("allow_multiple_sessions_snapshot")
-  breakPolicySnapshot              String           @map("break_policy_snapshot") @db.Text
+  shiftStartTimeSnapshot           DateTime @map("shift_start_time_snapshot")
+  shiftEndTimeSnapshot             DateTime @map("shift_end_time_snapshot")
+  isOvernightSnapshot              Boolean  @default(false) @map("is_overnight_snapshot")
+  halfDayThresholdSecondsSnapshot  Int      @map("half_day_threshold_seconds_snapshot")
+  fullDayThresholdSecondsSnapshot  Int      @map("full_day_threshold_seconds_snapshot")
+  overtimeThresholdSecondsSnapshot Int      @map("overtime_threshold_seconds_snapshot")
+  allowMultipleSessionsSnapshot    Boolean  @default(false) @map("allow_multiple_sessions_snapshot")
+  breakPolicySnapshot              String   @map("break_policy_snapshot") @db.Text
 
   // Authoritative Calculated Durations
-  grossWorkingDurationSeconds      Int              @default(0) @map("gross_working_duration_seconds")
-  paidBreakDurationSeconds         Int              @default(0) @map("paid_break_duration_seconds")
-  unpaidBreakDurationSeconds       Int              @default(0) @map("unpaid_break_duration_seconds")
-  netWorkingDurationSeconds        Int              @default(0) @map("net_working_duration_seconds")
-  verifiedOvertimeSeconds          Int              @default(0) @map("verified_overtime_seconds")
+  grossWorkingDurationSeconds Int @default(0) @map("gross_working_duration_seconds")
+  paidBreakDurationSeconds    Int @default(0) @map("paid_break_duration_seconds")
+  unpaidBreakDurationSeconds  Int @default(0) @map("unpaid_break_duration_seconds")
+  netWorkingDurationSeconds   Int @default(0) @map("net_working_duration_seconds")
+  verifiedOvertimeSeconds     Int @default(0) @map("verified_overtime_seconds")
 
   // Data Integrity & Concurrency Control
-  hasIntegrityAnomaly              Boolean          @default(false) @map("has_integrity_anomaly")
-  anomalyType                      String?          @map("anomaly_type") @db.VarChar(50)
-  anomalyDetails                   String?          @map("anomaly_details") @db.Text
-  version                          Int              @default(1)
-  lastCorrectionRequestId          String?          @map("last_correction_request_id") @db.VarChar(30)
+  hasIntegrityAnomaly     Boolean @default(false) @map("has_integrity_anomaly")
+  anomalyType             String? @map("anomaly_type") @db.VarChar(50)
+  anomalyDetails          String? @map("anomaly_details") @db.Text
+  version                 Int     @default(1)
+  lastCorrectionRequestId String? @map("last_correction_request_id") @db.VarChar(30)
 
   // Reconciliation & Anomaly Lifecycle
-  reconciledAt                     DateTime?        @map("reconciled_at")
-  reconciliationRunId              String?          @map("reconciliation_run_id") @db.VarChar(30)
-  anomalyDetectedAt                DateTime?        @map("anomaly_detected_at")
-  anomalyResolvedAt                DateTime?        @map("anomaly_resolved_at")
-  anomalyResolvedByUserId          String?          @map("anomaly_resolved_by_user_id") @db.VarChar(30)
-  anomalyResolutionNotes           String?          @map("anomaly_resolution_notes") @db.VarChar(500)
+  reconciledAt            DateTime? @map("reconciled_at")
+  reconciliationRunId     String?   @map("reconciliation_run_id") @db.VarChar(30)
+  anomalyDetectedAt       DateTime? @map("anomaly_detected_at")
+  anomalyResolvedAt       DateTime? @map("anomaly_resolved_at")
+  anomalyResolvedByUserId String?   @map("anomaly_resolved_by_user_id") @db.VarChar(30)
+  anomalyResolutionNotes  String?   @map("anomaly_resolution_notes") @db.VarChar(500)
 
-  createdAt                        DateTime         @default(now()) @map("created_at")
-  updatedAt                        DateTime         @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   user              User                          @relation(fields: [userId], references: [id], onDelete: Restrict)
   shiftAssignment   EmployeeShiftAssignment?      @relation(fields: [shiftAssignmentId], references: [id], onDelete: SetNull)
@@ -668,28 +700,28 @@ model AttendanceRecord {
 }
 
 model AttendanceSession {
-  id                  String                  @id @default(cuid()) @db.VarChar(30)
-  attendanceRecordId  String                  @map("attendance_record_id") @db.VarChar(30)
-  userId              String                  @map("user_id") @db.VarChar(30)
+  id                 String @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId String @map("attendance_record_id") @db.VarChar(30)
+  userId             String @map("user_id") @db.VarChar(30)
 
   // Raw Telemetry Preservation
-  rawCheckInAt        DateTime                @map("raw_check_in_at")
-  rawCheckOutAt       DateTime?               @map("raw_check_out_at")
+  rawCheckInAt  DateTime  @map("raw_check_in_at")
+  rawCheckOutAt DateTime? @map("raw_check_out_at")
 
   // Authoritative Reconciled Timestamps (Null when QUARANTINED)
-  checkInAt           DateTime?               @map("check_in_at")
-  checkOutAt          DateTime?               @map("check_out_at")
-  durationSeconds     Int?                    @map("duration_seconds")
-  status              AttendanceSessionStatus @default(ACTIVE)
+  checkInAt       DateTime?               @map("check_in_at")
+  checkOutAt      DateTime?               @map("check_out_at")
+  durationSeconds Int?                    @map("duration_seconds")
+  status          AttendanceSessionStatus @default(ACTIVE)
 
-  isSystemClosed      Boolean                 @default(false) @map("is_system_closed")
-  systemClosureReason String?                 @map("system_closure_reason") @db.VarChar(255)
+  isSystemClosed      Boolean @default(false) @map("is_system_closed")
+  systemClosureReason String? @map("system_closure_reason") @db.VarChar(255)
 
   // Virtual generated column for active session concurrency lock
-  activeSessionUserId String?                 @default(dbgenerated()) @map("active_session_user_id") @db.VarChar(30)
+  activeSessionUserId String? @default(dbgenerated()) @map("active_session_user_id") @db.VarChar(30)
 
-  createdAt           DateTime                @default(now()) @map("created_at")
-  updatedAt           DateTime                @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   attendanceRecord AttendanceRecord              @relation(fields: [attendanceRecordId, userId], references: [id, userId], onDelete: Cascade)
   user             User                          @relation(fields: [userId], references: [id], onDelete: Restrict)
@@ -703,12 +735,12 @@ model AttendanceSession {
 }
 
 model AttendanceBreak {
-  id                    String    @id @default(cuid()) @db.VarChar(30)
-  attendanceRecordId    String    @map("attendance_record_id") @db.VarChar(30)
-  userId                String    @map("user_id") @db.VarChar(30)
-  breakTypeId           String    @map("break_type_id") @db.VarChar(50)
-  startedAt             DateTime  @map("started_at")
-  endedAt               DateTime? @map("ended_at")
+  id                 String    @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId String    @map("attendance_record_id") @db.VarChar(30)
+  userId             String    @map("user_id") @db.VarChar(30)
+  breakTypeId        String    @map("break_type_id") @db.VarChar(50)
+  startedAt          DateTime  @map("started_at")
+  endedAt            DateTime? @map("ended_at")
 
   paidDurationSeconds   Int       @default(0) @map("paid_duration_seconds")
   unpaidDurationSeconds Int       @default(0) @map("unpaid_duration_seconds")
@@ -717,10 +749,10 @@ model AttendanceBreak {
   rawEndedAt            DateTime? @map("raw_ended_at")
 
   // Virtual generated column for active break concurrency lock
-  activeBreakUserId     String?   @default(dbgenerated()) @map("active_break_user_id") @db.VarChar(30)
+  activeBreakUserId String? @default(dbgenerated()) @map("active_break_user_id") @db.VarChar(30)
 
-  createdAt             DateTime  @default(now()) @map("created_at")
-  updatedAt             DateTime  @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   attendanceRecord AttendanceRecord @relation(fields: [attendanceRecordId, userId], references: [id, userId], onDelete: Cascade)
   user             User             @relation(fields: [userId], references: [id], onDelete: Restrict)
@@ -733,10 +765,10 @@ model AttendanceBreak {
 }
 
 model AttendanceCorrectionRequest {
-  id                  String                     @id @default(cuid()) @db.VarChar(30)
-  attendanceRecordId  String                     @map("attendance_record_id") @db.VarChar(30)
-  userId              String                     @map("user_id") @db.VarChar(30)
-  attendanceSessionId String?                    @map("attendance_session_id") @db.VarChar(30)
+  id                  String  @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId  String  @map("attendance_record_id") @db.VarChar(30)
+  userId              String  @map("user_id") @db.VarChar(30)
+  attendanceSessionId String? @map("attendance_session_id") @db.VarChar(30)
 
   requestedCheckInAt  DateTime?                  @map("requested_check_in_at")
   requestedCheckOutAt DateTime?                  @map("requested_check_out_at")
@@ -835,9 +867,9 @@ model AttendanceReconciliationRun {
   notes                 String?                 @db.VarChar(500)
   errorDetails          Json?                   @map("error_details")
 
-  triggeredBy           User?                   @relation("ReconciliationTriggeredBy", fields: [triggeredByUserId], references: [id], onDelete: SetNull)
-  records               AttendanceRecord[]
-  anomalies             AttendanceAnomaly[]
+  triggeredBy User?               @relation("ReconciliationTriggeredBy", fields: [triggeredByUserId], references: [id], onDelete: SetNull)
+  records     AttendanceRecord[]
+  anomalies   AttendanceAnomaly[]
 
   @@index([targetDate])
   @@index([status])
@@ -845,25 +877,382 @@ model AttendanceReconciliationRun {
 }
 
 model AttendanceAnomaly {
-  id                  String                       @id @default(cuid()) @db.VarChar(30)
-  attendanceRecordId  String                       @map("attendance_record_id") @db.VarChar(30)
-  reconciliationRunId String?                      @map("reconciliation_run_id") @db.VarChar(30)
-  anomalyType         String                       @map("anomaly_type") @db.VarChar(50)
-  details             String?                      @db.Text
-  status              AnomalyStatus                @default(ACTIVE)
-  detectedAt          DateTime                     @default(now()) @map("detected_at")
-  resolvedAt          DateTime?                    @map("resolved_at")
-  resolvedByUserId    String?                      @map("resolved_by_user_id") @db.VarChar(30)
-  resolutionNotes     String?                      @map("resolution_notes") @db.VarChar(500)
-  createdAt           DateTime                     @default(now()) @map("created_at")
-  updatedAt           DateTime                     @updatedAt @map("updated_at")
+  id                  String        @id @default(cuid()) @db.VarChar(30)
+  attendanceRecordId  String        @map("attendance_record_id") @db.VarChar(30)
+  reconciliationRunId String?       @map("reconciliation_run_id") @db.VarChar(30)
+  anomalyType         String        @map("anomaly_type") @db.VarChar(50)
+  details             String?       @db.Text
+  status              AnomalyStatus @default(ACTIVE)
+  detectedAt          DateTime      @default(now()) @map("detected_at")
+  resolvedAt          DateTime?     @map("resolved_at")
+  resolvedByUserId    String?       @map("resolved_by_user_id") @db.VarChar(30)
+  resolutionNotes     String?       @map("resolution_notes") @db.VarChar(500)
+  createdAt           DateTime      @default(now()) @map("created_at")
+  updatedAt           DateTime      @updatedAt @map("updated_at")
 
-  attendanceRecord    AttendanceRecord             @relation(fields: [attendanceRecordId], references: [id], onDelete: Cascade)
-  reconciliationRun   AttendanceReconciliationRun?  @relation(fields: [reconciliationRunId], references: [id], onDelete: SetNull)
-  resolvedBy          User?                        @relation("AnomalyItemResolvedBy", fields: [resolvedByUserId], references: [id], onDelete: SetNull)
+  attendanceRecord  AttendanceRecord             @relation(fields: [attendanceRecordId], references: [id], onDelete: Cascade)
+  reconciliationRun AttendanceReconciliationRun? @relation(fields: [reconciliationRunId], references: [id], onDelete: SetNull)
+  resolvedBy        User?                        @relation("AnomalyItemResolvedBy", fields: [resolvedByUserId], references: [id], onDelete: SetNull)
 
   @@index([attendanceRecordId])
   @@index([anomalyType])
   @@index([status])
   @@map("attendance_anomalies")
+}
+
+// -----------------------------------------------------------------------------
+// PHASE 6.3.2: TASK MANAGEMENT & ASSIGNMENT
+// -----------------------------------------------------------------------------
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  ON_HOLD
+  IN_REVIEW
+  REOPENED
+  COMPLETED
+  CANCELLED
+}
+
+model TaskCodeSequence {
+  id         String   @id @default(cuid()) @db.VarChar(30)
+  prefix     String   @unique @db.VarChar(10)
+  lastNumber Int      @default(0) @map("last_number")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("task_code_sequences")
+}
+
+model Task {
+  id             String       @id @default(cuid()) @db.VarChar(30)
+  taskCode       String       @unique @map("task_code") @db.VarChar(30)
+  title          String       @db.VarChar(255)
+  description    String       @db.Text
+  priority       TaskPriority @default(MEDIUM) @map("priority")
+  status         TaskStatus   @default(TODO) @map("status")
+  category       String       @default("GENERAL") @map("category") @db.VarChar(50)
+  progress       Int          @default(0) @map("progress")
+  startDate      DateTime     @map("start_date") @db.Date
+  dueDate        DateTime?    @map("due_date") @db.Date
+  estimatedHours Decimal?     @map("estimated_hours") @db.Decimal(6, 2)
+
+  // Ownership & Assignment
+  createdById  String    @map("created_by_id") @db.VarChar(30)
+  assigneeId   String?   @map("assignee_id") @db.VarChar(30)
+  assignedById String?   @map("assigned_by_id") @db.VarChar(30)
+  assignedAt   DateTime? @map("assigned_at") @db.DateTime(0)
+  departmentId String    @map("department_id") @db.VarChar(30)
+
+  // Soft Delete & Timestamps
+  deletedAt DateTime? @map("deleted_at") @db.DateTime(0)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  createdByUser  User       @relation("TaskCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  assignee       User?      @relation("TaskAssignee", fields: [assigneeId], references: [id], onDelete: Restrict)
+  assignedByUser User?      @relation("TaskAssignedBy", fields: [assignedById], references: [id], onDelete: SetNull)
+  department     Department @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+
+  // RESTRICT: Hard deletion of Task blocked if historical records exist
+  assignmentHistory      TaskAssignmentHistory[]
+  statusHistory          TaskStatusHistory[]
+  activityLogs           TaskActivityLog[]
+  timeEntries            TaskTimeEntry[]
+  timePauses             TaskTimePause[]
+  timeCorrectionRequests TaskTimeCorrectionRequest[]
+  reviews                TaskReview[]
+  comments               TaskComment[]
+
+  // CASCADE: Ephemeral metadata
+  tagMappings TaskTagMapping[]
+
+  @@index([status], map: "idx_tasks_status")
+  @@index([assigneeId], map: "idx_tasks_assignee")
+  @@index([departmentId], map: "idx_tasks_department")
+  @@index([createdById], map: "idx_tasks_creator")
+  @@index([deletedAt], map: "idx_tasks_deleted")
+  @@index([startDate], map: "idx_tasks_start_date")
+  @@index([dueDate], map: "idx_tasks_due_date")
+  @@map("tasks")
+}
+
+model TaskAssignmentHistory {
+  id                 String   @id @default(cuid()) @db.VarChar(30)
+  taskId             String   @map("task_id") @db.VarChar(30)
+  previousAssigneeId String?  @map("previous_assignee_id") @db.VarChar(30)
+  newAssigneeId      String?  @map("new_assignee_id") @db.VarChar(30)
+  assignedById       String   @map("assigned_by_id") @db.VarChar(30)
+  reason             String?  @db.VarChar(500)
+  assignedAt         DateTime @default(now()) @map("assigned_at") @db.DateTime(0)
+
+  task             Task  @relation(fields: [taskId], references: [id], onDelete: Restrict)
+  previousAssignee User? @relation("TaskPrevAssignee", fields: [previousAssigneeId], references: [id], onDelete: SetNull)
+  newAssignee      User? @relation("TaskNewAssignee", fields: [newAssigneeId], references: [id], onDelete: SetNull)
+  assignedByUser   User  @relation("TaskHistoryAssignedBy", fields: [assignedById], references: [id], onDelete: Restrict)
+
+  @@index([taskId], map: "idx_assignment_history_task")
+  @@index([newAssigneeId], map: "idx_assignment_history_new_assignee")
+  @@map("task_assignment_histories")
+}
+
+model TaskStatusHistory {
+  id             String      @id @default(cuid()) @db.VarChar(30)
+  taskId         String      @map("task_id") @db.VarChar(30)
+  previousStatus TaskStatus? @map("previous_status")
+  newStatus      TaskStatus  @map("new_status")
+  changedById    String      @map("changed_by_id") @db.VarChar(30)
+  comment        String?     @db.VarChar(500)
+  createdAt      DateTime    @default(now()) @map("created_at")
+
+  task          Task @relation(fields: [taskId], references: [id], onDelete: Restrict)
+  changedByUser User @relation("TaskStatusChangedBy", fields: [changedById], references: [id], onDelete: Restrict)
+
+  @@index([taskId], map: "idx_status_history_task")
+  @@map("task_status_histories")
+}
+
+model TaskActivityLog {
+  id          String   @id @default(cuid()) @db.VarChar(30)
+  taskId      String   @map("task_id") @db.VarChar(30)
+  performedBy String   @map("performed_by") @db.VarChar(30)
+  action      String   @db.VarChar(50)
+  metadata    Json?    @map("metadata")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  task  Task @relation(fields: [taskId], references: [id], onDelete: Restrict)
+  actor User @relation("TaskActivityActor", fields: [performedBy], references: [id], onDelete: Restrict)
+
+  @@index([taskId], map: "idx_activity_log_task")
+  @@map("task_activity_logs")
+}
+
+model TaskTag {
+  id        String   @id @default(cuid()) @db.VarChar(30)
+  name      String   @unique @map("name") @db.VarChar(50)
+  color     String?  @db.VarChar(20)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  tasks TaskTagMapping[]
+
+  @@map("task_tags")
+}
+
+model TaskTagMapping {
+  id        String   @id @default(cuid()) @db.VarChar(30)
+  taskId    String   @map("task_id") @db.VarChar(30)
+  tagId     String   @map("tag_id") @db.VarChar(30)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  task Task    @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  tag  TaskTag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([taskId, tagId], map: "uq_task_tag_mapping")
+  @@index([tagId], map: "idx_tag_mapping_tag")
+  @@map("task_tag_mappings")
+}
+
+// =============================================================================
+// TASK TIME TRACKING & WORK INTERVAL SUBSYSTEM (Phase 6.3.3)
+// =============================================================================
+
+enum TaskTimerStatus {
+  RUNNING
+  PAUSED
+  STOPPED
+  COMPLETED
+}
+
+enum DeviceType {
+  WEB
+  MOBILE
+  DESKTOP
+  SYSTEM
+}
+
+enum TaskPauseReason {
+  TEA_BREAK
+  LUNCH
+  PERSONAL_WORK
+  MEETING
+  WAITING
+  TECHNICAL_ISSUE
+  OTHER
+  TASK_SWITCH
+  LOGOUT
+  TASK_STATUS_CHANGE
+}
+
+enum TaskTimeCorrectionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+model TaskTimeEntry {
+  id                  String                      @id @default(cuid()) @db.VarChar(30)
+  taskId              String                      @map("task_id") @db.VarChar(30)
+  userId              String                      @map("user_id") @db.VarChar(30)
+  attendanceSessionId String?                     @map("attendance_session_id") @db.VarChar(30)
+  workDate            DateTime                    @map("work_date") @db.Date
+  startedAt           DateTime                    @map("started_at") @db.DateTime(0)
+  endedAt             DateTime?                   @map("ended_at") @db.DateTime(0)
+  durationSeconds     Int                         @default(0) @map("duration_seconds")
+  status              TaskTimerStatus             @default(RUNNING) @map("status")
+  deviceType          DeviceType                  @default(WEB) @map("device_type")
+  ipAddress           String?                     @map("ip_address") @db.VarChar(45)
+  userAgent           String?                     @map("user_agent") @db.VarChar(255)
+
+  // Correction & Supersession
+  isCorrection        Boolean                     @default(false) @map("is_correction")
+  isSuperseded        Boolean                     @default(false) @map("is_superseded")
+  supersededById      String?                     @map("superseded_by_id") @db.VarChar(30)
+  correctionRequestId String?                     @unique(map: "uq_task_time_entry_correction_request") @map("correction_request_id") @db.VarChar(30)
+
+  // Custom SQL Generated Column (STORED): Guarantees at most 1 RUNNING entry per employee
+  activeUserId        String?                     @unique(map: "uq_one_running_timer_per_user") @map("active_user_id") @db.VarChar(30)
+
+  createdAt           DateTime                    @default(now()) @map("created_at")
+  updatedAt           DateTime                    @updatedAt @map("updated_at")
+
+  task                Task                        @relation(fields: [taskId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  user                User                        @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  supersededBy        TaskTimeEntry?              @relation("TimeEntrySupersession", fields: [supersededById], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  supersededEntries   TaskTimeEntry[]             @relation("TimeEntrySupersession")
+  correctionRequest   TaskTimeCorrectionRequest?  @relation("CorrectionResultEntry", fields: [correctionRequestId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  originalForRequests TaskTimeCorrectionRequest[] @relation("CorrectionOriginalEntry")
+
+  // Pause Audit Associations
+  precedingPauses     TaskTimePause[]             @relation("PausePrecedingEntry")
+  followingPauses     TaskTimePause[]             @relation("PauseFollowingEntry")
+
+  @@unique([id, taskId, userId], map: "uq_task_time_entry_id_task_user")
+  @@index([taskId, status], map: "idx_task_time_entries_task_status")
+  @@index([userId, workDate], map: "idx_task_time_entries_user_date")
+  @@index([taskId, status, isSuperseded], map: "idx_task_time_entries_effective")
+  @@map("task_time_entries")
+}
+
+model TaskTimePause {
+  id                   String             @id @default(cuid()) @db.VarChar(30)
+  taskId               String             @map("task_id") @db.VarChar(30)
+  userId               String             @map("user_id") @db.VarChar(30)
+  precedingTimeEntryId String?            @map("preceding_time_entry_id") @db.VarChar(30)
+  followingTimeEntryId String?            @map("following_time_entry_id") @db.VarChar(30)
+  pausedAt             DateTime           @map("paused_at") @db.DateTime(0)
+  resumedAt            DateTime?          @map("resumed_at") @db.DateTime(0)
+  pauseDurationSeconds Int                @default(0) @map("pause_duration_seconds")
+  reason               TaskPauseReason    @map("reason")
+  customDescription    String?            @map("custom_description") @db.VarChar(255)
+
+  // Custom SQL Generated Column (STORED): Guarantees at most 1 open pause per entry
+  openPauseEntryId     String?            @unique(map: "uq_one_open_pause_per_entry") @map("open_pause_entry_id") @db.VarChar(30)
+
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
+
+  task                 Task               @relation(fields: [taskId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  precedingEntry       TaskTimeEntry?     @relation("PausePrecedingEntry", fields: [precedingTimeEntryId, taskId, userId], references: [id, taskId, userId], onDelete: Restrict, onUpdate: Restrict)
+  followingEntry       TaskTimeEntry?     @relation("PauseFollowingEntry", fields: [followingTimeEntryId, taskId, userId], references: [id, taskId, userId], onDelete: Restrict, onUpdate: Restrict)
+
+  @@index([taskId], map: "idx_task_time_pauses_task")
+  @@index([userId], map: "idx_task_time_pauses_user")
+  @@map("task_time_pauses")
+}
+
+model TaskTimeCorrectionRequest {
+  id                       String                   @id @default(cuid()) @db.VarChar(30)
+  taskId                   String                   @map("task_id") @db.VarChar(30)
+  userId                   String                   @map("user_id") @db.VarChar(30)
+  originalEntryId          String                   @map("original_entry_id") @db.VarChar(30)
+  requestedStartedAt       DateTime                 @map("requested_started_at") @db.DateTime(0)
+  requestedEndedAt         DateTime                 @map("requested_ended_at") @db.DateTime(0)
+  requestedDurationSeconds Int                      @map("requested_duration_seconds")
+  reason                   String                   @db.VarChar(500)
+  status                   TaskTimeCorrectionStatus @default(PENDING) @map("status")
+  reviewedById             String?                  @map("reviewed_by_id") @db.VarChar(30)
+  reviewedAt               DateTime?                @map("reviewed_at") @db.DateTime(0)
+  rejectionReason          String?                  @map("rejection_reason") @db.VarChar(500)
+
+  createdAt                DateTime                 @default(now()) @map("created_at")
+  updatedAt                DateTime                 @updatedAt @map("updated_at")
+
+  task                     Task                     @relation(fields: [taskId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  user                     User                     @relation("TaskTimeCorrectionRequester", fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  reviewer                 User?                    @relation("TaskTimeCorrectionReviewer", fields: [reviewedById], references: [id], onDelete: SetNull, onUpdate: Restrict)
+  originalEntry            TaskTimeEntry            @relation("CorrectionOriginalEntry", fields: [originalEntryId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  resultingEntry           TaskTimeEntry?           @relation("CorrectionResultEntry")
+
+  @@index([taskId, status], map: "idx_task_time_corrections_task_status")
+  @@index([userId, status], map: "idx_task_time_corrections_user_status")
+  @@map("task_time_correction_requests")
+}
+
+// =============================================================================
+// PHASE 6.3.4: TASK WORKFLOW & COLLABORATION
+// =============================================================================
+
+enum TaskReviewOutcome {
+  PENDING
+  APPROVED
+  CHANGES_REQUESTED
+  REJECTED
+}
+
+model TaskReview {
+  id              String            @id @default(cuid()) @db.VarChar(30)
+  taskId          String            @map("task_id") @db.VarChar(30)
+  roundNumber     Int               @default(1) @map("round_number")
+  reviewerId      String?           @map("reviewer_id") @db.VarChar(30)
+  submitterId     String            @map("submitter_id") @db.VarChar(30)
+  outcome         TaskReviewOutcome @default(PENDING) @map("outcome")
+  feedback        String?           @db.Text
+  rating          Int?              @db.SmallInt
+  submissionNotes String?           @map("submission_notes") @db.Text
+  submittedAt     DateTime          @default(now()) @map("submitted_at")
+  reviewedAt      DateTime?         @map("reviewed_at")
+
+  task      Task  @relation(fields: [taskId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  reviewer  User? @relation("TaskReviewer", fields: [reviewerId], references: [id], onDelete: SetNull, onUpdate: Restrict)
+  submitter User  @relation("TaskSubmitter", fields: [submitterId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+
+  @@unique([taskId, roundNumber], map: "uq_task_review_round")
+  @@index([taskId, outcome], map: "idx_task_reviews_task_outcome")
+  @@index([reviewerId, outcome], map: "idx_task_reviews_reviewer_outcome")
+  @@map("task_reviews")
+}
+
+model TaskComment {
+  id              String    @id @default(cuid()) @db.VarChar(30)
+  taskId          String    @map("task_id") @db.VarChar(30)
+  userId          String    @map("user_id") @db.VarChar(30)
+  parentId        String?   @map("parent_id") @db.VarChar(30)
+  content         String    @db.Text
+  originalContent String?   @map("original_content") @db.Text
+  isEdited        Boolean   @default(false) @map("is_edited")
+  editedAt        DateTime? @map("edited_at")
+  isInternal      Boolean   @default(false) @map("is_internal")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+  deletedById     String?   @map("deleted_by_id") @db.VarChar(30)
+
+  task      Task          @relation(fields: [taskId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  user      User          @relation("UserTaskComments", fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  deletedBy User?         @relation("CommentDeletedBy", fields: [deletedById], references: [id], onDelete: SetNull, onUpdate: Restrict)
+  parent    TaskComment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  replies   TaskComment[] @relation("CommentReplies")
+
+  @@index([taskId, createdAt], map: "idx_task_comments_task_created")
+  @@index([parentId], map: "idx_task_comments_parent")
+  @@map("task_comments")
 }

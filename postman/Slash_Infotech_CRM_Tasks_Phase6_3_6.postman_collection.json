@@ -1,0 +1,129 @@
+{
+  "info": {
+    "_postman_id": "slash-crm-tasks-phase6-3-6-collection",
+    "name": "Slash Infotech CRM - Task Attachment Storage & Security (Phase 6.3.6)",
+    "description": "Comprehensive Postman API Collection covering all attachment endpoints of Phase 6.3.6: Multipart Binary Upload, Attachment Listing, Authenticated Binary Download, Inline Preview (strict CSP), Authorized ClamAV Rescan, and Soft Deletion. Enforces 25MB disk spooling, magic-byte inspection, zero disk extraction ZIP/macro validation, ClamAV antivirus scanning, SHA-256 integrity verification, and complete client isolation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Attachments Management",
+      "item": [
+        {
+          "name": "1.1 Upload Task Attachment (Multipart Binary)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{employeeToken}}" }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ""
+                },
+                {
+                  "key": "collection",
+                  "value": "deliverables",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments"]
+            },
+            "description": "Uploads a binary attachment using disk spooling (.tmp_spool/) with a 25MB limit. Executes magic-byte validation, zero disk extraction ZIP/macro checks, and ClamAV scanning. Stores SHA-256 checksum and scan status."
+          }
+        },
+        {
+          "name": "1.2 List Task Attachments",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{employeeToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments"]
+            },
+            "description": "Lists all active attachments for a task, returning metadata including filename, MIME type, file size, SHA-256 checksum, scan status, collection, and uploader info. Scope-filtered."
+          }
+        },
+        {
+          "name": "1.3 Download Attachment (Binary Stream)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{employeeToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments/{{attachmentId}}/download",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments", "{{attachmentId}}", "download"]
+            },
+            "description": "Streams binary file from private storage with Content-Disposition: attachment. Rejects with 423 Locked if scanStatus is not CLEAN. Rejects clients with 403 Forbidden."
+          }
+        },
+        {
+          "name": "1.4 Preview Attachment (Inline)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{employeeToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments/{{attachmentId}}/preview",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments", "{{attachmentId}}", "preview"]
+            },
+            "description": "Renders supported formats (PDF, PNG, JPEG, WEBP) inline with strict Content-Security-Policy (default-src 'none'; img-src 'self' data:; style-src 'none'; script-src 'none'; frame-ancestors 'none';). Non-previewable formats return 400 Bad Request. SVG and HTML are forced to download. 423 Locked if non-clean."
+          }
+        },
+        {
+          "name": "1.5 Rescan Attachment (Authorized)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments/{{attachmentId}}/rescan",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments", "{{attachmentId}}", "rescan"]
+            },
+            "description": "Triggers an authoritative ClamAV TCP rescan for an attachment currently in PENDING, FAILED, or QUARANTINED status. Enforces SCANNING concurrency lock and validates pre/post SHA-256 checksum to detect tampering. Only authorized users with tasks.approve, tasks.review, or Admin/SuperAdmin can execute."
+          }
+        },
+        {
+          "name": "1.6 Delete Attachment (Soft Delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{employeeToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments/{{attachmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments", "{{attachmentId}}"]
+            },
+            "description": "Soft-deletes attachment and associated Media record. Only uploader, assigned manager, or admins can delete. Blocks future download or preview."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api", "type": "string" },
+    { "key": "taskId", "value": "", "type": "string" },
+    { "key": "attachmentId", "value": "", "type": "string" },
+    { "key": "employeeToken", "value": "", "type": "string" },
+    { "key": "managerToken", "value": "", "type": "string" },
+    { "key": "adminToken", "value": "", "type": "string" }
+  ]
+}
+

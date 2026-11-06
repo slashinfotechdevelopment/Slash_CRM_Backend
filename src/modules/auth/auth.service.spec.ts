@@ -7,7 +7,8 @@ import { OtpService } from './services/otp.service';
 import { PrismaService } from '../../database/prisma.service';
 import { AuditService } from '../../common/audit/audit.service';
 import { UserCodeService } from '../../common/services/user-code.service';
-import { OtpPurpose, RecordStatus, SessionStatus } from '../../generated/prisma/enums';
+import { TaskTimerAutoPauseService } from '../tasks/task-timer-auto-pause.service';
+import { OtpPurpose, RecordStatus, SessionStatus, TaskPauseReason } from '../../generated/prisma/enums';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -16,6 +17,7 @@ describe('AuthService', () => {
   let jwtService: any;
   let userCodeService: any;
   let auditService: any;
+  let taskTimerAutoPauseService: any;
 
   beforeEach(async () => {
     prisma = {
@@ -72,6 +74,10 @@ describe('AuthService', () => {
       logActivity: jest.fn().mockResolvedValue(undefined),
     };
 
+    taskTimerAutoPauseService = {
+      autoPauseRunningTask: jest.fn().mockResolvedValue({ paused: false }),
+    };
+
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         AuthService,
@@ -80,6 +86,7 @@ describe('AuthService', () => {
         { provide: JwtService, useValue: jwtService },
         { provide: UserCodeService, useValue: userCodeService },
         { provide: AuditService, useValue: auditService },
+        { provide: TaskTimerAutoPauseService, useValue: taskTimerAutoPauseService },
         {
           provide: ConfigService,
           useValue: {
@@ -247,6 +254,55 @@ describe('AuthService', () => {
       await expect(
         service.refreshTokens({ refreshToken: 'invalid-token' }),
       ).rejects.toThrow(UnauthorizedException);
+    });
+  });
+
+  describe('logout & logoutAll auto-pause integration', () => {
+    it('logout should call autoPauseRunningTask with reason LOGOUT before revoking session', async () => {
+      prisma.userSession.updateMany = jest.fn().mockResolvedValue({ count: 1 });
+
+      const res = await service.logout('user-1', 'sess-1', '127.0.0.1', 'Jest');
+
+      expect(taskTimerAutoPauseService.autoPauseRunningTask).toHaveBeenCalledWith(
+        'user-1',
+        TaskPauseReason.LOGOUT,
+        undefined,
+        prisma,
+      );
+      expect(prisma.userSession.updateMany).toHaveBeenCalledWith({
+        where: {
+          id: 'sess-1',
+          userId: 'user-1',
+          status: SessionStatus.ACTIVE,
+        },
+        data: expect.objectContaining({
+          status: SessionStatus.REVOKED,
+        }),
+      });
+      expect(res.message).toBe('Logged out successfully.');
+    });
+
+    it('logoutAll should call autoPauseRunningTask with reason LOGOUT exactly once before revoking all sessions', async () => {
+      prisma.userSession.updateMany = jest.fn().mockResolvedValue({ count: 3 });
+
+      const res = await service.logoutAll('user-1', '127.0.0.1', 'Jest');
+
+      expect(taskTimerAutoPauseService.autoPauseRunningTask).toHaveBeenCalledWith(
+        'user-1',
+        TaskPauseReason.LOGOUT,
+        undefined,
+        prisma,
+      );
+      expect(prisma.userSession.updateMany).toHaveBeenCalledWith({
+        where: {
+          userId: 'user-1',
+          status: SessionStatus.ACTIVE,
+        },
+        data: expect.objectContaining({
+          status: SessionStatus.REVOKED,
+        }),
+      });
+      expect(res.message).toBe('All active sessions have been revoked successfully.');
     });
   });
 });

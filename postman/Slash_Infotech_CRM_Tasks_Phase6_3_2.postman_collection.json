@@ -1,0 +1,421 @@
+{
+  "info": {
+    "_postman_id": "slash-crm-tasks-phase6-3-2-collection",
+    "name": "Slash Infotech CRM - Tasks Subsystem (Phase 6.3.2)",
+    "description": "Postman API Collection covering all 8 endpoints of the Task Management and Assignment subsystem implemented in Phase 6.3.2: Task Creation, Listing, Personal Tasks, Details, Updates, Reassignments with closed verification loop, Soft Deletion, and History Audit.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Task Management & Assignment",
+      "item": [
+        {
+          "name": "1.1 Create Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Implement CRM Task Reassignment Closed-Loop Locks\",\n  \"description\": \"Enforce Tier 1 user ascending row locks and re-read verification loop inside transaction to prevent reassignment races.\",\n  \"priority\": \"HIGH\",\n  \"category\": \"BACKEND_CORE\",\n  \"startDate\": \"2026-11-05\",\n  \"dueDate\": \"2026-11-12\",\n  \"estimatedHours\": 16.5,\n  \"assigneeId\": \"{{targetEmployeeId}}\",\n  \"tags\": [\"backend\", \"p1\", \"concurrency\", \"database\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": "Creates a new task with an automatically generated atomic task code (e.g. TASK001). For self-assigned tasks, department derives from the creator. For assigned tasks, department derives from the target assignee."
+          },
+          "response": [
+            {
+              "name": "201 Created - Success",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": {\n    \"id\": \"clx99task0001\",\n    \"taskCode\": \"TASK001\",\n    \"title\": \"Implement CRM Task Reassignment Closed-Loop Locks\",\n    \"description\": \"Enforce Tier 1 user ascending row locks and re-read verification loop inside transaction to prevent reassignment races.\",\n    \"priority\": \"HIGH\",\n    \"status\": \"TODO\",\n    \"category\": \"BACKEND_CORE\",\n    \"progress\": 0,\n    \"startDate\": \"2026-11-05T00:00:00.000Z\",\n    \"dueDate\": \"2026-11-12T00:00:00.000Z\",\n    \"estimatedHours\": 16.5,\n    \"createdById\": \"usr_admin_001\",\n    \"assigneeId\": \"usr_emp_002\",\n    \"departmentId\": \"dept_dev_001\",\n    \"tagMappings\": [\n      { \"tag\": { \"id\": \"tag_1\", \"name\": \"backend\" } },\n      { \"tag\": { \"id\": \"tag_2\", \"name\": \"p1\" } }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.2 List Tasks (Search & Multi-Dimensional Filters)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks?page=1&limit=20&status=TODO&priority=HIGH&search=Reassignment&sortBy=createdAt&sortOrder=desc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" },
+                { "key": "status", "value": "TODO" },
+                { "key": "priority", "value": "HIGH" },
+                { "key": "search", "value": "Reassignment" },
+                { "key": "sortBy", "value": "createdAt" },
+                { "key": "sortOrder", "value": "desc" }
+              ]
+            },
+            "description": "Retrieves tasks visible to the authenticated user based on role data scope (OWN, ASSIGNED, DEPARTMENT, ALL) and user-type ceilings. Excludes soft-deleted tasks."
+          },
+          "response": [
+            {
+              "name": "200 OK - Paginated Task List",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Tasks retrieved successfully\",\n  \"data\": [\n    {\n      \"id\": \"clx99task0001\",\n      \"taskCode\": \"TASK001\",\n      \"title\": \"Implement CRM Task Reassignment Closed-Loop Locks\",\n      \"priority\": \"HIGH\",\n      \"status\": \"TODO\",\n      \"progress\": 0,\n      \"department\": { \"id\": \"dept_dev_001\", \"code\": \"DEV\", \"name\": \"Development\" },\n      \"assignee\": { \"id\": \"usr_emp_002\", \"userCode\": \"EMP002\", \"name\": \"Jane Developer\" }\n    }\n  ],\n  \"meta\": {\n    \"total\": 1,\n    \"page\": 1,\n    \"limit\": 20,\n    \"totalPages\": 1\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.3 Get Personal Tasks (/my-tasks)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/my-tasks?page=1&limit=20&status=IN_PROGRESS",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "my-tasks"
+              ],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" },
+                { "key": "status", "value": "IN_PROGRESS" }
+              ]
+            },
+            "description": "Convenience endpoint returning personal tasks where assigneeId matches the authenticated employee."
+          },
+          "response": [
+            {
+              "name": "200 OK - Personal Tasks Returned",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Personal tasks retrieved successfully\",\n  \"data\": [\n    {\n      \"id\": \"clx99task0001\",\n      \"taskCode\": \"TASK001\",\n      \"title\": \"Implement CRM Task Reassignment Closed-Loop Locks\",\n      \"priority\": \"HIGH\",\n      \"status\": \"IN_PROGRESS\",\n      \"progress\": 35\n    }\n  ],\n  \"meta\": {\n    \"total\": 1,\n    \"page\": 1,\n    \"limit\": 20,\n    \"totalPages\": 1\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.4 Get Task By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "{{taskId}}"
+              ]
+            },
+            "description": "Retrieves complete task details including relations and recent history if the task is within the actor’s permitted visibility ceiling and scope."
+          },
+          "response": [
+            {
+              "name": "200 OK - Task Details",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": {\n    \"id\": \"clx99task0001\",\n    \"taskCode\": \"TASK001\",\n    \"title\": \"Implement CRM Task Reassignment Closed-Loop Locks\",\n    \"description\": \"Enforce Tier 1 user ascending row locks and re-read verification loop inside transaction to prevent reassignment races.\",\n    \"priority\": \"HIGH\",\n    \"status\": \"TODO\",\n    \"progress\": 0,\n    \"startDate\": \"2026-11-05T00:00:00.000Z\",\n    \"dueDate\": \"2026-11-12T00:00:00.000Z\",\n    \"createdByUser\": { \"id\": \"usr_admin_001\", \"userCode\": \"ADM001\", \"name\": \"Admin Alice\" },\n    \"assignee\": { \"id\": \"usr_emp_002\", \"userCode\": \"EMP002\", \"name\": \"Jane Developer\" },\n    \"department\": { \"id\": \"dept_dev_001\", \"code\": \"DEV\", \"name\": \"Development\" },\n    \"assignmentHistory\": [],\n    \"statusHistory\": [],\n    \"activityLogs\": []\n  }\n}"
+            },
+            {
+              "name": "404 Not Found - Outside Scope / Ceiling",
+              "status": "Not Found",
+              "code": 404,
+              "body": "{\n  \"statusCode\": 404,\n  \"message\": \"Task not found or access denied.\",\n  \"error\": \"Not Found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.5 Update Task Fields",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Implement CRM Task Reassignment Closed-Loop Locks (Revised)\",\n  \"priority\": \"URGENT\",\n  \"status\": \"IN_PROGRESS\",\n  \"progress\": 40,\n  \"statusComment\": \"Unit tests implemented, moving to concurrency verification\",\n  \"tags\": [\"backend\", \"concurrency\", \"tested\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "{{taskId}}"
+              ]
+            },
+            "description": "Updates mutable task fields (title, description, priority, category, status, progress, dates, tags). Records status history and activity logs."
+          },
+          "response": [
+            {
+              "name": "200 OK - Task Updated",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": {\n    \"id\": \"clx99task0001\",\n    \"taskCode\": \"TASK001\",\n    \"title\": \"Implement CRM Task Reassignment Closed-Loop Locks (Revised)\",\n    \"priority\": \"URGENT\",\n    \"status\": \"IN_PROGRESS\",\n    \"progress\": 40\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.6 Reassign Task (Atomic Closed Loop)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assigneeId\": \"{{newAssigneeId}}\",\n  \"reason\": \"Sprint 3 workload rebalance across engineering\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/assign",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "{{taskId}}",
+                "assign"
+              ]
+            },
+            "description": "Atomically reassigns a task to another employee using Tier 1 ascending locks and closed verification loop. Automatically recalculates task department and records TaskAssignmentHistory."
+          },
+          "response": [
+            {
+              "name": "200 OK - Task Reassigned",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": {\n    \"id\": \"clx99task0001\",\n    \"taskCode\": \"TASK001\",\n    \"assigneeId\": \"usr_emp_003\",\n    \"departmentId\": \"dept_sales_002\",\n    \"assignmentHistory\": [\n      {\n        \"id\": \"clx_ah_01\",\n        \"previousAssigneeId\": \"usr_emp_002\",\n        \"newAssigneeId\": \"usr_emp_003\",\n        \"reason\": \"Sprint 3 workload rebalance across engineering\"\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "409 Conflict - Concurrency Contention",
+              "status": "Conflict",
+              "code": 409,
+              "body": "{\n  \"statusCode\": 409,\n  \"message\": \"Concurrent task reassignment detected. Please retry the operation.\",\n  \"error\": \"Conflict\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.7 Soft Delete Task",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "{{taskId}}"
+              ]
+            },
+            "description": "Soft-deletes a task by recording deletedAt timestamp. Preserves all assignment, status, and activity audit trails."
+          },
+          "response": [
+            {
+              "name": "200 OK - Task Soft Deleted",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": {\n    \"id\": \"clx99task0001\",\n    \"deletedAt\": \"2026-11-05T10:15:00.000Z\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "1.8 Get Task History Audit",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/history",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "{{taskId}}",
+                "history"
+              ]
+            },
+            "description": "Retrieves comprehensive chronological audit trails for a task: assignment history, status transitions with comments, and detailed activity logs."
+          },
+          "response": [
+            {
+              "name": "200 OK - History Audit Trail Returned",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": {\n    \"taskId\": \"clx99task0001\",\n    \"assignmentHistory\": [\n      {\n        \"id\": \"ah_1\",\n        \"previousAssigneeId\": null,\n        \"newAssigneeId\": \"usr_emp_002\",\n        \"assignedAt\": \"2026-11-05T09:00:00.000Z\",\n        \"reason\": \"Initial assignment\"\n      }\n    ],\n    \"statusHistory\": [\n      {\n        \"id\": \"sh_1\",\n        \"previousStatus\": \"TODO\",\n        \"newStatus\": \"IN_PROGRESS\",\n        \"comment\": \"Sprint 2 in-progress transition\",\n        \"changedAt\": \"2026-11-05T09:30:00.000Z\"\n      }\n    ],\n    \"activityLogs\": [\n      {\n        \"id\": \"al_1\",\n        \"action\": \"TASK_CREATED\",\n        \"performedAt\": \"2026-11-05T09:00:00.000Z\"\n      }\n    ]\n  }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02. Tag Taxonomy Management",
+      "item": [
+        {
+          "name": "2.1 List All Tags",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employeeToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/tags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "tags"
+              ]
+            },
+            "description": "Lists all task tags along with counts of associated tasks."
+          },
+          "response": [
+            {
+              "name": "200 OK - Tag List",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": [\n    {\n      \"id\": \"tag_1\",\n      \"name\": \"backend\",\n      \"color\": \"#3B82F6\",\n      \"_count\": { \"tasks\": 3 }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "2.2 Create Tag",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"infrastructure\",\n  \"color\": \"#10B981\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/tags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "tags"
+              ]
+            },
+            "description": "Creates a new task tag. Requires tasks.manage_tags permission."
+          },
+          "response": [
+            {
+              "name": "201 Created - Tag Created",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation completed successfully\",\n  \"data\": {\n    \"id\": \"tag_2\",\n    \"name\": \"infrastructure\",\n    \"color\": \"#10B981\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "2.3 Delete Tag",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/tags/{{tagId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "tags",
+                "{{tagId}}"
+              ]
+            },
+            "description": "Deletes a task tag and cascade removes associations from tasks. Requires tasks.manage_tags permission."
+          },
+          "response": [
+            {
+              "name": "200 OK - Tag Deleted",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"success\": true,\n  \"message\": \"Tag deleted successfully.\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

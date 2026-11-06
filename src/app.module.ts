@@ -14,6 +14,7 @@ import { PermissionsModule } from './modules/permissions/permissions.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { UsersModule } from './modules/users/users.module';
 import { AttendanceModule } from './modules/attendance/attendance.module';
+import { TasksModule } from './modules/tasks/tasks.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AttendanceModule } from './modules/attendance/attendance.module';
     RolesModule,
     UsersModule,
     AttendanceModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [

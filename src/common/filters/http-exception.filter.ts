@@ -40,6 +40,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
           errors = resObj.errors;
         }
       }
+    } else if ((exception as any)?.name === 'MulterError') {
+      const multerErr = exception as any;
+      if (multerErr.code === 'LIMIT_FILE_SIZE') {
+        status = HttpStatus.PAYLOAD_TOO_LARGE;
+        message = 'File size exceeds the 25 MB limit.';
+      } else {
+        status = HttpStatus.BAD_REQUEST;
+        message = multerErr.message || 'File upload error';
+      }
     } else {
       // Unhandled runtime or database exception
       this.logger.error(

@@ -217,6 +217,7 @@ export type DepartmentWhereInput = {
   parent?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   children?: Prisma.DepartmentListRelationFilter
   users?: Prisma.UserDepartmentListRelationFilter
+  tasks?: Prisma.TaskListRelationFilter
 }
 
 export type DepartmentOrderByWithRelationInput = {
@@ -232,6 +233,7 @@ export type DepartmentOrderByWithRelationInput = {
   parent?: Prisma.DepartmentOrderByWithRelationInput
   children?: Prisma.DepartmentOrderByRelationAggregateInput
   users?: Prisma.UserDepartmentOrderByRelationAggregateInput
+  tasks?: Prisma.TaskOrderByRelationAggregateInput
   _relevance?: Prisma.DepartmentOrderByRelevanceInput
 }
 
@@ -251,6 +253,7 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   parent?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   children?: Prisma.DepartmentListRelationFilter
   users?: Prisma.UserDepartmentListRelationFilter
+  tasks?: Prisma.TaskListRelationFilter
 }, "id" | "code">
 
 export type DepartmentOrderByWithAggregationInput = {
@@ -295,6 +298,7 @@ export type DepartmentCreateInput = {
   parent?: Prisma.DepartmentCreateNestedOneWithoutChildrenInput
   children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateInput = {
@@ -309,6 +313,7 @@ export type DepartmentUncheckedCreateInput = {
   deletedAt?: Date | string | null
   children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUpdateInput = {
@@ -323,6 +328,7 @@ export type DepartmentUpdateInput = {
   parent?: Prisma.DepartmentUpdateOneWithoutChildrenNestedInput
   children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateInput = {
@@ -337,6 +343,7 @@ export type DepartmentUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateManyInput = {
@@ -508,6 +515,20 @@ export type DepartmentUpdateOneRequiredWithoutUsersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutUsersInput, Prisma.DepartmentUpdateWithoutUsersInput>, Prisma.DepartmentUncheckedUpdateWithoutUsersInput>
 }
 
+export type DepartmentCreateNestedOneWithoutTasksInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutTasksInput, Prisma.DepartmentUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutTasksInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneRequiredWithoutTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutTasksInput, Prisma.DepartmentUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutTasksInput
+  upsert?: Prisma.DepartmentUpsertWithoutTasksInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutTasksInput, Prisma.DepartmentUpdateWithoutTasksInput>, Prisma.DepartmentUncheckedUpdateWithoutTasksInput>
+}
+
 export type DepartmentCreateWithoutChildrenInput = {
   id?: string
   code: string
@@ -519,6 +540,7 @@ export type DepartmentCreateWithoutChildrenInput = {
   deletedAt?: Date | string | null
   parent?: Prisma.DepartmentCreateNestedOneWithoutChildrenInput
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutChildrenInput = {
@@ -532,6 +554,7 @@ export type DepartmentUncheckedCreateWithoutChildrenInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutChildrenInput = {
@@ -550,6 +573,7 @@ export type DepartmentCreateWithoutParentInput = {
   deletedAt?: Date | string | null
   children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutParentInput = {
@@ -563,6 +587,7 @@ export type DepartmentUncheckedCreateWithoutParentInput = {
   deletedAt?: Date | string | null
   children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutParentInput = {
@@ -597,6 +622,7 @@ export type DepartmentUpdateWithoutChildrenInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parent?: Prisma.DepartmentUpdateOneWithoutChildrenNestedInput
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutChildrenInput = {
@@ -610,6 +636,7 @@ export type DepartmentUncheckedUpdateWithoutChildrenInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUpsertWithWhereUniqueWithoutParentInput = {
@@ -654,6 +681,7 @@ export type DepartmentCreateWithoutUsersInput = {
   deletedAt?: Date | string | null
   parent?: Prisma.DepartmentCreateNestedOneWithoutChildrenInput
   children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutUsersInput = {
@@ -667,6 +695,7 @@ export type DepartmentUncheckedCreateWithoutUsersInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutUsersInput = {
@@ -696,6 +725,7 @@ export type DepartmentUpdateWithoutUsersInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   parent?: Prisma.DepartmentUpdateOneWithoutChildrenNestedInput
   children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutUsersInput = {
@@ -709,6 +739,79 @@ export type DepartmentUncheckedUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutTasksInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  parent?: Prisma.DepartmentCreateNestedOneWithoutChildrenInput
+  children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutTasksInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  parentId?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutTasksInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutTasksInput, Prisma.DepartmentUncheckedCreateWithoutTasksInput>
+}
+
+export type DepartmentUpsertWithoutTasksInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutTasksInput, Prisma.DepartmentUncheckedUpdateWithoutTasksInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutTasksInput, Prisma.DepartmentUncheckedCreateWithoutTasksInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutTasksInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutTasksInput, Prisma.DepartmentUncheckedUpdateWithoutTasksInput>
+}
+
+export type DepartmentUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  parent?: Prisma.DepartmentUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateManyParentInput = {
@@ -733,6 +836,7 @@ export type DepartmentUpdateWithoutParentInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutParentInput = {
@@ -746,6 +850,7 @@ export type DepartmentUncheckedUpdateWithoutParentInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateManyWithoutParentInput = {
@@ -767,11 +872,13 @@ export type DepartmentUncheckedUpdateManyWithoutParentInput = {
 export type DepartmentCountOutputType = {
   children: number
   users: number
+  tasks: number
 }
 
 export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   children?: boolean | DepartmentCountOutputTypeCountChildrenArgs
   users?: boolean | DepartmentCountOutputTypeCountUsersArgs
+  tasks?: boolean | DepartmentCountOutputTypeCountTasksArgs
 }
 
 /**
@@ -798,6 +905,13 @@ export type DepartmentCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Type
   where?: Prisma.UserDepartmentWhereInput
 }
 
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskWhereInput
+}
+
 
 export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -812,6 +926,7 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   parent?: boolean | Prisma.Department$parentArgs<ExtArgs>
   children?: boolean | Prisma.Department$childrenArgs<ExtArgs>
   users?: boolean | Prisma.Department$usersArgs<ExtArgs>
+  tasks?: boolean | Prisma.Department$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["department"]>
 
@@ -834,6 +949,7 @@ export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   parent?: boolean | Prisma.Department$parentArgs<ExtArgs>
   children?: boolean | Prisma.Department$childrenArgs<ExtArgs>
   users?: boolean | Prisma.Department$usersArgs<ExtArgs>
+  tasks?: boolean | Prisma.Department$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -843,6 +959,7 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     parent: Prisma.$DepartmentPayload<ExtArgs> | null
     children: Prisma.$DepartmentPayload<ExtArgs>[]
     users: Prisma.$UserDepartmentPayload<ExtArgs>[]
+    tasks: Prisma.$TaskPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1197,6 +1314,7 @@ export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runti
   parent<T extends Prisma.Department$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$parentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   children<T extends Prisma.Department$childrenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Department$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserDepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tasks<T extends Prisma.Department$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1647,6 +1765,30 @@ export type Department$usersArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.UserDepartmentScalarFieldEnum | Prisma.UserDepartmentScalarFieldEnum[]
+}
+
+/**
+ * Department.tasks
+ */
+export type Department$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Task
+   */
+  select?: Prisma.TaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Task
+   */
+  omit?: Prisma.TaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaskInclude<ExtArgs> | null
+  where?: Prisma.TaskWhereInput
+  orderBy?: Prisma.TaskOrderByWithRelationInput | Prisma.TaskOrderByWithRelationInput[]
+  cursor?: Prisma.TaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
 }
 
 /**

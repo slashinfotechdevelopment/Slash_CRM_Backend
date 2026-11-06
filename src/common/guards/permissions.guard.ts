@@ -7,7 +7,10 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { PrismaService } from '../../database/prisma.service';
-import { PERMISSIONS_KEY } from '../decorators/require-permissions.decorator';
+import {
+  PERMISSIONS_KEY,
+  REQUIRE_ANY_PERMISSIONS_KEY,
+} from '../decorators/require-permissions.decorator';
 import { PermissionEffect, RecordStatus } from '../../generated/prisma/enums';
 
 @Injectable()
@@ -23,7 +26,15 @@ export class PermissionsGuard implements CanActivate {
       [context.getHandler(), context.getClass()],
     );
 
-    if (!requiredPermissions || requiredPermissions.length === 0) {
+    const requireAnyPermissions = this.reflector.getAllAndOverride<string[]>(
+      REQUIRE_ANY_PERMISSIONS_KEY,
+      [context.getHandler(), context.getClass()],
+    );
+
+    const hasRequired = requiredPermissions && requiredPermissions.length > 0;
+    const hasRequireAny = requireAnyPermissions && requireAnyPermissions.length > 0;
+
+    if (!hasRequired && !hasRequireAny) {
       return true;
     }
 
@@ -41,14 +52,26 @@ export class PermissionsGuard implements CanActivate {
 
     const userPermissions = await this.resolveEffectivePermissions(user.sub);
 
-    const hasAll = requiredPermissions.every((perm) =>
-      userPermissions.has(perm),
-    );
-
-    if (!hasAll) {
-      throw new ForbiddenException(
-        `Insufficient permissions. Required: [${requiredPermissions.join(', ')}]`,
+    if (hasRequired) {
+      const hasAll = requiredPermissions.every((perm) =>
+        userPermissions.has(perm),
       );
+      if (!hasAll) {
+        throw new ForbiddenException(
+          `Insufficient permissions. Required: [${requiredPermissions.join(', ')}]`,
+        );
+      }
+    }
+
+    if (hasRequireAny) {
+      const hasAny = requireAnyPermissions.some((perm) =>
+        userPermissions.has(perm),
+      );
+      if (!hasAny) {
+        throw new ForbiddenException(
+          `Insufficient permissions. At least one required: [${requireAnyPermissions.join(', ')}]`,
+        );
+      }
     }
 
     return true;

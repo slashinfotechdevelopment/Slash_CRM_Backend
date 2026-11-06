@@ -47,6 +47,9 @@ export type MediaMinAggregateOutputType = {
   visibility: $Enums.MediaVisibility | null
   status: $Enums.MediaStatus | null
   uploadedById: string | null
+  checksumSha256: string | null
+  scanStatus: $Enums.MediaScanStatus | null
+  scanDetails: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -65,6 +68,9 @@ export type MediaMaxAggregateOutputType = {
   visibility: $Enums.MediaVisibility | null
   status: $Enums.MediaStatus | null
   uploadedById: string | null
+  checksumSha256: string | null
+  scanStatus: $Enums.MediaScanStatus | null
+  scanDetails: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -83,6 +89,9 @@ export type MediaCountAggregateOutputType = {
   visibility: number
   status: number
   uploadedById: number
+  checksumSha256: number
+  scanStatus: number
+  scanDetails: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -111,6 +120,9 @@ export type MediaMinAggregateInputType = {
   visibility?: true
   status?: true
   uploadedById?: true
+  checksumSha256?: true
+  scanStatus?: true
+  scanDetails?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -129,6 +141,9 @@ export type MediaMaxAggregateInputType = {
   visibility?: true
   status?: true
   uploadedById?: true
+  checksumSha256?: true
+  scanStatus?: true
+  scanDetails?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -147,6 +162,9 @@ export type MediaCountAggregateInputType = {
   visibility?: true
   status?: true
   uploadedById?: true
+  checksumSha256?: true
+  scanStatus?: true
+  scanDetails?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -252,6 +270,9 @@ export type MediaGroupByOutputType = {
   visibility: $Enums.MediaVisibility
   status: $Enums.MediaStatus
   uploadedById: string | null
+  checksumSha256: string | null
+  scanStatus: $Enums.MediaScanStatus
+  scanDetails: string | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -293,6 +314,9 @@ export type MediaWhereInput = {
   visibility?: Prisma.EnumMediaVisibilityFilter<"Media"> | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFilter<"Media"> | $Enums.MediaStatus
   uploadedById?: Prisma.StringNullableFilter<"Media"> | string | null
+  checksumSha256?: Prisma.StringNullableFilter<"Media"> | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFilter<"Media"> | $Enums.MediaScanStatus
+  scanDetails?: Prisma.StringNullableFilter<"Media"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Media"> | Date | string | null
@@ -315,6 +339,9 @@ export type MediaOrderByWithRelationInput = {
   visibility?: Prisma.SortOrder
   status?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  checksumSha256?: Prisma.SortOrderInput | Prisma.SortOrder
+  scanStatus?: Prisma.SortOrder
+  scanDetails?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -341,6 +368,9 @@ export type MediaWhereUniqueInput = Prisma.AtLeast<{
   visibility?: Prisma.EnumMediaVisibilityFilter<"Media"> | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFilter<"Media"> | $Enums.MediaStatus
   uploadedById?: Prisma.StringNullableFilter<"Media"> | string | null
+  checksumSha256?: Prisma.StringNullableFilter<"Media"> | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFilter<"Media"> | $Enums.MediaScanStatus
+  scanDetails?: Prisma.StringNullableFilter<"Media"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Media"> | Date | string | null
@@ -363,6 +393,9 @@ export type MediaOrderByWithAggregationInput = {
   visibility?: Prisma.SortOrder
   status?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  checksumSha256?: Prisma.SortOrderInput | Prisma.SortOrder
+  scanStatus?: Prisma.SortOrder
+  scanDetails?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -389,6 +422,9 @@ export type MediaScalarWhereWithAggregatesInput = {
   visibility?: Prisma.EnumMediaVisibilityWithAggregatesFilter<"Media"> | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusWithAggregatesFilter<"Media"> | $Enums.MediaStatus
   uploadedById?: Prisma.StringNullableWithAggregatesFilter<"Media"> | string | null
+  checksumSha256?: Prisma.StringNullableWithAggregatesFilter<"Media"> | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusWithAggregatesFilter<"Media"> | $Enums.MediaScanStatus
+  scanDetails?: Prisma.StringNullableWithAggregatesFilter<"Media"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Media"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Media"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Media"> | Date | string | null
@@ -406,6 +442,9 @@ export type MediaCreateInput = {
   mediaType: $Enums.MediaType
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -428,6 +467,9 @@ export type MediaUncheckedCreateInput = {
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
   uploadedById?: string | null
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -448,6 +490,9 @@ export type MediaUpdateInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -470,6 +515,9 @@ export type MediaUncheckedUpdateInput = {
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
   uploadedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -491,6 +539,9 @@ export type MediaCreateManyInput = {
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
   uploadedById?: string | null
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -508,6 +559,9 @@ export type MediaUpdateManyMutationInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -526,6 +580,9 @@ export type MediaUncheckedUpdateManyInput = {
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
   uploadedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -565,6 +622,9 @@ export type MediaCountOrderByAggregateInput = {
   visibility?: Prisma.SortOrder
   status?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
+  checksumSha256?: Prisma.SortOrder
+  scanStatus?: Prisma.SortOrder
+  scanDetails?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -587,6 +647,9 @@ export type MediaMaxOrderByAggregateInput = {
   visibility?: Prisma.SortOrder
   status?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
+  checksumSha256?: Prisma.SortOrder
+  scanStatus?: Prisma.SortOrder
+  scanDetails?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -605,6 +668,9 @@ export type MediaMinOrderByAggregateInput = {
   visibility?: Prisma.SortOrder
   status?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
+  checksumSha256?: Prisma.SortOrder
+  scanStatus?: Prisma.SortOrder
+  scanDetails?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -717,6 +783,10 @@ export type EnumMediaStatusFieldUpdateOperationsInput = {
   set?: $Enums.MediaStatus
 }
 
+export type EnumMediaScanStatusFieldUpdateOperationsInput = {
+  set?: $Enums.MediaScanStatus
+}
+
 export type MediaCreateNestedOneWithoutAttachmentsInput = {
   create?: Prisma.XOR<Prisma.MediaCreateWithoutAttachmentsInput, Prisma.MediaUncheckedCreateWithoutAttachmentsInput>
   connectOrCreate?: Prisma.MediaCreateOrConnectWithoutAttachmentsInput
@@ -743,6 +813,9 @@ export type MediaCreateWithoutProfileOfInput = {
   mediaType: $Enums.MediaType
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -764,6 +837,9 @@ export type MediaUncheckedCreateWithoutProfileOfInput = {
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
   uploadedById?: string | null
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -788,6 +864,9 @@ export type MediaCreateWithoutUploadedByInput = {
   mediaType: $Enums.MediaType
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -808,6 +887,9 @@ export type MediaUncheckedCreateWithoutUploadedByInput = {
   mediaType: $Enums.MediaType
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -849,6 +931,9 @@ export type MediaUpdateWithoutProfileOfInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -870,6 +955,9 @@ export type MediaUncheckedUpdateWithoutProfileOfInput = {
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
   uploadedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -909,6 +997,9 @@ export type MediaScalarWhereInput = {
   visibility?: Prisma.EnumMediaVisibilityFilter<"Media"> | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFilter<"Media"> | $Enums.MediaStatus
   uploadedById?: Prisma.StringNullableFilter<"Media"> | string | null
+  checksumSha256?: Prisma.StringNullableFilter<"Media"> | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFilter<"Media"> | $Enums.MediaScanStatus
+  scanDetails?: Prisma.StringNullableFilter<"Media"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Media"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Media"> | Date | string | null
@@ -926,6 +1017,9 @@ export type MediaCreateWithoutClientLogoOfInput = {
   mediaType: $Enums.MediaType
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -947,6 +1041,9 @@ export type MediaUncheckedCreateWithoutClientLogoOfInput = {
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
   uploadedById?: string | null
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -982,6 +1079,9 @@ export type MediaUpdateWithoutClientLogoOfInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1003,6 +1103,9 @@ export type MediaUncheckedUpdateWithoutClientLogoOfInput = {
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
   uploadedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1022,6 +1125,9 @@ export type MediaCreateWithoutAttachmentsInput = {
   mediaType: $Enums.MediaType
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1043,6 +1149,9 @@ export type MediaUncheckedCreateWithoutAttachmentsInput = {
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
   uploadedById?: string | null
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1078,6 +1187,9 @@ export type MediaUpdateWithoutAttachmentsInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1099,6 +1211,9 @@ export type MediaUncheckedUpdateWithoutAttachmentsInput = {
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
   uploadedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1118,6 +1233,9 @@ export type MediaCreateManyUploadedByInput = {
   mediaType: $Enums.MediaType
   visibility?: $Enums.MediaVisibility
   status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1135,6 +1253,9 @@ export type MediaUpdateWithoutUploadedByInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1155,6 +1276,9 @@ export type MediaUncheckedUpdateWithoutUploadedByInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1175,6 +1299,9 @@ export type MediaUncheckedUpdateManyWithoutUploadedByInput = {
   mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
   visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
   status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1224,6 +1351,9 @@ export type MediaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   visibility?: boolean
   status?: boolean
   uploadedById?: boolean
+  checksumSha256?: boolean
+  scanStatus?: boolean
+  scanDetails?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1249,12 +1379,15 @@ export type MediaSelectScalar = {
   visibility?: boolean
   status?: boolean
   uploadedById?: boolean
+  checksumSha256?: boolean
+  scanStatus?: boolean
+  scanDetails?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type MediaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "originalName" | "storedName" | "storageProvider" | "storageKey" | "fileUrl" | "mimeType" | "fileSizeBytes" | "mediaType" | "visibility" | "status" | "uploadedById" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["media"]>
+export type MediaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "originalName" | "storedName" | "storageProvider" | "storageKey" | "fileUrl" | "mimeType" | "fileSizeBytes" | "mediaType" | "visibility" | "status" | "uploadedById" | "checksumSha256" | "scanStatus" | "scanDetails" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["media"]>
 export type MediaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   uploadedBy?: boolean | Prisma.Media$uploadedByArgs<ExtArgs>
   profileOf?: boolean | Prisma.Media$profileOfArgs<ExtArgs>
@@ -1284,6 +1417,9 @@ export type $MediaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     visibility: $Enums.MediaVisibility
     status: $Enums.MediaStatus
     uploadedById: string | null
+    checksumSha256: string | null
+    scanStatus: $Enums.MediaScanStatus
+    scanDetails: string | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1672,6 +1808,9 @@ export interface MediaFieldRefs {
   readonly visibility: Prisma.FieldRef<"Media", 'MediaVisibility'>
   readonly status: Prisma.FieldRef<"Media", 'MediaStatus'>
   readonly uploadedById: Prisma.FieldRef<"Media", 'String'>
+  readonly checksumSha256: Prisma.FieldRef<"Media", 'String'>
+  readonly scanStatus: Prisma.FieldRef<"Media", 'MediaScanStatus'>
+  readonly scanDetails: Prisma.FieldRef<"Media", 'String'>
   readonly createdAt: Prisma.FieldRef<"Media", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Media", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Media", 'DateTime'>

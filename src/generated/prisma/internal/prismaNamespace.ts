@@ -425,7 +425,19 @@ export const ModelName = {
   AttendanceOvertimeRequest: 'AttendanceOvertimeRequest',
   AttendanceWfhRequest: 'AttendanceWfhRequest',
   AttendanceReconciliationRun: 'AttendanceReconciliationRun',
-  AttendanceAnomaly: 'AttendanceAnomaly'
+  AttendanceAnomaly: 'AttendanceAnomaly',
+  TaskCodeSequence: 'TaskCodeSequence',
+  Task: 'Task',
+  TaskAssignmentHistory: 'TaskAssignmentHistory',
+  TaskStatusHistory: 'TaskStatusHistory',
+  TaskActivityLog: 'TaskActivityLog',
+  TaskTag: 'TaskTag',
+  TaskTagMapping: 'TaskTagMapping',
+  TaskTimeEntry: 'TaskTimeEntry',
+  TaskTimePause: 'TaskTimePause',
+  TaskTimeCorrectionRequest: 'TaskTimeCorrectionRequest',
+  TaskReview: 'TaskReview',
+  TaskComment: 'TaskComment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -441,7 +453,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "userType" | "user" | "userCodeSequence" | "otpRequest" | "userSession" | "role" | "permission" | "userRole" | "rolePermission" | "userPermission" | "department" | "userDepartment" | "employeeProfile" | "clientProfile" | "media" | "mediaAttachment" | "activityLog" | "auditLog" | "shiftDefinition" | "employeeShiftAssignment" | "attendanceRecord" | "attendanceSession" | "attendanceBreak" | "attendanceCorrectionRequest" | "attendanceEvidenceVerification" | "attendanceOvertimeRequest" | "attendanceWfhRequest" | "attendanceReconciliationRun" | "attendanceAnomaly"
+    modelProps: "userType" | "user" | "userCodeSequence" | "otpRequest" | "userSession" | "role" | "permission" | "userRole" | "rolePermission" | "userPermission" | "department" | "userDepartment" | "employeeProfile" | "clientProfile" | "media" | "mediaAttachment" | "activityLog" | "auditLog" | "shiftDefinition" | "employeeShiftAssignment" | "attendanceRecord" | "attendanceSession" | "attendanceBreak" | "attendanceCorrectionRequest" | "attendanceEvidenceVerification" | "attendanceOvertimeRequest" | "attendanceWfhRequest" | "attendanceReconciliationRun" | "attendanceAnomaly" | "taskCodeSequence" | "task" | "taskAssignmentHistory" | "taskStatusHistory" | "taskActivityLog" | "taskTag" | "taskTagMapping" | "taskTimeEntry" | "taskTimePause" | "taskTimeCorrectionRequest" | "taskReview" | "taskComment"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2359,6 +2371,798 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TaskCodeSequence: {
+      payload: Prisma.$TaskCodeSequencePayload<ExtArgs>
+      fields: Prisma.TaskCodeSequenceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskCodeSequenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskCodeSequenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload>
+        }
+        findFirst: {
+          args: Prisma.TaskCodeSequenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskCodeSequenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload>
+        }
+        findMany: {
+          args: Prisma.TaskCodeSequenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload>[]
+        }
+        create: {
+          args: Prisma.TaskCodeSequenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload>
+        }
+        createMany: {
+          args: Prisma.TaskCodeSequenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskCodeSequenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload>
+        }
+        update: {
+          args: Prisma.TaskCodeSequenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskCodeSequenceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskCodeSequenceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskCodeSequenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCodeSequencePayload>
+        }
+        aggregate: {
+          args: Prisma.TaskCodeSequenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskCodeSequence>
+        }
+        groupBy: {
+          args: Prisma.TaskCodeSequenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskCodeSequenceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskCodeSequenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskCodeSequenceCountAggregateOutputType> | number
+        }
+      }
+    }
+    Task: {
+      payload: Prisma.$TaskPayload<ExtArgs>
+      fields: Prisma.TaskFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload>
+        }
+        findMany: {
+          args: Prisma.TaskFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload>[]
+        }
+        create: {
+          args: Prisma.TaskCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload>
+        }
+        createMany: {
+          args: Prisma.TaskCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload>
+        }
+        update: {
+          args: Prisma.TaskUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTask>
+        }
+        groupBy: {
+          args: Prisma.TaskGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskAssignmentHistory: {
+      payload: Prisma.$TaskAssignmentHistoryPayload<ExtArgs>
+      fields: Prisma.TaskAssignmentHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskAssignmentHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskAssignmentHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskAssignmentHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskAssignmentHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.TaskAssignmentHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.TaskAssignmentHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.TaskAssignmentHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskAssignmentHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload>
+        }
+        update: {
+          args: Prisma.TaskAssignmentHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskAssignmentHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskAssignmentHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskAssignmentHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskAssignmentHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskAssignmentHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskAssignmentHistory>
+        }
+        groupBy: {
+          args: Prisma.TaskAssignmentHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskAssignmentHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskAssignmentHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskAssignmentHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskStatusHistory: {
+      payload: Prisma.$TaskStatusHistoryPayload<ExtArgs>
+      fields: Prisma.TaskStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.TaskStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.TaskStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.TaskStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.TaskStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.TaskStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskStatusHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskActivityLog: {
+      payload: Prisma.$TaskActivityLogPayload<ExtArgs>
+      fields: Prisma.TaskActivityLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskActivityLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskActivityLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskActivityLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskActivityLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload>
+        }
+        findMany: {
+          args: Prisma.TaskActivityLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload>[]
+        }
+        create: {
+          args: Prisma.TaskActivityLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload>
+        }
+        createMany: {
+          args: Prisma.TaskActivityLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskActivityLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload>
+        }
+        update: {
+          args: Prisma.TaskActivityLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskActivityLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskActivityLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskActivityLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskActivityLogPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskActivityLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskActivityLog>
+        }
+        groupBy: {
+          args: Prisma.TaskActivityLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskActivityLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskActivityLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskActivityLogCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskTag: {
+      payload: Prisma.$TaskTagPayload<ExtArgs>
+      fields: Prisma.TaskTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload>
+        }
+        findMany: {
+          args: Prisma.TaskTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload>[]
+        }
+        create: {
+          args: Prisma.TaskTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload>
+        }
+        createMany: {
+          args: Prisma.TaskTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload>
+        }
+        update: {
+          args: Prisma.TaskTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskTag>
+        }
+        groupBy: {
+          args: Prisma.TaskTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTagCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskTagMapping: {
+      payload: Prisma.$TaskTagMappingPayload<ExtArgs>
+      fields: Prisma.TaskTagMappingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskTagMappingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskTagMappingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskTagMappingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskTagMappingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload>
+        }
+        findMany: {
+          args: Prisma.TaskTagMappingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload>[]
+        }
+        create: {
+          args: Prisma.TaskTagMappingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload>
+        }
+        createMany: {
+          args: Prisma.TaskTagMappingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskTagMappingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload>
+        }
+        update: {
+          args: Prisma.TaskTagMappingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskTagMappingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskTagMappingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskTagMappingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTagMappingPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskTagMappingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskTagMapping>
+        }
+        groupBy: {
+          args: Prisma.TaskTagMappingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTagMappingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskTagMappingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTagMappingCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskTimeEntry: {
+      payload: Prisma.$TaskTimeEntryPayload<ExtArgs>
+      fields: Prisma.TaskTimeEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskTimeEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskTimeEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskTimeEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskTimeEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload>
+        }
+        findMany: {
+          args: Prisma.TaskTimeEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload>[]
+        }
+        create: {
+          args: Prisma.TaskTimeEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload>
+        }
+        createMany: {
+          args: Prisma.TaskTimeEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskTimeEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload>
+        }
+        update: {
+          args: Prisma.TaskTimeEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskTimeEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskTimeEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskTimeEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskTimeEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskTimeEntry>
+        }
+        groupBy: {
+          args: Prisma.TaskTimeEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTimeEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskTimeEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTimeEntryCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskTimePause: {
+      payload: Prisma.$TaskTimePausePayload<ExtArgs>
+      fields: Prisma.TaskTimePauseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskTimePauseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskTimePauseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload>
+        }
+        findFirst: {
+          args: Prisma.TaskTimePauseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskTimePauseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload>
+        }
+        findMany: {
+          args: Prisma.TaskTimePauseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload>[]
+        }
+        create: {
+          args: Prisma.TaskTimePauseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload>
+        }
+        createMany: {
+          args: Prisma.TaskTimePauseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskTimePauseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload>
+        }
+        update: {
+          args: Prisma.TaskTimePauseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskTimePauseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskTimePauseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskTimePauseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimePausePayload>
+        }
+        aggregate: {
+          args: Prisma.TaskTimePauseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskTimePause>
+        }
+        groupBy: {
+          args: Prisma.TaskTimePauseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTimePauseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskTimePauseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTimePauseCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskTimeCorrectionRequest: {
+      payload: Prisma.$TaskTimeCorrectionRequestPayload<ExtArgs>
+      fields: Prisma.TaskTimeCorrectionRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskTimeCorrectionRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskTimeCorrectionRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskTimeCorrectionRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskTimeCorrectionRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload>
+        }
+        findMany: {
+          args: Prisma.TaskTimeCorrectionRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload>[]
+        }
+        create: {
+          args: Prisma.TaskTimeCorrectionRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload>
+        }
+        createMany: {
+          args: Prisma.TaskTimeCorrectionRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskTimeCorrectionRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload>
+        }
+        update: {
+          args: Prisma.TaskTimeCorrectionRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskTimeCorrectionRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskTimeCorrectionRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskTimeCorrectionRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskTimeCorrectionRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskTimeCorrectionRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskTimeCorrectionRequest>
+        }
+        groupBy: {
+          args: Prisma.TaskTimeCorrectionRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTimeCorrectionRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskTimeCorrectionRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskTimeCorrectionRequestCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskReview: {
+      payload: Prisma.$TaskReviewPayload<ExtArgs>
+      fields: Prisma.TaskReviewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskReviewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskReviewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskReviewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskReviewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload>
+        }
+        findMany: {
+          args: Prisma.TaskReviewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload>[]
+        }
+        create: {
+          args: Prisma.TaskReviewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload>
+        }
+        createMany: {
+          args: Prisma.TaskReviewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskReviewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload>
+        }
+        update: {
+          args: Prisma.TaskReviewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskReviewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskReviewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskReviewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskReviewPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskReviewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskReview>
+        }
+        groupBy: {
+          args: Prisma.TaskReviewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskReviewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskReviewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskReviewCountAggregateOutputType> | number
+        }
+      }
+    }
+    TaskComment: {
+      payload: Prisma.$TaskCommentPayload<ExtArgs>
+      fields: Prisma.TaskCommentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TaskCommentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TaskCommentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+        }
+        findFirst: {
+          args: Prisma.TaskCommentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TaskCommentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+        }
+        findMany: {
+          args: Prisma.TaskCommentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload>[]
+        }
+        create: {
+          args: Prisma.TaskCommentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+        }
+        createMany: {
+          args: Prisma.TaskCommentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TaskCommentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+        }
+        update: {
+          args: Prisma.TaskCommentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+        }
+        deleteMany: {
+          args: Prisma.TaskCommentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TaskCommentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TaskCommentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+        }
+        aggregate: {
+          args: Prisma.TaskCommentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTaskComment>
+        }
+        groupBy: {
+          args: Prisma.TaskCommentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskCommentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TaskCommentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TaskCommentCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2621,6 +3425,9 @@ export const MediaScalarFieldEnum = {
   visibility: 'visibility',
   status: 'status',
   uploadedById: 'uploadedById',
+  checksumSha256: 'checksumSha256',
+  scanStatus: 'scanStatus',
+  scanDetails: 'scanDetails',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -2894,6 +3701,199 @@ export const AttendanceAnomalyScalarFieldEnum = {
 export type AttendanceAnomalyScalarFieldEnum = (typeof AttendanceAnomalyScalarFieldEnum)[keyof typeof AttendanceAnomalyScalarFieldEnum]
 
 
+export const TaskCodeSequenceScalarFieldEnum = {
+  id: 'id',
+  prefix: 'prefix',
+  lastNumber: 'lastNumber',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskCodeSequenceScalarFieldEnum = (typeof TaskCodeSequenceScalarFieldEnum)[keyof typeof TaskCodeSequenceScalarFieldEnum]
+
+
+export const TaskScalarFieldEnum = {
+  id: 'id',
+  taskCode: 'taskCode',
+  title: 'title',
+  description: 'description',
+  priority: 'priority',
+  status: 'status',
+  category: 'category',
+  progress: 'progress',
+  startDate: 'startDate',
+  dueDate: 'dueDate',
+  estimatedHours: 'estimatedHours',
+  createdById: 'createdById',
+  assigneeId: 'assigneeId',
+  assignedById: 'assignedById',
+  assignedAt: 'assignedAt',
+  departmentId: 'departmentId',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const TaskAssignmentHistoryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  previousAssigneeId: 'previousAssigneeId',
+  newAssigneeId: 'newAssigneeId',
+  assignedById: 'assignedById',
+  reason: 'reason',
+  assignedAt: 'assignedAt'
+} as const
+
+export type TaskAssignmentHistoryScalarFieldEnum = (typeof TaskAssignmentHistoryScalarFieldEnum)[keyof typeof TaskAssignmentHistoryScalarFieldEnum]
+
+
+export const TaskStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  previousStatus: 'previousStatus',
+  newStatus: 'newStatus',
+  changedById: 'changedById',
+  comment: 'comment',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskStatusHistoryScalarFieldEnum = (typeof TaskStatusHistoryScalarFieldEnum)[keyof typeof TaskStatusHistoryScalarFieldEnum]
+
+
+export const TaskActivityLogScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  performedBy: 'performedBy',
+  action: 'action',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskActivityLogScalarFieldEnum = (typeof TaskActivityLogScalarFieldEnum)[keyof typeof TaskActivityLogScalarFieldEnum]
+
+
+export const TaskTagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  color: 'color',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskTagScalarFieldEnum = (typeof TaskTagScalarFieldEnum)[keyof typeof TaskTagScalarFieldEnum]
+
+
+export const TaskTagMappingScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  tagId: 'tagId',
+  createdAt: 'createdAt'
+} as const
+
+export type TaskTagMappingScalarFieldEnum = (typeof TaskTagMappingScalarFieldEnum)[keyof typeof TaskTagMappingScalarFieldEnum]
+
+
+export const TaskTimeEntryScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  workDate: 'workDate',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  durationSeconds: 'durationSeconds',
+  status: 'status',
+  deviceType: 'deviceType',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  isCorrection: 'isCorrection',
+  isSuperseded: 'isSuperseded',
+  supersededById: 'supersededById',
+  correctionRequestId: 'correctionRequestId',
+  activeUserId: 'activeUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskTimeEntryScalarFieldEnum = (typeof TaskTimeEntryScalarFieldEnum)[keyof typeof TaskTimeEntryScalarFieldEnum]
+
+
+export const TaskTimePauseScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  precedingTimeEntryId: 'precedingTimeEntryId',
+  followingTimeEntryId: 'followingTimeEntryId',
+  pausedAt: 'pausedAt',
+  resumedAt: 'resumedAt',
+  pauseDurationSeconds: 'pauseDurationSeconds',
+  reason: 'reason',
+  customDescription: 'customDescription',
+  openPauseEntryId: 'openPauseEntryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskTimePauseScalarFieldEnum = (typeof TaskTimePauseScalarFieldEnum)[keyof typeof TaskTimePauseScalarFieldEnum]
+
+
+export const TaskTimeCorrectionRequestScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  originalEntryId: 'originalEntryId',
+  requestedStartedAt: 'requestedStartedAt',
+  requestedEndedAt: 'requestedEndedAt',
+  requestedDurationSeconds: 'requestedDurationSeconds',
+  reason: 'reason',
+  status: 'status',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TaskTimeCorrectionRequestScalarFieldEnum = (typeof TaskTimeCorrectionRequestScalarFieldEnum)[keyof typeof TaskTimeCorrectionRequestScalarFieldEnum]
+
+
+export const TaskReviewScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  roundNumber: 'roundNumber',
+  reviewerId: 'reviewerId',
+  submitterId: 'submitterId',
+  outcome: 'outcome',
+  feedback: 'feedback',
+  rating: 'rating',
+  submissionNotes: 'submissionNotes',
+  submittedAt: 'submittedAt',
+  reviewedAt: 'reviewedAt'
+} as const
+
+export type TaskReviewScalarFieldEnum = (typeof TaskReviewScalarFieldEnum)[keyof typeof TaskReviewScalarFieldEnum]
+
+
+export const TaskCommentScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  parentId: 'parentId',
+  content: 'content',
+  originalContent: 'originalContent',
+  isEdited: 'isEdited',
+  editedAt: 'editedAt',
+  isInternal: 'isInternal',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  deletedById: 'deletedById'
+} as const
+
+export type TaskCommentScalarFieldEnum = (typeof TaskCommentScalarFieldEnum)[keyof typeof TaskCommentScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3084,7 +4084,9 @@ export const MediaOrderByRelevanceFieldEnum = {
   storageKey: 'storageKey',
   fileUrl: 'fileUrl',
   mimeType: 'mimeType',
-  uploadedById: 'uploadedById'
+  uploadedById: 'uploadedById',
+  checksumSha256: 'checksumSha256',
+  scanDetails: 'scanDetails'
 } as const
 
 export type MediaOrderByRelevanceFieldEnum = (typeof MediaOrderByRelevanceFieldEnum)[keyof typeof MediaOrderByRelevanceFieldEnum]
@@ -3276,6 +4278,145 @@ export const AttendanceAnomalyOrderByRelevanceFieldEnum = {
 export type AttendanceAnomalyOrderByRelevanceFieldEnum = (typeof AttendanceAnomalyOrderByRelevanceFieldEnum)[keyof typeof AttendanceAnomalyOrderByRelevanceFieldEnum]
 
 
+export const TaskCodeSequenceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  prefix: 'prefix'
+} as const
+
+export type TaskCodeSequenceOrderByRelevanceFieldEnum = (typeof TaskCodeSequenceOrderByRelevanceFieldEnum)[keyof typeof TaskCodeSequenceOrderByRelevanceFieldEnum]
+
+
+export const TaskOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskCode: 'taskCode',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  createdById: 'createdById',
+  assigneeId: 'assigneeId',
+  assignedById: 'assignedById',
+  departmentId: 'departmentId'
+} as const
+
+export type TaskOrderByRelevanceFieldEnum = (typeof TaskOrderByRelevanceFieldEnum)[keyof typeof TaskOrderByRelevanceFieldEnum]
+
+
+export const TaskAssignmentHistoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  previousAssigneeId: 'previousAssigneeId',
+  newAssigneeId: 'newAssigneeId',
+  assignedById: 'assignedById',
+  reason: 'reason'
+} as const
+
+export type TaskAssignmentHistoryOrderByRelevanceFieldEnum = (typeof TaskAssignmentHistoryOrderByRelevanceFieldEnum)[keyof typeof TaskAssignmentHistoryOrderByRelevanceFieldEnum]
+
+
+export const TaskStatusHistoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  changedById: 'changedById',
+  comment: 'comment'
+} as const
+
+export type TaskStatusHistoryOrderByRelevanceFieldEnum = (typeof TaskStatusHistoryOrderByRelevanceFieldEnum)[keyof typeof TaskStatusHistoryOrderByRelevanceFieldEnum]
+
+
+export const TaskActivityLogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  performedBy: 'performedBy',
+  action: 'action'
+} as const
+
+export type TaskActivityLogOrderByRelevanceFieldEnum = (typeof TaskActivityLogOrderByRelevanceFieldEnum)[keyof typeof TaskActivityLogOrderByRelevanceFieldEnum]
+
+
+export const TaskTagOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  color: 'color'
+} as const
+
+export type TaskTagOrderByRelevanceFieldEnum = (typeof TaskTagOrderByRelevanceFieldEnum)[keyof typeof TaskTagOrderByRelevanceFieldEnum]
+
+
+export const TaskTagMappingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  tagId: 'tagId'
+} as const
+
+export type TaskTagMappingOrderByRelevanceFieldEnum = (typeof TaskTagMappingOrderByRelevanceFieldEnum)[keyof typeof TaskTagMappingOrderByRelevanceFieldEnum]
+
+
+export const TaskTimeEntryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  attendanceSessionId: 'attendanceSessionId',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  supersededById: 'supersededById',
+  correctionRequestId: 'correctionRequestId',
+  activeUserId: 'activeUserId'
+} as const
+
+export type TaskTimeEntryOrderByRelevanceFieldEnum = (typeof TaskTimeEntryOrderByRelevanceFieldEnum)[keyof typeof TaskTimeEntryOrderByRelevanceFieldEnum]
+
+
+export const TaskTimePauseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  precedingTimeEntryId: 'precedingTimeEntryId',
+  followingTimeEntryId: 'followingTimeEntryId',
+  customDescription: 'customDescription',
+  openPauseEntryId: 'openPauseEntryId'
+} as const
+
+export type TaskTimePauseOrderByRelevanceFieldEnum = (typeof TaskTimePauseOrderByRelevanceFieldEnum)[keyof typeof TaskTimePauseOrderByRelevanceFieldEnum]
+
+
+export const TaskTimeCorrectionRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  originalEntryId: 'originalEntryId',
+  reason: 'reason',
+  reviewedById: 'reviewedById',
+  rejectionReason: 'rejectionReason'
+} as const
+
+export type TaskTimeCorrectionRequestOrderByRelevanceFieldEnum = (typeof TaskTimeCorrectionRequestOrderByRelevanceFieldEnum)[keyof typeof TaskTimeCorrectionRequestOrderByRelevanceFieldEnum]
+
+
+export const TaskReviewOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  reviewerId: 'reviewerId',
+  submitterId: 'submitterId',
+  feedback: 'feedback',
+  submissionNotes: 'submissionNotes'
+} as const
+
+export type TaskReviewOrderByRelevanceFieldEnum = (typeof TaskReviewOrderByRelevanceFieldEnum)[keyof typeof TaskReviewOrderByRelevanceFieldEnum]
+
+
+export const TaskCommentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  userId: 'userId',
+  parentId: 'parentId',
+  content: 'content',
+  originalContent: 'originalContent',
+  deletedById: 'deletedById'
+} as const
+
+export type TaskCommentOrderByRelevanceFieldEnum = (typeof TaskCommentOrderByRelevanceFieldEnum)[keyof typeof TaskCommentOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -3388,6 +4529,13 @@ export type EnumMediaStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
 
 
 /**
+ * Reference to a field of type 'MediaScanStatus'
+ */
+export type EnumMediaScanStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MediaScanStatus'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -3461,6 +4609,62 @@ export type EnumReconciliationRunStatusFieldRefInput<$PrismaModel> = FieldRefInp
  * Reference to a field of type 'AnomalyStatus'
  */
 export type EnumAnomalyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnomalyStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TaskPriority'
+ */
+export type EnumTaskPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskPriority'>
+    
+
+
+/**
+ * Reference to a field of type 'TaskStatus'
+ */
+export type EnumTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'TaskTimerStatus'
+ */
+export type EnumTaskTimerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskTimerStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DeviceType'
+ */
+export type EnumDeviceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceType'>
+    
+
+
+/**
+ * Reference to a field of type 'TaskPauseReason'
+ */
+export type EnumTaskPauseReasonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskPauseReason'>
+    
+
+
+/**
+ * Reference to a field of type 'TaskTimeCorrectionStatus'
+ */
+export type EnumTaskTimeCorrectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskTimeCorrectionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TaskReviewOutcome'
+ */
+export type EnumTaskReviewOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskReviewOutcome'>
     
 
 
@@ -3650,6 +4854,18 @@ export type GlobalOmitConfig = {
   attendanceWfhRequest?: Prisma.AttendanceWfhRequestOmit
   attendanceReconciliationRun?: Prisma.AttendanceReconciliationRunOmit
   attendanceAnomaly?: Prisma.AttendanceAnomalyOmit
+  taskCodeSequence?: Prisma.TaskCodeSequenceOmit
+  task?: Prisma.TaskOmit
+  taskAssignmentHistory?: Prisma.TaskAssignmentHistoryOmit
+  taskStatusHistory?: Prisma.TaskStatusHistoryOmit
+  taskActivityLog?: Prisma.TaskActivityLogOmit
+  taskTag?: Prisma.TaskTagOmit
+  taskTagMapping?: Prisma.TaskTagMappingOmit
+  taskTimeEntry?: Prisma.TaskTimeEntryOmit
+  taskTimePause?: Prisma.TaskTimePauseOmit
+  taskTimeCorrectionRequest?: Prisma.TaskTimeCorrectionRequestOmit
+  taskReview?: Prisma.TaskReviewOmit
+  taskComment?: Prisma.TaskCommentOmit
 }
 
 /* Types for Logging */

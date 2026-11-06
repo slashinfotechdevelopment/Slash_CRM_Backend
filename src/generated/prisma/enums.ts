@@ -99,6 +99,18 @@ export const MediaStatus = {
 export type MediaStatus = (typeof MediaStatus)[keyof typeof MediaStatus]
 
 
+export const MediaScanStatus = {
+  PENDING: 'PENDING',
+  SCANNING: 'SCANNING',
+  CLEAN: 'CLEAN',
+  INFECTED: 'INFECTED',
+  QUARANTINED: 'QUARANTINED',
+  FAILED: 'FAILED'
+} as const
+
+export type MediaScanStatus = (typeof MediaScanStatus)[keyof typeof MediaScanStatus]
+
+
 export const AuditAction = {
   CREATE: 'CREATE',
   UPDATE: 'UPDATE',
@@ -197,3 +209,82 @@ export const AnomalyStatus = {
 } as const
 
 export type AnomalyStatus = (typeof AnomalyStatus)[keyof typeof AnomalyStatus]
+
+
+export const TaskPriority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+} as const
+
+export type TaskPriority = (typeof TaskPriority)[keyof typeof TaskPriority]
+
+
+export const TaskStatus = {
+  TODO: 'TODO',
+  IN_PROGRESS: 'IN_PROGRESS',
+  ON_HOLD: 'ON_HOLD',
+  IN_REVIEW: 'IN_REVIEW',
+  REOPENED: 'REOPENED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
+
+
+export const TaskTimerStatus = {
+  RUNNING: 'RUNNING',
+  PAUSED: 'PAUSED',
+  STOPPED: 'STOPPED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type TaskTimerStatus = (typeof TaskTimerStatus)[keyof typeof TaskTimerStatus]
+
+
+export const DeviceType = {
+  WEB: 'WEB',
+  MOBILE: 'MOBILE',
+  DESKTOP: 'DESKTOP',
+  SYSTEM: 'SYSTEM'
+} as const
+
+export type DeviceType = (typeof DeviceType)[keyof typeof DeviceType]
+
+
+export const TaskPauseReason = {
+  TEA_BREAK: 'TEA_BREAK',
+  LUNCH: 'LUNCH',
+  PERSONAL_WORK: 'PERSONAL_WORK',
+  MEETING: 'MEETING',
+  WAITING: 'WAITING',
+  TECHNICAL_ISSUE: 'TECHNICAL_ISSUE',
+  OTHER: 'OTHER',
+  TASK_SWITCH: 'TASK_SWITCH',
+  LOGOUT: 'LOGOUT',
+  TASK_STATUS_CHANGE: 'TASK_STATUS_CHANGE'
+} as const
+
+export type TaskPauseReason = (typeof TaskPauseReason)[keyof typeof TaskPauseReason]
+
+
+export const TaskTimeCorrectionStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type TaskTimeCorrectionStatus = (typeof TaskTimeCorrectionStatus)[keyof typeof TaskTimeCorrectionStatus]
+
+
+export const TaskReviewOutcome = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  CHANGES_REQUESTED: 'CHANGES_REQUESTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type TaskReviewOutcome = (typeof TaskReviewOutcome)[keyof typeof TaskReviewOutcome]

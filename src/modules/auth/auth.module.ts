@@ -9,6 +9,7 @@ import { DatabaseModule } from '../../database/database.module';
 import { EmailModule } from '../../common/email/email.module';
 import { AuditModule } from '../../common/audit/audit.module';
 import { CommonServicesModule } from '../../common/services/common-services.module';
+import { TaskTimerAutoPauseModule } from '../tasks/task-timer-auto-pause.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CommonServicesModule } from '../../common/services/common-services.modu
     EmailModule,
     AuditModule,
     CommonServicesModule,
+    TaskTimerAutoPauseModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

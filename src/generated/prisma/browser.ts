@@ -162,3 +162,63 @@ export type AttendanceReconciliationRun = Prisma.AttendanceReconciliationRunMode
  * 
  */
 export type AttendanceAnomaly = Prisma.AttendanceAnomalyModel
+/**
+ * Model TaskCodeSequence
+ * 
+ */
+export type TaskCodeSequence = Prisma.TaskCodeSequenceModel
+/**
+ * Model Task
+ * 
+ */
+export type Task = Prisma.TaskModel
+/**
+ * Model TaskAssignmentHistory
+ * 
+ */
+export type TaskAssignmentHistory = Prisma.TaskAssignmentHistoryModel
+/**
+ * Model TaskStatusHistory
+ * 
+ */
+export type TaskStatusHistory = Prisma.TaskStatusHistoryModel
+/**
+ * Model TaskActivityLog
+ * 
+ */
+export type TaskActivityLog = Prisma.TaskActivityLogModel
+/**
+ * Model TaskTag
+ * 
+ */
+export type TaskTag = Prisma.TaskTagModel
+/**
+ * Model TaskTagMapping
+ * 
+ */
+export type TaskTagMapping = Prisma.TaskTagMappingModel
+/**
+ * Model TaskTimeEntry
+ * 
+ */
+export type TaskTimeEntry = Prisma.TaskTimeEntryModel
+/**
+ * Model TaskTimePause
+ * 
+ */
+export type TaskTimePause = Prisma.TaskTimePauseModel
+/**
+ * Model TaskTimeCorrectionRequest
+ * 
+ */
+export type TaskTimeCorrectionRequest = Prisma.TaskTimeCorrectionRequestModel
+/**
+ * Model TaskReview
+ * 
+ */
+export type TaskReview = Prisma.TaskReviewModel
+/**
+ * Model TaskComment
+ * 
+ */
+export type TaskComment = Prisma.TaskCommentModel

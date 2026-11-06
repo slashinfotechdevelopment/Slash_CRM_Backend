@@ -1,0 +1,377 @@
+{
+  "info": {
+    "_postman_id": "slash-crm-tasks-phase6-3-4-collection",
+    "name": "Slash Infotech CRM - Task Workflow & Collaboration (Phase 6.3.4)",
+    "description": "Comprehensive Postman API Collection covering all 17 endpoints for Phase 6.3.4: Task submission for review, reviewer approval/rejection/changes-requested, multi-round review cycles, task cancellation & reopening, threaded collaboration comments, and media attachment management. Enforces strict anti-self-approval, client internal isolation, timer auto-pause on non-working status transitions, and data scope boundaries.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Review Workflow",
+      "item": [
+        {
+          "name": "1.1 Submit Task for Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{assigneeToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"Completed initial implementation and unit test coverage.\",\n  \"attachmentIds\": []\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/submit",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "submit"]
+            },
+            "description": "Transitions task to IN_REVIEW status and creates a new TaskReview round. Auto-pauses running timer if active. Enforces that only assigned worker can submit."
+          }
+        },
+        {
+          "name": "1.2 Approve Task (Latest Review)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{reviewerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"Work meets all acceptance criteria. Approved for release.\",\n  \"rating\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/approve",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "approve"]
+            },
+            "description": "Approves the pending review, sets task status to COMPLETED, progress to 100%, and auto-pauses any active timer. Enforces strict anti-self-approval."
+          }
+        },
+        {
+          "name": "1.3 Approve Specific Review Round",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{reviewerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"Approved specific round deliverable.\",\n  \"rating\": 4\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/reviews/{{reviewId}}/approve",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "reviews", "{{reviewId}}", "approve"]
+            }
+          }
+        },
+        {
+          "name": "1.4 Request Changes on Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{reviewerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"Please add missing edge case validation for null values.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/request-changes",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "request-changes"]
+            },
+            "description": "Sets review outcome CHANGES_REQUESTED and reopens task status to REOPENED with required feedback. Enforces anti-self-review."
+          }
+        },
+        {
+          "name": "1.5 Request Changes on Specific Round",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{reviewerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"Please revise round deliverable according to specifications.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/reviews/{{reviewId}}/request-changes",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "reviews", "{{reviewId}}", "request-changes"]
+            }
+          }
+        },
+        {
+          "name": "1.6 Reject Task Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{reviewerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"Deliverable does not meet architectural requirements.\",\n  \"reopenTask\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/reject",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "reject"]
+            },
+            "description": "Sets review outcome REJECTED and returns task to REOPENED for redesign."
+          }
+        },
+        {
+          "name": "1.7 Reject Specific Review Round",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{reviewerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"Rejected deliverable for this round.\",\n  \"reopenTask\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/reviews/{{reviewId}}/reject",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "reviews", "{{reviewId}}", "reject"]
+            }
+          }
+        },
+        {
+          "name": "1.8 List Task Reviews History",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/reviews",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "reviews"]
+            },
+            "description": "Returns all review cycle rounds in chronological order with reviewer, outcome, feedback, and timestamps."
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Lifecycle Transitions",
+      "item": [
+        {
+          "name": "2.1 Cancel Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{supervisorToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Project requirements altered by client.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/cancel",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "cancel"]
+            },
+            "description": "Transitions non-completed task to CANCELLED and auto-pauses any active timer."
+          }
+        },
+        {
+          "name": "2.2 Reopen Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{supervisorToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Additional work requested after initial completion.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/reopen",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "reopen"]
+            },
+            "description": "Reopens a COMPLETED or CANCELLED task back to REOPENED status."
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Collaboration Comments",
+      "item": [
+        {
+          "name": "3.1 Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"I have reviewed the API contract. Ready for integration test.\",\n  \"isInternal\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/comments",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "comments"]
+            }
+          }
+        },
+        {
+          "name": "3.2 Add Threaded Reply",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Noted. Will sync once environment is spun up.\",\n  \"parentId\": \"{{parentCommentId}}\",\n  \"isInternal\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/comments",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "comments"]
+            }
+          }
+        },
+        {
+          "name": "3.3 List Comments",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/comments?page=1&limit=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "comments"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "50" }
+              ]
+            },
+            "description": "Lists comments chronologically. Internal comments are automatically filtered out for Client users."
+          }
+        },
+        {
+          "name": "3.4 Edit Comment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authorToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Updated comment text with correct endpoint specs.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/comments/{{commentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "comments", "{{commentId}}"]
+            },
+            "description": "Edits comment text. Sets isEdited: true and preserves original content. Non-authors are forbidden."
+          }
+        },
+        {
+          "name": "3.5 Delete Comment (Soft Delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authorToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/comments/{{commentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "comments", "{{commentId}}"]
+            },
+            "description": "Soft-deletes a comment. Only the author or Super Admin can delete."
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Media Attachments",
+      "item": [
+        {
+          "name": "4.1 Add Attachment Metadata",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originalName\": \"architecture_diagram.pdf\",\n  \"mimeType\": \"application/pdf\",\n  \"fileSizeBytes\": 2450000,\n  \"fileUrl\": \"https://storage.slashinfotech.com/media/tasks/arch_001.pdf\",\n  \"collection\": \"deliverables\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments"]
+            },
+            "description": "Validates MIME whitelist (PDF, images, office docs, zip), max 25MB file size, and prohibits private server filesystem paths."
+          }
+        },
+        {
+          "name": "4.2 List Attachments",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments"]
+            },
+            "description": "Lists attachments for the task with sanitized public/download URLs."
+          }
+        },
+        {
+          "name": "4.3 Delete Attachment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authorToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/{{taskId}}/attachments/{{attachmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "{{taskId}}", "attachments", "{{attachmentId}}"]
+            },
+            "description": "Soft-deletes the attachment mapping and underlying Media record."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api", "type": "string" },
+    { "key": "taskId", "value": "cm3task001", "type": "string" },
+    { "key": "reviewId", "value": "cm3rev001", "type": "string" },
+    { "key": "commentId", "value": "cm3comm001", "type": "string" },
+    { "key": "parentCommentId", "value": "cm3comm000", "type": "string" },
+    { "key": "attachmentId", "value": "cm3media001", "type": "string" },
+    { "key": "token", "value": "", "type": "string" },
+    { "key": "assigneeToken", "value": "", "type": "string" },
+    { "key": "reviewerToken", "value": "", "type": "string" },
+    { "key": "supervisorToken", "value": "", "type": "string" },
+    { "key": "authorToken", "value": "", "type": "string" }
+  ]
+}

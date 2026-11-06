@@ -10,6 +10,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as crypto from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
+import { Prisma } from '../../generated/prisma/client';
 import { AuditService } from '../../common/audit/audit.service';
 import { UserCodeService } from '../../common/services/user-code.service';
 import { OtpService } from './services/otp.service';
@@ -23,7 +24,9 @@ import {
   PermissionEffect,
   RecordStatus,
   SessionStatus,
+  TaskPauseReason,
 } from '../../generated/prisma/enums';
+import { TaskTimerAutoPauseService } from '../tasks/task-timer-auto-pause.service';
 
 export interface JwtPayload {
   sub: string;
@@ -59,6 +62,7 @@ export class AuthService {
     private readonly configService: ConfigService,
     private readonly auditService: AuditService,
     private readonly userCodeService: UserCodeService,
+    private readonly taskTimerAutoPauseService: TaskTimerAutoPauseService,
   ) { }
 
   /**
@@ -569,6 +573,8 @@ export class AuthService {
 
   /**
    * Logs out the user from their current active session.
+   * Atomically auto-pauses any running task timer and revokes the active session
+   * in a single transaction to guarantee zero partial failure state.
    */
   async logout(
     userId: string,
@@ -576,17 +582,34 @@ export class AuthService {
     ipAddress?: string,
     userAgent?: string,
   ): Promise<{ message: string }> {
-    await this.prisma.userSession.updateMany({
-      where: {
-        id: sessionId,
-        userId,
-        status: SessionStatus.ACTIVE,
+    await this.prisma.$transaction(
+      async (tx) => {
+        // 1. Auto-pause running task timer before revoking session inside the same transaction
+        await this.taskTimerAutoPauseService.autoPauseRunningTask(
+          userId,
+          TaskPauseReason.LOGOUT,
+          undefined,
+          tx,
+        );
+
+        // 2. Revoke the session inside the same transaction
+        await tx.userSession.updateMany({
+          where: {
+            id: sessionId,
+            userId,
+            status: SessionStatus.ACTIVE,
+          },
+          data: {
+            status: SessionStatus.REVOKED,
+            revokedAt: new Date(),
+          },
+        });
       },
-      data: {
-        status: SessionStatus.REVOKED,
-        revokedAt: new Date(),
+      {
+        isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
+        timeout: 10000,
       },
-    });
+    );
 
     await this.auditService.logAudit({
       actorUserId: userId,
@@ -603,22 +626,41 @@ export class AuthService {
 
   /**
    * Logs out the user from ALL active sessions across devices.
+   * Atomically auto-pauses any running task timer once and revokes all active sessions
+   * in a single transaction to prevent inconsistent logout states.
    */
   async logoutAll(
     userId: string,
     ipAddress?: string,
     userAgent?: string,
   ): Promise<{ message: string }> {
-    await this.prisma.userSession.updateMany({
-      where: {
-        userId,
-        status: SessionStatus.ACTIVE,
+    await this.prisma.$transaction(
+      async (tx) => {
+        // 1. Auto-pause running task timer exactly once before revoking all sessions inside the same transaction
+        await this.taskTimerAutoPauseService.autoPauseRunningTask(
+          userId,
+          TaskPauseReason.LOGOUT,
+          undefined,
+          tx,
+        );
+
+        // 2. Revoke all user sessions inside the same transaction
+        await tx.userSession.updateMany({
+          where: {
+            userId,
+            status: SessionStatus.ACTIVE,
+          },
+          data: {
+            status: SessionStatus.REVOKED,
+            revokedAt: new Date(),
+          },
+        });
       },
-      data: {
-        status: SessionStatus.REVOKED,
-        revokedAt: new Date(),
+      {
+        isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
+        timeout: 10000,
       },
-    });
+    );
 
     await this.auditService.logAudit({
       actorUserId: userId,

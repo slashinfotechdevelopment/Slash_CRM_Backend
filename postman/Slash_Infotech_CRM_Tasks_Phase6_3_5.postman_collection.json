@@ -1,0 +1,177 @@
+{
+  "info": {
+    "_postman_id": "slash-crm-tasks-phase6-3-5-collection",
+    "name": "Slash Infotech CRM - Task Dashboard & Reports (Phase 6.3.5)",
+    "description": "Comprehensive Postman API Collection covering all 8 endpoints of Phase 6.3.5: Employee Personal Dashboard, Manager Team Dashboard, Admin Organization Dashboard, Task Summary Report, Employee Working Hours Report, Employee Task Performance Report, Overdue Tasks Report, and Review Summary Report. Enforces strict role- and scope-aware data boundaries, server-recorded UTC timestamps, midnight calendar splits in Asia/Kolkata, and client isolation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Dashboards",
+      "item": [
+        {
+          "name": "1.1 Employee Personal Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{employeeToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/dashboard/my",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "dashboard", "my"]
+            },
+            "description": "Retrieves personal task breakdown across all 7 statuses, overdue/due-today/upcoming deadlines, active timer status, today’s working/paused durations, and recent activity."
+          }
+        },
+        {
+          "name": "1.2 Manager Team Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/dashboard/team?departmentId={{departmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "dashboard", "team"],
+              "query": [
+                { "key": "departmentId", "value": "{{departmentId}}" }
+              ]
+            },
+            "description": "Aggregates department tasks by status, priority, and deadlines within authorized scope. Includes employee-wise workload and live active timer roster."
+          }
+        },
+        {
+          "name": "1.3 Organization Dashboard (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/dashboard/organization",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "dashboard", "organization"]
+            },
+            "description": "Provides organization-wide task status & priority distributions, department distribution with completion percentages, and 30-day completion trends. Restricted to Admins."
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Reports",
+      "item": [
+        {
+          "name": "2.1 Task Summary Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/reports/summary?startDate=2026-11-01&endDate=2026-11-30",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "reports", "summary"],
+              "query": [
+                { "key": "startDate", "value": "2026-11-01" },
+                { "key": "endDate", "value": "2026-11-30" }
+              ]
+            },
+            "description": "Generates task volume summaries grouped by status and priority with completion percentage. Uses status history logs for accurate historical completion."
+          }
+        },
+        {
+          "name": "2.2 Employee Working Hours Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/reports/working-hours?startDate=2026-11-01&endDate=2026-11-30&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "reports", "working-hours"],
+              "query": [
+                { "key": "startDate", "value": "2026-11-01" },
+                { "key": "endDate", "value": "2026-11-30" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Daily work intervals and pause durations grouped by employee and date. Splits overnight sessions at Asia/Kolkata midnight (18:30 UTC) and excludes pause durations."
+          }
+        },
+        {
+          "name": "2.3 Employee Task Performance Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/reports/employee-performance?startDate=2026-11-01&endDate=2026-11-30&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "reports", "employee-performance"],
+              "query": [
+                { "key": "startDate", "value": "2026-11-01" },
+                { "key": "endDate", "value": "2026-11-30" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Factual throughput report per employee: assigned, completed, pending, overdue counts, completion percentage, and total tracked hours."
+          }
+        },
+        {
+          "name": "2.4 Overdue Tasks Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/reports/overdue?page=1&limit=20&sortBy=dueDate&sortOrder=asc",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "reports", "overdue"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" },
+                { "key": "sortBy", "value": "dueDate" },
+                { "key": "sortOrder", "value": "asc" }
+              ]
+            },
+            "description": "Paginated list of active overdue tasks (excluding completed and cancelled), calculating exact days overdue past Asia/Kolkata calendar due dates."
+          }
+        },
+        {
+          "name": "2.5 Review Summary Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/reports/reviews?startDate=2026-11-01&endDate=2026-11-30",
+              "host": ["{{baseUrl}}"],
+              "path": ["tasks", "reports", "reviews"],
+              "query": [
+                { "key": "startDate", "value": "2026-11-01" },
+                { "key": "endDate", "value": "2026-11-30" }
+              ]
+            },
+            "description": "Summarizes review outcomes (pending, approved, changes requested, rejected), reviewer pending counts, and average review turnaround duration."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api", "type": "string" },
+    { "key": "departmentId", "value": "dept_dev_01", "type": "string" },
+    { "key": "employeeToken", "value": "", "type": "string" },
+    { "key": "managerToken", "value": "", "type": "string" },
+    { "key": "adminToken", "value": "", "type": "string" }
+  ]
+}
+
