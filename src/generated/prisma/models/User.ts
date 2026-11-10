@@ -309,6 +309,14 @@ export type UserWhereInput = {
   submittedReviews?: Prisma.TaskReviewListRelationFilter
   taskComments?: Prisma.TaskCommentListRelationFilter
   deletedComments?: Prisma.TaskCommentListRelationFilter
+  createdLeads?: Prisma.LeadListRelationFilter
+  assignedLeads?: Prisma.LeadListRelationFilter
+  assignedByLeads?: Prisma.LeadListRelationFilter
+  convertedLeads?: Prisma.LeadListRelationFilter
+  deletedLeads?: Prisma.LeadListRelationFilter
+  leadActivities?: Prisma.LeadActivityListRelationFilter
+  createdFollowUps?: Prisma.LeadFollowUpListRelationFilter
+  assignedFollowUps?: Prisma.LeadFollowUpListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -374,6 +382,14 @@ export type UserOrderByWithRelationInput = {
   submittedReviews?: Prisma.TaskReviewOrderByRelationAggregateInput
   taskComments?: Prisma.TaskCommentOrderByRelationAggregateInput
   deletedComments?: Prisma.TaskCommentOrderByRelationAggregateInput
+  createdLeads?: Prisma.LeadOrderByRelationAggregateInput
+  assignedLeads?: Prisma.LeadOrderByRelationAggregateInput
+  assignedByLeads?: Prisma.LeadOrderByRelationAggregateInput
+  convertedLeads?: Prisma.LeadOrderByRelationAggregateInput
+  deletedLeads?: Prisma.LeadOrderByRelationAggregateInput
+  leadActivities?: Prisma.LeadActivityOrderByRelationAggregateInput
+  createdFollowUps?: Prisma.LeadFollowUpOrderByRelationAggregateInput
+  assignedFollowUps?: Prisma.LeadFollowUpOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -443,6 +459,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   submittedReviews?: Prisma.TaskReviewListRelationFilter
   taskComments?: Prisma.TaskCommentListRelationFilter
   deletedComments?: Prisma.TaskCommentListRelationFilter
+  createdLeads?: Prisma.LeadListRelationFilter
+  assignedLeads?: Prisma.LeadListRelationFilter
+  assignedByLeads?: Prisma.LeadListRelationFilter
+  convertedLeads?: Prisma.LeadListRelationFilter
+  deletedLeads?: Prisma.LeadListRelationFilter
+  leadActivities?: Prisma.LeadActivityListRelationFilter
+  createdFollowUps?: Prisma.LeadFollowUpListRelationFilter
+  assignedFollowUps?: Prisma.LeadFollowUpListRelationFilter
 }, "id" | "userCode" | "email" | "phone" | "profileMediaId">
 
 export type UserOrderByWithAggregationInput = {
@@ -545,6 +569,14 @@ export type UserCreateInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -605,6 +637,14 @@ export type UserUncheckedCreateInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUpdateInput = {
@@ -665,6 +705,14 @@ export type UserUpdateInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -725,6 +773,14 @@ export type UserUncheckedUpdateInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1688,6 +1744,128 @@ export type UserUpdateOneWithoutDeletedCommentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDeletedCommentsInput, Prisma.UserUpdateWithoutDeletedCommentsInput>, Prisma.UserUncheckedUpdateWithoutDeletedCommentsInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedLeadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedLeadsInput, Prisma.UserUncheckedCreateWithoutCreatedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutAssignedLeadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutAssignedByLeadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedByLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedByLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedByLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutConvertedLeadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConvertedLeadsInput, Prisma.UserUncheckedCreateWithoutConvertedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConvertedLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutDeletedLeadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeletedLeadsInput, Prisma.UserUncheckedCreateWithoutDeletedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeletedLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreatedLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedLeadsInput, Prisma.UserUncheckedCreateWithoutCreatedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedLeadsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedLeadsInput, Prisma.UserUpdateWithoutCreatedLeadsInput>, Prisma.UserUncheckedUpdateWithoutCreatedLeadsInput>
+}
+
+export type UserUpdateOneWithoutAssignedLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedLeadsInput
+  upsert?: Prisma.UserUpsertWithoutAssignedLeadsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedLeadsInput, Prisma.UserUpdateWithoutAssignedLeadsInput>, Prisma.UserUncheckedUpdateWithoutAssignedLeadsInput>
+}
+
+export type UserUpdateOneWithoutAssignedByLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedByLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedByLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedByLeadsInput
+  upsert?: Prisma.UserUpsertWithoutAssignedByLeadsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedByLeadsInput, Prisma.UserUpdateWithoutAssignedByLeadsInput>, Prisma.UserUncheckedUpdateWithoutAssignedByLeadsInput>
+}
+
+export type UserUpdateOneWithoutConvertedLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConvertedLeadsInput, Prisma.UserUncheckedCreateWithoutConvertedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConvertedLeadsInput
+  upsert?: Prisma.UserUpsertWithoutConvertedLeadsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutConvertedLeadsInput, Prisma.UserUpdateWithoutConvertedLeadsInput>, Prisma.UserUncheckedUpdateWithoutConvertedLeadsInput>
+}
+
+export type UserUpdateOneWithoutDeletedLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeletedLeadsInput, Prisma.UserUncheckedCreateWithoutDeletedLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeletedLeadsInput
+  upsert?: Prisma.UserUpsertWithoutDeletedLeadsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDeletedLeadsInput, Prisma.UserUpdateWithoutDeletedLeadsInput>, Prisma.UserUncheckedUpdateWithoutDeletedLeadsInput>
+}
+
+export type UserCreateNestedOneWithoutLeadActivitiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLeadActivitiesInput, Prisma.UserUncheckedCreateWithoutLeadActivitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLeadActivitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutLeadActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLeadActivitiesInput, Prisma.UserUncheckedCreateWithoutLeadActivitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLeadActivitiesInput
+  upsert?: Prisma.UserUpsertWithoutLeadActivitiesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLeadActivitiesInput, Prisma.UserUpdateWithoutLeadActivitiesInput>, Prisma.UserUncheckedUpdateWithoutLeadActivitiesInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedFollowUpsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedFollowUpsInput, Prisma.UserUncheckedCreateWithoutCreatedFollowUpsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedFollowUpsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutAssignedFollowUpsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedFollowUpsInput, Prisma.UserUncheckedCreateWithoutAssignedFollowUpsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedFollowUpsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreatedFollowUpsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedFollowUpsInput, Prisma.UserUncheckedCreateWithoutCreatedFollowUpsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedFollowUpsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedFollowUpsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedFollowUpsInput, Prisma.UserUpdateWithoutCreatedFollowUpsInput>, Prisma.UserUncheckedUpdateWithoutCreatedFollowUpsInput>
+}
+
+export type UserUpdateOneRequiredWithoutAssignedFollowUpsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedFollowUpsInput, Prisma.UserUncheckedCreateWithoutAssignedFollowUpsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedFollowUpsInput
+  upsert?: Prisma.UserUpsertWithoutAssignedFollowUpsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedFollowUpsInput, Prisma.UserUpdateWithoutAssignedFollowUpsInput>, Prisma.UserUncheckedUpdateWithoutAssignedFollowUpsInput>
+}
+
 export type UserCreateWithoutUserTypeInput = {
   id?: string
   userCode: string
@@ -1745,6 +1923,14 @@ export type UserCreateWithoutUserTypeInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutUserTypeInput = {
@@ -1804,6 +1990,14 @@ export type UserUncheckedCreateWithoutUserTypeInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutUserTypeInput = {
@@ -1910,6 +2104,14 @@ export type UserCreateWithoutCreatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutCreatedUsersInput = {
@@ -1969,6 +2171,14 @@ export type UserUncheckedCreateWithoutCreatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutCreatedUsersInput = {
@@ -2033,6 +2243,14 @@ export type UserCreateWithoutCreatorInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutCreatorInput = {
@@ -2092,6 +2310,14 @@ export type UserUncheckedCreateWithoutCreatorInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutCreatorInput = {
@@ -2161,6 +2387,14 @@ export type UserCreateWithoutUpdatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedUsersInput = {
@@ -2220,6 +2454,14 @@ export type UserUncheckedCreateWithoutUpdatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedUsersInput = {
@@ -2284,6 +2526,14 @@ export type UserCreateWithoutUpdaterInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutUpdaterInput = {
@@ -2343,6 +2593,14 @@ export type UserUncheckedCreateWithoutUpdaterInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutUpdaterInput = {
@@ -2412,6 +2670,14 @@ export type UserCreateWithoutDeletedUsersInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutDeletedUsersInput = {
@@ -2471,6 +2737,14 @@ export type UserUncheckedCreateWithoutDeletedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutDeletedUsersInput = {
@@ -2535,6 +2809,14 @@ export type UserCreateWithoutDeleterInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutDeleterInput = {
@@ -2594,6 +2876,14 @@ export type UserUncheckedCreateWithoutDeleterInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutDeleterInput = {
@@ -2674,6 +2964,14 @@ export type UserUpdateWithoutCreatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedUsersInput = {
@@ -2733,6 +3031,14 @@ export type UserUncheckedUpdateWithoutCreatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutCreatorInput = {
@@ -2819,6 +3125,14 @@ export type UserUpdateWithoutUpdatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedUsersInput = {
@@ -2878,6 +3192,14 @@ export type UserUncheckedUpdateWithoutUpdatedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutUpdaterInput = {
@@ -2964,6 +3286,14 @@ export type UserUpdateWithoutDeletedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDeletedUsersInput = {
@@ -3023,6 +3353,14 @@ export type UserUncheckedUpdateWithoutDeletedUsersInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutDeleterInput = {
@@ -3098,6 +3436,14 @@ export type UserCreateWithoutOtpRequestsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutOtpRequestsInput = {
@@ -3157,6 +3503,14 @@ export type UserUncheckedCreateWithoutOtpRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutOtpRequestsInput = {
@@ -3232,6 +3586,14 @@ export type UserUpdateWithoutOtpRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOtpRequestsInput = {
@@ -3291,6 +3653,14 @@ export type UserUncheckedUpdateWithoutOtpRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -3350,6 +3720,14 @@ export type UserCreateWithoutSessionsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -3409,6 +3787,14 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -3484,6 +3870,14 @@ export type UserUpdateWithoutSessionsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -3543,6 +3937,14 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutUserRolesInput = {
@@ -3602,6 +4004,14 @@ export type UserCreateWithoutUserRolesInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutUserRolesInput = {
@@ -3661,6 +4071,14 @@ export type UserUncheckedCreateWithoutUserRolesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutUserRolesInput = {
@@ -3736,6 +4154,14 @@ export type UserUpdateWithoutUserRolesInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserRolesInput = {
@@ -3795,6 +4221,14 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutUserPermissionsInput = {
@@ -3854,6 +4288,14 @@ export type UserCreateWithoutUserPermissionsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutUserPermissionsInput = {
@@ -3913,6 +4355,14 @@ export type UserUncheckedCreateWithoutUserPermissionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutUserPermissionsInput = {
@@ -3988,6 +4438,14 @@ export type UserUpdateWithoutUserPermissionsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserPermissionsInput = {
@@ -4047,6 +4505,14 @@ export type UserUncheckedUpdateWithoutUserPermissionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutDepartmentsInput = {
@@ -4106,6 +4572,14 @@ export type UserCreateWithoutDepartmentsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutDepartmentsInput = {
@@ -4165,6 +4639,14 @@ export type UserUncheckedCreateWithoutDepartmentsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutDepartmentsInput = {
@@ -4240,6 +4722,14 @@ export type UserUpdateWithoutDepartmentsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDepartmentsInput = {
@@ -4299,6 +4789,14 @@ export type UserUncheckedUpdateWithoutDepartmentsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutEmployeeProfileInput = {
@@ -4358,6 +4856,14 @@ export type UserCreateWithoutEmployeeProfileInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutEmployeeProfileInput = {
@@ -4417,6 +4923,14 @@ export type UserUncheckedCreateWithoutEmployeeProfileInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutEmployeeProfileInput = {
@@ -4492,6 +5006,14 @@ export type UserUpdateWithoutEmployeeProfileInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEmployeeProfileInput = {
@@ -4551,6 +5073,14 @@ export type UserUncheckedUpdateWithoutEmployeeProfileInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutClientProfileInput = {
@@ -4610,6 +5140,14 @@ export type UserCreateWithoutClientProfileInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutClientProfileInput = {
@@ -4669,6 +5207,14 @@ export type UserUncheckedCreateWithoutClientProfileInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutClientProfileInput = {
@@ -4744,6 +5290,14 @@ export type UserUpdateWithoutClientProfileInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClientProfileInput = {
@@ -4803,6 +5357,14 @@ export type UserUncheckedUpdateWithoutClientProfileInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutUploadedMediaInput = {
@@ -4862,6 +5424,14 @@ export type UserCreateWithoutUploadedMediaInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutUploadedMediaInput = {
@@ -4921,6 +5491,14 @@ export type UserUncheckedCreateWithoutUploadedMediaInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutUploadedMediaInput = {
@@ -4985,6 +5563,14 @@ export type UserCreateWithoutProfileMediaInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutProfileMediaInput = {
@@ -5044,6 +5630,14 @@ export type UserUncheckedCreateWithoutProfileMediaInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutProfileMediaInput = {
@@ -5119,6 +5713,14 @@ export type UserUpdateWithoutUploadedMediaInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedMediaInput = {
@@ -5178,6 +5780,14 @@ export type UserUncheckedUpdateWithoutUploadedMediaInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutProfileMediaInput = {
@@ -5248,6 +5858,14 @@ export type UserUpdateWithoutProfileMediaInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileMediaInput = {
@@ -5307,6 +5925,14 @@ export type UserUncheckedUpdateWithoutProfileMediaInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutActivityLogsInput = {
@@ -5366,6 +5992,14 @@ export type UserCreateWithoutActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutActivityLogsInput = {
@@ -5425,6 +6059,14 @@ export type UserUncheckedCreateWithoutActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutActivityLogsInput = {
@@ -5500,6 +6142,14 @@ export type UserUpdateWithoutActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutActivityLogsInput = {
@@ -5559,6 +6209,14 @@ export type UserUncheckedUpdateWithoutActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -5618,6 +6276,14 @@ export type UserCreateWithoutAuditLogsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -5677,6 +6343,14 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -5752,6 +6426,14 @@ export type UserUpdateWithoutAuditLogsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -5811,6 +6493,14 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutAttendanceRecordsInput = {
@@ -5870,6 +6560,14 @@ export type UserCreateWithoutAttendanceRecordsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutAttendanceRecordsInput = {
@@ -5929,6 +6627,14 @@ export type UserUncheckedCreateWithoutAttendanceRecordsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutAttendanceRecordsInput = {
@@ -5993,6 +6699,14 @@ export type UserCreateWithoutResolvedAnomaliesInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutResolvedAnomaliesInput = {
@@ -6052,6 +6766,14 @@ export type UserUncheckedCreateWithoutResolvedAnomaliesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutResolvedAnomaliesInput = {
@@ -6127,6 +6849,14 @@ export type UserUpdateWithoutAttendanceRecordsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendanceRecordsInput = {
@@ -6186,6 +6916,14 @@ export type UserUncheckedUpdateWithoutAttendanceRecordsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutResolvedAnomaliesInput = {
@@ -6256,6 +6994,14 @@ export type UserUpdateWithoutResolvedAnomaliesInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutResolvedAnomaliesInput = {
@@ -6315,6 +7061,14 @@ export type UserUncheckedUpdateWithoutResolvedAnomaliesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutAttendanceSessionsInput = {
@@ -6374,6 +7128,14 @@ export type UserCreateWithoutAttendanceSessionsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutAttendanceSessionsInput = {
@@ -6433,6 +7195,14 @@ export type UserUncheckedCreateWithoutAttendanceSessionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutAttendanceSessionsInput = {
@@ -6508,6 +7278,14 @@ export type UserUpdateWithoutAttendanceSessionsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendanceSessionsInput = {
@@ -6567,6 +7345,14 @@ export type UserUncheckedUpdateWithoutAttendanceSessionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutAttendanceBreaksInput = {
@@ -6626,6 +7412,14 @@ export type UserCreateWithoutAttendanceBreaksInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutAttendanceBreaksInput = {
@@ -6685,6 +7479,14 @@ export type UserUncheckedCreateWithoutAttendanceBreaksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutAttendanceBreaksInput = {
@@ -6760,6 +7562,14 @@ export type UserUpdateWithoutAttendanceBreaksInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendanceBreaksInput = {
@@ -6819,6 +7629,14 @@ export type UserUncheckedUpdateWithoutAttendanceBreaksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutEmployeeCorrectionsInput = {
@@ -6878,6 +7696,14 @@ export type UserCreateWithoutEmployeeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutEmployeeCorrectionsInput = {
@@ -6937,6 +7763,14 @@ export type UserUncheckedCreateWithoutEmployeeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutEmployeeCorrectionsInput = {
@@ -7001,6 +7835,14 @@ export type UserCreateWithoutReviewedCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutReviewedCorrectionsInput = {
@@ -7060,6 +7902,14 @@ export type UserUncheckedCreateWithoutReviewedCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutReviewedCorrectionsInput = {
@@ -7135,6 +7985,14 @@ export type UserUpdateWithoutEmployeeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEmployeeCorrectionsInput = {
@@ -7194,6 +8052,14 @@ export type UserUncheckedUpdateWithoutEmployeeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutReviewedCorrectionsInput = {
@@ -7264,6 +8130,14 @@ export type UserUpdateWithoutReviewedCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedCorrectionsInput = {
@@ -7323,6 +8197,14 @@ export type UserUncheckedUpdateWithoutReviewedCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutReviewedEvidenceVerificationsInput = {
@@ -7382,6 +8264,14 @@ export type UserCreateWithoutReviewedEvidenceVerificationsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutReviewedEvidenceVerificationsInput = {
@@ -7441,6 +8331,14 @@ export type UserUncheckedCreateWithoutReviewedEvidenceVerificationsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutReviewedEvidenceVerificationsInput = {
@@ -7516,6 +8414,14 @@ export type UserUpdateWithoutReviewedEvidenceVerificationsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedEvidenceVerificationsInput = {
@@ -7575,6 +8481,14 @@ export type UserUncheckedUpdateWithoutReviewedEvidenceVerificationsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutEmployeeOvertimeRequestsInput = {
@@ -7634,6 +8548,14 @@ export type UserCreateWithoutEmployeeOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutEmployeeOvertimeRequestsInput = {
@@ -7693,6 +8615,14 @@ export type UserUncheckedCreateWithoutEmployeeOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutEmployeeOvertimeRequestsInput = {
@@ -7757,6 +8687,14 @@ export type UserCreateWithoutReviewedOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutReviewedOvertimeRequestsInput = {
@@ -7816,6 +8754,14 @@ export type UserUncheckedCreateWithoutReviewedOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutReviewedOvertimeRequestsInput = {
@@ -7891,6 +8837,14 @@ export type UserUpdateWithoutEmployeeOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEmployeeOvertimeRequestsInput = {
@@ -7950,6 +8904,14 @@ export type UserUncheckedUpdateWithoutEmployeeOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutReviewedOvertimeRequestsInput = {
@@ -8020,6 +8982,14 @@ export type UserUpdateWithoutReviewedOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedOvertimeRequestsInput = {
@@ -8079,6 +9049,14 @@ export type UserUncheckedUpdateWithoutReviewedOvertimeRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutEmployeeWfhRequestsInput = {
@@ -8138,6 +9116,14 @@ export type UserCreateWithoutEmployeeWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutEmployeeWfhRequestsInput = {
@@ -8197,6 +9183,14 @@ export type UserUncheckedCreateWithoutEmployeeWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutEmployeeWfhRequestsInput = {
@@ -8261,6 +9255,14 @@ export type UserCreateWithoutReviewedWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutReviewedWfhRequestsInput = {
@@ -8320,6 +9322,14 @@ export type UserUncheckedCreateWithoutReviewedWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutReviewedWfhRequestsInput = {
@@ -8395,6 +9405,14 @@ export type UserUpdateWithoutEmployeeWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEmployeeWfhRequestsInput = {
@@ -8454,6 +9472,14 @@ export type UserUncheckedUpdateWithoutEmployeeWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutReviewedWfhRequestsInput = {
@@ -8524,6 +9550,14 @@ export type UserUpdateWithoutReviewedWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedWfhRequestsInput = {
@@ -8583,6 +9617,14 @@ export type UserUncheckedUpdateWithoutReviewedWfhRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutReconciliationRunsInput = {
@@ -8642,6 +9684,14 @@ export type UserCreateWithoutReconciliationRunsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutReconciliationRunsInput = {
@@ -8701,6 +9751,14 @@ export type UserUncheckedCreateWithoutReconciliationRunsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutReconciliationRunsInput = {
@@ -8776,6 +9834,14 @@ export type UserUpdateWithoutReconciliationRunsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReconciliationRunsInput = {
@@ -8835,6 +9901,14 @@ export type UserUncheckedUpdateWithoutReconciliationRunsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutResolvedAnomalyItemsInput = {
@@ -8894,6 +9968,14 @@ export type UserCreateWithoutResolvedAnomalyItemsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutResolvedAnomalyItemsInput = {
@@ -8953,6 +10035,14 @@ export type UserUncheckedCreateWithoutResolvedAnomalyItemsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutResolvedAnomalyItemsInput = {
@@ -9028,6 +10118,14 @@ export type UserUpdateWithoutResolvedAnomalyItemsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutResolvedAnomalyItemsInput = {
@@ -9087,6 +10185,14 @@ export type UserUncheckedUpdateWithoutResolvedAnomalyItemsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutCreatedTasksInput = {
@@ -9146,6 +10252,14 @@ export type UserCreateWithoutCreatedTasksInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutCreatedTasksInput = {
@@ -9205,6 +10319,14 @@ export type UserUncheckedCreateWithoutCreatedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutCreatedTasksInput = {
@@ -9269,6 +10391,14 @@ export type UserCreateWithoutAssignedTasksInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTasksInput = {
@@ -9328,6 +10458,14 @@ export type UserUncheckedCreateWithoutAssignedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTasksInput = {
@@ -9392,6 +10530,14 @@ export type UserCreateWithoutAssignedByTasksInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutAssignedByTasksInput = {
@@ -9451,6 +10597,14 @@ export type UserUncheckedCreateWithoutAssignedByTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutAssignedByTasksInput = {
@@ -9526,6 +10680,14 @@ export type UserUpdateWithoutCreatedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedTasksInput = {
@@ -9585,6 +10747,14 @@ export type UserUncheckedUpdateWithoutCreatedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutAssignedTasksInput = {
@@ -9655,6 +10825,14 @@ export type UserUpdateWithoutAssignedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTasksInput = {
@@ -9714,6 +10892,14 @@ export type UserUncheckedUpdateWithoutAssignedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutAssignedByTasksInput = {
@@ -9784,6 +10970,14 @@ export type UserUpdateWithoutAssignedByTasksInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedByTasksInput = {
@@ -9843,6 +11037,14 @@ export type UserUncheckedUpdateWithoutAssignedByTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutTaskAssignmentHistoryPrevInput = {
@@ -9902,6 +11104,14 @@ export type UserCreateWithoutTaskAssignmentHistoryPrevInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskAssignmentHistoryPrevInput = {
@@ -9961,6 +11171,14 @@ export type UserUncheckedCreateWithoutTaskAssignmentHistoryPrevInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskAssignmentHistoryPrevInput = {
@@ -10025,6 +11243,14 @@ export type UserCreateWithoutTaskAssignmentHistoryNewInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskAssignmentHistoryNewInput = {
@@ -10084,6 +11310,14 @@ export type UserUncheckedCreateWithoutTaskAssignmentHistoryNewInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskAssignmentHistoryNewInput = {
@@ -10148,6 +11382,14 @@ export type UserCreateWithoutTaskAssignmentHistoryAssignedByInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskAssignmentHistoryAssignedByInput = {
@@ -10207,6 +11449,14 @@ export type UserUncheckedCreateWithoutTaskAssignmentHistoryAssignedByInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskAssignmentHistoryAssignedByInput = {
@@ -10282,6 +11532,14 @@ export type UserUpdateWithoutTaskAssignmentHistoryPrevInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskAssignmentHistoryPrevInput = {
@@ -10341,6 +11599,14 @@ export type UserUncheckedUpdateWithoutTaskAssignmentHistoryPrevInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutTaskAssignmentHistoryNewInput = {
@@ -10411,6 +11677,14 @@ export type UserUpdateWithoutTaskAssignmentHistoryNewInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskAssignmentHistoryNewInput = {
@@ -10470,6 +11744,14 @@ export type UserUncheckedUpdateWithoutTaskAssignmentHistoryNewInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutTaskAssignmentHistoryAssignedByInput = {
@@ -10540,6 +11822,14 @@ export type UserUpdateWithoutTaskAssignmentHistoryAssignedByInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskAssignmentHistoryAssignedByInput = {
@@ -10599,6 +11889,14 @@ export type UserUncheckedUpdateWithoutTaskAssignmentHistoryAssignedByInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutTaskStatusHistoryChangedByInput = {
@@ -10658,6 +11956,14 @@ export type UserCreateWithoutTaskStatusHistoryChangedByInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskStatusHistoryChangedByInput = {
@@ -10717,6 +12023,14 @@ export type UserUncheckedCreateWithoutTaskStatusHistoryChangedByInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskStatusHistoryChangedByInput = {
@@ -10792,6 +12106,14 @@ export type UserUpdateWithoutTaskStatusHistoryChangedByInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskStatusHistoryChangedByInput = {
@@ -10851,6 +12173,14 @@ export type UserUncheckedUpdateWithoutTaskStatusHistoryChangedByInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutTaskActivityLogsInput = {
@@ -10910,6 +12240,14 @@ export type UserCreateWithoutTaskActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskActivityLogsInput = {
@@ -10969,6 +12307,14 @@ export type UserUncheckedCreateWithoutTaskActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskActivityLogsInput = {
@@ -11044,6 +12390,14 @@ export type UserUpdateWithoutTaskActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskActivityLogsInput = {
@@ -11103,6 +12457,14 @@ export type UserUncheckedUpdateWithoutTaskActivityLogsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutTaskTimeEntriesInput = {
@@ -11162,6 +12524,14 @@ export type UserCreateWithoutTaskTimeEntriesInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskTimeEntriesInput = {
@@ -11221,6 +12591,14 @@ export type UserUncheckedCreateWithoutTaskTimeEntriesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskTimeEntriesInput = {
@@ -11296,6 +12674,14 @@ export type UserUpdateWithoutTaskTimeEntriesInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskTimeEntriesInput = {
@@ -11355,6 +12741,14 @@ export type UserUncheckedUpdateWithoutTaskTimeEntriesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutTaskTimePausesInput = {
@@ -11414,6 +12808,14 @@ export type UserCreateWithoutTaskTimePausesInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskTimePausesInput = {
@@ -11473,6 +12875,14 @@ export type UserUncheckedCreateWithoutTaskTimePausesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskTimePausesInput = {
@@ -11548,6 +12958,14 @@ export type UserUpdateWithoutTaskTimePausesInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskTimePausesInput = {
@@ -11607,6 +13025,14 @@ export type UserUncheckedUpdateWithoutTaskTimePausesInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutTaskTimeCorrectionRequestsInput = {
@@ -11666,6 +13092,14 @@ export type UserCreateWithoutTaskTimeCorrectionRequestsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskTimeCorrectionRequestsInput = {
@@ -11725,6 +13159,14 @@ export type UserUncheckedCreateWithoutTaskTimeCorrectionRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskTimeCorrectionRequestsInput = {
@@ -11789,6 +13231,14 @@ export type UserCreateWithoutReviewedTimeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutReviewedTimeCorrectionsInput = {
@@ -11848,6 +13298,14 @@ export type UserUncheckedCreateWithoutReviewedTimeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutReviewedTimeCorrectionsInput = {
@@ -11923,6 +13381,14 @@ export type UserUpdateWithoutTaskTimeCorrectionRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskTimeCorrectionRequestsInput = {
@@ -11982,6 +13448,14 @@ export type UserUncheckedUpdateWithoutTaskTimeCorrectionRequestsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutReviewedTimeCorrectionsInput = {
@@ -12052,6 +13526,14 @@ export type UserUpdateWithoutReviewedTimeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedTimeCorrectionsInput = {
@@ -12111,6 +13593,14 @@ export type UserUncheckedUpdateWithoutReviewedTimeCorrectionsInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutReviewedTasksInput = {
@@ -12170,6 +13660,14 @@ export type UserCreateWithoutReviewedTasksInput = {
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutReviewedTasksInput = {
@@ -12229,6 +13727,14 @@ export type UserUncheckedCreateWithoutReviewedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutReviewedTasksInput = {
@@ -12293,6 +13799,14 @@ export type UserCreateWithoutSubmittedReviewsInput = {
   reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutSubmittedReviewsInput = {
@@ -12352,6 +13866,14 @@ export type UserUncheckedCreateWithoutSubmittedReviewsInput = {
   reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutSubmittedReviewsInput = {
@@ -12427,6 +13949,14 @@ export type UserUpdateWithoutReviewedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedTasksInput = {
@@ -12486,6 +14016,14 @@ export type UserUncheckedUpdateWithoutReviewedTasksInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutSubmittedReviewsInput = {
@@ -12556,6 +14094,14 @@ export type UserUpdateWithoutSubmittedReviewsInput = {
   reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSubmittedReviewsInput = {
@@ -12615,6 +14161,14 @@ export type UserUncheckedUpdateWithoutSubmittedReviewsInput = {
   reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserCreateWithoutTaskCommentsInput = {
@@ -12674,6 +14228,14 @@ export type UserCreateWithoutTaskCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutTaskCommentsInput = {
@@ -12733,6 +14295,14 @@ export type UserUncheckedCreateWithoutTaskCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutTaskCommentsInput = {
@@ -12797,6 +14367,14 @@ export type UserCreateWithoutDeletedCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
   submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserUncheckedCreateWithoutDeletedCommentsInput = {
@@ -12856,6 +14434,14 @@ export type UserUncheckedCreateWithoutDeletedCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
   submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
   taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
 }
 
 export type UserCreateOrConnectWithoutDeletedCommentsInput = {
@@ -12931,6 +14517,14 @@ export type UserUpdateWithoutTaskCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTaskCommentsInput = {
@@ -12990,6 +14584,14 @@ export type UserUncheckedUpdateWithoutTaskCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUpsertWithoutDeletedCommentsInput = {
@@ -13060,6 +14662,14 @@ export type UserUpdateWithoutDeletedCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDeletedCommentsInput = {
@@ -13119,6 +14729,2286 @@ export type UserUncheckedUpdateWithoutDeletedCommentsInput = {
   reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserCreateWithoutCreatedLeadsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutCreatedLeadsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutCreatedLeadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedLeadsInput, Prisma.UserUncheckedCreateWithoutCreatedLeadsInput>
+}
+
+export type UserCreateWithoutAssignedLeadsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutAssignedLeadsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutAssignedLeadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedLeadsInput>
+}
+
+export type UserCreateWithoutAssignedByLeadsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutAssignedByLeadsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutAssignedByLeadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedByLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedByLeadsInput>
+}
+
+export type UserCreateWithoutConvertedLeadsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutConvertedLeadsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutConvertedLeadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutConvertedLeadsInput, Prisma.UserUncheckedCreateWithoutConvertedLeadsInput>
+}
+
+export type UserCreateWithoutDeletedLeadsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutDeletedLeadsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutDeletedLeadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeletedLeadsInput, Prisma.UserUncheckedCreateWithoutDeletedLeadsInput>
+}
+
+export type UserUpsertWithoutCreatedLeadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedLeadsInput, Prisma.UserUncheckedUpdateWithoutCreatedLeadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedLeadsInput, Prisma.UserUncheckedCreateWithoutCreatedLeadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedLeadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedLeadsInput, Prisma.UserUncheckedUpdateWithoutCreatedLeadsInput>
+}
+
+export type UserUpdateWithoutCreatedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUpsertWithoutAssignedLeadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssignedLeadsInput, Prisma.UserUncheckedUpdateWithoutAssignedLeadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedLeadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssignedLeadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssignedLeadsInput, Prisma.UserUncheckedUpdateWithoutAssignedLeadsInput>
+}
+
+export type UserUpdateWithoutAssignedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssignedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUpsertWithoutAssignedByLeadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssignedByLeadsInput, Prisma.UserUncheckedUpdateWithoutAssignedByLeadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedByLeadsInput, Prisma.UserUncheckedCreateWithoutAssignedByLeadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssignedByLeadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssignedByLeadsInput, Prisma.UserUncheckedUpdateWithoutAssignedByLeadsInput>
+}
+
+export type UserUpdateWithoutAssignedByLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssignedByLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUpsertWithoutConvertedLeadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutConvertedLeadsInput, Prisma.UserUncheckedUpdateWithoutConvertedLeadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutConvertedLeadsInput, Prisma.UserUncheckedCreateWithoutConvertedLeadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutConvertedLeadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutConvertedLeadsInput, Prisma.UserUncheckedUpdateWithoutConvertedLeadsInput>
+}
+
+export type UserUpdateWithoutConvertedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutConvertedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUpsertWithoutDeletedLeadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDeletedLeadsInput, Prisma.UserUncheckedUpdateWithoutDeletedLeadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeletedLeadsInput, Prisma.UserUncheckedCreateWithoutDeletedLeadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDeletedLeadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDeletedLeadsInput, Prisma.UserUncheckedUpdateWithoutDeletedLeadsInput>
+}
+
+export type UserUpdateWithoutDeletedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDeletedLeadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserCreateWithoutLeadActivitiesInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutLeadActivitiesInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutLeadActivitiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLeadActivitiesInput, Prisma.UserUncheckedCreateWithoutLeadActivitiesInput>
+}
+
+export type UserUpsertWithoutLeadActivitiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLeadActivitiesInput, Prisma.UserUncheckedUpdateWithoutLeadActivitiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLeadActivitiesInput, Prisma.UserUncheckedCreateWithoutLeadActivitiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLeadActivitiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLeadActivitiesInput, Prisma.UserUncheckedUpdateWithoutLeadActivitiesInput>
+}
+
+export type UserUpdateWithoutLeadActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLeadActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserCreateWithoutCreatedFollowUpsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  assignedFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserUncheckedCreateWithoutCreatedFollowUpsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutAssignedToInput
+}
+
+export type UserCreateOrConnectWithoutCreatedFollowUpsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedFollowUpsInput, Prisma.UserUncheckedCreateWithoutCreatedFollowUpsInput>
+}
+
+export type UserCreateWithoutAssignedFollowUpsInput = {
+  id?: string
+  userCode: string
+  name: string
+  email: string
+  phone?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  userType: Prisma.UserTypeCreateNestedOneWithoutUsersInput
+  profileMedia?: Prisma.MediaCreateNestedOneWithoutProfileOfInput
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedUsersInput
+  createdUsers?: Prisma.UserCreateNestedManyWithoutCreatorInput
+  updater?: Prisma.UserCreateNestedOneWithoutUpdatedUsersInput
+  updatedUsers?: Prisma.UserCreateNestedManyWithoutUpdaterInput
+  deleter?: Prisma.UserCreateNestedOneWithoutDeletedUsersInput
+  deletedUsers?: Prisma.UserCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutAssignedFollowUpsInput = {
+  id?: string
+  userCode: string
+  userTypeId: string
+  name: string
+  email: string
+  phone?: string | null
+  profileMediaId?: string | null
+  emailVerifiedAt?: Date | string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  createdBy?: string | null
+  updatedBy?: string | null
+  deletedBy?: string | null
+  createdUsers?: Prisma.UserUncheckedCreateNestedManyWithoutCreatorInput
+  updatedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutUpdaterInput
+  deletedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutDeleterInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedCreateNestedOneWithoutUserInput
+  clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userPermissions?: Prisma.UserPermissionUncheckedCreateNestedManyWithoutUserInput
+  departments?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutUserInput
+  otpRequests?: Prisma.OtpRequestUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.UserSessionUncheckedCreateNestedManyWithoutUserInput
+  uploadedMedia?: Prisma.MediaUncheckedCreateNestedManyWithoutUploadedByInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutActorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedCreateNestedManyWithoutUserInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedCreateNestedManyWithoutUserInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedCreateNestedManyWithoutReviewerInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedCreateNestedManyWithoutTriggeredByInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutAnomalyResolvedByInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedCreateNestedManyWithoutResolvedByInput
+  createdTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutCreatedByUserInput
+  assignedTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
+  assignedByTasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutPreviousAssigneeInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutNewAssigneeInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedCreateNestedManyWithoutAssignedByUserInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedCreateNestedManyWithoutChangedByUserInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedCreateNestedManyWithoutActorInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedCreateNestedManyWithoutUserInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedCreateNestedManyWithoutUserInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutUserInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutReviewerInput
+  submittedReviews?: Prisma.TaskReviewUncheckedCreateNestedManyWithoutSubmitterInput
+  taskComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutUserInput
+  deletedComments?: Prisma.TaskCommentUncheckedCreateNestedManyWithoutDeletedByInput
+  createdLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutCreatedByInput
+  assignedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedToInput
+  assignedByLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedByInput
+  convertedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutConvertedByInput
+  deletedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutDeletedByInput
+  leadActivities?: Prisma.LeadActivityUncheckedCreateNestedManyWithoutActorInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutAssignedFollowUpsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedFollowUpsInput, Prisma.UserUncheckedCreateWithoutAssignedFollowUpsInput>
+}
+
+export type UserUpsertWithoutCreatedFollowUpsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedFollowUpsInput, Prisma.UserUncheckedUpdateWithoutCreatedFollowUpsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedFollowUpsInput, Prisma.UserUncheckedCreateWithoutCreatedFollowUpsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedFollowUpsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedFollowUpsInput, Prisma.UserUncheckedUpdateWithoutCreatedFollowUpsInput>
+}
+
+export type UserUpdateWithoutCreatedFollowUpsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedFollowUpsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
+}
+
+export type UserUpsertWithoutAssignedFollowUpsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssignedFollowUpsInput, Prisma.UserUncheckedUpdateWithoutAssignedFollowUpsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedFollowUpsInput, Prisma.UserUncheckedCreateWithoutAssignedFollowUpsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssignedFollowUpsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssignedFollowUpsInput, Prisma.UserUncheckedUpdateWithoutAssignedFollowUpsInput>
+}
+
+export type UserUpdateWithoutAssignedFollowUpsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  userType?: Prisma.UserTypeUpdateOneRequiredWithoutUsersNestedInput
+  profileMedia?: Prisma.MediaUpdateOneWithoutProfileOfNestedInput
+  creator?: Prisma.UserUpdateOneWithoutCreatedUsersNestedInput
+  createdUsers?: Prisma.UserUpdateManyWithoutCreatorNestedInput
+  updater?: Prisma.UserUpdateOneWithoutUpdatedUsersNestedInput
+  updatedUsers?: Prisma.UserUpdateManyWithoutUpdaterNestedInput
+  deleter?: Prisma.UserUpdateOneWithoutDeletedUsersNestedInput
+  deletedUsers?: Prisma.UserUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssignedFollowUpsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userCode?: Prisma.StringFieldUpdateOperationsInput | string
+  userTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileMediaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdUsers?: Prisma.UserUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedUsers?: Prisma.UserUncheckedUpdateManyWithoutUpdaterNestedInput
+  deletedUsers?: Prisma.UserUncheckedUpdateManyWithoutDeleterNestedInput
+  employeeProfile?: Prisma.EmployeeProfileUncheckedUpdateOneWithoutUserNestedInput
+  clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userPermissions?: Prisma.UserPermissionUncheckedUpdateManyWithoutUserNestedInput
+  departments?: Prisma.UserDepartmentUncheckedUpdateManyWithoutUserNestedInput
+  otpRequests?: Prisma.OtpRequestUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.UserSessionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedMedia?: Prisma.MediaUncheckedUpdateManyWithoutUploadedByNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  attendanceRecords?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  attendanceSessions?: Prisma.AttendanceSessionUncheckedUpdateManyWithoutUserNestedInput
+  attendanceBreaks?: Prisma.AttendanceBreakUncheckedUpdateManyWithoutUserNestedInput
+  employeeCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCorrections?: Prisma.AttendanceCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedOvertimeRequests?: Prisma.AttendanceOvertimeRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  employeeWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedWfhRequests?: Prisma.AttendanceWfhRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedEvidenceVerifications?: Prisma.AttendanceEvidenceVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  reconciliationRuns?: Prisma.AttendanceReconciliationRunUncheckedUpdateManyWithoutTriggeredByNestedInput
+  resolvedAnomalies?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutAnomalyResolvedByNestedInput
+  resolvedAnomalyItems?: Prisma.AttendanceAnomalyUncheckedUpdateManyWithoutResolvedByNestedInput
+  createdTasks?: Prisma.TaskUncheckedUpdateManyWithoutCreatedByUserNestedInput
+  assignedTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
+  assignedByTasks?: Prisma.TaskUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskAssignmentHistoryPrev?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutPreviousAssigneeNestedInput
+  taskAssignmentHistoryNew?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutNewAssigneeNestedInput
+  taskAssignmentHistoryAssignedBy?: Prisma.TaskAssignmentHistoryUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  taskStatusHistoryChangedBy?: Prisma.TaskStatusHistoryUncheckedUpdateManyWithoutChangedByUserNestedInput
+  taskActivityLogs?: Prisma.TaskActivityLogUncheckedUpdateManyWithoutActorNestedInput
+  taskTimeEntries?: Prisma.TaskTimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  taskTimePauses?: Prisma.TaskTimePauseUncheckedUpdateManyWithoutUserNestedInput
+  taskTimeCorrectionRequests?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutUserNestedInput
+  reviewedTimeCorrections?: Prisma.TaskTimeCorrectionRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedTasks?: Prisma.TaskReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
+  taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
+  deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyUserTypeInput = {
@@ -13195,6 +17085,14 @@ export type UserUpdateWithoutUserTypeInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserTypeInput = {
@@ -13254,6 +17152,14 @@ export type UserUncheckedUpdateWithoutUserTypeInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutUserTypeInput = {
@@ -13381,6 +17287,14 @@ export type UserUpdateWithoutCreatorInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatorInput = {
@@ -13440,6 +17354,14 @@ export type UserUncheckedUpdateWithoutCreatorInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutCreatorInput = {
@@ -13516,6 +17438,14 @@ export type UserUpdateWithoutUpdaterInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdaterInput = {
@@ -13575,6 +17505,14 @@ export type UserUncheckedUpdateWithoutUpdaterInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutUpdaterInput = {
@@ -13651,6 +17589,14 @@ export type UserUpdateWithoutDeleterInput = {
   submittedReviews?: Prisma.TaskReviewUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDeleterInput = {
@@ -13710,6 +17656,14 @@ export type UserUncheckedUpdateWithoutDeleterInput = {
   submittedReviews?: Prisma.TaskReviewUncheckedUpdateManyWithoutSubmitterNestedInput
   taskComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutUserNestedInput
   deletedComments?: Prisma.TaskCommentUncheckedUpdateManyWithoutDeletedByNestedInput
+  createdLeads?: Prisma.LeadUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedToNestedInput
+  assignedByLeads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedByNestedInput
+  convertedLeads?: Prisma.LeadUncheckedUpdateManyWithoutConvertedByNestedInput
+  deletedLeads?: Prisma.LeadUncheckedUpdateManyWithoutDeletedByNestedInput
+  leadActivities?: Prisma.LeadActivityUncheckedUpdateManyWithoutActorNestedInput
+  createdFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutCreatedByNestedInput
+  assignedFollowUps?: Prisma.LeadFollowUpUncheckedUpdateManyWithoutAssignedToNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutDeleterInput = {
@@ -13775,6 +17729,14 @@ export type UserCountOutputType = {
   submittedReviews: number
   taskComments: number
   deletedComments: number
+  createdLeads: number
+  assignedLeads: number
+  assignedByLeads: number
+  convertedLeads: number
+  deletedLeads: number
+  leadActivities: number
+  createdFollowUps: number
+  assignedFollowUps: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -13818,6 +17780,14 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   submittedReviews?: boolean | UserCountOutputTypeCountSubmittedReviewsArgs
   taskComments?: boolean | UserCountOutputTypeCountTaskCommentsArgs
   deletedComments?: boolean | UserCountOutputTypeCountDeletedCommentsArgs
+  createdLeads?: boolean | UserCountOutputTypeCountCreatedLeadsArgs
+  assignedLeads?: boolean | UserCountOutputTypeCountAssignedLeadsArgs
+  assignedByLeads?: boolean | UserCountOutputTypeCountAssignedByLeadsArgs
+  convertedLeads?: boolean | UserCountOutputTypeCountConvertedLeadsArgs
+  deletedLeads?: boolean | UserCountOutputTypeCountDeletedLeadsArgs
+  leadActivities?: boolean | UserCountOutputTypeCountLeadActivitiesArgs
+  createdFollowUps?: boolean | UserCountOutputTypeCountCreatedFollowUpsArgs
+  assignedFollowUps?: boolean | UserCountOutputTypeCountAssignedFollowUpsArgs
 }
 
 /**
@@ -14110,6 +18080,62 @@ export type UserCountOutputTypeCountDeletedCommentsArgs<ExtArgs extends runtime.
   where?: Prisma.TaskCommentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedByLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountConvertedLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDeletedLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLeadActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadActivityWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedFollowUpsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadFollowUpWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedFollowUpsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadFollowUpWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -14174,6 +18200,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   submittedReviews?: boolean | Prisma.User$submittedReviewsArgs<ExtArgs>
   taskComments?: boolean | Prisma.User$taskCommentsArgs<ExtArgs>
   deletedComments?: boolean | Prisma.User$deletedCommentsArgs<ExtArgs>
+  createdLeads?: boolean | Prisma.User$createdLeadsArgs<ExtArgs>
+  assignedLeads?: boolean | Prisma.User$assignedLeadsArgs<ExtArgs>
+  assignedByLeads?: boolean | Prisma.User$assignedByLeadsArgs<ExtArgs>
+  convertedLeads?: boolean | Prisma.User$convertedLeadsArgs<ExtArgs>
+  deletedLeads?: boolean | Prisma.User$deletedLeadsArgs<ExtArgs>
+  leadActivities?: boolean | Prisma.User$leadActivitiesArgs<ExtArgs>
+  createdFollowUps?: boolean | Prisma.User$createdFollowUpsArgs<ExtArgs>
+  assignedFollowUps?: boolean | Prisma.User$assignedFollowUpsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -14246,6 +18280,14 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   submittedReviews?: boolean | Prisma.User$submittedReviewsArgs<ExtArgs>
   taskComments?: boolean | Prisma.User$taskCommentsArgs<ExtArgs>
   deletedComments?: boolean | Prisma.User$deletedCommentsArgs<ExtArgs>
+  createdLeads?: boolean | Prisma.User$createdLeadsArgs<ExtArgs>
+  assignedLeads?: boolean | Prisma.User$assignedLeadsArgs<ExtArgs>
+  assignedByLeads?: boolean | Prisma.User$assignedByLeadsArgs<ExtArgs>
+  convertedLeads?: boolean | Prisma.User$convertedLeadsArgs<ExtArgs>
+  deletedLeads?: boolean | Prisma.User$deletedLeadsArgs<ExtArgs>
+  leadActivities?: boolean | Prisma.User$leadActivitiesArgs<ExtArgs>
+  createdFollowUps?: boolean | Prisma.User$createdFollowUpsArgs<ExtArgs>
+  assignedFollowUps?: boolean | Prisma.User$assignedFollowUpsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -14299,6 +18341,14 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     submittedReviews: Prisma.$TaskReviewPayload<ExtArgs>[]
     taskComments: Prisma.$TaskCommentPayload<ExtArgs>[]
     deletedComments: Prisma.$TaskCommentPayload<ExtArgs>[]
+    createdLeads: Prisma.$LeadPayload<ExtArgs>[]
+    assignedLeads: Prisma.$LeadPayload<ExtArgs>[]
+    assignedByLeads: Prisma.$LeadPayload<ExtArgs>[]
+    convertedLeads: Prisma.$LeadPayload<ExtArgs>[]
+    deletedLeads: Prisma.$LeadPayload<ExtArgs>[]
+    leadActivities: Prisma.$LeadActivityPayload<ExtArgs>[]
+    createdFollowUps: Prisma.$LeadFollowUpPayload<ExtArgs>[]
+    assignedFollowUps: Prisma.$LeadFollowUpPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -14703,6 +18753,14 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   submittedReviews<T extends Prisma.User$submittedReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$submittedReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   taskComments<T extends Prisma.User$taskCommentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$taskCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   deletedComments<T extends Prisma.User$deletedCommentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$deletedCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdLeads<T extends Prisma.User$createdLeadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdLeadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedLeads<T extends Prisma.User$assignedLeadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedLeadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedByLeads<T extends Prisma.User$assignedByLeadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedByLeadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  convertedLeads<T extends Prisma.User$convertedLeadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$convertedLeadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  deletedLeads<T extends Prisma.User$deletedLeadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$deletedLeadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leadActivities<T extends Prisma.User$leadActivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$leadActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdFollowUps<T extends Prisma.User$createdFollowUpsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdFollowUpsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadFollowUpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedFollowUps<T extends Prisma.User$assignedFollowUpsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedFollowUpsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadFollowUpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16166,6 +20224,198 @@ export type User$deletedCommentsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.TaskCommentScalarFieldEnum | Prisma.TaskCommentScalarFieldEnum[]
+}
+
+/**
+ * User.createdLeads
+ */
+export type User$createdLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Lead
+   */
+  select?: Prisma.LeadSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Lead
+   */
+  omit?: Prisma.LeadOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
+}
+
+/**
+ * User.assignedLeads
+ */
+export type User$assignedLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Lead
+   */
+  select?: Prisma.LeadSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Lead
+   */
+  omit?: Prisma.LeadOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
+}
+
+/**
+ * User.assignedByLeads
+ */
+export type User$assignedByLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Lead
+   */
+  select?: Prisma.LeadSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Lead
+   */
+  omit?: Prisma.LeadOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
+}
+
+/**
+ * User.convertedLeads
+ */
+export type User$convertedLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Lead
+   */
+  select?: Prisma.LeadSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Lead
+   */
+  omit?: Prisma.LeadOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
+}
+
+/**
+ * User.deletedLeads
+ */
+export type User$deletedLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Lead
+   */
+  select?: Prisma.LeadSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Lead
+   */
+  omit?: Prisma.LeadOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
+}
+
+/**
+ * User.leadActivities
+ */
+export type User$leadActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadActivity
+   */
+  select?: Prisma.LeadActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadActivity
+   */
+  omit?: Prisma.LeadActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadActivityInclude<ExtArgs> | null
+  where?: Prisma.LeadActivityWhereInput
+  orderBy?: Prisma.LeadActivityOrderByWithRelationInput | Prisma.LeadActivityOrderByWithRelationInput[]
+  cursor?: Prisma.LeadActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadActivityScalarFieldEnum | Prisma.LeadActivityScalarFieldEnum[]
+}
+
+/**
+ * User.createdFollowUps
+ */
+export type User$createdFollowUpsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadFollowUp
+   */
+  select?: Prisma.LeadFollowUpSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadFollowUp
+   */
+  omit?: Prisma.LeadFollowUpOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadFollowUpInclude<ExtArgs> | null
+  where?: Prisma.LeadFollowUpWhereInput
+  orderBy?: Prisma.LeadFollowUpOrderByWithRelationInput | Prisma.LeadFollowUpOrderByWithRelationInput[]
+  cursor?: Prisma.LeadFollowUpWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadFollowUpScalarFieldEnum | Prisma.LeadFollowUpScalarFieldEnum[]
+}
+
+/**
+ * User.assignedFollowUps
+ */
+export type User$assignedFollowUpsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadFollowUp
+   */
+  select?: Prisma.LeadFollowUpSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadFollowUp
+   */
+  omit?: Prisma.LeadFollowUpOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadFollowUpInclude<ExtArgs> | null
+  where?: Prisma.LeadFollowUpWhereInput
+  orderBy?: Prisma.LeadFollowUpOrderByWithRelationInput | Prisma.LeadFollowUpOrderByWithRelationInput[]
+  cursor?: Prisma.LeadFollowUpWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadFollowUpScalarFieldEnum | Prisma.LeadFollowUpScalarFieldEnum[]
 }
 
 /**

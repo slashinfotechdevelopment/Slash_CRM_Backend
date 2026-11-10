@@ -244,3 +244,28 @@ export type TaskReview = Prisma.TaskReviewModel
  * 
  */
 export type TaskComment = Prisma.TaskCommentModel
+/**
+ * Model LeadCodeSequence
+ * 
+ */
+export type LeadCodeSequence = Prisma.LeadCodeSequenceModel
+/**
+ * Model PipelineStage
+ * 
+ */
+export type PipelineStage = Prisma.PipelineStageModel
+/**
+ * Model Lead
+ * 
+ */
+export type Lead = Prisma.LeadModel
+/**
+ * Model LeadActivity
+ * 
+ */
+export type LeadActivity = Prisma.LeadActivityModel
+/**
+ * Model LeadFollowUp
+ * 
+ */
+export type LeadFollowUp = Prisma.LeadFollowUpModel

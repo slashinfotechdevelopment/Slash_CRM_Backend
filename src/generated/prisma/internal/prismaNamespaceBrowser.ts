@@ -91,7 +91,12 @@ export const ModelName = {
   TaskTimePause: 'TaskTimePause',
   TaskTimeCorrectionRequest: 'TaskTimeCorrectionRequest',
   TaskReview: 'TaskReview',
-  TaskComment: 'TaskComment'
+  TaskComment: 'TaskComment',
+  LeadCodeSequence: 'LeadCodeSequence',
+  PipelineStage: 'PipelineStage',
+  Lead: 'Lead',
+  LeadActivity: 'LeadActivity',
+  LeadFollowUp: 'LeadFollowUp'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -802,6 +807,117 @@ export const TaskCommentScalarFieldEnum = {
 export type TaskCommentScalarFieldEnum = (typeof TaskCommentScalarFieldEnum)[keyof typeof TaskCommentScalarFieldEnum]
 
 
+export const LeadCodeSequenceScalarFieldEnum = {
+  id: 'id',
+  prefix: 'prefix',
+  lastNumber: 'lastNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeadCodeSequenceScalarFieldEnum = (typeof LeadCodeSequenceScalarFieldEnum)[keyof typeof LeadCodeSequenceScalarFieldEnum]
+
+
+export const PipelineStageScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  order: 'order',
+  color: 'color',
+  isDefault: 'isDefault',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PipelineStageScalarFieldEnum = (typeof PipelineStageScalarFieldEnum)[keyof typeof PipelineStageScalarFieldEnum]
+
+
+export const LeadScalarFieldEnum = {
+  id: 'id',
+  leadCode: 'leadCode',
+  leadDate: 'leadDate',
+  leadName: 'leadName',
+  phone: 'phone',
+  normalizedPhone: 'normalizedPhone',
+  activeNormalizedPhone: 'activeNormalizedPhone',
+  alternatePhone: 'alternatePhone',
+  email: 'email',
+  companyName: 'companyName',
+  jobTitle: 'jobTitle',
+  website: 'website',
+  interestedCourse: 'interestedCourse',
+  industry: 'industry',
+  location: 'location',
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  pincode: 'pincode',
+  requirementDescription: 'requirementDescription',
+  estimatedValue: 'estimatedValue',
+  currency: 'currency',
+  expectedClosingDate: 'expectedClosingDate',
+  feedback1: 'feedback1',
+  feedback2: 'feedback2',
+  feedback3: 'feedback3',
+  source: 'source',
+  sourceDetails: 'sourceDetails',
+  campaignName: 'campaignName',
+  createdById: 'createdById',
+  departmentId: 'departmentId',
+  assignedToId: 'assignedToId',
+  assignedById: 'assignedById',
+  assignedAt: 'assignedAt',
+  priority: 'priority',
+  status: 'status',
+  qualificationStatus: 'qualificationStatus',
+  pipelineStageId: 'pipelineStageId',
+  unqualifiedReason: 'unqualifiedReason',
+  lostReason: 'lostReason',
+  lastContactedAt: 'lastContactedAt',
+  lastActivityAt: 'lastActivityAt',
+  convertedAt: 'convertedAt',
+  convertedById: 'convertedById',
+  deletedById: 'deletedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const LeadActivityScalarFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  actorId: 'actorId',
+  type: 'type',
+  title: 'title',
+  description: 'description',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type LeadActivityScalarFieldEnum = (typeof LeadActivityScalarFieldEnum)[keyof typeof LeadActivityScalarFieldEnum]
+
+
+export const LeadFollowUpScalarFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  createdById: 'createdById',
+  assignedToId: 'assignedToId',
+  scheduledAt: 'scheduledAt',
+  status: 'status',
+  note: 'note',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeadFollowUpScalarFieldEnum = (typeof LeadFollowUpScalarFieldEnum)[keyof typeof LeadFollowUpScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1323,4 +1439,85 @@ export const TaskCommentOrderByRelevanceFieldEnum = {
 } as const
 
 export type TaskCommentOrderByRelevanceFieldEnum = (typeof TaskCommentOrderByRelevanceFieldEnum)[keyof typeof TaskCommentOrderByRelevanceFieldEnum]
+
+
+export const LeadCodeSequenceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  prefix: 'prefix'
+} as const
+
+export type LeadCodeSequenceOrderByRelevanceFieldEnum = (typeof LeadCodeSequenceOrderByRelevanceFieldEnum)[keyof typeof LeadCodeSequenceOrderByRelevanceFieldEnum]
+
+
+export const PipelineStageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  color: 'color'
+} as const
+
+export type PipelineStageOrderByRelevanceFieldEnum = (typeof PipelineStageOrderByRelevanceFieldEnum)[keyof typeof PipelineStageOrderByRelevanceFieldEnum]
+
+
+export const LeadOrderByRelevanceFieldEnum = {
+  id: 'id',
+  leadCode: 'leadCode',
+  leadName: 'leadName',
+  phone: 'phone',
+  normalizedPhone: 'normalizedPhone',
+  activeNormalizedPhone: 'activeNormalizedPhone',
+  alternatePhone: 'alternatePhone',
+  email: 'email',
+  companyName: 'companyName',
+  jobTitle: 'jobTitle',
+  website: 'website',
+  interestedCourse: 'interestedCourse',
+  industry: 'industry',
+  location: 'location',
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  pincode: 'pincode',
+  requirementDescription: 'requirementDescription',
+  currency: 'currency',
+  feedback1: 'feedback1',
+  feedback2: 'feedback2',
+  feedback3: 'feedback3',
+  sourceDetails: 'sourceDetails',
+  campaignName: 'campaignName',
+  createdById: 'createdById',
+  departmentId: 'departmentId',
+  assignedToId: 'assignedToId',
+  assignedById: 'assignedById',
+  pipelineStageId: 'pipelineStageId',
+  unqualifiedReason: 'unqualifiedReason',
+  lostReason: 'lostReason',
+  convertedById: 'convertedById',
+  deletedById: 'deletedById'
+} as const
+
+export type LeadOrderByRelevanceFieldEnum = (typeof LeadOrderByRelevanceFieldEnum)[keyof typeof LeadOrderByRelevanceFieldEnum]
+
+
+export const LeadActivityOrderByRelevanceFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  actorId: 'actorId',
+  title: 'title',
+  description: 'description'
+} as const
+
+export type LeadActivityOrderByRelevanceFieldEnum = (typeof LeadActivityOrderByRelevanceFieldEnum)[keyof typeof LeadActivityOrderByRelevanceFieldEnum]
+
+
+export const LeadFollowUpOrderByRelevanceFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  createdById: 'createdById',
+  assignedToId: 'assignedToId',
+  note: 'note'
+} as const
+
+export type LeadFollowUpOrderByRelevanceFieldEnum = (typeof LeadFollowUpOrderByRelevanceFieldEnum)[keyof typeof LeadFollowUpOrderByRelevanceFieldEnum]
 

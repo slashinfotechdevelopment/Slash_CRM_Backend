@@ -800,6 +800,108 @@ export type EnumTaskReviewOutcomeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumTaskReviewOutcomeFilter<$PrismaModel>
 }
 
+export type EnumLeadSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSource | Prisma.EnumLeadSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSource[]
+  notIn?: $Enums.LeadSource[]
+  not?: Prisma.NestedEnumLeadSourceFilter<$PrismaModel> | $Enums.LeadSource
+}
+
+export type EnumLeadPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadPriority | Prisma.EnumLeadPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadPriority[]
+  notIn?: $Enums.LeadPriority[]
+  not?: Prisma.NestedEnumLeadPriorityFilter<$PrismaModel> | $Enums.LeadPriority
+}
+
+export type EnumLeadStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStatus | Prisma.EnumLeadStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStatus[]
+  notIn?: $Enums.LeadStatus[]
+  not?: Prisma.NestedEnumLeadStatusFilter<$PrismaModel> | $Enums.LeadStatus
+}
+
+export type EnumLeadQualificationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadQualificationStatus | Prisma.EnumLeadQualificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadQualificationStatus[]
+  notIn?: $Enums.LeadQualificationStatus[]
+  not?: Prisma.NestedEnumLeadQualificationStatusFilter<$PrismaModel> | $Enums.LeadQualificationStatus
+}
+
+export type EnumLeadSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSource | Prisma.EnumLeadSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSource[]
+  notIn?: $Enums.LeadSource[]
+  not?: Prisma.NestedEnumLeadSourceWithAggregatesFilter<$PrismaModel> | $Enums.LeadSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadSourceFilter<$PrismaModel>
+}
+
+export type EnumLeadPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadPriority | Prisma.EnumLeadPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadPriority[]
+  notIn?: $Enums.LeadPriority[]
+  not?: Prisma.NestedEnumLeadPriorityWithAggregatesFilter<$PrismaModel> | $Enums.LeadPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadPriorityFilter<$PrismaModel>
+}
+
+export type EnumLeadStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStatus | Prisma.EnumLeadStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStatus[]
+  notIn?: $Enums.LeadStatus[]
+  not?: Prisma.NestedEnumLeadStatusWithAggregatesFilter<$PrismaModel> | $Enums.LeadStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadStatusFilter<$PrismaModel>
+}
+
+export type EnumLeadQualificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadQualificationStatus | Prisma.EnumLeadQualificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadQualificationStatus[]
+  notIn?: $Enums.LeadQualificationStatus[]
+  not?: Prisma.NestedEnumLeadQualificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.LeadQualificationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadQualificationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadQualificationStatusFilter<$PrismaModel>
+}
+
+export type EnumLeadActivityTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadActivityType | Prisma.EnumLeadActivityTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadActivityType[]
+  notIn?: $Enums.LeadActivityType[]
+  not?: Prisma.NestedEnumLeadActivityTypeFilter<$PrismaModel> | $Enums.LeadActivityType
+}
+
+export type EnumLeadActivityTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadActivityType | Prisma.EnumLeadActivityTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadActivityType[]
+  notIn?: $Enums.LeadActivityType[]
+  not?: Prisma.NestedEnumLeadActivityTypeWithAggregatesFilter<$PrismaModel> | $Enums.LeadActivityType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadActivityTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadActivityTypeFilter<$PrismaModel>
+}
+
+export type EnumFollowUpStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.FollowUpStatus | Prisma.EnumFollowUpStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FollowUpStatus[]
+  notIn?: $Enums.FollowUpStatus[]
+  not?: Prisma.NestedEnumFollowUpStatusFilter<$PrismaModel> | $Enums.FollowUpStatus
+}
+
+export type EnumFollowUpStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FollowUpStatus | Prisma.EnumFollowUpStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FollowUpStatus[]
+  notIn?: $Enums.FollowUpStatus[]
+  not?: Prisma.NestedEnumFollowUpStatusWithAggregatesFilter<$PrismaModel> | $Enums.FollowUpStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFollowUpStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFollowUpStatusFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[]
@@ -1574,6 +1676,108 @@ export type NestedEnumTaskReviewOutcomeWithAggregatesFilter<$PrismaModel = never
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTaskReviewOutcomeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTaskReviewOutcomeFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSource | Prisma.EnumLeadSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSource[]
+  notIn?: $Enums.LeadSource[]
+  not?: Prisma.NestedEnumLeadSourceFilter<$PrismaModel> | $Enums.LeadSource
+}
+
+export type NestedEnumLeadPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadPriority | Prisma.EnumLeadPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadPriority[]
+  notIn?: $Enums.LeadPriority[]
+  not?: Prisma.NestedEnumLeadPriorityFilter<$PrismaModel> | $Enums.LeadPriority
+}
+
+export type NestedEnumLeadStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStatus | Prisma.EnumLeadStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStatus[]
+  notIn?: $Enums.LeadStatus[]
+  not?: Prisma.NestedEnumLeadStatusFilter<$PrismaModel> | $Enums.LeadStatus
+}
+
+export type NestedEnumLeadQualificationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadQualificationStatus | Prisma.EnumLeadQualificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadQualificationStatus[]
+  notIn?: $Enums.LeadQualificationStatus[]
+  not?: Prisma.NestedEnumLeadQualificationStatusFilter<$PrismaModel> | $Enums.LeadQualificationStatus
+}
+
+export type NestedEnumLeadSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSource | Prisma.EnumLeadSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSource[]
+  notIn?: $Enums.LeadSource[]
+  not?: Prisma.NestedEnumLeadSourceWithAggregatesFilter<$PrismaModel> | $Enums.LeadSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadSourceFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadPriority | Prisma.EnumLeadPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadPriority[]
+  notIn?: $Enums.LeadPriority[]
+  not?: Prisma.NestedEnumLeadPriorityWithAggregatesFilter<$PrismaModel> | $Enums.LeadPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadPriorityFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStatus | Prisma.EnumLeadStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStatus[]
+  notIn?: $Enums.LeadStatus[]
+  not?: Prisma.NestedEnumLeadStatusWithAggregatesFilter<$PrismaModel> | $Enums.LeadStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadQualificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadQualificationStatus | Prisma.EnumLeadQualificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadQualificationStatus[]
+  notIn?: $Enums.LeadQualificationStatus[]
+  not?: Prisma.NestedEnumLeadQualificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.LeadQualificationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadQualificationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadQualificationStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadActivityTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadActivityType | Prisma.EnumLeadActivityTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadActivityType[]
+  notIn?: $Enums.LeadActivityType[]
+  not?: Prisma.NestedEnumLeadActivityTypeFilter<$PrismaModel> | $Enums.LeadActivityType
+}
+
+export type NestedEnumLeadActivityTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadActivityType | Prisma.EnumLeadActivityTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadActivityType[]
+  notIn?: $Enums.LeadActivityType[]
+  not?: Prisma.NestedEnumLeadActivityTypeWithAggregatesFilter<$PrismaModel> | $Enums.LeadActivityType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadActivityTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadActivityTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumFollowUpStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.FollowUpStatus | Prisma.EnumFollowUpStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FollowUpStatus[]
+  notIn?: $Enums.FollowUpStatus[]
+  not?: Prisma.NestedEnumFollowUpStatusFilter<$PrismaModel> | $Enums.FollowUpStatus
+}
+
+export type NestedEnumFollowUpStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FollowUpStatus | Prisma.EnumFollowUpStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FollowUpStatus[]
+  notIn?: $Enums.FollowUpStatus[]
+  not?: Prisma.NestedEnumFollowUpStatusWithAggregatesFilter<$PrismaModel> | $Enums.FollowUpStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFollowUpStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFollowUpStatusFilter<$PrismaModel>
 }
 
 

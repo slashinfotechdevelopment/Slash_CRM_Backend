@@ -193,6 +193,15 @@ model User {
   taskComments                    TaskComment[]               @relation("UserTaskComments")
   deletedComments                 TaskComment[]               @relation("CommentDeletedBy")
 
+  createdLeads                    Lead[]                      @relation("LeadCreatedBy")
+  assignedLeads                   Lead[]                      @relation("LeadAssignedTo")
+  assignedByLeads                 Lead[]                      @relation("LeadAssignedBy")
+  convertedLeads                  Lead[]                      @relation("LeadConvertedBy")
+  deletedLeads                    Lead[]                      @relation("LeadDeletedBy")
+  leadActivities                  LeadActivity[]              @relation("LeadActivityActor")
+  createdFollowUps                LeadFollowUp[]              @relation("FollowUpCreatedBy")
+  assignedFollowUps               LeadFollowUp[]              @relation("FollowUpAssignedTo")
+
   @@index([userTypeId, status])
   @@index([deletedAt])
   @@index([createdAt])
@@ -368,6 +377,7 @@ model Department {
   children Department[]     @relation("DepartmentHierarchy")
   users    UserDepartment[]
   tasks    Task[]
+  leads    Lead[]
 
   @@index([parentId, status])
   @@index([deletedAt])
@@ -1256,3 +1266,202 @@ model TaskComment {
   @@index([parentId], map: "idx_task_comments_parent")
   @@map("task_comments")
 }
+
+// =============================================================================
+// STAGE 7: LEAD MANAGEMENT SUBSYSTEM
+// =============================================================================
+
+enum LeadSource {
+  MANUAL
+  WEBSITE
+  EXCEL_IMPORT
+  CSV_IMPORT
+}
+
+enum LeadPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  UNQUALIFIED
+  CONVERTED
+  LOST
+}
+
+enum LeadQualificationStatus {
+  PENDING
+  QUALIFIED
+  UNQUALIFIED
+}
+
+enum LeadActivityType {
+  NOTE
+  CALL
+  MEETING
+  EMAIL
+  STATUS_CHANGE
+  ASSIGNMENT
+  QUALIFICATION
+}
+
+enum FollowUpStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+model LeadCodeSequence {
+  id         String   @id @default(cuid()) @db.VarChar(30)
+  prefix     String   @unique @db.VarChar(10)
+  lastNumber Int      @default(0) @map("last_number")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("lead_code_sequences")
+}
+
+model PipelineStage {
+  id        String       @id @default(cuid()) @db.VarChar(30)
+  code      String       @unique @db.VarChar(40)
+  name      String       @db.VarChar(100)
+  order     Int          @default(0)
+  color     String?      @db.VarChar(20)
+  isDefault Boolean      @default(false) @map("is_default")
+  status    RecordStatus @default(ACTIVE)
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  leads Lead[]
+
+  @@index([order])
+  @@index([status])
+  @@map("pipeline_stages")
+}
+
+model Lead {
+  id                    String                  @id @default(cuid()) @db.VarChar(30)
+  leadCode              String                  @unique @map("lead_code") @db.VarChar(20)
+  leadDate              DateTime                @default(now()) @map("lead_date")
+  leadName              String                  @map("lead_name") @db.VarChar(150)
+  phone                 String                  @db.VarChar(20)
+  normalizedPhone       String                  @map("normalized_phone") @db.VarChar(20)
+  activeNormalizedPhone String?                 @unique(map: "uq_active_lead_normalized_phone") @map("active_normalized_phone") @db.VarChar(20)
+  alternatePhone        String?                 @map("alternate_phone") @db.VarChar(20)
+  email                 String?                 @db.VarChar(150)
+  companyName           String?                 @map("company_name") @db.VarChar(150)
+  jobTitle              String?                 @map("job_title") @db.VarChar(100)
+  website               String?                 @db.VarChar(255)
+
+  // Business & requirements
+  interestedCourse       String?                 @map("interested_course") @db.VarChar(150)
+  industry               String?                 @db.VarChar(100)
+  location               String?                 @db.VarChar(150)
+  address                String?                 @db.Text
+  city                   String?                 @db.VarChar(100)
+  state                  String?                 @db.VarChar(100)
+  country                String?                 @db.VarChar(100)
+  pincode                String?                 @db.VarChar(20)
+  requirementDescription String?                 @map("requirement_description") @db.Text
+  estimatedValue         Decimal?                @map("estimated_value") @db.Decimal(12, 2)
+  currency               String?                 @default("INR") @db.VarChar(10)
+  expectedClosingDate    DateTime?               @map("expected_closing_date") @db.Date
+
+  // Feedback fields (Three separate independent fields collected concurrently)
+  feedback1              String?                 @db.Text
+  feedback2              String?                 @db.Text
+  feedback3              String?                 @db.Text
+
+  // Source & ownership
+  source                 LeadSource              @default(MANUAL)
+  sourceDetails          String?                 @map("source_details") @db.VarChar(255)
+  campaignName           String?                 @map("campaign_name") @db.VarChar(150)
+  createdById            String                  @map("created_by_id") @db.VarChar(30)
+  departmentId           String?                 @map("department_id") @db.VarChar(30)
+  assignedToId           String?                 @map("assigned_to_id") @db.VarChar(30)
+  assignedById           String?                 @map("assigned_by_id") @db.VarChar(30)
+  assignedAt             DateTime?               @map("assigned_at")
+  priority               LeadPriority            @default(MEDIUM)
+  status                 LeadStatus              @default(NEW)
+  qualificationStatus    LeadQualificationStatus @default(PENDING) @map("qualification_status")
+  pipelineStageId        String?                 @map("pipeline_stage_id") @db.VarChar(30)
+
+  // Lifecycle
+  unqualifiedReason      String?                 @map("unqualified_reason") @db.VarChar(255)
+  lostReason             String?                 @map("lost_reason") @db.VarChar(255)
+  lastContactedAt        DateTime?               @map("last_contacted_at")
+  lastActivityAt         DateTime?               @map("last_activity_at")
+  convertedAt            DateTime?               @map("converted_at")
+  convertedById          String?                 @map("converted_by_id") @db.VarChar(30)
+  deletedById            String?                 @map("deleted_by_id") @db.VarChar(30)
+
+  createdAt              DateTime                @default(now()) @map("created_at")
+  updatedAt              DateTime                @updatedAt @map("updated_at")
+  deletedAt              DateTime?               @map("deleted_at")
+
+  // Relations
+  createdBy              User                    @relation("LeadCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  department             Department?             @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  assignedTo             User?                   @relation("LeadAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+  assignedBy             User?                   @relation("LeadAssignedBy", fields: [assignedById], references: [id], onDelete: SetNull)
+  convertedBy            User?                   @relation("LeadConvertedBy", fields: [convertedById], references: [id], onDelete: SetNull)
+  deletedBy              User?                   @relation("LeadDeletedBy", fields: [deletedById], references: [id], onDelete: SetNull)
+  pipelineStage          PipelineStage?          @relation(fields: [pipelineStageId], references: [id], onDelete: SetNull)
+
+  activities             LeadActivity[]
+  followUps              LeadFollowUp[]
+
+  @@index([status, priority])
+  @@index([createdById])
+  @@index([assignedToId])
+  @@index([departmentId])
+  @@index([normalizedPhone])
+  @@index([deletedAt])
+  @@index([leadDate])
+  @@map("leads")
+}
+
+model LeadActivity {
+  id          String           @id @default(cuid()) @db.VarChar(30)
+  leadId      String           @map("lead_id") @db.VarChar(30)
+  actorId     String?          @map("actor_id") @db.VarChar(30)
+  type        LeadActivityType @default(NOTE)
+  title       String           @db.VarChar(150)
+  description String?          @db.Text
+  metadata    Json?
+  createdAt   DateTime         @default(now()) @map("created_at")
+
+  lead  Lead  @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  actor User? @relation("LeadActivityActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([leadId, createdAt])
+  @@index([actorId])
+  @@map("lead_activities")
+}
+
+model LeadFollowUp {
+  id           String         @id @default(cuid()) @db.VarChar(30)
+  leadId       String         @map("lead_id") @db.VarChar(30)
+  createdById  String         @map("created_by_id") @db.VarChar(30)
+  assignedToId String         @map("assigned_to_id") @db.VarChar(30)
+  scheduledAt  DateTime       @map("scheduled_at")
+  status       FollowUpStatus @default(PENDING)
+  note         String?        @db.Text
+  completedAt  DateTime?      @map("completed_at")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  lead        Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdBy   User @relation("FollowUpCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  assignedTo  User @relation("FollowUpAssignedTo", fields: [assignedToId], references: [id], onDelete: Restrict)
+
+  @@index([leadId, status])
+  @@index([assignedToId, scheduledAt, status])
+  @@map("lead_follow_ups")
+}
+

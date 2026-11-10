@@ -1,0 +1,55 @@
+export class LeadSummaryDto {
+  id: string;
+  leadCode: string;
+  leadDate: Date;
+  leadName: string;
+  phone: string;
+  normalizedPhone: string;
+  alternatePhone?: string | null;
+  email?: string | null;
+  companyName?: string | null;
+  jobTitle?: string | null;
+  website?: string | null;
+  interestedCourse?: string | null;
+  industry?: string | null;
+  location?: string | null;
+  address?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  pincode?: string | null;
+  requirementDescription?: string | null;
+  estimatedValue?: any;
+  currency?: string | null;
+  expectedClosingDate?: Date | null;
+  feedback1?: string | null;
+  feedback2?: string | null;
+  feedback3?: string | null;
+  source: string;
+  sourceDetails?: string | null;
+  campaignName?: string | null;
+  createdById: string;
+  departmentId?: string | null;
+  assignedToId?: string | null;
+  assignedById?: string | null;
+  assignedAt?: Date | null;
+  priority: string;
+  status: string;
+  qualificationStatus: string;
+  pipelineStageId?: string | null;
+  unqualifiedReason?: string | null;
+  lostReason?: string | null;
+  lastContactedAt?: Date | null;
+  lastActivityAt?: Date | null;
+  convertedAt?: Date | null;
+  convertedById?: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt?: Date | null;
+
+  createdBy?: { id: string; userCode: string; name: string; email: string };
+  assignedTo?: { id: string; userCode: string; name: string; email: string } | null;
+  department?: { id: string; code: string; name: string } | null;
+  pipelineStage?: { id: string; code: string; name: string; color?: string | null } | null;
+}
+

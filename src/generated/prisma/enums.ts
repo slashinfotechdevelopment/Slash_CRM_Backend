@@ -288,3 +288,66 @@ export const TaskReviewOutcome = {
 } as const
 
 export type TaskReviewOutcome = (typeof TaskReviewOutcome)[keyof typeof TaskReviewOutcome]
+
+
+export const LeadSource = {
+  MANUAL: 'MANUAL',
+  WEBSITE: 'WEBSITE',
+  EXCEL_IMPORT: 'EXCEL_IMPORT',
+  CSV_IMPORT: 'CSV_IMPORT'
+} as const
+
+export type LeadSource = (typeof LeadSource)[keyof typeof LeadSource]
+
+
+export const LeadPriority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+} as const
+
+export type LeadPriority = (typeof LeadPriority)[keyof typeof LeadPriority]
+
+
+export const LeadStatus = {
+  NEW: 'NEW',
+  CONTACTED: 'CONTACTED',
+  QUALIFIED: 'QUALIFIED',
+  UNQUALIFIED: 'UNQUALIFIED',
+  CONVERTED: 'CONVERTED',
+  LOST: 'LOST'
+} as const
+
+export type LeadStatus = (typeof LeadStatus)[keyof typeof LeadStatus]
+
+
+export const LeadQualificationStatus = {
+  PENDING: 'PENDING',
+  QUALIFIED: 'QUALIFIED',
+  UNQUALIFIED: 'UNQUALIFIED'
+} as const
+
+export type LeadQualificationStatus = (typeof LeadQualificationStatus)[keyof typeof LeadQualificationStatus]
+
+
+export const LeadActivityType = {
+  NOTE: 'NOTE',
+  CALL: 'CALL',
+  MEETING: 'MEETING',
+  EMAIL: 'EMAIL',
+  STATUS_CHANGE: 'STATUS_CHANGE',
+  ASSIGNMENT: 'ASSIGNMENT',
+  QUALIFICATION: 'QUALIFICATION'
+} as const
+
+export type LeadActivityType = (typeof LeadActivityType)[keyof typeof LeadActivityType]
+
+
+export const FollowUpStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type FollowUpStatus = (typeof FollowUpStatus)[keyof typeof FollowUpStatus]

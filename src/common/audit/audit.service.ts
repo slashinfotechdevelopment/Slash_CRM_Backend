@@ -30,6 +30,13 @@ export class AuditService {
       return data;
     }
 
+    // Safely normalize complex objects (such as Prisma Decimal, Date, etc.)
+    try {
+      data = JSON.parse(JSON.stringify(data));
+    } catch {
+      // fallback if cyclical
+    }
+
     if (Array.isArray(data)) {
       return data.map((item) => this.sanitizeData(item));
     }

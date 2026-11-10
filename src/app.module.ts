@@ -15,6 +15,7 @@ import { RolesModule } from './modules/roles/roles.module';
 import { UsersModule } from './modules/users/users.module';
 import { AttendanceModule } from './modules/attendance/attendance.module';
 import { TasksModule } from './modules/tasks/tasks.module';
+import { LeadsModule } from './modules/leads/leads.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { TasksModule } from './modules/tasks/tasks.module';
     UsersModule,
     AttendanceModule,
     TasksModule,
+    LeadsModule,
   ],
   controllers: [AppController],
   providers: [
