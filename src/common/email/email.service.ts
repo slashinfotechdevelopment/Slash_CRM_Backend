@@ -11,31 +11,40 @@ import type { Transporter } from 'nodemailer';
 @Injectable()
 export class EmailService {
   private readonly logger = new Logger(EmailService.name);
-  private readonly transporter: Transporter;
+  private readonly transporter: Transporter | null = null;
 
   constructor(private readonly configService: ConfigService) {
-    const host = this.configService.getOrThrow<string>('SMTP_HOST');
+    const host = this.configService.get<string>('SMTP_HOST');
     const port = this.configService.get<number>('SMTP_PORT', 465);
     const secure = this.configService.get<boolean>('SMTP_SECURE', true);
-    const user = this.configService.getOrThrow<string>('SMTP_USER');
-    const password =
-      this.configService.getOrThrow<string>('SMTP_PASSWORD');
+    const user = this.configService.get<string>('SMTP_USER');
+    const password = this.configService.get<string>('SMTP_PASSWORD');
 
-    this.transporter = nodemailer.createTransport({
-      host,
-      port,
-      secure,
-      auth: {
-        user,
-        pass: password,
-      },
-      connectionTimeout: 15000,
-      greetingTimeout: 15000,
-      socketTimeout: 20000,
-    });
+    if (host && user && password) {
+      this.transporter = nodemailer.createTransport({
+        host,
+        port,
+        secure,
+        auth: {
+          user,
+          pass: password,
+        },
+        connectionTimeout: 15000,
+        greetingTimeout: 15000,
+        socketTimeout: 20000,
+      });
+    } else {
+      this.logger.warn(
+        'SMTP credentials not fully configured. Outgoing email dispatch will be unavailable unless SMTP environment variables are set.',
+      );
+    }
   }
 
   async verifyConnection(): Promise<boolean> {
+    if (!this.transporter) {
+      this.logger.warn('SMTP connection verify skipped: SMTP transporter is not configured.');
+      return false;
+    }
     try {
       await this.transporter.verify();
       this.logger.log('SMTP connection verified successfully.');
@@ -57,6 +66,13 @@ export class EmailService {
     html: string,
     text?: string,
   ): Promise<void> {
+    if (!this.transporter) {
+      this.logger.error('Attempted to send email, but SMTP transporter is not configured.');
+      throw new InternalServerErrorException(
+        'Email service is not configured on this server.',
+      );
+    }
+
     const fromName =
       this.configService.get<string>(
         'SMTP_FROM_NAME',
@@ -64,7 +80,7 @@ export class EmailService {
       );
 
     const fromEmail =
-      this.configService.getOrThrow<string>('SMTP_FROM_EMAIL');
+      this.configService.get<string>('SMTP_FROM_EMAIL') || 'noreply@slashinfotech.com';
 
     try {
       await this.transporter.sendMail({

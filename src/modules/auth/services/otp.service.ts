@@ -36,6 +36,37 @@ export class OtpService {
   }
 
   /**
+   * Checks if dev default OTP mode is enabled via environment variables.
+   * Controlled by DEV_DEFAULT_OTP_ENABLED or DEV_OTP_ENABLED or DEFAULT_OTP_ENABLED ('true' or '1').
+   */
+  isDevOtpEnabled(): boolean {
+    const raw =
+      this.configService.get<string | boolean>('DEV_DEFAULT_OTP_ENABLED') ??
+      this.configService.get<string | boolean>('DEV_OTP_ENABLED') ??
+      this.configService.get<string | boolean>('DEFAULT_OTP_ENABLED');
+
+    if (typeof raw === 'boolean') {
+      return raw;
+    }
+    if (!raw) {
+      return false;
+    }
+    const val = String(raw).trim().toLowerCase();
+    return val === 'true' || val === '1';
+  }
+
+  /**
+   * Retrieves the configured default OTP for development mode (defaults to '123456').
+   */
+  getDevDefaultOtp(): string {
+    const custom =
+      this.configService.get<string>('DEV_DEFAULT_OTP') ??
+      this.configService.get<string>('DEFAULT_OTP');
+
+    return custom ? String(custom).trim() : '123456';
+  }
+
+  /**
    * Generates a cryptographically secure 6-digit numeric OTP.
    */
   private generateSecureOtp(): string {
@@ -113,7 +144,8 @@ export class OtpService {
     }
 
     // 2. Generate 6-digit OTP and calculate expiry
-    const otp = this.generateSecureOtp();
+    const isDev = this.isDevOtpEnabled();
+    const otp = isDev ? this.getDevDefaultOtp() : this.generateSecureOtp();
     const otpHash = this.hashOtp(otp);
     const expiresAt = new Date(Date.now() + this.otpExpiryMinutes * 60 * 1000);
 
@@ -133,8 +165,14 @@ export class OtpService {
       },
     });
 
-    // 4. Send email with OTP
-    await this.sendOtpEmail(normalizedEmail, otp, purpose);
+    // 4. Send email with OTP (skipped in DEV mode when DEV_DEFAULT_OTP_ENABLED=true)
+    if (isDev) {
+      this.logger.warn(
+        `[DEV MODE] Default OTP '${otp}' assigned for ${normalizedEmail}. Email dispatch skipped (DEV_DEFAULT_OTP_ENABLED=true).`,
+      );
+    } else {
+      await this.sendOtpEmail(normalizedEmail, otp, purpose);
+    }
 
     return { cooldownSecondsRemaining: this.resendCooldownSeconds };
   }

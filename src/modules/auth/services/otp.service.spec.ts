@@ -64,6 +64,28 @@ describe('OtpService', () => {
       expect(emailService.sendEmail).toHaveBeenCalled();
     });
 
+    it('should use default OTP 123456 and skip email dispatch when DEV_DEFAULT_OTP_ENABLED is true', async () => {
+      // Mock ConfigService to return true for DEV_DEFAULT_OTP_ENABLED
+      jest.spyOn(service, 'isDevOtpEnabled').mockReturnValue(true);
+      jest.spyOn(service, 'getDevDefaultOtp').mockReturnValue('123456');
+
+      prisma.otpRequest.findFirst.mockResolvedValue(null);
+      prisma.otpRequest.create.mockResolvedValue({ id: 'otp-dev-1' });
+
+      const result = await service.requestOtp({
+        email: 'dev@slashinfotech.com',
+        purpose: OtpPurpose.LOGIN,
+      });
+
+      expect(result).toEqual({ cooldownSecondsRemaining: 60 });
+      expect(prisma.otpRequest.create).toHaveBeenCalled();
+      const createArgs = prisma.otpRequest.create.mock.calls[0][0].data;
+      expect(createArgs.email).toBe('dev@slashinfotech.com');
+      expect(createArgs.otpHash).toBeDefined();
+      // Crucial: email dispatch must NOT be called in dev mode
+      expect(emailService.sendEmail).not.toHaveBeenCalled();
+    });
+
     it('should enforce 60-second cooldown', async () => {
       // Pending OTP created 20 seconds ago
       prisma.otpRequest.findFirst.mockResolvedValue({
