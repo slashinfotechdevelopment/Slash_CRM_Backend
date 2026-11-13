@@ -1399,6 +1399,44 @@ describe('UsersService - Stage 1 & Stage 2', () => {
         service.restore('u-email-conflict', 'sa-id', 'SUPER_ADMIN'),
       ).rejects.toThrow(ConflictException);
     });
+
+    it('should restore a soft-deleted user by userCode or email', async () => {
+      prisma.user.findUnique.mockResolvedValueOnce(null);
+      prisma.user.findFirst.mockResolvedValueOnce({
+        id: 'u-emp049',
+        userCode: 'EMP049',
+        email: 'emp049@example.com',
+        phone: null,
+        deletedAt: new Date(),
+        deletedBy: 'sa-id',
+        status: RecordStatus.INACTIVE,
+        userType: { code: 'EMPLOYEE' },
+        employeeProfile: null,
+        clientProfile: null,
+      });
+
+      prisma.user.findFirst.mockResolvedValueOnce(null);
+      prisma.user.findFirst.mockResolvedValueOnce({
+        id: 'u-emp049',
+        userCode: 'EMP049',
+        email: 'emp049@example.com',
+        deletedAt: null,
+        status: RecordStatus.ACTIVE,
+        userType: { code: 'EMPLOYEE' },
+        userRoles: [],
+        departments: [],
+      });
+
+      await service.restore('EMP049', 'sa-id', 'SUPER_ADMIN');
+
+      expect(prisma.user.update).toHaveBeenCalledWith({
+        where: { id: 'u-emp049' },
+        data: expect.objectContaining({
+          deletedAt: null,
+          status: RecordStatus.ACTIVE,
+        }),
+      });
+    });
   });
 
   describe('Stage 4 - Role Assignment Management', () => {

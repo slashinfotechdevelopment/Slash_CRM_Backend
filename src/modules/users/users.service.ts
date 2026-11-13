@@ -1344,9 +1344,21 @@ export class UsersService {
    * Restores a previously soft-deleted user account.
    * Verifies email, phone, and employee number uniqueness before restoring.
    */
-  async restore(id: string, actorUserId?: string, actorUserType?: string) {
-    const targetUser = await this.prisma.user.findUnique({
-      where: { id },
+  async restore(
+    idOrIdentifier: string,
+    actorUserId?: string,
+    actorUserType?: string,
+  ) {
+    const trimmed = idOrIdentifier ? idOrIdentifier.trim() : '';
+    if (!trimmed) {
+      throw new BadRequestException(
+        'User ID, employee code, or email identifier is required.',
+      );
+    }
+
+    // 1. Attempt lookup by exact CUID first
+    let targetUser = await this.prisma.user.findUnique({
+      where: { id: trimmed },
       include: {
         userType: true,
         employeeProfile: true,
@@ -1354,9 +1366,30 @@ export class UsersService {
       },
     });
 
+    // 2. Fallback: lookup by employee code (userCode) or email
     if (!targetUser) {
-      throw new NotFoundException(`User with ID '${id}' not found.`);
+      targetUser = await this.prisma.user.findFirst({
+        where: {
+          OR: [
+            { userCode: trimmed },
+            { email: trimmed.toLowerCase() },
+          ],
+        },
+        include: {
+          userType: true,
+          employeeProfile: true,
+          clientProfile: true,
+        },
+      });
     }
+
+    if (!targetUser) {
+      throw new NotFoundException(
+        `User with identifier '${trimmed}' (ID, Employee Code, or Email) not found.`,
+      );
+    }
+
+    const id = targetUser.id;
 
     if (targetUser.deletedAt === null) {
       throw new BadRequestException('User account is not deleted.');

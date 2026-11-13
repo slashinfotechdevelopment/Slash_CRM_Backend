@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -27,6 +28,7 @@ import { UpdateUserStatusDto } from './dto/update-user-status.dto';
 import { AssignUserRolesDto } from './dto/assign-user-roles.dto';
 import { AssignUserDepartmentsDto } from './dto/assign-user-departments.dto';
 import { AssignUserPermissionsDto } from './dto/assign-user-permissions.dto';
+import { RestoreUserDto } from './dto/restore-user.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { PermissionsGuard } from '../../common/guards/permissions.guard';
 import { RequirePermissions } from '../../common/decorators/require-permissions.decorator';
@@ -291,14 +293,62 @@ export class UsersController {
     };
   }
 
+  @Post('restore')
+  @HttpCode(HttpStatus.OK)
+  @RequirePermissions('users.delete')
+  @ApiOperation({
+    summary: 'Restore a soft-deleted user by identifier (ID, employee code, or email)',
+    description:
+      'Restores a soft-deleted user using their CUID, employee code (userCode, e.g. EMP049), or email address.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'User restored successfully.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request - Missing identifier or user is not deleted.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Not Found - User does not exist.',
+  })
+  async restoreByIdentifier(
+    @Body() dto: RestoreUserDto,
+    @CurrentUser() actor: any,
+  ) {
+    const identifier = dto.identifier || dto.userCode || dto.email;
+    if (!identifier) {
+      throw new BadRequestException(
+        'identifier, userCode, or email is required to restore a user.',
+      );
+    }
+
+    const user = await this.usersService.restore(
+      identifier,
+      actor?.sub,
+      actor?.userType,
+    );
+
+    return {
+      success: true,
+      message: 'User restored successfully',
+      data: user,
+    };
+  }
+
   @Patch(':id/restore')
   @RequirePermissions('users.delete')
   @ApiOperation({
     summary: 'Restore a soft-deleted user account',
     description:
-      'Restores an eligible soft-deleted user account by clearing deletedAt and deletedBy. Validates that email, phone, and employee number uniqueness constraints remain valid against existing active accounts.',
+      'Restores an eligible soft-deleted user account by clearing deletedAt and deletedBy. :id parameter accepts User CUID, Employee Code (userCode, e.g. EMP049), or Email.',
   })
-  @ApiParam({ name: 'id', description: 'User unique CUID' })
+  @ApiParam({
+    name: 'id',
+    description: 'User unique CUID, Employee Code (userCode), or Email address',
+    example: 'EMP049',
+  })
   @ApiResponse({
     status: 200,
     description: 'User restored successfully.',
@@ -323,10 +373,19 @@ export class UsersController {
   })
   async restore(
     @Param('id') id: string,
+    @Body() dto: RestoreUserDto = {},
     @CurrentUser() actor: any,
   ) {
+    const identifier =
+      id && id !== 'restore' ? id : dto.identifier || dto.userCode || dto.email;
+    if (!identifier) {
+      throw new BadRequestException(
+        'User ID, employee code, or email identifier is required.',
+      );
+    }
+
     const user = await this.usersService.restore(
-      id,
+      identifier,
       actor?.sub,
       actor?.userType,
     );
