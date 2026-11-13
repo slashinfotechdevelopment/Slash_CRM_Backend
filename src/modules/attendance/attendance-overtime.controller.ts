@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -92,6 +93,7 @@ export class AttendanceOvertimeController {
   }
 
   @Post(':id/approve')
+  @Patch(':id/approve')
   @RequirePermissions('attendance.approve_overtime')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
@@ -117,6 +119,7 @@ export class AttendanceOvertimeController {
   }
 
   @Post(':id/reject')
+  @Patch(':id/reject')
   @RequirePermissions('attendance.approve_overtime')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({

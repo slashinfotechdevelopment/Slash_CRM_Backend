@@ -131,11 +131,8 @@ export class UsersService {
     permissionCode: string = 'users.view',
     options?: { onlyDeleted?: boolean },
   ): Promise<any> {
-    const isPrivileged =
-      actorUserType === 'SUPER_ADMIN' || actorUserType === 'ADMIN';
-
     let deletedFilter: any = { deletedAt: null };
-    if (isPrivileged && options?.onlyDeleted) {
+    if (options?.onlyDeleted) {
       deletedFilter = { deletedAt: { not: null } };
     }
 

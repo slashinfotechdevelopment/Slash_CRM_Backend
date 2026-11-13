@@ -19,7 +19,7 @@ import { CreateOvertimeRequestDto } from './dto/create-overtime-request.dto';
 import { ApproveOvertimeRequestDto } from './dto/approve-overtime-request.dto';
 import { RejectOvertimeRequestDto } from './dto/reject-overtime-request.dto';
 import { QueryOvertimeRequestsDto } from './dto/query-overtime-requests.dto';
-import { parseDateOnly } from './attendance.utils';
+import { formatDateOnly, parseDateOnly } from './attendance.utils';
 
 @Injectable()
 export class AttendanceOvertimeService {
@@ -221,8 +221,25 @@ export class AttendanceOvertimeService {
       this.prisma.attendanceOvertimeRequest.count({ where }),
     ]);
 
+    const mappedItems = items.map((req) => {
+      const requestedMinutes = Math.max(
+        0,
+        Math.floor((req.endTime.getTime() - req.startTime.getTime()) / 60000),
+      );
+      return {
+        ...req,
+        attendanceDate: formatDateOnly(req.attendanceDate),
+        date: formatDateOnly(req.attendanceDate),
+        workDate: formatDateOnly(req.attendanceDate),
+        requestedDurationMinutes: requestedMinutes,
+        requestedMinutes,
+        durationMinutes: requestedMinutes,
+        requestedDuration: requestedMinutes,
+      };
+    });
+
     return {
-      items,
+      items: mappedItems,
       total,
       page,
       limit,
@@ -285,8 +302,25 @@ export class AttendanceOvertimeService {
       this.prisma.attendanceOvertimeRequest.count({ where }),
     ]);
 
+    const mappedItems = items.map((req) => {
+      const requestedMinutes = Math.max(
+        0,
+        Math.floor((req.endTime.getTime() - req.startTime.getTime()) / 60000),
+      );
+      return {
+        ...req,
+        attendanceDate: formatDateOnly(req.attendanceDate),
+        date: formatDateOnly(req.attendanceDate),
+        workDate: formatDateOnly(req.attendanceDate),
+        requestedDurationMinutes: requestedMinutes,
+        requestedMinutes,
+        durationMinutes: requestedMinutes,
+        requestedDuration: requestedMinutes,
+      };
+    });
+
     return {
-      items,
+      items: mappedItems,
       total,
       page,
       limit,
@@ -369,7 +403,10 @@ export class AttendanceOvertimeService {
       const totalRequestedMinutes = Math.floor(
         (current.endTime.getTime() - current.startTime.getTime()) / 60000,
       );
-      const approvedMinutes = dto.approvedDurationMinutes ?? totalRequestedMinutes;
+      const approvedMinutes =
+        dto.approvedMinutes ??
+        dto.approvedDurationMinutes ??
+        totalRequestedMinutes;
 
       const updated = await tx.attendanceOvertimeRequest.update({
         where: { id: requestId },
