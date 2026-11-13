@@ -660,7 +660,7 @@ describe('Phase 6.2.8: Comprehensive Integration & MySQL Concurrency Testing (e2
           userId: employeeId,
           shiftDefinitionId: testShiftId,
           attendanceDate: attDate,
-          status: AttendanceStatus.IN_PROGRESS,
+          status: AttendanceStatus.PENDING_RECONCILIATION,
           ...createRecordSnapshotData(dateStr),
           sessions: {
             create: [

@@ -900,7 +900,7 @@ describe('UsersService - Stage 1 & Stage 2', () => {
 
       expect(user).toBeDefined();
       expect(user.userCode).toBe('EMP010');
-      expect(user.profile.designation).toBe('Frontend Engineer');
+      expect((user.profile as any)?.designation).toBe('Frontend Engineer');
       expect(user.roles).toHaveLength(1);
       expect(user.departments).toHaveLength(1);
       expect(user.emailVerified).toBe(true);
@@ -2273,7 +2273,7 @@ describe('UsersService - Stage 1 & Stage 2', () => {
         expect(leadsPerm).toBeDefined();
         expect(leadsPerm?.effect).toBe('DENY');
         expect(leadsPerm?.source).toBe('USER_OVERRIDE');
-        expect(leadsPerm?.reason).toBe('Restricted for audit');
+        expect((leadsPerm as any)?.reason).toBe('Restricted for audit');
       });
 
       it('should merge role permissions selecting the highest data scope (ALL > DEPARTMENT > ASSIGNED > OWN)', async () => {
