@@ -17,6 +17,7 @@ import {
 import { QueryShiftsDto } from './dto/query-shifts.dto';
 import {
   formatDateOnly,
+  getAsiaKolkataDateString,
   intervalsOverlap,
   parseBreakPolicySnapshot,
   parseDateOnly,
@@ -76,8 +77,22 @@ export class AttendanceShiftsService {
       );
     }
 
+    const breakPolicyInput =
+      dto.breakPolicy ||
+      dto.breakPolicySnapshot ||
+      (dto.allowedBreakTypes !== undefined ||
+      dto.breakTypes !== undefined ||
+      dto.paidBreakAllowance !== undefined ||
+      dto.paidAllowanceMinutes !== undefined
+        ? {
+            paidAllowanceMinutes:
+              dto.paidAllowanceMinutes ?? dto.paidBreakAllowance ?? 60,
+            breakTypes: dto.allowedBreakTypes ?? dto.breakTypes ?? [],
+          }
+        : undefined);
+
     const { normalizedPolicy, snapshotString } = validateAndNormalizeBreakPolicy(
-      dto.breakPolicy || dto.breakPolicySnapshot,
+      breakPolicyInput,
     );
 
     const existingCode = await this.prisma.shiftDefinition.findUnique({
@@ -245,10 +260,22 @@ export class AttendanceShiftsService {
     let snapshotString = current.breakPolicySnapshot;
     let normalizedPolicy = parseBreakPolicySnapshot(current.breakPolicySnapshot);
 
-    if (dto.breakPolicy || dto.breakPolicySnapshot) {
-      const parsed = validateAndNormalizeBreakPolicy(
-        dto.breakPolicy || dto.breakPolicySnapshot,
-      );
+    const breakPolicyInput =
+      dto.breakPolicy ||
+      dto.breakPolicySnapshot ||
+      (dto.allowedBreakTypes !== undefined ||
+      dto.breakTypes !== undefined ||
+      dto.paidBreakAllowance !== undefined ||
+      dto.paidAllowanceMinutes !== undefined
+        ? {
+            paidAllowanceMinutes:
+              dto.paidAllowanceMinutes ?? dto.paidBreakAllowance ?? 60,
+            breakTypes: dto.allowedBreakTypes ?? dto.breakTypes ?? [],
+          }
+        : undefined);
+
+    if (breakPolicyInput) {
+      const parsed = validateAndNormalizeBreakPolicy(breakPolicyInput);
       snapshotString = parsed.snapshotString;
       normalizedPolicy = parsed.normalizedPolicy;
     }
@@ -273,6 +300,31 @@ export class AttendanceShiftsService {
         breakPolicySnapshot: snapshotString,
       },
     });
+
+    if (breakPolicyInput && snapshotString) {
+      try {
+        const todayDate = parseDateOnly(getAsiaKolkataDateString());
+        const activeRecords = await this.prisma.attendanceRecord.findMany({
+          where: {
+            shiftDefinitionId: id,
+            attendanceDate: todayDate,
+          },
+          select: { id: true, breakPolicySnapshot: true },
+        });
+
+        for (const ar of activeRecords) {
+          const bp = parseBreakPolicySnapshot(ar.breakPolicySnapshot);
+          if (!bp || !bp.breakTypes || bp.breakTypes.length === 0) {
+            await this.prisma.attendanceRecord.update({
+              where: { id: ar.id },
+              data: { breakPolicySnapshot: snapshotString },
+            });
+          }
+        }
+      } catch {
+        // Non-blocking snapshot sync
+      }
+    }
 
     await this.auditService.logAudit({
       actorUserId,

@@ -129,18 +129,14 @@ export class UsersService {
     actorUserId?: string,
     actorUserType?: string,
     permissionCode: string = 'users.view',
-    options?: { includeDeleted?: boolean; onlyDeleted?: boolean },
+    options?: { onlyDeleted?: boolean },
   ): Promise<any> {
     const isPrivileged =
       actorUserType === 'SUPER_ADMIN' || actorUserType === 'ADMIN';
 
     let deletedFilter: any = { deletedAt: null };
-    if (isPrivileged) {
-      if (options?.onlyDeleted) {
-        deletedFilter = { deletedAt: { not: null } };
-      } else if (options?.includeDeleted) {
-        deletedFilter = {};
-      }
+    if (isPrivileged && options?.onlyDeleted) {
+      deletedFilter = { deletedAt: { not: null } };
     }
 
     // 1. Super Admin: full visibility
@@ -562,7 +558,7 @@ export class UsersService {
       actorUserId,
       actorUserType,
       'users.view',
-      { includeDeleted: query.includeDeleted, onlyDeleted: query.onlyDeleted },
+      { onlyDeleted: query.onlyDeleted },
     );
 
     const andConditions: any[] = [scopeWhere];

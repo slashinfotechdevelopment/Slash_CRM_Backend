@@ -144,20 +144,8 @@ export class UserQueryDto {
   createdTo?: string;
 
   @ApiPropertyOptional({
-    description: 'Include soft-deleted users in the query (Admin / Super Admin view)',
-    default: false,
-  })
-  @Transform(({ value }) => {
-    if (value === 'true' || value === true) return true;
-    if (value === 'false' || value === false) return false;
-    return value;
-  })
-  @IsBoolean({ message: 'includeDeleted must be a boolean (true or false).' })
-  @IsOptional()
-  includeDeleted?: boolean = false;
-
-  @ApiPropertyOptional({
-    description: 'Filter only soft-deleted users for trash / restore management (Admin / Super Admin view)',
+    description:
+      'Filter only soft-deleted users for trash / restore management (Admin / Super Admin view)',
     default: false,
   })
   @Transform(({ value }) => {

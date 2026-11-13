@@ -140,5 +140,39 @@ export class CreateShiftDefinitionDto {
   })
   @IsOptional()
   breakPolicySnapshot?: string | BreakPolicyDto;
+
+  @ApiPropertyOptional({
+    description:
+      'List of allowed break type codes or objects (e.g. ["LUNCH", "TEA"] or [{ code, name, maxDurationMinutes }])',
+  })
+  @IsOptional()
+  allowedBreakTypes?: any;
+
+  @ApiPropertyOptional({
+    description: 'Alias for allowedBreakTypes',
+  })
+  @IsOptional()
+  breakTypes?: any;
+
+  @ApiPropertyOptional({
+    description:
+      'Total daily paid break allowance in minutes across all breaks in the shift (alias for breakPolicy.paidAllowanceMinutes)',
+    example: 60,
+  })
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  @Max(360)
+  paidBreakAllowance?: number;
+
+  @ApiPropertyOptional({
+    description: 'Alternative alias for paidBreakAllowance',
+    example: 60,
+  })
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  @Max(360)
+  paidAllowanceMinutes?: number;
 }
 

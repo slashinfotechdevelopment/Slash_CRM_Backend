@@ -144,6 +144,11 @@ export function intervalsOverlap(
 
 /**
  * Validates and normalizes break policy input into a clean object and serialized JSON snapshot.
+ * Supports:
+ * - Full BreakPolicyDto: { paidAllowanceMinutes: 60, breakTypes: [...] }
+ * - Frontend modal payload: { paidBreakAllowance: 60, allowedBreakTypes: [...] }
+ * - Direct array of break codes/names: ['LUNCH', 'TEA', 'PERSONAL', 'MEDICAL']
+ * - Custom objects: [{ code: 'LUNCH', maxDurationMinutes: 60 }]
  */
 export function validateAndNormalizeBreakPolicy(
   policyInput: any,
@@ -166,13 +171,26 @@ export function validateAndNormalizeBreakPolicy(
     }
   }
 
+  // Handle direct array input e.g. ["LUNCH", "TEA"] or [{ code: "LUNCH" }]
+  if (Array.isArray(raw)) {
+    raw = {
+      paidAllowanceMinutes: 60,
+      breakTypes: raw,
+    };
+  }
+
   if (typeof raw !== 'object' || raw === null) {
     throw new BadRequestException(
-      'Break policy must be an object containing paidAllowanceMinutes and breakTypes.',
+      'Break policy must be an object containing paidAllowanceMinutes/paidBreakAllowance and breakTypes/allowedBreakTypes.',
     );
   }
 
-  const paidAllowanceMinutes = Number(raw.paidAllowanceMinutes);
+  // Resolve paid allowance minutes
+  let rawAllowance = raw.paidAllowanceMinutes ?? raw.paidBreakAllowance;
+  if (rawAllowance === undefined || rawAllowance === null) {
+    rawAllowance = 60;
+  }
+  const paidAllowanceMinutes = Number(rawAllowance);
   if (
     isNaN(paidAllowanceMinutes) ||
     paidAllowanceMinutes < 0 ||
@@ -183,21 +201,92 @@ export function validateAndNormalizeBreakPolicy(
     );
   }
 
-  if (!Array.isArray(raw.breakTypes) || raw.breakTypes.length === 0) {
+  // Resolve break types array
+  const rawBreakTypes = raw.breakTypes ?? raw.allowedBreakTypes;
+  if (!Array.isArray(rawBreakTypes) || rawBreakTypes.length === 0) {
     throw new BadRequestException(
-      'breakTypes must be a non-empty array with at least one configured break type.',
+      'breakTypes or allowedBreakTypes must be a non-empty array with at least one configured break type.',
     );
   }
 
   const seenCodes = new Set<string>();
-  const normalizedBreakTypes = raw.breakTypes.map((bt: any, idx: number) => {
-    if (!bt || typeof bt !== 'object') {
+  const normalizedBreakTypes = rawBreakTypes.map((bt: any, idx: number) => {
+    if (!bt) {
       throw new BadRequestException(
         `Invalid break type definition at index ${idx}.`,
       );
     }
 
-    const code = String(bt.code || bt.breakTypeId || '').trim().toUpperCase();
+    let code = '';
+    let name = '';
+    let maxDurationMinutes = 0;
+    let isPaid = true;
+    let maxOccurrences = 1;
+
+    if (typeof bt === 'string') {
+      const trimmed = bt.trim();
+      const matchMinutes = trimmed.match(/\((\d+)\s*m(?:ins?)?\)/i);
+      const extractedMins = matchMinutes ? Number(matchMinutes[1]) : 0;
+      const cleanLabel = trimmed.replace(/\([^)]*\)/g, '').trim();
+      const upper = cleanLabel.toUpperCase();
+
+      if (upper.includes('LUNCH')) {
+        code = 'LUNCH';
+        name = 'Lunch Break';
+        maxDurationMinutes = extractedMins || 60;
+        isPaid = true;
+        maxOccurrences = 1;
+      } else if (upper.includes('TEA')) {
+        code = 'TEA';
+        name = 'Tea Break';
+        maxDurationMinutes = extractedMins || 20;
+        isPaid = true;
+        maxOccurrences = 2;
+      } else if (upper.includes('PERSONAL')) {
+        code = 'PERSONAL';
+        name = 'Personal Break';
+        maxDurationMinutes = extractedMins || 20;
+        isPaid = true;
+        maxOccurrences = 2;
+      } else if (upper.includes('MEDICAL')) {
+        code = 'MEDICAL';
+        name = 'Medical Break';
+        maxDurationMinutes = extractedMins || 20;
+        isPaid = true;
+        maxOccurrences = 2;
+      } else {
+        code = upper.replace(/[^A-Z0-9]/g, '_');
+        name = cleanLabel || code;
+        maxDurationMinutes = extractedMins || 30;
+        isPaid = true;
+        maxOccurrences = 2;
+      }
+    } else if (typeof bt === 'object') {
+      code = String(bt.code || bt.breakTypeId || bt.id || bt.name || '').trim().toUpperCase();
+      name = bt.name ? String(bt.name).trim() : code;
+
+      const parsedDuration = Number(bt.maxDurationMinutes);
+      if (!isNaN(parsedDuration) && parsedDuration >= 1) {
+        maxDurationMinutes = parsedDuration;
+      } else {
+        if (code === 'LUNCH') maxDurationMinutes = 60;
+        else if (code === 'TEA' || code === 'PERSONAL' || code === 'MEDICAL') maxDurationMinutes = 20;
+        else maxDurationMinutes = 30;
+      }
+
+      isPaid = bt.isPaid !== undefined ? Boolean(bt.isPaid) : true;
+      maxOccurrences =
+        bt.maxOccurrencesPerDay !== undefined
+          ? Math.max(1, Math.min(20, Number(bt.maxOccurrencesPerDay) || 1))
+          : code === 'LUNCH'
+            ? 1
+            : 2;
+    } else {
+      throw new BadRequestException(
+        `Invalid break type definition at index ${idx}.`,
+      );
+    }
+
     if (!code || code.length < 2 || code.length > 50) {
       throw new BadRequestException(
         `Break type at index ${idx} must have a valid code between 2 and 50 characters.`,
@@ -211,27 +300,10 @@ export function validateAndNormalizeBreakPolicy(
     }
     seenCodes.add(code);
 
-    const maxDurationMinutes = Number(bt.maxDurationMinutes);
-    if (
-      isNaN(maxDurationMinutes) ||
-      maxDurationMinutes < 1 ||
-      maxDurationMinutes > 360
-    ) {
-      throw new BadRequestException(
-        `Break type "${code}" maxDurationMinutes must be an integer between 1 and 360.`,
-      );
-    }
-
-    const isPaid = bt.isPaid !== undefined ? Boolean(bt.isPaid) : true;
-    const maxOccurrences =
-      bt.maxOccurrencesPerDay !== undefined
-        ? Math.max(1, Math.min(20, Number(bt.maxOccurrencesPerDay) || 1))
-        : 1;
-
     return {
       code,
       breakTypeId: code,
-      name: bt.name ? String(bt.name).trim() : code,
+      name: name || code,
       maxDurationMinutes,
       isPaid,
       maxOccurrencesPerDay: maxOccurrences,

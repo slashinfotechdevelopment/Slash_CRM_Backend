@@ -431,7 +431,30 @@ export class AttendanceService {
     }
 
     const record = activeSession.attendanceRecord;
-    const breakPolicy = parseBreakPolicySnapshot(record.breakPolicySnapshot);
+    let breakPolicy = parseBreakPolicySnapshot(record.breakPolicySnapshot);
+
+    if (
+      !breakPolicy ||
+      !breakPolicy.breakTypes ||
+      breakPolicy.breakTypes.length === 0
+    ) {
+      const shiftDef = await this.prisma.shiftDefinition.findUnique({
+        where: { id: record.shiftDefinitionId },
+      });
+      if (shiftDef?.breakPolicySnapshot) {
+        const fresh = parseBreakPolicySnapshot(shiftDef.breakPolicySnapshot);
+        if (fresh && fresh.breakTypes && fresh.breakTypes.length > 0) {
+          breakPolicy = fresh;
+          await this.prisma.attendanceRecord
+            .update({
+              where: { id: record.id },
+              data: { breakPolicySnapshot: shiftDef.breakPolicySnapshot },
+            })
+            .catch(() => null);
+        }
+      }
+    }
+
     if (!breakPolicy) {
       throw new BadRequestException(
         'Attendance record is missing a valid break policy snapshot.',
@@ -703,6 +726,35 @@ export class AttendanceService {
       record ? record.attendanceDate : localTodayStr,
     );
 
+    let recordBreakPolicy = record
+      ? parseBreakPolicySnapshot(record.breakPolicySnapshot)
+      : null;
+
+    if (
+      record &&
+      (!recordBreakPolicy ||
+        !recordBreakPolicy.breakTypes ||
+        recordBreakPolicy.breakTypes.length === 0)
+    ) {
+      const shiftDef =
+        record.shiftDefinition ||
+        (await this.prisma.shiftDefinition.findUnique({
+          where: { id: record.shiftDefinitionId },
+        }));
+      if (shiftDef?.breakPolicySnapshot) {
+        const fresh = parseBreakPolicySnapshot(shiftDef.breakPolicySnapshot);
+        if (fresh && fresh.breakTypes && fresh.breakTypes.length > 0) {
+          recordBreakPolicy = fresh;
+          await this.prisma.attendanceRecord
+            .update({
+              where: { id: record.id },
+              data: { breakPolicySnapshot: shiftDef.breakPolicySnapshot },
+            })
+            .catch(() => null);
+        }
+      }
+    }
+
     return {
       date: localTodayStr,
       hasActiveSession: Boolean(activeSession),
@@ -713,6 +765,8 @@ export class AttendanceService {
         ? {
             id: record.id,
             attendanceDate: formatDateOnly(record.attendanceDate),
+            date: formatDateOnly(record.attendanceDate),
+            workDate: formatDateOnly(record.attendanceDate),
             status: record.status,
             grossWorkingDurationSeconds: record.grossWorkingDurationSeconds,
             paidBreakDurationSeconds: record.paidBreakDurationSeconds,
@@ -721,7 +775,7 @@ export class AttendanceService {
             verifiedOvertimeSeconds: record.verifiedOvertimeSeconds,
             sessions: record.sessions,
             breaks: record.breaks,
-            breakPolicy: parseBreakPolicySnapshot(record.breakPolicySnapshot),
+            breakPolicy: recordBreakPolicy,
           }
         : null,
       effectiveShift: activeShift
@@ -802,6 +856,8 @@ export class AttendanceService {
       id: rec.id,
       userId: rec.userId,
       attendanceDate: formatDateOnly(rec.attendanceDate),
+      date: formatDateOnly(rec.attendanceDate),
+      workDate: formatDateOnly(rec.attendanceDate),
       status: rec.status,
       grossWorkingDurationSeconds: rec.grossWorkingDurationSeconds,
       paidBreakDurationSeconds: rec.paidBreakDurationSeconds,
