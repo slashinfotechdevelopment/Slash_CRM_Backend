@@ -19,7 +19,16 @@ import { CreateOvertimeRequestDto } from './dto/create-overtime-request.dto';
 import { ApproveOvertimeRequestDto } from './dto/approve-overtime-request.dto';
 import { RejectOvertimeRequestDto } from './dto/reject-overtime-request.dto';
 import { QueryOvertimeRequestsDto } from './dto/query-overtime-requests.dto';
-import { formatDateOnly, parseDateOnly } from './attendance.utils';
+import {
+  formatDateOnly,
+  formatDateRange,
+  formatDateRangeDisplay,
+  formatDayMonthYear,
+  formatDayMonthYearText,
+  formatTime12Hour,
+  formatTimeRange,
+  parseDateOnly,
+} from './attendance.utils';
 
 @Injectable()
 export class AttendanceOvertimeService {
@@ -193,7 +202,62 @@ export class AttendanceOvertimeService {
       },
     });
 
-    return created;
+    return this.formatOvertimeRequest(created);
+  }
+
+  private formatOvertimeRequest(req: any) {
+    if (!req) return req;
+    const requestedMinutes = Math.max(
+      0,
+      Math.floor(
+        (new Date(req.endTime).getTime() - new Date(req.startTime).getTime()) /
+          60000,
+      ),
+    );
+    const startDmy = formatDayMonthYear(req.attendanceDate);
+    const startText = formatDayMonthYearText(req.attendanceDate);
+    const startYmd = formatDateOnly(req.attendanceDate);
+    const startIso =
+      req.attendanceDate instanceof Date
+        ? req.attendanceDate.toISOString()
+        : req.attendanceDate;
+
+    const startTimeFormatted = formatTime12Hour(req.startTime);
+    const endTimeFormatted = formatTime12Hour(req.endTime);
+    const timeRange = formatTimeRange(req.startTime, req.endTime);
+
+    const approvedMinutes =
+      req.approvedDurationMinutes ?? req.approvedMinutes ?? null;
+
+    return {
+      ...req,
+      attendanceDate: startDmy,
+      date: startDmy,
+      workDate: startDmy,
+      attendanceDateFormatted: startDmy,
+      attendanceDateDisplay: startText,
+      dateFormatted: startDmy,
+      dateDisplay: startText,
+      workDateFormatted: startDmy,
+      workDateDisplay: startText,
+      attendanceDateYmd: startYmd,
+      attendanceDateIso: startIso,
+      dateYmd: startYmd,
+      workDateYmd: startYmd,
+      startTimeFormatted,
+      endTimeFormatted,
+      timeRange,
+      timeRangeDisplay: timeRange,
+      requestedDurationMinutes: requestedMinutes,
+      requestedMinutes,
+      durationMinutes: requestedMinutes,
+      requestedDuration: requestedMinutes,
+      requestedDurationDisplay: `${requestedMinutes} mins`,
+      approvedMinutes,
+      approvedDurationMinutes: approvedMinutes,
+      approvedDurationDisplay:
+        approvedMinutes != null ? `${approvedMinutes} mins` : null,
+    };
   }
 
   /**
@@ -221,25 +285,8 @@ export class AttendanceOvertimeService {
       this.prisma.attendanceOvertimeRequest.count({ where }),
     ]);
 
-    const mappedItems = items.map((req) => {
-      const requestedMinutes = Math.max(
-        0,
-        Math.floor((req.endTime.getTime() - req.startTime.getTime()) / 60000),
-      );
-      return {
-        ...req,
-        attendanceDate: formatDateOnly(req.attendanceDate),
-        date: formatDateOnly(req.attendanceDate),
-        workDate: formatDateOnly(req.attendanceDate),
-        requestedDurationMinutes: requestedMinutes,
-        requestedMinutes,
-        durationMinutes: requestedMinutes,
-        requestedDuration: requestedMinutes,
-      };
-    });
-
     return {
-      items: mappedItems,
+      items: items.map((req) => this.formatOvertimeRequest(req)),
       total,
       page,
       limit,
@@ -302,25 +349,8 @@ export class AttendanceOvertimeService {
       this.prisma.attendanceOvertimeRequest.count({ where }),
     ]);
 
-    const mappedItems = items.map((req) => {
-      const requestedMinutes = Math.max(
-        0,
-        Math.floor((req.endTime.getTime() - req.startTime.getTime()) / 60000),
-      );
-      return {
-        ...req,
-        attendanceDate: formatDateOnly(req.attendanceDate),
-        date: formatDateOnly(req.attendanceDate),
-        workDate: formatDateOnly(req.attendanceDate),
-        requestedDurationMinutes: requestedMinutes,
-        requestedMinutes,
-        durationMinutes: requestedMinutes,
-        requestedDuration: requestedMinutes,
-      };
-    });
-
     return {
-      items: mappedItems,
+      items: items.map((req) => this.formatOvertimeRequest(req)),
       total,
       page,
       limit,
@@ -447,7 +477,7 @@ export class AttendanceOvertimeService {
       },
     });
 
-    return result.updated;
+    return this.formatOvertimeRequest(result.updated);
   }
 
   /**
@@ -522,7 +552,7 @@ export class AttendanceOvertimeService {
       },
     });
 
-    return updated;
+    return this.formatOvertimeRequest(updated);
   }
 
   /**
@@ -577,7 +607,7 @@ export class AttendanceOvertimeService {
       },
     });
 
-    return updated;
+    return this.formatOvertimeRequest(updated);
   }
 }
 

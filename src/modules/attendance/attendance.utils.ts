@@ -56,6 +56,179 @@ export function formatDateOnly(date: Date): string {
 }
 
 /**
+ * Formats a Date object or date string into DD-MM-YYYY (e.g. 13-11-2026).
+ */
+export function formatDayMonthYear(
+  dateInput: Date | string | null | undefined,
+): string {
+  if (!dateInput) return '';
+  if (typeof dateInput === 'string') {
+    const trimmed = dateInput.trim();
+    const match = trimmed.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (match) {
+      return `${match[3]}-${match[2]}-${match[1]}`;
+    }
+  }
+  const d = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  if (isNaN(d.getTime())) return '';
+
+  if (
+    d.getUTCHours() === 0 &&
+    d.getUTCMinutes() === 0 &&
+    d.getUTCSeconds() === 0
+  ) {
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+    const year = d.getUTCFullYear();
+    return `${day}-${month}-${year}`;
+  }
+
+  const parts = new Intl.DateTimeFormat('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).formatToParts(d);
+
+  const day = parts.find((p) => p.type === 'day')?.value ?? '';
+  const month = parts.find((p) => p.type === 'month')?.value ?? '';
+  const year = parts.find((p) => p.type === 'year')?.value ?? '';
+  return `${day}-${month}-${year}`;
+}
+
+/**
+ * Formats a Date object or date string into DD MMM YYYY (e.g. 13 Nov 2026).
+ */
+export function formatDayMonthYearText(
+  dateInput: Date | string | null | undefined,
+): string {
+  if (!dateInput) return '';
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  if (typeof dateInput === 'string') {
+    const trimmed = dateInput.trim();
+    const match = trimmed.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (match) {
+      const mIdx = parseInt(match[2], 10) - 1;
+      const monthName = months[mIdx] || match[2];
+      return `${match[3]} ${monthName} ${match[1]}`;
+    }
+  }
+  const d = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  if (isNaN(d.getTime())) return '';
+
+  if (
+    d.getUTCHours() === 0 &&
+    d.getUTCMinutes() === 0 &&
+    d.getUTCSeconds() === 0
+  ) {
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    const monthName = months[d.getUTCMonth()];
+    const year = d.getUTCFullYear();
+    return `${day} ${monthName} ${year}`;
+  }
+
+  const parts = new Intl.DateTimeFormat('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  }).formatToParts(d);
+
+  const day = parts.find((p) => p.type === 'day')?.value ?? '';
+  const month = parts.find((p) => p.type === 'month')?.value ?? '';
+  const year = parts.find((p) => p.type === 'year')?.value ?? '';
+  return `${day} ${month} ${year}`;
+}
+
+/**
+ * Formats a date range into DD-MM-YYYY to DD-MM-YYYY (e.g. 13-11-2026 to 14-11-2026).
+ */
+export function formatDateRange(
+  startInput: Date | string | null | undefined,
+  endInput: Date | string | null | undefined,
+): string {
+  const startDmy = formatDayMonthYear(startInput);
+  if (!startDmy) return '';
+  if (!endInput) return `${startDmy} to Ongoing`;
+  const endDmy = formatDayMonthYear(endInput);
+  if (!endDmy || startDmy === endDmy) return startDmy;
+  return `${startDmy} to ${endDmy}`;
+}
+
+/**
+ * Formats a date range into readable text (e.g. 13 Nov 2026 to 14 Nov 2026).
+ */
+export function formatDateRangeDisplay(
+  startInput: Date | string | null | undefined,
+  endInput: Date | string | null | undefined,
+): string {
+  const startText = formatDayMonthYearText(startInput);
+  if (!startText) return '';
+  if (!endInput) return `${startText} to Ongoing`;
+  const endText = formatDayMonthYearText(endInput);
+  if (!endText || startText === endText) return startText;
+  return `${startText} to ${endText}`;
+}
+
+/**
+ * Formats a 24-hr time string (HH:mm) or Date/timestamp into readable 12-hour format in Asia/Kolkata (e.g. 06:00 PM).
+ */
+export function formatTime12Hour(
+  timeOrDateInput: Date | string | null | undefined,
+): string {
+  if (!timeOrDateInput) return '';
+  if (typeof timeOrDateInput === 'string') {
+    const trimmed = timeOrDateInput.trim();
+    const timeMatch = trimmed.match(/^(\d{1,2}):(\d{2})(?::\d{2})?$/);
+    if (timeMatch) {
+      let hours = parseInt(timeMatch[1], 10);
+      const minutes = parseInt(timeMatch[2], 10);
+      const suffix = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${suffix}`;
+    }
+  }
+  const d =
+    typeof timeOrDateInput === 'string'
+      ? new Date(timeOrDateInput)
+      : timeOrDateInput;
+  if (isNaN(d.getTime())) return '';
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  }).format(d);
+}
+
+/**
+ * Formats a start and end time into 12-hour range (e.g. 06:00 PM to 08:00 PM).
+ */
+export function formatTimeRange(
+  startInput: Date | string | null | undefined,
+  endInput: Date | string | null | undefined,
+): string {
+  const start = formatTime12Hour(startInput);
+  const end = formatTime12Hour(endInput);
+  if (!start) return '';
+  if (!end) return start;
+  return `${start} to ${end}`;
+}
+
+/**
  * Resolves the calendar date (YYYY-MM-DD) for a given UTC Date in the Asia/Kolkata timezone (+05:30).
  */
 export function getAsiaKolkataDateString(date: Date = new Date()): string {

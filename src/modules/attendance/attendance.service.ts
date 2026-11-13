@@ -23,6 +23,12 @@ import { QueryAttendanceHistoryDto } from './dto/query-attendance-history.dto';
 import {
   createAsiaKolkataDateTime,
   formatDateOnly,
+  formatDateRange,
+  formatDateRangeDisplay,
+  formatDayMonthYear,
+  formatDayMonthYearText,
+  formatTime12Hour,
+  formatTimeRange,
   getAsiaKolkataDateString,
   getPreviousDayString,
   parseBreakPolicySnapshot,
@@ -757,16 +763,41 @@ export class AttendanceService {
 
     return {
       date: localTodayStr,
+      dateFormatted: formatDayMonthYear(localTodayStr),
+      dateDisplay: formatDayMonthYearText(localTodayStr),
       hasActiveSession: Boolean(activeSession),
-      activeSession,
+      activeSession: activeSession
+        ? {
+            ...activeSession,
+            checkInTimeFormatted: activeSession.rawCheckInAt
+              ? formatTime12Hour(activeSession.rawCheckInAt)
+              : null,
+          }
+        : null,
       hasActiveBreak: Boolean(activeBreak),
-      activeBreak,
+      activeBreak: activeBreak
+        ? {
+            ...activeBreak,
+            startTimeFormatted: activeBreak.startedAt
+              ? formatTime12Hour(activeBreak.startedAt)
+              : null,
+          }
+        : null,
       record: record
         ? {
             id: record.id,
-            attendanceDate: formatDateOnly(record.attendanceDate),
-            date: formatDateOnly(record.attendanceDate),
-            workDate: formatDateOnly(record.attendanceDate),
+            attendanceDate: formatDayMonthYear(record.attendanceDate),
+            date: formatDayMonthYear(record.attendanceDate),
+            workDate: formatDayMonthYear(record.attendanceDate),
+            dateFormatted: formatDayMonthYear(record.attendanceDate),
+            dateDisplay: formatDayMonthYearText(record.attendanceDate),
+            attendanceDateFormatted: formatDayMonthYear(record.attendanceDate),
+            attendanceDateDisplay: formatDayMonthYearText(record.attendanceDate),
+            workDateFormatted: formatDayMonthYear(record.attendanceDate),
+            workDateDisplay: formatDayMonthYearText(record.attendanceDate),
+            attendanceDateYmd: formatDateOnly(record.attendanceDate),
+            dateYmd: formatDateOnly(record.attendanceDate),
+            workDateYmd: formatDateOnly(record.attendanceDate),
             status: record.status,
             grossWorkingDurationSeconds: record.grossWorkingDurationSeconds,
             paidBreakDurationSeconds: record.paidBreakDurationSeconds,
@@ -785,6 +816,20 @@ export class AttendanceService {
             name: activeShift.shiftDefinition.name,
             startTime: activeShift.shiftDefinition.startTime,
             endTime: activeShift.shiftDefinition.endTime,
+            startTimeFormatted: formatTime12Hour(
+              activeShift.shiftDefinition.startTime,
+            ),
+            endTimeFormatted: formatTime12Hour(
+              activeShift.shiftDefinition.endTime,
+            ),
+            timeRange: formatTimeRange(
+              activeShift.shiftDefinition.startTime,
+              activeShift.shiftDefinition.endTime,
+            ),
+            timeRangeDisplay: formatTimeRange(
+              activeShift.shiftDefinition.startTime,
+              activeShift.shiftDefinition.endTime,
+            ),
             isOvernight: activeShift.shiftDefinition.isOvernight,
             allowMultipleSessions:
               activeShift.shiftDefinition.allowMultipleSessions,
@@ -852,29 +897,76 @@ export class AttendanceService {
       }),
     ]);
 
-    const items = records.map((rec) => ({
-      id: rec.id,
-      userId: rec.userId,
-      attendanceDate: formatDateOnly(rec.attendanceDate),
-      date: formatDateOnly(rec.attendanceDate),
-      workDate: formatDateOnly(rec.attendanceDate),
-      status: rec.status,
-      grossWorkingDurationSeconds: rec.grossWorkingDurationSeconds,
-      paidBreakDurationSeconds: rec.paidBreakDurationSeconds,
-      unpaidBreakDurationSeconds: rec.unpaidBreakDurationSeconds,
-      netWorkingDurationSeconds: rec.netWorkingDurationSeconds,
-      verifiedOvertimeSeconds: rec.verifiedOvertimeSeconds,
-      hasIntegrityAnomaly: rec.hasIntegrityAnomaly,
-      shift: {
-        id: rec.shiftDefinition.id,
-        code: rec.shiftDefinition.code,
-        name: rec.shiftDefinition.name,
-        startTime: rec.shiftDefinition.startTime,
-        endTime: rec.shiftDefinition.endTime,
-      },
-      sessions: rec.sessions,
-      breaks: rec.breaks,
-    }));
+    const items = records.map((rec) => {
+      const dmy = formatDayMonthYear(rec.attendanceDate);
+      const dText = formatDayMonthYearText(rec.attendanceDate);
+      const ymd = formatDateOnly(rec.attendanceDate);
+
+      const mappedSessions = rec.sessions.map((s) => ({
+        ...s,
+        checkInTimeFormatted: s.rawCheckInAt
+          ? formatTime12Hour(s.rawCheckInAt)
+          : null,
+        checkOutTimeFormatted: s.rawCheckOutAt
+          ? formatTime12Hour(s.rawCheckOutAt)
+          : null,
+        timeRange: formatTimeRange(s.rawCheckInAt, s.rawCheckOutAt),
+      }));
+
+      const mappedBreaks = rec.breaks.map((b) => ({
+        ...b,
+        startTimeFormatted: b.startedAt
+          ? formatTime12Hour(b.startedAt)
+          : null,
+        endTimeFormatted: b.endedAt
+          ? formatTime12Hour(b.endedAt)
+          : null,
+        timeRange: formatTimeRange(b.startedAt, b.endedAt),
+      }));
+
+      return {
+        id: rec.id,
+        userId: rec.userId,
+        attendanceDate: dmy,
+        date: dmy,
+        workDate: dmy,
+        dateFormatted: dmy,
+        dateDisplay: dText,
+        attendanceDateFormatted: dmy,
+        attendanceDateDisplay: dText,
+        workDateFormatted: dmy,
+        workDateDisplay: dText,
+        attendanceDateYmd: ymd,
+        dateYmd: ymd,
+        workDateYmd: ymd,
+        status: rec.status,
+        grossWorkingDurationSeconds: rec.grossWorkingDurationSeconds,
+        paidBreakDurationSeconds: rec.paidBreakDurationSeconds,
+        unpaidBreakDurationSeconds: rec.unpaidBreakDurationSeconds,
+        netWorkingDurationSeconds: rec.netWorkingDurationSeconds,
+        verifiedOvertimeSeconds: rec.verifiedOvertimeSeconds,
+        hasIntegrityAnomaly: rec.hasIntegrityAnomaly,
+        shift: {
+          id: rec.shiftDefinition.id,
+          code: rec.shiftDefinition.code,
+          name: rec.shiftDefinition.name,
+          startTime: rec.shiftDefinition.startTime,
+          endTime: rec.shiftDefinition.endTime,
+          startTimeFormatted: formatTime12Hour(rec.shiftDefinition.startTime),
+          endTimeFormatted: formatTime12Hour(rec.shiftDefinition.endTime),
+          timeRange: formatTimeRange(
+            rec.shiftDefinition.startTime,
+            rec.shiftDefinition.endTime,
+          ),
+          timeRangeDisplay: formatTimeRange(
+            rec.shiftDefinition.startTime,
+            rec.shiftDefinition.endTime,
+          ),
+        },
+        sessions: mappedSessions,
+        breaks: mappedBreaks,
+      };
+    });
 
     return {
       items,

@@ -17,6 +17,12 @@ import {
 import { QueryShiftsDto } from './dto/query-shifts.dto';
 import {
   formatDateOnly,
+  formatDateRange,
+  formatDateRangeDisplay,
+  formatDayMonthYear,
+  formatDayMonthYearText,
+  formatTime12Hour,
+  formatTimeRange,
   getAsiaKolkataDateString,
   intervalsOverlap,
   parseBreakPolicySnapshot,
@@ -168,10 +174,7 @@ export class AttendanceShiftsService {
       }),
     ]);
 
-    const mapped = items.map((shift) => ({
-      ...shift,
-      breakPolicy: parseBreakPolicySnapshot(shift.breakPolicySnapshot),
-    }));
+    const mapped = items.map((shift) => this.formatShiftDefinition(shift));
 
     return {
       items: mapped,
@@ -179,6 +182,75 @@ export class AttendanceShiftsService {
       page,
       limit,
       totalPages: Math.ceil(total / limit),
+    };
+  }
+
+  /**
+   * Formats shift definition with human-readable 12-hour time and range.
+   */
+  private formatShiftDefinition(shift: any) {
+    if (!shift) return shift;
+    const startTimeFormatted = formatTime12Hour(shift.startTime);
+    const endTimeFormatted = formatTime12Hour(shift.endTime);
+    const timeRange = formatTimeRange(shift.startTime, shift.endTime);
+    return {
+      ...shift,
+      startTimeFormatted,
+      endTimeFormatted,
+      timeRange,
+      timeRangeDisplay: timeRange,
+      breakPolicy: shift.breakPolicySnapshot
+        ? parseBreakPolicySnapshot(shift.breakPolicySnapshot)
+        : shift.breakPolicy
+          ? parseBreakPolicySnapshot(shift.breakPolicy)
+          : undefined,
+    };
+  }
+
+  /**
+   * Formats employee shift assignment with human-readable days-month-year date formats.
+   */
+  private formatShiftAssignment(assignment: any) {
+    if (!assignment) return assignment;
+    const startDmy = formatDayMonthYear(assignment.startDate);
+    const endDmy = assignment.endDate
+      ? formatDayMonthYear(assignment.endDate)
+      : null;
+    const startText = formatDayMonthYearText(assignment.startDate);
+    const endText = assignment.endDate
+      ? formatDayMonthYearText(assignment.endDate)
+      : 'Ongoing';
+    const startYmd = formatDateOnly(assignment.startDate);
+    const endYmd = assignment.endDate
+      ? formatDateOnly(assignment.endDate)
+      : null;
+
+    const dateRange = formatDateRange(assignment.startDate, assignment.endDate);
+    const dateRangeDisplay = formatDateRangeDisplay(
+      assignment.startDate,
+      assignment.endDate,
+    );
+
+    const shiftDef = assignment.shiftDefinition
+      ? this.formatShiftDefinition(assignment.shiftDefinition)
+      : undefined;
+
+    return {
+      ...assignment,
+      startDate: startDmy,
+      endDate: endDmy,
+      startDateFormatted: startDmy,
+      endDateFormatted: endDmy,
+      startDateDisplay: startText,
+      endDateDisplay: endText,
+      startDateYmd: startYmd,
+      endDateYmd: endYmd,
+      dateRange,
+      dateRangeDisplay,
+      dateRangeText: endDmy
+        ? `${startDmy} to ${endDmy}`
+        : `${startDmy} to Ongoing`,
+      shiftDefinition: shiftDef,
     };
   }
 
@@ -194,10 +266,7 @@ export class AttendanceShiftsService {
       throw new NotFoundException(`Shift definition with ID "${id}" not found.`);
     }
 
-    return {
-      ...shift,
-      breakPolicy: parseBreakPolicySnapshot(shift.breakPolicySnapshot),
-    };
+    return this.formatShiftDefinition(shift);
   }
 
   /**
@@ -504,15 +573,7 @@ export class AttendanceShiftsService {
       },
     });
 
-    return {
-      ...createdAssignment,
-      shiftDefinition: {
-        ...createdAssignment.shiftDefinition,
-        breakPolicy: parseBreakPolicySnapshot(
-          createdAssignment.shiftDefinition.breakPolicySnapshot,
-        ),
-      },
-    };
+    return this.formatShiftAssignment(createdAssignment);
   }
 
   /**
@@ -628,15 +689,7 @@ export class AttendanceShiftsService {
       },
     });
 
-    return {
-      ...updated,
-      shiftDefinition: {
-        ...updated.shiftDefinition,
-        breakPolicy: parseBreakPolicySnapshot(
-          updated.shiftDefinition.breakPolicySnapshot,
-        ),
-      },
-    };
+    return this.formatShiftAssignment(updated);
   }
 
   /**
@@ -715,15 +768,9 @@ export class AttendanceShiftsService {
       orderBy: { startDate: 'desc' },
     });
 
-    return assignments.map((assignment) => ({
-      ...assignment,
-      shiftDefinition: {
-        ...assignment.shiftDefinition,
-        breakPolicy: parseBreakPolicySnapshot(
-          assignment.shiftDefinition.breakPolicySnapshot,
-        ),
-      },
-    }));
+    return assignments.map((assignment) =>
+      this.formatShiftAssignment(assignment),
+    );
   }
 
   /**
@@ -749,14 +796,6 @@ export class AttendanceShiftsService {
       return null;
     }
 
-    return {
-      ...assignment,
-      shiftDefinition: {
-        ...assignment.shiftDefinition,
-        breakPolicy: parseBreakPolicySnapshot(
-          assignment.shiftDefinition.breakPolicySnapshot,
-        ),
-      },
-    };
+    return this.formatShiftAssignment(assignment);
   }
 }

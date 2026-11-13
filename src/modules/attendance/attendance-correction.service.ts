@@ -28,6 +28,12 @@ import { QueryCorrectionRequestsDto } from './dto/query-correction-requests.dto'
 import {
   createAsiaKolkataDateTime,
   formatDateOnly,
+  formatDateRange,
+  formatDateRangeDisplay,
+  formatDayMonthYear,
+  formatDayMonthYearText,
+  formatTime12Hour,
+  formatTimeRange,
   parseDateOnly,
 } from './attendance.utils';
 import { hasStrictOverlap, TimeInterval } from './attendance-interval.utils';
@@ -365,7 +371,49 @@ export class AttendanceCorrectionService {
       },
     });
 
-    return created;
+    return this.formatCorrectionRequest(created);
+  }
+
+  private formatCorrectionRequest(req: any) {
+    if (!req) return req;
+    const rec = req.attendanceRecord;
+    let mappedRecord = rec;
+    if (rec && rec.attendanceDate) {
+      const dmy = formatDayMonthYear(rec.attendanceDate);
+      const dText = formatDayMonthYearText(rec.attendanceDate);
+      const ymd = formatDateOnly(rec.attendanceDate);
+      mappedRecord = {
+        ...rec,
+        attendanceDate: dmy,
+        date: dmy,
+        workDate: dmy,
+        dateFormatted: dmy,
+        dateDisplay: dText,
+        attendanceDateFormatted: dmy,
+        attendanceDateDisplay: dText,
+        attendanceDateYmd: ymd,
+      };
+    }
+
+    const requestedCheckInTimeFormatted = req.requestedCheckInAt
+      ? formatTime12Hour(req.requestedCheckInAt)
+      : null;
+    const requestedCheckOutTimeFormatted = req.requestedCheckOutAt
+      ? formatTime12Hour(req.requestedCheckOutAt)
+      : null;
+    const requestedTimeRange = formatTimeRange(
+      req.requestedCheckInAt,
+      req.requestedCheckOutAt,
+    );
+
+    return {
+      ...req,
+      attendanceRecord: mappedRecord,
+      requestedCheckInTimeFormatted,
+      requestedCheckOutTimeFormatted,
+      requestedTimeRange,
+      requestedTimeRangeDisplay: requestedTimeRange,
+    };
   }
 
   /**
@@ -404,7 +452,7 @@ export class AttendanceCorrectionService {
     ]);
 
     return {
-      items,
+      items: items.map((r) => this.formatCorrectionRequest(r)),
       total,
       page,
       limit,
@@ -474,7 +522,7 @@ export class AttendanceCorrectionService {
     ]);
 
     return {
-      items,
+      items: items.map((r) => this.formatCorrectionRequest(r)),
       total,
       page,
       limit,
@@ -530,7 +578,7 @@ export class AttendanceCorrectionService {
       );
     }
 
-    return request;
+    return this.formatCorrectionRequest(request);
   }
 
   /**
@@ -575,7 +623,7 @@ export class AttendanceCorrectionService {
       newValues: { status: AttendanceCorrectionStatus.CANCELLED },
     });
 
-    return updated;
+    return this.formatCorrectionRequest(updated);
   }
 
   /**
@@ -925,7 +973,7 @@ export class AttendanceCorrectionService {
       },
     });
 
-    return result.updatedRequest;
+    return this.formatCorrectionRequest(result.updatedRequest);
   }
 
   /**
@@ -1035,6 +1083,6 @@ export class AttendanceCorrectionService {
       },
     });
 
-    return result;
+    return this.formatCorrectionRequest(result);
   }
 }

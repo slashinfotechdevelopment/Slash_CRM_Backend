@@ -16,7 +16,15 @@ import {
 import { CreateWfhRequestDto } from './dto/create-wfh-request.dto';
 import { RejectWfhRequestDto } from './dto/reject-wfh-request.dto';
 import { QueryWfhRequestsDto } from './dto/query-wfh-requests.dto';
-import { intervalsOverlap, parseDateOnly } from './attendance.utils';
+import {
+  formatDateOnly,
+  formatDateRange,
+  formatDateRangeDisplay,
+  formatDayMonthYear,
+  formatDayMonthYearText,
+  intervalsOverlap,
+  parseDateOnly,
+} from './attendance.utils';
 
 @Injectable()
 export class AttendanceWfhService {
@@ -85,7 +93,55 @@ export class AttendanceWfhService {
       },
     });
 
-    return created;
+    return this.formatWfhRecord(created);
+  }
+
+  private formatWfhRecord(wfh: any) {
+    if (!wfh) return wfh;
+    const startDmy = formatDayMonthYear(wfh.startDate);
+    const endDmy = formatDayMonthYear(wfh.endDate);
+    const startText = formatDayMonthYearText(wfh.startDate);
+    const endText = formatDayMonthYearText(wfh.endDate);
+    const startYmd = formatDateOnly(wfh.startDate);
+    const endYmd = formatDateOnly(wfh.endDate);
+    const startIso =
+      wfh.startDate instanceof Date
+        ? wfh.startDate.toISOString()
+        : wfh.startDate;
+    const endIso =
+      wfh.endDate instanceof Date ? wfh.endDate.toISOString() : wfh.endDate;
+
+    const startMs = parseDateOnly(startYmd).getTime();
+    const endMs = parseDateOnly(endYmd).getTime();
+    const totalDays = Math.max(
+      1,
+      Math.round((endMs - startMs) / 86400000) + 1,
+    );
+
+    const dateRange = formatDateRange(wfh.startDate, wfh.endDate);
+    const dateRangeDisplay = formatDateRangeDisplay(wfh.startDate, wfh.endDate);
+
+    return {
+      ...wfh,
+      startDate: startDmy,
+      endDate: endDmy,
+      startDateFormatted: startDmy,
+      endDateFormatted: endDmy,
+      startDateDisplay: startText,
+      endDateDisplay: endText,
+      startDateYmd: startYmd,
+      endDateYmd: endYmd,
+      startDateIso: startIso,
+      endDateIso: endIso,
+      dateRange,
+      dateRangeDisplay,
+      dateRangeText: `${startDmy} to ${endDmy}`,
+      date: startDmy,
+      dateDisplay: startText,
+      totalDays,
+      daysCount: totalDays,
+      durationDays: totalDays,
+    };
   }
 
   /**
@@ -111,7 +167,7 @@ export class AttendanceWfhService {
     ]);
 
     return {
-      items,
+      items: items.map((wfh) => this.formatWfhRecord(wfh)),
       total,
       page,
       limit,
@@ -172,7 +228,7 @@ export class AttendanceWfhService {
     ]);
 
     return {
-      items,
+      items: items.map((wfh) => this.formatWfhRecord(wfh)),
       total,
       page,
       limit,
@@ -252,7 +308,7 @@ export class AttendanceWfhService {
       },
     });
 
-    return updated;
+    return this.formatWfhRecord(updated);
   }
 
   /**
@@ -327,7 +383,7 @@ export class AttendanceWfhService {
       },
     });
 
-    return updated;
+    return this.formatWfhRecord(updated);
   }
 
   /**
@@ -382,7 +438,7 @@ export class AttendanceWfhService {
       },
     });
 
-    return updated;
+    return this.formatWfhRecord(updated);
   }
 }
 
