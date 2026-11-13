@@ -158,7 +158,6 @@ describe('Phase 6.2.2: Attendance Shift Management & Policy Engine (e2e)', () =>
           emailVerifiedAt: new Date(),
           employeeProfile: {
             create: {
-              employeeNumber: 'EMP_SEC_NUM_' + ts.toString().slice(-4),
               designation: 'QA Engineer',
             },
           },

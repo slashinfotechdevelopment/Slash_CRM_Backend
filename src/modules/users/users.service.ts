@@ -129,10 +129,23 @@ export class UsersService {
     actorUserId?: string,
     actorUserType?: string,
     permissionCode: string = 'users.view',
+    options?: { includeDeleted?: boolean; onlyDeleted?: boolean },
   ): Promise<any> {
-    // 1. Super Admin: full visibility of non-deleted records
+    const isPrivileged =
+      actorUserType === 'SUPER_ADMIN' || actorUserType === 'ADMIN';
+
+    let deletedFilter: any = { deletedAt: null };
+    if (isPrivileged) {
+      if (options?.onlyDeleted) {
+        deletedFilter = { deletedAt: { not: null } };
+      } else if (options?.includeDeleted) {
+        deletedFilter = {};
+      }
+    }
+
+    // 1. Super Admin: full visibility
     if (actorUserType === 'SUPER_ADMIN') {
-      return { deletedAt: null };
+      return { ...deletedFilter };
     }
 
     // 2. Client: only their own user record
@@ -153,7 +166,7 @@ export class UsersService {
 
     // Common restriction: Non-Super-Admins can NEVER see SUPER_ADMIN accounts
     const baseCondition: any = {
-      deletedAt: null,
+      ...deletedFilter,
       userType: { code: { not: 'SUPER_ADMIN' } },
     };
 
@@ -277,18 +290,6 @@ export class UsersService {
         throw new BadRequestException(
           'profile object is required for EMPLOYEE user type.',
         );
-      }
-
-      if (dto.profile.employeeNumber) {
-        const existingEmpNum = await this.prisma.employeeProfile.findUnique({
-          where: { employeeNumber: dto.profile.employeeNumber },
-        });
-
-        if (existingEmpNum) {
-          throw new ConflictException(
-            `Employee number '${dto.profile.employeeNumber}' is already in use.`,
-          );
-        }
       }
 
       if (dto.profile.reportingToId) {
@@ -453,7 +454,6 @@ export class UsersService {
         await tx.employeeProfile.create({
           data: {
             userId: user.id,
-            employeeNumber: dto.profile.employeeNumber || null,
             designation: dto.profile.designation || null,
             dateOfJoining: dto.profile.dateOfJoining
               ? new Date(dto.profile.dateOfJoining)
@@ -562,6 +562,7 @@ export class UsersService {
       actorUserId,
       actorUserType,
       'users.view',
+      { includeDeleted: query.includeDeleted, onlyDeleted: query.onlyDeleted },
     );
 
     const andConditions: any[] = [scopeWhere];
@@ -649,6 +650,7 @@ export class UsersService {
         },
         include: {
           userType: { select: { code: true, name: true } },
+          employeeProfile: { select: { designation: true } },
           profileMedia: {
             select: {
               id: true,
@@ -677,9 +679,11 @@ export class UsersService {
       name: u.name,
       email: u.email,
       phone: u.phone,
+      designation: u.employeeProfile?.designation || null,
       userType: u.userType,
       status: u.status,
       emailVerified: u.emailVerifiedAt !== null,
+      deletedAt: u.deletedAt,
       profileMedia: u.profileMedia || null,
       roles: u.userRoles.map((ur) => ur.role),
       departments: u.departments.map((ud) => ({
@@ -927,25 +931,6 @@ export class UsersService {
           );
         }
 
-        if (
-          dto.profile.employeeNumber &&
-          dto.profile.employeeNumber !==
-          targetUser.employeeProfile?.employeeNumber
-        ) {
-          const existingEmpNo = await this.prisma.employeeProfile.findFirst({
-            where: {
-              employeeNumber: dto.profile.employeeNumber,
-              userId: { not: id },
-            },
-          });
-
-          if (existingEmpNo) {
-            throw new ConflictException(
-              `Employee number '${dto.profile.employeeNumber}' is already in use by another employee.`,
-            );
-          }
-        }
-
         if (dto.profile.reportingToId) {
           if (dto.profile.reportingToId === id) {
             throw new BadRequestException(
@@ -1018,11 +1003,21 @@ export class UsersService {
         data: userUpdate,
       });
 
+      // Direct root-level designation update for employees
+      if (
+        dto.designation !== undefined &&
+        targetUser.userType.code === 'EMPLOYEE'
+      ) {
+        await tx.employeeProfile.upsert({
+          where: { userId: id },
+          update: { designation: dto.designation },
+          create: { userId: id, designation: dto.designation },
+        });
+      }
+
       if (dto.profile) {
         if (targetUser.userType.code === 'EMPLOYEE') {
           const empData: any = {};
-          if (dto.profile.employeeNumber !== undefined)
-            empData.employeeNumber = dto.profile.employeeNumber;
           if (dto.profile.designation !== undefined)
             empData.designation = dto.profile.designation;
           if (dto.profile.dateOfJoining !== undefined)
@@ -1414,23 +1409,6 @@ export class UsersService {
       if (existingPhone) {
         throw new ConflictException(
           `Cannot restore user: phone number '${targetUser.phone}' is currently in use by an active account.`,
-        );
-      }
-    }
-
-    // Verify employee number uniqueness (if employee)
-    if (targetUser.employeeProfile?.employeeNumber) {
-      const existingEmpNum = await this.prisma.employeeProfile.findFirst({
-        where: {
-          employeeNumber: targetUser.employeeProfile.employeeNumber,
-          userId: { not: id },
-          user: { deletedAt: null },
-        },
-      });
-
-      if (existingEmpNum) {
-        throw new ConflictException(
-          `Cannot restore user: employee number '${targetUser.employeeProfile.employeeNumber}' is currently in use by an active employee.`,
         );
       }
     }

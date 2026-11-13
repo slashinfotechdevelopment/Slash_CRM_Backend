@@ -156,7 +156,6 @@ describe('Phase 6.2.3: Attendance Check-in, Check-out & Break Lifecycle (e2e)', 
           emailVerifiedAt: new Date(),
           employeeProfile: {
             create: {
-              employeeNumber: 'EMP_NUM_623_' + ts.toString().slice(-4),
               designation: 'Backend Engineer',
             },
           },

@@ -47,6 +47,17 @@ export class UpdateUserDto {
 
   @ApiPropertyOptional({
     description:
+      'Updated employee job designation / title (applies directly to EMPLOYEE user type)',
+    example: 'Senior Flutter Developer',
+  })
+  @IsOptional()
+  @IsString({ message: 'designation must be a string.' })
+  @MaxLength(120, { message: 'designation cannot exceed 120 characters.' })
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  designation?: string;
+
+  @ApiPropertyOptional({
+    description:
       'Nested profile update object corresponding to the user type (EmployeeProfile for EMPLOYEE, ClientProfile for CLIENT)',
   })
   @IsOptional()

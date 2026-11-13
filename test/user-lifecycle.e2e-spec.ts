@@ -142,7 +142,6 @@ describe('User Management & Auth Full E2E Lifecycle (e2e)', () => {
         roles: ['DEVELOPER'],
         departments: ['DEVELOPMENT'],
         profile: {
-          employeeNumber: `EMP_E2E_${uniqueSuffix}`.slice(0, 30),
           designation: 'Senior Backend Engineer',
           employmentType: 'FULL_TIME',
           notes: 'Created via automated E2E test suite',
@@ -160,7 +159,7 @@ describe('User Management & Auth Full E2E Lifecycle (e2e)', () => {
       expect(res.body.data.userCode).toMatch(/^EMP\d{3,}$/);
       expect(res.body.data.name).toBe(payload.name);
       expect(res.body.data.email).toBe(payload.email);
-      expect(res.body.data.profile.employeeNumber).toBe(payload.profile.employeeNumber);
+      expect(res.body.data.profile.designation).toBe(payload.profile.designation);
 
       createdEmployeeId = res.body.data.id;
     });

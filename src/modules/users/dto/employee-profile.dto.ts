@@ -20,16 +20,6 @@ export type EmploymentType = (typeof EMPLOYMENT_TYPES)[number];
 
 export class EmployeeProfileDto {
   @ApiPropertyOptional({
-    description: 'Unique company employee number / badge code',
-    example: 'EMP1001',
-  })
-  @IsOptional()
-  @IsString({ message: 'employeeNumber must be a string.' })
-  @MaxLength(40, { message: 'employeeNumber cannot exceed 40 characters.' })
-  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
-  employeeNumber?: string;
-
-  @ApiPropertyOptional({
     description: 'Employee job designation / title',
     example: 'Flutter Developer',
   })

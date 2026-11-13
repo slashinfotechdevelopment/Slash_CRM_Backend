@@ -3714,7 +3714,6 @@ export type UserDepartmentScalarFieldEnum = (typeof UserDepartmentScalarFieldEnu
 export const EmployeeProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  employeeNumber: 'employeeNumber',
   designation: 'designation',
   dateOfJoining: 'dateOfJoining',
   employmentType: 'employmentType',
@@ -4495,7 +4494,6 @@ export type UserDepartmentOrderByRelevanceFieldEnum = (typeof UserDepartmentOrde
 export const EmployeeProfileOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
-  employeeNumber: 'employeeNumber',
   designation: 'designation',
   employmentType: 'employmentType',
   reportingToId: 'reportingToId',

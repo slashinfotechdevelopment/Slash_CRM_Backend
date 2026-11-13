@@ -291,7 +291,6 @@ describe('UsersService - Stage 1 & Stage 2', () => {
           status: 'ACTIVE',
           userType: { id: 'ut-emp', code: 'EMPLOYEE', name: 'Employee' },
           employeeProfile: {
-            employeeNumber: 'EMP1001',
             designation: 'Developer',
           },
           clientProfile: null,
@@ -317,7 +316,6 @@ describe('UsersService - Stage 1 & Stage 2', () => {
           email: 'rahul@example.com',
           phone: '+919876543210',
           profile: {
-            employeeNumber: 'EMP1001',
             designation: 'Developer',
           },
         },
@@ -330,7 +328,6 @@ describe('UsersService - Stage 1 & Stage 2', () => {
       expect(prisma.employeeProfile.create).toHaveBeenCalledWith({
         data: expect.objectContaining({
           userId: 'u-emp-1',
-          employeeNumber: 'EMP1001',
           designation: 'Developer',
         }),
       });
@@ -397,32 +394,6 @@ describe('UsersService - Stage 1 & Stage 2', () => {
           'SUPER_ADMIN',
         ),
       ).rejects.toThrow(BadRequestException);
-    });
-
-    it('should reject duplicate employeeNumber', async () => {
-      prisma.userType.findFirst.mockResolvedValue({
-        id: 'ut-emp',
-        code: 'EMPLOYEE',
-        status: RecordStatus.ACTIVE,
-      });
-      prisma.user.findUnique.mockResolvedValue(null);
-      prisma.employeeProfile.findUnique.mockResolvedValue({
-        id: 'ep-existing',
-        employeeNumber: 'EMP1001',
-      });
-
-      await expect(
-        service.create(
-          {
-            userType: 'EMPLOYEE',
-            name: 'Rahul Kumar',
-            email: 'rahul@example.com',
-            profile: { employeeNumber: 'EMP1001' },
-          },
-          'sa-id',
-          'SUPER_ADMIN',
-        ),
-      ).rejects.toThrow(ConflictException);
     });
 
     it('should reject non-existent reportingToId', async () => {
@@ -904,7 +875,6 @@ describe('UsersService - Stage 1 & Stage 2', () => {
         userType: { id: 'ut-1', code: 'EMPLOYEE', name: 'Employee' },
         profileMedia: null,
         employeeProfile: {
-          employeeNumber: 'EMP1010',
           designation: 'Frontend Engineer',
           reportingToId: null,
         },
@@ -1009,7 +979,7 @@ describe('UsersService - Stage 1 & Stage 2', () => {
       prisma.user.findFirst.mockResolvedValue({
         id: 'u-emp-up',
         userType: { code: 'EMPLOYEE' },
-        employeeProfile: { employeeNumber: 'EMP100', designation: 'Junior Dev' },
+        employeeProfile: { designation: 'Junior Dev' },
       });
 
       prisma.employeeProfile.upsert.mockResolvedValue({});
@@ -1044,33 +1014,6 @@ describe('UsersService - Stage 1 & Stage 2', () => {
           }),
         }),
       );
-    });
-
-    it('should reject duplicate employee number on update', async () => {
-      prisma.user.findFirst.mockResolvedValue({
-        id: 'u-emp-up',
-        userType: { code: 'EMPLOYEE' },
-        employeeProfile: { employeeNumber: 'EMP100' },
-      });
-
-      prisma.employeeProfile.findFirst.mockResolvedValue({
-        id: 'other-emp',
-        userId: 'other-user',
-        employeeNumber: 'EMP999',
-      });
-
-      await expect(
-        service.update(
-          'u-emp-up',
-          {
-            profile: {
-              employeeNumber: 'EMP999',
-            },
-          },
-          'sa-id',
-          'SUPER_ADMIN',
-        ),
-      ).rejects.toThrow(ConflictException);
     });
 
     it('should reject self-reporting relationship (reportingToId === id)', async () => {
@@ -1454,26 +1397,6 @@ describe('UsersService - Stage 1 & Stage 2', () => {
 
       await expect(
         service.restore('u-email-conflict', 'sa-id', 'SUPER_ADMIN'),
-      ).rejects.toThrow(ConflictException);
-    });
-
-    it('should reject restoration if employeeNumber is in use by another active employee (HTTP 409)', async () => {
-      prisma.user.findUnique.mockResolvedValue({
-        id: 'u-emp-conflict',
-        email: 'valid@example.com',
-        deletedAt: new Date(),
-        userType: { code: 'EMPLOYEE' },
-        employeeProfile: { employeeNumber: 'EMP777' },
-      });
-
-      prisma.user.findFirst.mockResolvedValue(null);
-      prisma.employeeProfile.findFirst.mockResolvedValue({
-        id: 'ep-conflict',
-        employeeNumber: 'EMP777',
-      });
-
-      await expect(
-        service.restore('u-emp-conflict', 'sa-id', 'SUPER_ADMIN'),
       ).rejects.toThrow(ConflictException);
     });
   });

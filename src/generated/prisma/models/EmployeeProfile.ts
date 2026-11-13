@@ -27,7 +27,6 @@ export type AggregateEmployeeProfile = {
 export type EmployeeProfileMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  employeeNumber: string | null
   designation: string | null
   dateOfJoining: Date | null
   employmentType: string | null
@@ -40,7 +39,6 @@ export type EmployeeProfileMinAggregateOutputType = {
 export type EmployeeProfileMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  employeeNumber: string | null
   designation: string | null
   dateOfJoining: Date | null
   employmentType: string | null
@@ -53,7 +51,6 @@ export type EmployeeProfileMaxAggregateOutputType = {
 export type EmployeeProfileCountAggregateOutputType = {
   id: number
   userId: number
-  employeeNumber: number
   designation: number
   dateOfJoining: number
   employmentType: number
@@ -68,7 +65,6 @@ export type EmployeeProfileCountAggregateOutputType = {
 export type EmployeeProfileMinAggregateInputType = {
   id?: true
   userId?: true
-  employeeNumber?: true
   designation?: true
   dateOfJoining?: true
   employmentType?: true
@@ -81,7 +77,6 @@ export type EmployeeProfileMinAggregateInputType = {
 export type EmployeeProfileMaxAggregateInputType = {
   id?: true
   userId?: true
-  employeeNumber?: true
   designation?: true
   dateOfJoining?: true
   employmentType?: true
@@ -94,7 +89,6 @@ export type EmployeeProfileMaxAggregateInputType = {
 export type EmployeeProfileCountAggregateInputType = {
   id?: true
   userId?: true
-  employeeNumber?: true
   designation?: true
   dateOfJoining?: true
   employmentType?: true
@@ -180,7 +174,6 @@ export type EmployeeProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 export type EmployeeProfileGroupByOutputType = {
   id: string
   userId: string
-  employeeNumber: string | null
   designation: string | null
   dateOfJoining: Date | null
   employmentType: string | null
@@ -214,7 +207,6 @@ export type EmployeeProfileWhereInput = {
   NOT?: Prisma.EmployeeProfileWhereInput | Prisma.EmployeeProfileWhereInput[]
   id?: Prisma.StringFilter<"EmployeeProfile"> | string
   userId?: Prisma.StringFilter<"EmployeeProfile"> | string
-  employeeNumber?: Prisma.StringNullableFilter<"EmployeeProfile"> | string | null
   designation?: Prisma.StringNullableFilter<"EmployeeProfile"> | string | null
   dateOfJoining?: Prisma.DateTimeNullableFilter<"EmployeeProfile"> | Date | string | null
   employmentType?: Prisma.StringNullableFilter<"EmployeeProfile"> | string | null
@@ -229,7 +221,6 @@ export type EmployeeProfileWhereInput = {
 export type EmployeeProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  employeeNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   designation?: Prisma.SortOrderInput | Prisma.SortOrder
   dateOfJoining?: Prisma.SortOrderInput | Prisma.SortOrder
   employmentType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -245,7 +236,6 @@ export type EmployeeProfileOrderByWithRelationInput = {
 export type EmployeeProfileWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   userId?: string
-  employeeNumber?: string
   unique_employee_profile_user?: Prisma.EmployeeProfileUnique_employee_profile_userCompoundUniqueInput
   AND?: Prisma.EmployeeProfileWhereInput | Prisma.EmployeeProfileWhereInput[]
   OR?: Prisma.EmployeeProfileWhereInput[]
@@ -259,12 +249,11 @@ export type EmployeeProfileWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"EmployeeProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   shiftAssignments?: Prisma.EmployeeShiftAssignmentListRelationFilter
-}, "id" | "userId" | "employeeNumber" | "unique_employee_profile_user">
+}, "id" | "userId" | "unique_employee_profile_user">
 
 export type EmployeeProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  employeeNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   designation?: Prisma.SortOrderInput | Prisma.SortOrder
   dateOfJoining?: Prisma.SortOrderInput | Prisma.SortOrder
   employmentType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -283,7 +272,6 @@ export type EmployeeProfileScalarWhereWithAggregatesInput = {
   NOT?: Prisma.EmployeeProfileScalarWhereWithAggregatesInput | Prisma.EmployeeProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"EmployeeProfile"> | string
   userId?: Prisma.StringWithAggregatesFilter<"EmployeeProfile"> | string
-  employeeNumber?: Prisma.StringNullableWithAggregatesFilter<"EmployeeProfile"> | string | null
   designation?: Prisma.StringNullableWithAggregatesFilter<"EmployeeProfile"> | string | null
   dateOfJoining?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployeeProfile"> | Date | string | null
   employmentType?: Prisma.StringNullableWithAggregatesFilter<"EmployeeProfile"> | string | null
@@ -295,7 +283,6 @@ export type EmployeeProfileScalarWhereWithAggregatesInput = {
 
 export type EmployeeProfileCreateInput = {
   id?: string
-  employeeNumber?: string | null
   designation?: string | null
   dateOfJoining?: Date | string | null
   employmentType?: string | null
@@ -310,7 +297,6 @@ export type EmployeeProfileCreateInput = {
 export type EmployeeProfileUncheckedCreateInput = {
   id?: string
   userId: string
-  employeeNumber?: string | null
   designation?: string | null
   dateOfJoining?: Date | string | null
   employmentType?: string | null
@@ -323,7 +309,6 @@ export type EmployeeProfileUncheckedCreateInput = {
 
 export type EmployeeProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -338,7 +323,6 @@ export type EmployeeProfileUpdateInput = {
 export type EmployeeProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -352,7 +336,6 @@ export type EmployeeProfileUncheckedUpdateInput = {
 export type EmployeeProfileCreateManyInput = {
   id?: string
   userId: string
-  employeeNumber?: string | null
   designation?: string | null
   dateOfJoining?: Date | string | null
   employmentType?: string | null
@@ -364,7 +347,6 @@ export type EmployeeProfileCreateManyInput = {
 
 export type EmployeeProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -377,7 +359,6 @@ export type EmployeeProfileUpdateManyMutationInput = {
 export type EmployeeProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -406,7 +387,6 @@ export type EmployeeProfileUnique_employee_profile_userCompoundUniqueInput = {
 export type EmployeeProfileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  employeeNumber?: Prisma.SortOrder
   designation?: Prisma.SortOrder
   dateOfJoining?: Prisma.SortOrder
   employmentType?: Prisma.SortOrder
@@ -419,7 +399,6 @@ export type EmployeeProfileCountOrderByAggregateInput = {
 export type EmployeeProfileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  employeeNumber?: Prisma.SortOrder
   designation?: Prisma.SortOrder
   dateOfJoining?: Prisma.SortOrder
   employmentType?: Prisma.SortOrder
@@ -432,7 +411,6 @@ export type EmployeeProfileMaxOrderByAggregateInput = {
 export type EmployeeProfileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  employeeNumber?: Prisma.SortOrder
   designation?: Prisma.SortOrder
   dateOfJoining?: Prisma.SortOrder
   employmentType?: Prisma.SortOrder
@@ -495,7 +473,6 @@ export type EmployeeProfileUpdateOneRequiredWithoutShiftAssignmentsNestedInput =
 
 export type EmployeeProfileCreateWithoutUserInput = {
   id?: string
-  employeeNumber?: string | null
   designation?: string | null
   dateOfJoining?: Date | string | null
   employmentType?: string | null
@@ -508,7 +485,6 @@ export type EmployeeProfileCreateWithoutUserInput = {
 
 export type EmployeeProfileUncheckedCreateWithoutUserInput = {
   id?: string
-  employeeNumber?: string | null
   designation?: string | null
   dateOfJoining?: Date | string | null
   employmentType?: string | null
@@ -537,7 +513,6 @@ export type EmployeeProfileUpdateToOneWithWhereWithoutUserInput = {
 
 export type EmployeeProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -550,7 +525,6 @@ export type EmployeeProfileUpdateWithoutUserInput = {
 
 export type EmployeeProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -563,7 +537,6 @@ export type EmployeeProfileUncheckedUpdateWithoutUserInput = {
 
 export type EmployeeProfileCreateWithoutShiftAssignmentsInput = {
   id?: string
-  employeeNumber?: string | null
   designation?: string | null
   dateOfJoining?: Date | string | null
   employmentType?: string | null
@@ -577,7 +550,6 @@ export type EmployeeProfileCreateWithoutShiftAssignmentsInput = {
 export type EmployeeProfileUncheckedCreateWithoutShiftAssignmentsInput = {
   id?: string
   userId: string
-  employeeNumber?: string | null
   designation?: string | null
   dateOfJoining?: Date | string | null
   employmentType?: string | null
@@ -605,7 +577,6 @@ export type EmployeeProfileUpdateToOneWithWhereWithoutShiftAssignmentsInput = {
 
 export type EmployeeProfileUpdateWithoutShiftAssignmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -619,7 +590,6 @@ export type EmployeeProfileUpdateWithoutShiftAssignmentsInput = {
 export type EmployeeProfileUncheckedUpdateWithoutShiftAssignmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  employeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateOfJoining?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employmentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -663,7 +633,6 @@ export type EmployeeProfileCountOutputTypeCountShiftAssignmentsArgs<ExtArgs exte
 export type EmployeeProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  employeeNumber?: boolean
   designation?: boolean
   dateOfJoining?: boolean
   employmentType?: boolean
@@ -681,7 +650,6 @@ export type EmployeeProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
 export type EmployeeProfileSelectScalar = {
   id?: boolean
   userId?: boolean
-  employeeNumber?: boolean
   designation?: boolean
   dateOfJoining?: boolean
   employmentType?: boolean
@@ -691,7 +659,7 @@ export type EmployeeProfileSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EmployeeProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "employeeNumber" | "designation" | "dateOfJoining" | "employmentType" | "reportingToId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["employeeProfile"]>
+export type EmployeeProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "designation" | "dateOfJoining" | "employmentType" | "reportingToId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["employeeProfile"]>
 export type EmployeeProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   shiftAssignments?: boolean | Prisma.EmployeeProfile$shiftAssignmentsArgs<ExtArgs>
@@ -707,7 +675,6 @@ export type $EmployeeProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    employeeNumber: string | null
     designation: string | null
     dateOfJoining: Date | null
     employmentType: string | null
@@ -1088,7 +1055,6 @@ export interface Prisma__EmployeeProfileClient<T, Null = never, ExtArgs extends 
 export interface EmployeeProfileFieldRefs {
   readonly id: Prisma.FieldRef<"EmployeeProfile", 'String'>
   readonly userId: Prisma.FieldRef<"EmployeeProfile", 'String'>
-  readonly employeeNumber: Prisma.FieldRef<"EmployeeProfile", 'String'>
   readonly designation: Prisma.FieldRef<"EmployeeProfile", 'String'>
   readonly dateOfJoining: Prisma.FieldRef<"EmployeeProfile", 'DateTime'>
   readonly employmentType: Prisma.FieldRef<"EmployeeProfile", 'String'>

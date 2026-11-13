@@ -402,7 +402,6 @@ model UserDepartment {
 model EmployeeProfile {
   id             String    @id @default(cuid()) @db.VarChar(30)
   userId         String    @unique @map("user_id") @db.VarChar(30)
-  employeeNumber String?   @unique @map("employee_number") @db.VarChar(40)
   designation    String?   @db.VarChar(120)
   dateOfJoining  DateTime? @map("date_of_joining") @db.Date
   employmentType String?   @map("employment_type") @db.VarChar(50)
