@@ -45,6 +45,21 @@ export class QueryAttendanceHistoryDto {
   status?: AttendanceStatus;
 
   @ApiPropertyOptional({
+    description: 'Search by employee name, email, or employee code',
+    example: 'EMP049',
+  })
+  @IsOptional()
+  @IsString()
+  search?: string;
+
+  @ApiPropertyOptional({
+    description: 'Filter by department ID',
+  })
+  @IsOptional()
+  @IsString()
+  departmentId?: string;
+
+  @ApiPropertyOptional({
     description: 'Page number for pagination',
     default: 1,
     minimum: 1,

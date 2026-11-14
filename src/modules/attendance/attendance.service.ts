@@ -846,23 +846,64 @@ export class AttendanceService {
     actorUserId: string,
     actorUserType: string,
   ) {
-    const targetUserId = query.userId ?? actorUserId;
-
-    // Verify data scope authorization
-    await this.accessService.assertSupervisorAccess(
-      targetUserId,
-      actorUserId,
-      actorUserType,
-      'attendance.view',
-    );
+    if (query.userId) {
+      await this.accessService.assertSupervisorAccess(
+        query.userId,
+        actorUserId,
+        actorUserType,
+        'attendance.view',
+      );
+    }
 
     const page = Math.max(1, Number(query.page) || 1);
     const limit = Math.max(1, Math.min(100, Number(query.limit) || 20));
     const skip = (page - 1) * limit;
 
+    const userScopeWhere = await this.usersService.buildDataScopeWhere(
+      actorUserId,
+      actorUserType,
+      'attendance.view',
+    );
+
     const where: any = {
-      userId: targetUserId,
+      user: userScopeWhere,
     };
+
+    if (query.userId) {
+      where.userId = query.userId;
+    }
+
+    if (query.search) {
+      const searchTrim = query.search.trim();
+      where.user = {
+        AND: [
+          where.user,
+          {
+            OR: [
+              { name: { contains: searchTrim } },
+              { email: { contains: searchTrim } },
+              { userCode: { contains: searchTrim } },
+              { employeeProfile: { employeeCode: { contains: searchTrim } } },
+            ],
+          },
+        ],
+      };
+    }
+
+    if (query.departmentId) {
+      where.user = {
+        AND: [
+          where.user,
+          {
+            departments: {
+              some: {
+                departmentId: query.departmentId,
+              },
+            },
+          },
+        ],
+      };
+    }
 
     if (query.startDate) {
       where.attendanceDate = {
@@ -891,18 +932,37 @@ export class AttendanceService {
         orderBy: { attendanceDate: 'desc' },
         include: {
           shiftDefinition: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              userCode: true,
+              employeeProfile: {
+                select: { employeeCode: true, designation: true },
+              },
+              departments: {
+                select: {
+                  department: { select: { id: true, name: true, code: true } },
+                },
+              },
+              profileMedia: {
+                select: { id: true, fileUrl: true },
+              },
+            },
+          },
           sessions: { orderBy: { rawCheckInAt: 'asc' } },
           breaks: { orderBy: { startedAt: 'asc' } },
         },
       }),
     ]);
 
-    const items = records.map((rec) => {
+    const items = records.map((rec: any) => {
       const dmy = formatDayMonthYear(rec.attendanceDate);
       const dText = formatDayMonthYearText(rec.attendanceDate);
       const ymd = formatDateOnly(rec.attendanceDate);
 
-      const mappedSessions = rec.sessions.map((s) => ({
+      const mappedSessions = rec.sessions.map((s: any) => ({
         ...s,
         checkInTimeFormatted: s.rawCheckInAt
           ? formatTime12Hour(s.rawCheckInAt)
@@ -913,7 +973,7 @@ export class AttendanceService {
         timeRange: formatTimeRange(s.rawCheckInAt, s.rawCheckOutAt),
       }));
 
-      const mappedBreaks = rec.breaks.map((b) => ({
+      const mappedBreaks = rec.breaks.map((b: any) => ({
         ...b,
         startTimeFormatted: b.startedAt
           ? formatTime12Hour(b.startedAt)
@@ -924,9 +984,21 @@ export class AttendanceService {
         timeRange: formatTimeRange(b.startedAt, b.endedAt),
       }));
 
+      const firstSession = mappedSessions[0];
+      const lastSession = mappedSessions[mappedSessions.length - 1];
+
       return {
         id: rec.id,
         userId: rec.userId,
+        employeeId: rec.userId,
+        employeeName: rec.user?.name ?? 'Unknown',
+        employeeCode:
+          rec.user?.employeeProfile?.employeeCode || rec.user?.userCode || null,
+        employeeEmail: rec.user?.email || null,
+        designation: rec.user?.employeeProfile?.designation || null,
+        department: rec.user?.departments?.[0]?.department?.name || null,
+        departmentId: rec.user?.departments?.[0]?.department?.id || null,
+        avatarUrl: rec.user?.profileMedia?.fileUrl || null,
         attendanceDate: dmy,
         date: dmy,
         workDate: dmy,
@@ -940,6 +1012,9 @@ export class AttendanceService {
         dateYmd: ymd,
         workDateYmd: ymd,
         status: rec.status,
+        checkInTimeFormatted: firstSession?.checkInTimeFormatted || null,
+        checkOutTimeFormatted: lastSession?.checkOutTimeFormatted || null,
+        isCurrentlyActive: rec.sessions.some((s: any) => !s.rawCheckOutAt),
         grossWorkingDurationSeconds: rec.grossWorkingDurationSeconds,
         paidBreakDurationSeconds: rec.paidBreakDurationSeconds,
         unpaidBreakDurationSeconds: rec.unpaidBreakDurationSeconds,

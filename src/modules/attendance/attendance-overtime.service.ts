@@ -251,10 +251,18 @@ export class AttendanceOvertimeService {
       requestedDurationMinutes: requestedMinutes,
       requestedMinutes,
       durationMinutes: requestedMinutes,
+      duration: requestedMinutes,
+      minutes: requestedMinutes,
       requestedDuration: requestedMinutes,
+      requested_duration: requestedMinutes,
+      requested_minutes: requestedMinutes,
+      requested_duration_minutes: requestedMinutes,
       requestedDurationDisplay: `${requestedMinutes} mins`,
       approvedMinutes,
       approvedDurationMinutes: approvedMinutes,
+      approvedDuration: approvedMinutes,
+      approved_duration: approvedMinutes,
+      approved_minutes: approvedMinutes,
       approvedDurationDisplay:
         approvedMinutes != null ? `${approvedMinutes} mins` : null,
     };
