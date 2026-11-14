@@ -4963,7 +4963,11 @@ export const LeavePolicyVersionScalarFieldEnum = {
   version: 'version',
   effectiveFrom: 'effectiveFrom',
   effectiveTo: 'effectiveTo',
+  accrualFrequency: 'accrualFrequency',
   annualAllocation: 'annualAllocation',
+  monthlyAllocation: 'monthlyAllocation',
+  maxDaysPerMonth: 'maxDaysPerMonth',
+  carryForwardExpiryMonths: 'carryForwardExpiryMonths',
   maxConsecutiveDays: 'maxConsecutiveDays',
   allowHalfDay: 'allowHalfDay',
   requiresDocument: 'requiresDocument',
@@ -6142,6 +6146,13 @@ export type EnumFollowUpStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
  * Reference to a field of type 'LeaveCategory'
  */
 export type EnumLeaveCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeaveCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'LeaveAccrualFrequency'
+ */
+export type EnumLeaveAccrualFrequencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeaveAccrualFrequency'>
     
 
 

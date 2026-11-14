@@ -9,7 +9,7 @@ import {
   Min,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { LeaveCategory } from '../../../generated/prisma/enums';
+import { LeaveAccrualFrequency, LeaveCategory } from '../../../generated/prisma/enums';
 
 export class CreateLeaveTypeDto {
   @ApiProperty({
@@ -58,7 +58,16 @@ export class CreateLeaveTypeDto {
 
   // Initial Policy Version Parameters
   @ApiPropertyOptional({
-    description: 'Annual quota allocation in days (e.g. 12.00)',
+    description: 'Leave quota granting cadence: ANNUAL (all upfront), MONTHLY (monthly credit), or QUARTERLY',
+    enum: LeaveAccrualFrequency,
+    default: LeaveAccrualFrequency.ANNUAL,
+  })
+  @IsOptional()
+  @IsEnum(LeaveAccrualFrequency)
+  accrualFrequency?: LeaveAccrualFrequency;
+
+  @ApiPropertyOptional({
+    description: 'Annual quota allocation in days (e.g. 12.00 or 24.00)',
     example: 12.0,
     default: 12.0,
   })
@@ -66,6 +75,33 @@ export class CreateLeaveTypeDto {
   @IsNumber()
   @Min(0)
   annualAllocation?: number;
+
+  @ApiPropertyOptional({
+    description: 'Monthly quota allocation when accrualFrequency is MONTHLY (e.g. 1.0 or 2.0 days/month)',
+    example: 2.0,
+  })
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  monthlyAllocation?: number;
+
+  @ApiPropertyOptional({
+    description: 'Maximum permitted days an employee can consume in a single calendar month (e.g. 2.0)',
+    example: 2.0,
+  })
+  @IsOptional()
+  @IsNumber()
+  @Min(0.5)
+  maxDaysPerMonth?: number;
+
+  @ApiPropertyOptional({
+    description: 'Carry forward validity period in months before expiring (e.g. 1 for next month only, 3 for quarterly)',
+    example: 3,
+  })
+  @IsOptional()
+  @IsNumber()
+  @Min(1)
+  carryForwardExpiryMonths?: number;
 
   @ApiPropertyOptional({
     description: 'Maximum consecutive days permitted per application (null = unlimited)',

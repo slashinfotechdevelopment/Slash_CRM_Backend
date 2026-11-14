@@ -29,6 +29,9 @@ export type AggregateLeavePolicyVersion = {
 export type LeavePolicyVersionAvgAggregateOutputType = {
   version: number | null
   annualAllocation: runtime.Decimal | null
+  monthlyAllocation: runtime.Decimal | null
+  maxDaysPerMonth: runtime.Decimal | null
+  carryForwardExpiryMonths: number | null
   maxConsecutiveDays: number | null
   minNoticeDays: number | null
   carryForwardLimit: runtime.Decimal | null
@@ -37,6 +40,9 @@ export type LeavePolicyVersionAvgAggregateOutputType = {
 export type LeavePolicyVersionSumAggregateOutputType = {
   version: number | null
   annualAllocation: runtime.Decimal | null
+  monthlyAllocation: runtime.Decimal | null
+  maxDaysPerMonth: runtime.Decimal | null
+  carryForwardExpiryMonths: number | null
   maxConsecutiveDays: number | null
   minNoticeDays: number | null
   carryForwardLimit: runtime.Decimal | null
@@ -48,7 +54,11 @@ export type LeavePolicyVersionMinAggregateOutputType = {
   version: number | null
   effectiveFrom: Date | null
   effectiveTo: Date | null
+  accrualFrequency: $Enums.LeaveAccrualFrequency | null
   annualAllocation: runtime.Decimal | null
+  monthlyAllocation: runtime.Decimal | null
+  maxDaysPerMonth: runtime.Decimal | null
+  carryForwardExpiryMonths: number | null
   maxConsecutiveDays: number | null
   allowHalfDay: boolean | null
   requiresDocument: boolean | null
@@ -69,7 +79,11 @@ export type LeavePolicyVersionMaxAggregateOutputType = {
   version: number | null
   effectiveFrom: Date | null
   effectiveTo: Date | null
+  accrualFrequency: $Enums.LeaveAccrualFrequency | null
   annualAllocation: runtime.Decimal | null
+  monthlyAllocation: runtime.Decimal | null
+  maxDaysPerMonth: runtime.Decimal | null
+  carryForwardExpiryMonths: number | null
   maxConsecutiveDays: number | null
   allowHalfDay: boolean | null
   requiresDocument: boolean | null
@@ -90,7 +104,11 @@ export type LeavePolicyVersionCountAggregateOutputType = {
   version: number
   effectiveFrom: number
   effectiveTo: number
+  accrualFrequency: number
   annualAllocation: number
+  monthlyAllocation: number
+  maxDaysPerMonth: number
+  carryForwardExpiryMonths: number
   maxConsecutiveDays: number
   allowHalfDay: number
   requiresDocument: number
@@ -110,6 +128,9 @@ export type LeavePolicyVersionCountAggregateOutputType = {
 export type LeavePolicyVersionAvgAggregateInputType = {
   version?: true
   annualAllocation?: true
+  monthlyAllocation?: true
+  maxDaysPerMonth?: true
+  carryForwardExpiryMonths?: true
   maxConsecutiveDays?: true
   minNoticeDays?: true
   carryForwardLimit?: true
@@ -118,6 +139,9 @@ export type LeavePolicyVersionAvgAggregateInputType = {
 export type LeavePolicyVersionSumAggregateInputType = {
   version?: true
   annualAllocation?: true
+  monthlyAllocation?: true
+  maxDaysPerMonth?: true
+  carryForwardExpiryMonths?: true
   maxConsecutiveDays?: true
   minNoticeDays?: true
   carryForwardLimit?: true
@@ -129,7 +153,11 @@ export type LeavePolicyVersionMinAggregateInputType = {
   version?: true
   effectiveFrom?: true
   effectiveTo?: true
+  accrualFrequency?: true
   annualAllocation?: true
+  monthlyAllocation?: true
+  maxDaysPerMonth?: true
+  carryForwardExpiryMonths?: true
   maxConsecutiveDays?: true
   allowHalfDay?: true
   requiresDocument?: true
@@ -150,7 +178,11 @@ export type LeavePolicyVersionMaxAggregateInputType = {
   version?: true
   effectiveFrom?: true
   effectiveTo?: true
+  accrualFrequency?: true
   annualAllocation?: true
+  monthlyAllocation?: true
+  maxDaysPerMonth?: true
+  carryForwardExpiryMonths?: true
   maxConsecutiveDays?: true
   allowHalfDay?: true
   requiresDocument?: true
@@ -171,7 +203,11 @@ export type LeavePolicyVersionCountAggregateInputType = {
   version?: true
   effectiveFrom?: true
   effectiveTo?: true
+  accrualFrequency?: true
   annualAllocation?: true
+  monthlyAllocation?: true
+  maxDaysPerMonth?: true
+  carryForwardExpiryMonths?: true
   maxConsecutiveDays?: true
   allowHalfDay?: true
   requiresDocument?: true
@@ -279,7 +315,11 @@ export type LeavePolicyVersionGroupByOutputType = {
   version: number
   effectiveFrom: Date
   effectiveTo: Date | null
+  accrualFrequency: $Enums.LeaveAccrualFrequency
   annualAllocation: runtime.Decimal
+  monthlyAllocation: runtime.Decimal | null
+  maxDaysPerMonth: runtime.Decimal | null
+  carryForwardExpiryMonths: number | null
   maxConsecutiveDays: number | null
   allowHalfDay: boolean
   requiresDocument: boolean
@@ -323,7 +363,11 @@ export type LeavePolicyVersionWhereInput = {
   version?: Prisma.IntFilter<"LeavePolicyVersion"> | number
   effectiveFrom?: Prisma.DateTimeFilter<"LeavePolicyVersion"> | Date | string
   effectiveTo?: Prisma.DateTimeNullableFilter<"LeavePolicyVersion"> | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFilter<"LeavePolicyVersion"> | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.DecimalNullableFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.DecimalNullableFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.IntNullableFilter<"LeavePolicyVersion"> | number | null
   maxConsecutiveDays?: Prisma.IntNullableFilter<"LeavePolicyVersion"> | number | null
   allowHalfDay?: Prisma.BoolFilter<"LeavePolicyVersion"> | boolean
   requiresDocument?: Prisma.BoolFilter<"LeavePolicyVersion"> | boolean
@@ -347,7 +391,11 @@ export type LeavePolicyVersionOrderByWithRelationInput = {
   version?: Prisma.SortOrder
   effectiveFrom?: Prisma.SortOrder
   effectiveTo?: Prisma.SortOrderInput | Prisma.SortOrder
+  accrualFrequency?: Prisma.SortOrder
   annualAllocation?: Prisma.SortOrder
+  monthlyAllocation?: Prisma.SortOrderInput | Prisma.SortOrder
+  maxDaysPerMonth?: Prisma.SortOrderInput | Prisma.SortOrder
+  carryForwardExpiryMonths?: Prisma.SortOrderInput | Prisma.SortOrder
   maxConsecutiveDays?: Prisma.SortOrderInput | Prisma.SortOrder
   allowHalfDay?: Prisma.SortOrder
   requiresDocument?: Prisma.SortOrder
@@ -376,7 +424,11 @@ export type LeavePolicyVersionWhereUniqueInput = Prisma.AtLeast<{
   version?: Prisma.IntFilter<"LeavePolicyVersion"> | number
   effectiveFrom?: Prisma.DateTimeFilter<"LeavePolicyVersion"> | Date | string
   effectiveTo?: Prisma.DateTimeNullableFilter<"LeavePolicyVersion"> | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFilter<"LeavePolicyVersion"> | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.DecimalNullableFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.DecimalNullableFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.IntNullableFilter<"LeavePolicyVersion"> | number | null
   maxConsecutiveDays?: Prisma.IntNullableFilter<"LeavePolicyVersion"> | number | null
   allowHalfDay?: Prisma.BoolFilter<"LeavePolicyVersion"> | boolean
   requiresDocument?: Prisma.BoolFilter<"LeavePolicyVersion"> | boolean
@@ -400,7 +452,11 @@ export type LeavePolicyVersionOrderByWithAggregationInput = {
   version?: Prisma.SortOrder
   effectiveFrom?: Prisma.SortOrder
   effectiveTo?: Prisma.SortOrderInput | Prisma.SortOrder
+  accrualFrequency?: Prisma.SortOrder
   annualAllocation?: Prisma.SortOrder
+  monthlyAllocation?: Prisma.SortOrderInput | Prisma.SortOrder
+  maxDaysPerMonth?: Prisma.SortOrderInput | Prisma.SortOrder
+  carryForwardExpiryMonths?: Prisma.SortOrderInput | Prisma.SortOrder
   maxConsecutiveDays?: Prisma.SortOrderInput | Prisma.SortOrder
   allowHalfDay?: Prisma.SortOrder
   requiresDocument?: Prisma.SortOrder
@@ -429,7 +485,11 @@ export type LeavePolicyVersionScalarWhereWithAggregatesInput = {
   version?: Prisma.IntWithAggregatesFilter<"LeavePolicyVersion"> | number
   effectiveFrom?: Prisma.DateTimeWithAggregatesFilter<"LeavePolicyVersion"> | Date | string
   effectiveTo?: Prisma.DateTimeNullableWithAggregatesFilter<"LeavePolicyVersion"> | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyWithAggregatesFilter<"LeavePolicyVersion"> | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalWithAggregatesFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.DecimalNullableWithAggregatesFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.DecimalNullableWithAggregatesFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.IntNullableWithAggregatesFilter<"LeavePolicyVersion"> | number | null
   maxConsecutiveDays?: Prisma.IntNullableWithAggregatesFilter<"LeavePolicyVersion"> | number | null
   allowHalfDay?: Prisma.BoolWithAggregatesFilter<"LeavePolicyVersion"> | boolean
   requiresDocument?: Prisma.BoolWithAggregatesFilter<"LeavePolicyVersion"> | boolean
@@ -449,7 +509,11 @@ export type LeavePolicyVersionCreateInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -472,7 +536,11 @@ export type LeavePolicyVersionUncheckedCreateInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -493,7 +561,11 @@ export type LeavePolicyVersionUpdateInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -516,7 +588,11 @@ export type LeavePolicyVersionUncheckedUpdateInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -538,7 +614,11 @@ export type LeavePolicyVersionCreateManyInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -558,7 +638,11 @@ export type LeavePolicyVersionUpdateManyMutationInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -578,7 +662,11 @@ export type LeavePolicyVersionUncheckedUpdateManyInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -620,7 +708,11 @@ export type LeavePolicyVersionCountOrderByAggregateInput = {
   version?: Prisma.SortOrder
   effectiveFrom?: Prisma.SortOrder
   effectiveTo?: Prisma.SortOrder
+  accrualFrequency?: Prisma.SortOrder
   annualAllocation?: Prisma.SortOrder
+  monthlyAllocation?: Prisma.SortOrder
+  maxDaysPerMonth?: Prisma.SortOrder
+  carryForwardExpiryMonths?: Prisma.SortOrder
   maxConsecutiveDays?: Prisma.SortOrder
   allowHalfDay?: Prisma.SortOrder
   requiresDocument?: Prisma.SortOrder
@@ -638,6 +730,9 @@ export type LeavePolicyVersionCountOrderByAggregateInput = {
 export type LeavePolicyVersionAvgOrderByAggregateInput = {
   version?: Prisma.SortOrder
   annualAllocation?: Prisma.SortOrder
+  monthlyAllocation?: Prisma.SortOrder
+  maxDaysPerMonth?: Prisma.SortOrder
+  carryForwardExpiryMonths?: Prisma.SortOrder
   maxConsecutiveDays?: Prisma.SortOrder
   minNoticeDays?: Prisma.SortOrder
   carryForwardLimit?: Prisma.SortOrder
@@ -649,7 +744,11 @@ export type LeavePolicyVersionMaxOrderByAggregateInput = {
   version?: Prisma.SortOrder
   effectiveFrom?: Prisma.SortOrder
   effectiveTo?: Prisma.SortOrder
+  accrualFrequency?: Prisma.SortOrder
   annualAllocation?: Prisma.SortOrder
+  monthlyAllocation?: Prisma.SortOrder
+  maxDaysPerMonth?: Prisma.SortOrder
+  carryForwardExpiryMonths?: Prisma.SortOrder
   maxConsecutiveDays?: Prisma.SortOrder
   allowHalfDay?: Prisma.SortOrder
   requiresDocument?: Prisma.SortOrder
@@ -670,7 +769,11 @@ export type LeavePolicyVersionMinOrderByAggregateInput = {
   version?: Prisma.SortOrder
   effectiveFrom?: Prisma.SortOrder
   effectiveTo?: Prisma.SortOrder
+  accrualFrequency?: Prisma.SortOrder
   annualAllocation?: Prisma.SortOrder
+  monthlyAllocation?: Prisma.SortOrder
+  maxDaysPerMonth?: Prisma.SortOrder
+  carryForwardExpiryMonths?: Prisma.SortOrder
   maxConsecutiveDays?: Prisma.SortOrder
   allowHalfDay?: Prisma.SortOrder
   requiresDocument?: Prisma.SortOrder
@@ -688,6 +791,9 @@ export type LeavePolicyVersionMinOrderByAggregateInput = {
 export type LeavePolicyVersionSumOrderByAggregateInput = {
   version?: Prisma.SortOrder
   annualAllocation?: Prisma.SortOrder
+  monthlyAllocation?: Prisma.SortOrder
+  maxDaysPerMonth?: Prisma.SortOrder
+  carryForwardExpiryMonths?: Prisma.SortOrder
   maxConsecutiveDays?: Prisma.SortOrder
   minNoticeDays?: Prisma.SortOrder
   carryForwardLimit?: Prisma.SortOrder
@@ -782,6 +888,10 @@ export type LeavePolicyVersionUncheckedUpdateManyWithoutLeaveTypeNestedInput = {
   deleteMany?: Prisma.LeavePolicyVersionScalarWhereInput | Prisma.LeavePolicyVersionScalarWhereInput[]
 }
 
+export type EnumLeaveAccrualFrequencyFieldUpdateOperationsInput = {
+  set?: $Enums.LeaveAccrualFrequency
+}
+
 export type DecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -809,7 +919,11 @@ export type LeavePolicyVersionCreateWithoutDepartmentInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -831,7 +945,11 @@ export type LeavePolicyVersionUncheckedCreateWithoutDepartmentInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -881,7 +999,11 @@ export type LeavePolicyVersionScalarWhereInput = {
   version?: Prisma.IntFilter<"LeavePolicyVersion"> | number
   effectiveFrom?: Prisma.DateTimeFilter<"LeavePolicyVersion"> | Date | string
   effectiveTo?: Prisma.DateTimeNullableFilter<"LeavePolicyVersion"> | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFilter<"LeavePolicyVersion"> | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.DecimalNullableFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.DecimalNullableFilter<"LeavePolicyVersion"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.IntNullableFilter<"LeavePolicyVersion"> | number | null
   maxConsecutiveDays?: Prisma.IntNullableFilter<"LeavePolicyVersion"> | number | null
   allowHalfDay?: Prisma.BoolFilter<"LeavePolicyVersion"> | boolean
   requiresDocument?: Prisma.BoolFilter<"LeavePolicyVersion"> | boolean
@@ -901,7 +1023,11 @@ export type LeavePolicyVersionCreateWithoutLeaveTypeInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -922,7 +1048,11 @@ export type LeavePolicyVersionUncheckedCreateWithoutLeaveTypeInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -969,7 +1099,11 @@ export type LeavePolicyVersionCreateWithoutRequestsInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -991,7 +1125,11 @@ export type LeavePolicyVersionUncheckedCreateWithoutRequestsInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -1027,7 +1165,11 @@ export type LeavePolicyVersionUpdateWithoutRequestsInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1049,7 +1191,11 @@ export type LeavePolicyVersionUncheckedUpdateWithoutRequestsInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1070,7 +1216,11 @@ export type LeavePolicyVersionCreateManyDepartmentInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -1089,7 +1239,11 @@ export type LeavePolicyVersionUpdateWithoutDepartmentInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1111,7 +1265,11 @@ export type LeavePolicyVersionUncheckedUpdateWithoutDepartmentInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1132,7 +1290,11 @@ export type LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1151,7 +1313,11 @@ export type LeavePolicyVersionCreateManyLeaveTypeInput = {
   version?: number
   effectiveFrom: Date | string
   effectiveTo?: Date | string | null
+  accrualFrequency?: $Enums.LeaveAccrualFrequency
   annualAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: number | null
   maxConsecutiveDays?: number | null
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -1171,7 +1337,11 @@ export type LeavePolicyVersionUpdateWithoutLeaveTypeInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1192,7 +1362,11 @@ export type LeavePolicyVersionUncheckedUpdateWithoutLeaveTypeInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1213,7 +1387,11 @@ export type LeavePolicyVersionUncheckedUpdateManyWithoutLeaveTypeInput = {
   version?: Prisma.IntFieldUpdateOperationsInput | number
   effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accrualFrequency?: Prisma.EnumLeaveAccrualFrequencyFieldUpdateOperationsInput | $Enums.LeaveAccrualFrequency
   annualAllocation?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monthlyAllocation?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxDaysPerMonth?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carryForwardExpiryMonths?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   maxConsecutiveDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   allowHalfDay?: Prisma.BoolFieldUpdateOperationsInput | boolean
   requiresDocument?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1265,7 +1443,11 @@ export type LeavePolicyVersionSelect<ExtArgs extends runtime.Types.Extensions.In
   version?: boolean
   effectiveFrom?: boolean
   effectiveTo?: boolean
+  accrualFrequency?: boolean
   annualAllocation?: boolean
+  monthlyAllocation?: boolean
+  maxDaysPerMonth?: boolean
+  carryForwardExpiryMonths?: boolean
   maxConsecutiveDays?: boolean
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -1292,7 +1474,11 @@ export type LeavePolicyVersionSelectScalar = {
   version?: boolean
   effectiveFrom?: boolean
   effectiveTo?: boolean
+  accrualFrequency?: boolean
   annualAllocation?: boolean
+  monthlyAllocation?: boolean
+  maxDaysPerMonth?: boolean
+  carryForwardExpiryMonths?: boolean
   maxConsecutiveDays?: boolean
   allowHalfDay?: boolean
   requiresDocument?: boolean
@@ -1307,7 +1493,7 @@ export type LeavePolicyVersionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type LeavePolicyVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "leaveTypeId" | "version" | "effectiveFrom" | "effectiveTo" | "annualAllocation" | "maxConsecutiveDays" | "allowHalfDay" | "requiresDocument" | "minNoticeDays" | "carryForwardLimit" | "excludeWeeklyOffs" | "excludeHolidays" | "status" | "applicableEmploymentType" | "departmentId" | "createdAt" | "updatedAt", ExtArgs["result"]["leavePolicyVersion"]>
+export type LeavePolicyVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "leaveTypeId" | "version" | "effectiveFrom" | "effectiveTo" | "accrualFrequency" | "annualAllocation" | "monthlyAllocation" | "maxDaysPerMonth" | "carryForwardExpiryMonths" | "maxConsecutiveDays" | "allowHalfDay" | "requiresDocument" | "minNoticeDays" | "carryForwardLimit" | "excludeWeeklyOffs" | "excludeHolidays" | "status" | "applicableEmploymentType" | "departmentId" | "createdAt" | "updatedAt", ExtArgs["result"]["leavePolicyVersion"]>
 export type LeavePolicyVersionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   leaveType?: boolean | Prisma.LeaveTypeDefaultArgs<ExtArgs>
   department?: boolean | Prisma.LeavePolicyVersion$departmentArgs<ExtArgs>
@@ -1328,7 +1514,11 @@ export type $LeavePolicyVersionPayload<ExtArgs extends runtime.Types.Extensions.
     version: number
     effectiveFrom: Date
     effectiveTo: Date | null
+    accrualFrequency: $Enums.LeaveAccrualFrequency
     annualAllocation: runtime.Decimal
+    monthlyAllocation: runtime.Decimal | null
+    maxDaysPerMonth: runtime.Decimal | null
+    carryForwardExpiryMonths: number | null
     maxConsecutiveDays: number | null
     allowHalfDay: boolean
     requiresDocument: boolean
@@ -1718,7 +1908,11 @@ export interface LeavePolicyVersionFieldRefs {
   readonly version: Prisma.FieldRef<"LeavePolicyVersion", 'Int'>
   readonly effectiveFrom: Prisma.FieldRef<"LeavePolicyVersion", 'DateTime'>
   readonly effectiveTo: Prisma.FieldRef<"LeavePolicyVersion", 'DateTime'>
+  readonly accrualFrequency: Prisma.FieldRef<"LeavePolicyVersion", 'LeaveAccrualFrequency'>
   readonly annualAllocation: Prisma.FieldRef<"LeavePolicyVersion", 'Decimal'>
+  readonly monthlyAllocation: Prisma.FieldRef<"LeavePolicyVersion", 'Decimal'>
+  readonly maxDaysPerMonth: Prisma.FieldRef<"LeavePolicyVersion", 'Decimal'>
+  readonly carryForwardExpiryMonths: Prisma.FieldRef<"LeavePolicyVersion", 'Int'>
   readonly maxConsecutiveDays: Prisma.FieldRef<"LeavePolicyVersion", 'Int'>
   readonly allowHalfDay: Prisma.FieldRef<"LeavePolicyVersion", 'Boolean'>
   readonly requiresDocument: Prisma.FieldRef<"LeavePolicyVersion", 'Boolean'>

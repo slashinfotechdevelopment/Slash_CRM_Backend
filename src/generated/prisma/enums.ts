@@ -433,6 +433,15 @@ export const BalanceFieldAffected = {
 export type BalanceFieldAffected = (typeof BalanceFieldAffected)[keyof typeof BalanceFieldAffected]
 
 
+export const LeaveAccrualFrequency = {
+  ANNUAL: 'ANNUAL',
+  MONTHLY: 'MONTHLY',
+  QUARTERLY: 'QUARTERLY'
+} as const
+
+export type LeaveAccrualFrequency = (typeof LeaveAccrualFrequency)[keyof typeof LeaveAccrualFrequency]
+
+
 export const WorkCalendarScope = {
   GLOBAL: 'GLOBAL',
   LOCATION: 'LOCATION',

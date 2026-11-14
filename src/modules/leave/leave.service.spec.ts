@@ -300,6 +300,50 @@ describe('Leave Management Subsystem (Phase 9)', () => {
       ).rejects.toThrow(BadRequestException);
     });
 
+    it('should throw BadRequestException if application exceeds maxDaysPerMonth limit', async () => {
+      prisma.leaveType.findUnique.mockResolvedValue({
+        id: 'lt_casual',
+        name: 'Casual Leave',
+        isPaid: true,
+        status: RecordStatus.ACTIVE,
+        policies: [
+          {
+            id: 'lp_1',
+            version: 1,
+            maxDaysPerMonth: new Prisma.Decimal(2),
+            minNoticeDays: 0,
+            requiresDocument: false,
+            excludeWeeklyOffs: false,
+            excludeHolidays: false,
+            allowHalfDay: true,
+          },
+        ],
+      });
+
+      prisma.leaveRequest.findFirst.mockResolvedValue(null);
+      jest.spyOn(service, 'calculateWorkingDays').mockResolvedValue({
+        totalDays: 2,
+        dates: ['2026-11-20', '2026-11-21'],
+      });
+
+      // User already has 1 day pending in this month (1 + 2 = 3 > 2)
+      prisma.leaveRequest.findMany.mockResolvedValue([
+        { id: 'req_prev', totalDays: new Prisma.Decimal(1) },
+      ]);
+
+      await expect(
+        service.applyLeaveRequest(
+          {
+            leaveTypeId: 'lt_casual',
+            startDate: '2026-11-20',
+            endDate: '2026-11-21',
+            reason: 'Extended break',
+          },
+          'user_1',
+        ),
+      ).rejects.toThrow(BadRequestException);
+    });
+
     it('should succeed, place pending hold, and log PENDING_HOLD ledger entry for sufficient paid leave balance', async () => {
       prisma.leaveType.findUnique.mockResolvedValue({
         id: 'lt_casual',

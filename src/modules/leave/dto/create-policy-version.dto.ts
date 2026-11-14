@@ -1,5 +1,6 @@
 import {
   IsBoolean,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -7,6 +8,7 @@ import {
   Min,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { LeaveAccrualFrequency } from '../../../generated/prisma/enums';
 
 export class CreatePolicyVersionDto {
   @ApiProperty({
@@ -25,13 +27,49 @@ export class CreatePolicyVersionDto {
   @IsString()
   effectiveTo?: string;
 
+  @ApiPropertyOptional({
+    description: 'Granting cadence: ANNUAL, MONTHLY, or QUARTERLY',
+    enum: LeaveAccrualFrequency,
+    default: LeaveAccrualFrequency.ANNUAL,
+  })
+  @IsOptional()
+  @IsEnum(LeaveAccrualFrequency)
+  accrualFrequency?: LeaveAccrualFrequency;
+
   @ApiProperty({
-    description: 'Annual quota allocation in days (e.g. 14.00)',
+    description: 'Annual quota allocation in days (e.g. 14.00 or 24.00)',
     example: 14.0,
   })
   @IsNumber()
   @Min(0)
   annualAllocation: number;
+
+  @ApiPropertyOptional({
+    description: 'Monthly allocation rate when monthly accrual is enabled (e.g. 2.0 days/month)',
+    example: 2.0,
+  })
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  monthlyAllocation?: number;
+
+  @ApiPropertyOptional({
+    description: 'Maximum days allowed to be taken in any single calendar month (e.g. 2.0)',
+    example: 2.0,
+  })
+  @IsOptional()
+  @IsNumber()
+  @Min(0.5)
+  maxDaysPerMonth?: number;
+
+  @ApiPropertyOptional({
+    description: 'Number of months carry forward remains valid before expiring (e.g. 1, 3, or null)',
+    example: 3,
+  })
+  @IsOptional()
+  @IsNumber()
+  @Min(1)
+  carryForwardExpiryMonths?: number;
 
   @ApiPropertyOptional({
     description: 'Maximum consecutive days permitted per application (null = unlimited)',

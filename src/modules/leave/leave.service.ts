@@ -12,6 +12,7 @@ import {
   AuditAction,
   BalanceFieldAffected,
   HalfDayPeriod,
+  LeaveAccrualFrequency,
   LeaveApprovalDecision,
   LeaveCancellationStatus,
   LeaveCategory,
@@ -96,7 +97,11 @@ export class LeaveService {
           version: 1,
           effectiveFrom,
           effectiveTo: null,
+          accrualFrequency: dto.accrualFrequency ?? LeaveAccrualFrequency.ANNUAL,
           annualAllocation: new Prisma.Decimal(dto.annualAllocation ?? 12.0),
+          monthlyAllocation: dto.monthlyAllocation ? new Prisma.Decimal(dto.monthlyAllocation) : null,
+          maxDaysPerMonth: dto.maxDaysPerMonth ? new Prisma.Decimal(dto.maxDaysPerMonth) : null,
+          carryForwardExpiryMonths: dto.carryForwardExpiryMonths ?? null,
           maxConsecutiveDays: dto.maxConsecutiveDays ?? null,
           allowHalfDay: dto.allowHalfDay ?? true,
           requiresDocument: dto.requiresDocument ?? false,
@@ -245,7 +250,11 @@ export class LeaveService {
           version: nextVersion,
           effectiveFrom,
           effectiveTo,
+          accrualFrequency: dto.accrualFrequency ?? LeaveAccrualFrequency.ANNUAL,
           annualAllocation: new Prisma.Decimal(dto.annualAllocation),
+          monthlyAllocation: dto.monthlyAllocation ? new Prisma.Decimal(dto.monthlyAllocation) : null,
+          maxDaysPerMonth: dto.maxDaysPerMonth ? new Prisma.Decimal(dto.maxDaysPerMonth) : null,
+          carryForwardExpiryMonths: dto.carryForwardExpiryMonths ?? null,
           maxConsecutiveDays: dto.maxConsecutiveDays ?? null,
           allowHalfDay: dto.allowHalfDay ?? true,
           requiresDocument: dto.requiresDocument ?? false,
@@ -696,6 +705,30 @@ export class LeaveService {
       throw new BadRequestException(
         `Application exceeds maximum consecutive days permitted (${activePolicy.maxConsecutiveDays} days).`,
       );
+    }
+
+    // Monthly leave allowance cap validation (e.g. max 2 days per calendar month)
+    if (activePolicy.maxDaysPerMonth) {
+      const startOfMonth = new Date(Date.UTC(startDate.getUTCFullYear(), startDate.getUTCMonth(), 1));
+      const endOfMonth = new Date(Date.UTC(startDate.getUTCFullYear(), startDate.getUTCMonth() + 1, 0, 23, 59, 59));
+
+      const existingMonthRequests = await this.prisma.leaveRequest.findMany({
+        where: {
+          userId: targetUserId,
+          leaveTypeId: leaveType.id,
+          status: { in: [LeaveRequestStatus.PENDING, LeaveRequestStatus.APPROVED] },
+          startDate: { gte: startOfMonth, lte: endOfMonth },
+        },
+      });
+
+      const monthAlreadyTaken = existingMonthRequests.reduce((sum, r) => sum + Number(r.totalDays), 0);
+      const maxMonthly = Number(activePolicy.maxDaysPerMonth);
+
+      if (monthAlreadyTaken + totalDays > maxMonthly) {
+        throw new BadRequestException(
+          `Monthly leave limit exceeded for ${leaveType.name}. Policy allows a maximum of ${maxMonthly} days per calendar month. You already have ${monthAlreadyTaken} days pending or approved this month.`,
+        );
+      }
     }
 
     // Concurrency-Safe Transaction: Lock LeaveBalance row & persist ledger

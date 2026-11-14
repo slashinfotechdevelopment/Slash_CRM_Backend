@@ -1545,6 +1545,12 @@ enum BalanceFieldAffected {
   NONE
 }
 
+enum LeaveAccrualFrequency {
+  ANNUAL
+  MONTHLY
+  QUARTERLY
+}
+
 enum WorkCalendarScope {
   GLOBAL
   LOCATION
@@ -1577,11 +1583,15 @@ model LeavePolicyVersion {
   id                       String       @id @default(cuid()) @db.VarChar(30)
   leaveTypeId              String       @map("leave_type_id") @db.VarChar(30)
   version                  Int          @default(1)
-  effectiveFrom            DateTime     @map("effective_from") @db.Date
-  effectiveTo              DateTime?    @map("effective_to") @db.Date
+  effectiveFrom            DateTime              @map("effective_from") @db.Date
+  effectiveTo              DateTime?             @map("effective_to") @db.Date
 
-  annualAllocation         Decimal      @default(0.00) @map("annual_allocation") @db.Decimal(5, 2)
-  maxConsecutiveDays       Int?         @map("max_consecutive_days")
+  accrualFrequency         LeaveAccrualFrequency @default(ANNUAL) @map("accrual_frequency")
+  annualAllocation         Decimal               @default(0.00) @map("annual_allocation") @db.Decimal(5, 2)
+  monthlyAllocation        Decimal?              @map("monthly_allocation") @db.Decimal(4, 2)
+  maxDaysPerMonth          Decimal?              @map("max_days_per_month") @db.Decimal(4, 2)
+  carryForwardExpiryMonths Int?                  @map("carry_forward_expiry_months")
+  maxConsecutiveDays       Int?                  @map("max_consecutive_days")
   allowHalfDay             Boolean      @default(true) @map("allow_half_day")
   requiresDocument         Boolean      @default(false) @map("requires_document")
   minNoticeDays            Int          @default(0) @map("min_notice_days")
