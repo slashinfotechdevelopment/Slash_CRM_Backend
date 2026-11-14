@@ -369,6 +369,14 @@ export class AttendanceWfhService {
       });
     });
 
+    const effectiveNotes =
+      dto.managerNotes ||
+      dto.rejectionReason ||
+      dto.reason ||
+      dto.remarks ||
+      dto.notes ||
+      null;
+
     await this.auditService.logAudit({
       actorUserId,
       action: AuditAction.UPDATE,
@@ -377,7 +385,8 @@ export class AttendanceWfhService {
       entityId: updated.id,
       newValues: {
         status: WfhStatus.REJECTED,
-        managerNotes: dto.managerNotes,
+        managerNotes: effectiveNotes,
+        rejectionReason: effectiveNotes,
         reviewedByUserId: actorUserId,
         reviewedAt: now.toISOString(),
       },

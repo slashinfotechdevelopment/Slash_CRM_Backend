@@ -1031,7 +1031,18 @@ export class AttendanceCorrectionService {
       const evidenceRef =
         (current.evidenceMetadata as any)?.evidenceReference || 'Evidence review';
       const outcome = dto.evidenceOutcome ?? VerificationOutcome.REJECTED;
-      const notes = dto.verificationNotes || dto.managerNotes;
+      const effectiveManagerNotes = (
+        dto.managerNotes ||
+        dto.rejectionReason ||
+        dto.reason ||
+        dto.remarks ||
+        dto.notes ||
+        ''
+      ).trim();
+      const notes =
+        dto.verificationNotes ||
+        effectiveManagerNotes ||
+        'Correction request rejected by supervisor.';
 
       await tx.attendanceEvidenceVerification.upsert({
         where: { correctionRequestId: requestId },
@@ -1059,7 +1070,7 @@ export class AttendanceCorrectionService {
           status: AttendanceCorrectionStatus.REJECTED,
           reviewedByUserId: actorUserId,
           reviewedAt: now,
-          managerNotes: dto.managerNotes.trim(),
+          managerNotes: effectiveManagerNotes || 'Rejected.',
         },
         include: {
           session: true,

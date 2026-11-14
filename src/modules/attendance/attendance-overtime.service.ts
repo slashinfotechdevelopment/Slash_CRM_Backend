@@ -546,6 +546,14 @@ export class AttendanceOvertimeService {
       });
     });
 
+    const effectiveNotes =
+      dto.managerNotes ||
+      dto.rejectionReason ||
+      dto.reason ||
+      dto.remarks ||
+      dto.notes ||
+      null;
+
     await this.auditService.logAudit({
       actorUserId,
       action: AuditAction.UPDATE,
@@ -554,7 +562,8 @@ export class AttendanceOvertimeService {
       entityId: updated.id,
       newValues: {
         status: OvertimeApprovalStatus.REJECTED,
-        managerNotes: dto.managerNotes,
+        managerNotes: effectiveNotes,
+        rejectionReason: effectiveNotes,
         reviewedByUserId: actorUserId,
         reviewedAt: now.toISOString(),
       },
