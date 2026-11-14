@@ -53,7 +53,7 @@ export interface AuthResponseData {
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
   private readonly sessionExpiryDays = 7;
-  private readonly accessTokenExpiry = '15m';
+  private readonly accessTokenExpiry = '24h';
 
   constructor(
     private readonly prisma: PrismaService,

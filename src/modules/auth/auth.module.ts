@@ -23,7 +23,7 @@ import { TaskTimerAutoPauseModule } from '../tasks/task-timer-auto-pause.module'
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.getOrThrow<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '15m' },
+        signOptions: { expiresIn: '24h' },
       }),
     }),
   ],

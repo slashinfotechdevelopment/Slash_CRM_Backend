@@ -15,7 +15,7 @@ import { OtpPurpose, OtpStatus } from '../../../generated/prisma/enums';
 @Injectable()
 export class OtpService {
   private readonly logger = new Logger(OtpService.name);
-  private readonly otpExpiryMinutes = 5;
+  private readonly otpExpiryMinutes = 2;
   private readonly resendCooldownSeconds = 60;
   private readonly maxAttempts = 5;
 
