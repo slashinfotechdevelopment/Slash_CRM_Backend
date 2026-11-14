@@ -44,7 +44,7 @@ export class AttendanceService {
     private readonly accessService: AttendanceAccessService,
     private readonly calculationService: AttendanceCalculationService,
     private readonly usersService: UsersService,
-  ) {}
+  ) { }
 
   /**
    * Performs server-authoritative employee check-in:
@@ -768,72 +768,72 @@ export class AttendanceService {
       hasActiveSession: Boolean(activeSession),
       activeSession: activeSession
         ? {
-            ...activeSession,
-            checkInTimeFormatted: activeSession.rawCheckInAt
-              ? formatTime12Hour(activeSession.rawCheckInAt)
-              : null,
-          }
+          ...activeSession,
+          checkInTimeFormatted: activeSession.rawCheckInAt
+            ? formatTime12Hour(activeSession.rawCheckInAt)
+            : null,
+        }
         : null,
       hasActiveBreak: Boolean(activeBreak),
       activeBreak: activeBreak
         ? {
-            ...activeBreak,
-            startTimeFormatted: activeBreak.startedAt
-              ? formatTime12Hour(activeBreak.startedAt)
-              : null,
-          }
+          ...activeBreak,
+          startTimeFormatted: activeBreak.startedAt
+            ? formatTime12Hour(activeBreak.startedAt)
+            : null,
+        }
         : null,
       record: record
         ? {
-            id: record.id,
-            attendanceDate: formatDayMonthYear(record.attendanceDate),
-            date: formatDayMonthYear(record.attendanceDate),
-            workDate: formatDayMonthYear(record.attendanceDate),
-            dateFormatted: formatDayMonthYear(record.attendanceDate),
-            dateDisplay: formatDayMonthYearText(record.attendanceDate),
-            attendanceDateFormatted: formatDayMonthYear(record.attendanceDate),
-            attendanceDateDisplay: formatDayMonthYearText(record.attendanceDate),
-            workDateFormatted: formatDayMonthYear(record.attendanceDate),
-            workDateDisplay: formatDayMonthYearText(record.attendanceDate),
-            attendanceDateYmd: formatDateOnly(record.attendanceDate),
-            dateYmd: formatDateOnly(record.attendanceDate),
-            workDateYmd: formatDateOnly(record.attendanceDate),
-            status: record.status,
-            grossWorkingDurationSeconds: record.grossWorkingDurationSeconds,
-            paidBreakDurationSeconds: record.paidBreakDurationSeconds,
-            unpaidBreakDurationSeconds: record.unpaidBreakDurationSeconds,
-            netWorkingDurationSeconds: record.netWorkingDurationSeconds,
-            verifiedOvertimeSeconds: record.verifiedOvertimeSeconds,
-            sessions: record.sessions,
-            breaks: record.breaks,
-            breakPolicy: recordBreakPolicy,
-          }
+          id: record.id,
+          attendanceDate: formatDayMonthYear(record.attendanceDate),
+          date: formatDayMonthYear(record.attendanceDate),
+          workDate: formatDayMonthYear(record.attendanceDate),
+          dateFormatted: formatDayMonthYear(record.attendanceDate),
+          dateDisplay: formatDayMonthYearText(record.attendanceDate),
+          attendanceDateFormatted: formatDayMonthYear(record.attendanceDate),
+          attendanceDateDisplay: formatDayMonthYearText(record.attendanceDate),
+          workDateFormatted: formatDayMonthYear(record.attendanceDate),
+          workDateDisplay: formatDayMonthYearText(record.attendanceDate),
+          attendanceDateYmd: formatDateOnly(record.attendanceDate),
+          dateYmd: formatDateOnly(record.attendanceDate),
+          workDateYmd: formatDateOnly(record.attendanceDate),
+          status: record.status,
+          grossWorkingDurationSeconds: record.grossWorkingDurationSeconds,
+          paidBreakDurationSeconds: record.paidBreakDurationSeconds,
+          unpaidBreakDurationSeconds: record.unpaidBreakDurationSeconds,
+          netWorkingDurationSeconds: record.netWorkingDurationSeconds,
+          verifiedOvertimeSeconds: record.verifiedOvertimeSeconds,
+          sessions: record.sessions,
+          breaks: record.breaks,
+          breakPolicy: recordBreakPolicy,
+        }
         : null,
       effectiveShift: activeShift
         ? {
-            id: activeShift.shiftDefinition.id,
-            code: activeShift.shiftDefinition.code,
-            name: activeShift.shiftDefinition.name,
-            startTime: activeShift.shiftDefinition.startTime,
-            endTime: activeShift.shiftDefinition.endTime,
-            startTimeFormatted: formatTime12Hour(
-              activeShift.shiftDefinition.startTime,
-            ),
-            endTimeFormatted: formatTime12Hour(
-              activeShift.shiftDefinition.endTime,
-            ),
-            timeRange: formatTimeRange(
-              activeShift.shiftDefinition.startTime,
-              activeShift.shiftDefinition.endTime,
-            ),
-            timeRangeDisplay: formatTimeRange(
-              activeShift.shiftDefinition.startTime,
-              activeShift.shiftDefinition.endTime,
-            ),
-            isOvernight: activeShift.shiftDefinition.isOvernight,
-            allowMultipleSessions:
-              activeShift.shiftDefinition.allowMultipleSessions,
-          }
+          id: activeShift.shiftDefinition.id,
+          code: activeShift.shiftDefinition.code,
+          name: activeShift.shiftDefinition.name,
+          startTime: activeShift.shiftDefinition.startTime,
+          endTime: activeShift.shiftDefinition.endTime,
+          startTimeFormatted: formatTime12Hour(
+            activeShift.shiftDefinition.startTime,
+          ),
+          endTimeFormatted: formatTime12Hour(
+            activeShift.shiftDefinition.endTime,
+          ),
+          timeRange: formatTimeRange(
+            activeShift.shiftDefinition.startTime,
+            activeShift.shiftDefinition.endTime,
+          ),
+          timeRangeDisplay: formatTimeRange(
+            activeShift.shiftDefinition.startTime,
+            activeShift.shiftDefinition.endTime,
+          ),
+          isOvernight: activeShift.shiftDefinition.isOvernight,
+          allowMultipleSessions:
+            activeShift.shiftDefinition.allowMultipleSessions,
+        }
         : null,
     };
   }
@@ -883,7 +883,7 @@ export class AttendanceService {
               { name: { contains: searchTrim } },
               { email: { contains: searchTrim } },
               { userCode: { contains: searchTrim } },
-              { employeeProfile: { employeeCode: { contains: searchTrim } } },
+              { employeeProfile: { designation: { contains: searchTrim } } },
             ],
           },
         ],
@@ -939,7 +939,7 @@ export class AttendanceService {
               email: true,
               userCode: true,
               employeeProfile: {
-                select: { employeeCode: true, designation: true },
+                select: { designation: true },
               },
               departments: {
                 select: {
@@ -992,8 +992,7 @@ export class AttendanceService {
         userId: rec.userId,
         employeeId: rec.userId,
         employeeName: rec.user?.name ?? 'Unknown',
-        employeeCode:
-          rec.user?.employeeProfile?.employeeCode || rec.user?.userCode || null,
+        employeeCode: rec.user?.userCode || null,
         employeeEmail: rec.user?.email || null,
         designation: rec.user?.employeeProfile?.designation || null,
         department: rec.user?.departments?.[0]?.department?.name || null,
@@ -1130,7 +1129,7 @@ export class AttendanceService {
         record.shiftDefinition?.autoCloseGraceMinutes ?? 30;
       const cutoffTimestamp = new Date(
         record.shiftEndTimeSnapshot.getTime() +
-          autoCloseGraceMinutes * 60 * 1000,
+        autoCloseGraceMinutes * 60 * 1000,
       );
       if (now.getTime() < cutoffTimestamp.getTime()) {
         throw new BadRequestException(
