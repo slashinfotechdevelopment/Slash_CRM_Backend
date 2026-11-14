@@ -324,6 +324,7 @@ export type MediaWhereInput = {
   profileOf?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   clientLogoOf?: Prisma.XOR<Prisma.ClientProfileNullableScalarRelationFilter, Prisma.ClientProfileWhereInput> | null
   attachments?: Prisma.MediaAttachmentListRelationFilter
+  leaveRequests?: Prisma.LeaveRequestListRelationFilter
 }
 
 export type MediaOrderByWithRelationInput = {
@@ -349,6 +350,7 @@ export type MediaOrderByWithRelationInput = {
   profileOf?: Prisma.UserOrderByWithRelationInput
   clientLogoOf?: Prisma.ClientProfileOrderByWithRelationInput
   attachments?: Prisma.MediaAttachmentOrderByRelationAggregateInput
+  leaveRequests?: Prisma.LeaveRequestOrderByRelationAggregateInput
   _relevance?: Prisma.MediaOrderByRelevanceInput
 }
 
@@ -378,6 +380,7 @@ export type MediaWhereUniqueInput = Prisma.AtLeast<{
   profileOf?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   clientLogoOf?: Prisma.XOR<Prisma.ClientProfileNullableScalarRelationFilter, Prisma.ClientProfileWhereInput> | null
   attachments?: Prisma.MediaAttachmentListRelationFilter
+  leaveRequests?: Prisma.LeaveRequestListRelationFilter
 }, "id">
 
 export type MediaOrderByWithAggregationInput = {
@@ -452,6 +455,7 @@ export type MediaCreateInput = {
   profileOf?: Prisma.UserCreateNestedOneWithoutProfileMediaInput
   clientLogoOf?: Prisma.ClientProfileCreateNestedOneWithoutLogoMediaInput
   attachments?: Prisma.MediaAttachmentCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaUncheckedCreateInput = {
@@ -476,6 +480,7 @@ export type MediaUncheckedCreateInput = {
   profileOf?: Prisma.UserUncheckedCreateNestedOneWithoutProfileMediaInput
   clientLogoOf?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutLogoMediaInput
   attachments?: Prisma.MediaAttachmentUncheckedCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaUpdateInput = {
@@ -500,6 +505,7 @@ export type MediaUpdateInput = {
   profileOf?: Prisma.UserUpdateOneWithoutProfileMediaNestedInput
   clientLogoOf?: Prisma.ClientProfileUpdateOneWithoutLogoMediaNestedInput
   attachments?: Prisma.MediaAttachmentUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaUncheckedUpdateInput = {
@@ -524,6 +530,7 @@ export type MediaUncheckedUpdateInput = {
   profileOf?: Prisma.UserUncheckedUpdateOneWithoutProfileMediaNestedInput
   clientLogoOf?: Prisma.ClientProfileUncheckedUpdateOneWithoutLogoMediaNestedInput
   attachments?: Prisma.MediaAttachmentUncheckedUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaCreateManyInput = {
@@ -801,6 +808,22 @@ export type MediaUpdateOneRequiredWithoutAttachmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MediaUpdateToOneWithWhereWithoutAttachmentsInput, Prisma.MediaUpdateWithoutAttachmentsInput>, Prisma.MediaUncheckedUpdateWithoutAttachmentsInput>
 }
 
+export type MediaCreateNestedOneWithoutLeaveRequestsInput = {
+  create?: Prisma.XOR<Prisma.MediaCreateWithoutLeaveRequestsInput, Prisma.MediaUncheckedCreateWithoutLeaveRequestsInput>
+  connectOrCreate?: Prisma.MediaCreateOrConnectWithoutLeaveRequestsInput
+  connect?: Prisma.MediaWhereUniqueInput
+}
+
+export type MediaUpdateOneWithoutLeaveRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.MediaCreateWithoutLeaveRequestsInput, Prisma.MediaUncheckedCreateWithoutLeaveRequestsInput>
+  connectOrCreate?: Prisma.MediaCreateOrConnectWithoutLeaveRequestsInput
+  upsert?: Prisma.MediaUpsertWithoutLeaveRequestsInput
+  disconnect?: Prisma.MediaWhereInput | boolean
+  delete?: Prisma.MediaWhereInput | boolean
+  connect?: Prisma.MediaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MediaUpdateToOneWithWhereWithoutLeaveRequestsInput, Prisma.MediaUpdateWithoutLeaveRequestsInput>, Prisma.MediaUncheckedUpdateWithoutLeaveRequestsInput>
+}
+
 export type MediaCreateWithoutProfileOfInput = {
   id?: string
   originalName: string
@@ -822,6 +845,7 @@ export type MediaCreateWithoutProfileOfInput = {
   uploadedBy?: Prisma.UserCreateNestedOneWithoutUploadedMediaInput
   clientLogoOf?: Prisma.ClientProfileCreateNestedOneWithoutLogoMediaInput
   attachments?: Prisma.MediaAttachmentCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaUncheckedCreateWithoutProfileOfInput = {
@@ -845,6 +869,7 @@ export type MediaUncheckedCreateWithoutProfileOfInput = {
   deletedAt?: Date | string | null
   clientLogoOf?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutLogoMediaInput
   attachments?: Prisma.MediaAttachmentUncheckedCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaCreateOrConnectWithoutProfileOfInput = {
@@ -873,6 +898,7 @@ export type MediaCreateWithoutUploadedByInput = {
   profileOf?: Prisma.UserCreateNestedOneWithoutProfileMediaInput
   clientLogoOf?: Prisma.ClientProfileCreateNestedOneWithoutLogoMediaInput
   attachments?: Prisma.MediaAttachmentCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaUncheckedCreateWithoutUploadedByInput = {
@@ -896,6 +922,7 @@ export type MediaUncheckedCreateWithoutUploadedByInput = {
   profileOf?: Prisma.UserUncheckedCreateNestedOneWithoutProfileMediaInput
   clientLogoOf?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutLogoMediaInput
   attachments?: Prisma.MediaAttachmentUncheckedCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaCreateOrConnectWithoutUploadedByInput = {
@@ -940,6 +967,7 @@ export type MediaUpdateWithoutProfileOfInput = {
   uploadedBy?: Prisma.UserUpdateOneWithoutUploadedMediaNestedInput
   clientLogoOf?: Prisma.ClientProfileUpdateOneWithoutLogoMediaNestedInput
   attachments?: Prisma.MediaAttachmentUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaUncheckedUpdateWithoutProfileOfInput = {
@@ -963,6 +991,7 @@ export type MediaUncheckedUpdateWithoutProfileOfInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   clientLogoOf?: Prisma.ClientProfileUncheckedUpdateOneWithoutLogoMediaNestedInput
   attachments?: Prisma.MediaAttachmentUncheckedUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaUpsertWithWhereUniqueWithoutUploadedByInput = {
@@ -1026,6 +1055,7 @@ export type MediaCreateWithoutClientLogoOfInput = {
   uploadedBy?: Prisma.UserCreateNestedOneWithoutUploadedMediaInput
   profileOf?: Prisma.UserCreateNestedOneWithoutProfileMediaInput
   attachments?: Prisma.MediaAttachmentCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaUncheckedCreateWithoutClientLogoOfInput = {
@@ -1049,6 +1079,7 @@ export type MediaUncheckedCreateWithoutClientLogoOfInput = {
   deletedAt?: Date | string | null
   profileOf?: Prisma.UserUncheckedCreateNestedOneWithoutProfileMediaInput
   attachments?: Prisma.MediaAttachmentUncheckedCreateNestedManyWithoutMediaInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaCreateOrConnectWithoutClientLogoOfInput = {
@@ -1088,6 +1119,7 @@ export type MediaUpdateWithoutClientLogoOfInput = {
   uploadedBy?: Prisma.UserUpdateOneWithoutUploadedMediaNestedInput
   profileOf?: Prisma.UserUpdateOneWithoutProfileMediaNestedInput
   attachments?: Prisma.MediaAttachmentUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaUncheckedUpdateWithoutClientLogoOfInput = {
@@ -1111,6 +1143,7 @@ export type MediaUncheckedUpdateWithoutClientLogoOfInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profileOf?: Prisma.UserUncheckedUpdateOneWithoutProfileMediaNestedInput
   attachments?: Prisma.MediaAttachmentUncheckedUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaCreateWithoutAttachmentsInput = {
@@ -1134,6 +1167,7 @@ export type MediaCreateWithoutAttachmentsInput = {
   uploadedBy?: Prisma.UserCreateNestedOneWithoutUploadedMediaInput
   profileOf?: Prisma.UserCreateNestedOneWithoutProfileMediaInput
   clientLogoOf?: Prisma.ClientProfileCreateNestedOneWithoutLogoMediaInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaUncheckedCreateWithoutAttachmentsInput = {
@@ -1157,6 +1191,7 @@ export type MediaUncheckedCreateWithoutAttachmentsInput = {
   deletedAt?: Date | string | null
   profileOf?: Prisma.UserUncheckedCreateNestedOneWithoutProfileMediaInput
   clientLogoOf?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutLogoMediaInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutAttachmentMediaInput
 }
 
 export type MediaCreateOrConnectWithoutAttachmentsInput = {
@@ -1196,6 +1231,7 @@ export type MediaUpdateWithoutAttachmentsInput = {
   uploadedBy?: Prisma.UserUpdateOneWithoutUploadedMediaNestedInput
   profileOf?: Prisma.UserUpdateOneWithoutProfileMediaNestedInput
   clientLogoOf?: Prisma.ClientProfileUpdateOneWithoutLogoMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaUncheckedUpdateWithoutAttachmentsInput = {
@@ -1219,6 +1255,119 @@ export type MediaUncheckedUpdateWithoutAttachmentsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profileOf?: Prisma.UserUncheckedUpdateOneWithoutProfileMediaNestedInput
   clientLogoOf?: Prisma.ClientProfileUncheckedUpdateOneWithoutLogoMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutAttachmentMediaNestedInput
+}
+
+export type MediaCreateWithoutLeaveRequestsInput = {
+  id?: string
+  originalName: string
+  storedName: string
+  storageProvider?: $Enums.MediaStorageProvider
+  storageKey: string
+  fileUrl?: string | null
+  mimeType: string
+  fileSizeBytes: bigint | number
+  mediaType: $Enums.MediaType
+  visibility?: $Enums.MediaVisibility
+  status?: $Enums.MediaStatus
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  uploadedBy?: Prisma.UserCreateNestedOneWithoutUploadedMediaInput
+  profileOf?: Prisma.UserCreateNestedOneWithoutProfileMediaInput
+  clientLogoOf?: Prisma.ClientProfileCreateNestedOneWithoutLogoMediaInput
+  attachments?: Prisma.MediaAttachmentCreateNestedManyWithoutMediaInput
+}
+
+export type MediaUncheckedCreateWithoutLeaveRequestsInput = {
+  id?: string
+  originalName: string
+  storedName: string
+  storageProvider?: $Enums.MediaStorageProvider
+  storageKey: string
+  fileUrl?: string | null
+  mimeType: string
+  fileSizeBytes: bigint | number
+  mediaType: $Enums.MediaType
+  visibility?: $Enums.MediaVisibility
+  status?: $Enums.MediaStatus
+  uploadedById?: string | null
+  checksumSha256?: string | null
+  scanStatus?: $Enums.MediaScanStatus
+  scanDetails?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  profileOf?: Prisma.UserUncheckedCreateNestedOneWithoutProfileMediaInput
+  clientLogoOf?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutLogoMediaInput
+  attachments?: Prisma.MediaAttachmentUncheckedCreateNestedManyWithoutMediaInput
+}
+
+export type MediaCreateOrConnectWithoutLeaveRequestsInput = {
+  where: Prisma.MediaWhereUniqueInput
+  create: Prisma.XOR<Prisma.MediaCreateWithoutLeaveRequestsInput, Prisma.MediaUncheckedCreateWithoutLeaveRequestsInput>
+}
+
+export type MediaUpsertWithoutLeaveRequestsInput = {
+  update: Prisma.XOR<Prisma.MediaUpdateWithoutLeaveRequestsInput, Prisma.MediaUncheckedUpdateWithoutLeaveRequestsInput>
+  create: Prisma.XOR<Prisma.MediaCreateWithoutLeaveRequestsInput, Prisma.MediaUncheckedCreateWithoutLeaveRequestsInput>
+  where?: Prisma.MediaWhereInput
+}
+
+export type MediaUpdateToOneWithWhereWithoutLeaveRequestsInput = {
+  where?: Prisma.MediaWhereInput
+  data: Prisma.XOR<Prisma.MediaUpdateWithoutLeaveRequestsInput, Prisma.MediaUncheckedUpdateWithoutLeaveRequestsInput>
+}
+
+export type MediaUpdateWithoutLeaveRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageProvider?: Prisma.EnumMediaStorageProviderFieldUpdateOperationsInput | $Enums.MediaStorageProvider
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSizeBytes?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+  visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
+  status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  uploadedBy?: Prisma.UserUpdateOneWithoutUploadedMediaNestedInput
+  profileOf?: Prisma.UserUpdateOneWithoutProfileMediaNestedInput
+  clientLogoOf?: Prisma.ClientProfileUpdateOneWithoutLogoMediaNestedInput
+  attachments?: Prisma.MediaAttachmentUpdateManyWithoutMediaNestedInput
+}
+
+export type MediaUncheckedUpdateWithoutLeaveRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageProvider?: Prisma.EnumMediaStorageProviderFieldUpdateOperationsInput | $Enums.MediaStorageProvider
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSizeBytes?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+  visibility?: Prisma.EnumMediaVisibilityFieldUpdateOperationsInput | $Enums.MediaVisibility
+  status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
+  uploadedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checksumSha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scanStatus?: Prisma.EnumMediaScanStatusFieldUpdateOperationsInput | $Enums.MediaScanStatus
+  scanDetails?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  profileOf?: Prisma.UserUncheckedUpdateOneWithoutProfileMediaNestedInput
+  clientLogoOf?: Prisma.ClientProfileUncheckedUpdateOneWithoutLogoMediaNestedInput
+  attachments?: Prisma.MediaAttachmentUncheckedUpdateManyWithoutMediaNestedInput
 }
 
 export type MediaCreateManyUploadedByInput = {
@@ -1262,6 +1411,7 @@ export type MediaUpdateWithoutUploadedByInput = {
   profileOf?: Prisma.UserUpdateOneWithoutProfileMediaNestedInput
   clientLogoOf?: Prisma.ClientProfileUpdateOneWithoutLogoMediaNestedInput
   attachments?: Prisma.MediaAttachmentUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaUncheckedUpdateWithoutUploadedByInput = {
@@ -1285,6 +1435,7 @@ export type MediaUncheckedUpdateWithoutUploadedByInput = {
   profileOf?: Prisma.UserUncheckedUpdateOneWithoutProfileMediaNestedInput
   clientLogoOf?: Prisma.ClientProfileUncheckedUpdateOneWithoutLogoMediaNestedInput
   attachments?: Prisma.MediaAttachmentUncheckedUpdateManyWithoutMediaNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutAttachmentMediaNestedInput
 }
 
 export type MediaUncheckedUpdateManyWithoutUploadedByInput = {
@@ -1314,10 +1465,12 @@ export type MediaUncheckedUpdateManyWithoutUploadedByInput = {
 
 export type MediaCountOutputType = {
   attachments: number
+  leaveRequests: number
 }
 
 export type MediaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attachments?: boolean | MediaCountOutputTypeCountAttachmentsArgs
+  leaveRequests?: boolean | MediaCountOutputTypeCountLeaveRequestsArgs
 }
 
 /**
@@ -1335,6 +1488,13 @@ export type MediaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
  */
 export type MediaCountOutputTypeCountAttachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.MediaAttachmentWhereInput
+}
+
+/**
+ * MediaCountOutputType without action
+ */
+export type MediaCountOutputTypeCountLeaveRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeaveRequestWhereInput
 }
 
 
@@ -1361,6 +1521,7 @@ export type MediaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   profileOf?: boolean | Prisma.Media$profileOfArgs<ExtArgs>
   clientLogoOf?: boolean | Prisma.Media$clientLogoOfArgs<ExtArgs>
   attachments?: boolean | Prisma.Media$attachmentsArgs<ExtArgs>
+  leaveRequests?: boolean | Prisma.Media$leaveRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.MediaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["media"]>
 
@@ -1393,6 +1554,7 @@ export type MediaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   profileOf?: boolean | Prisma.Media$profileOfArgs<ExtArgs>
   clientLogoOf?: boolean | Prisma.Media$clientLogoOfArgs<ExtArgs>
   attachments?: boolean | Prisma.Media$attachmentsArgs<ExtArgs>
+  leaveRequests?: boolean | Prisma.Media$leaveRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.MediaCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1403,6 +1565,7 @@ export type $MediaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     profileOf: Prisma.$UserPayload<ExtArgs> | null
     clientLogoOf: Prisma.$ClientProfilePayload<ExtArgs> | null
     attachments: Prisma.$MediaAttachmentPayload<ExtArgs>[]
+    leaveRequests: Prisma.$LeaveRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1767,6 +1930,7 @@ export interface Prisma__MediaClient<T, Null = never, ExtArgs extends runtime.Ty
   profileOf<T extends Prisma.Media$profileOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Media$profileOfArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   clientLogoOf<T extends Prisma.Media$clientLogoOfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Media$clientLogoOfArgs<ExtArgs>>): Prisma.Prisma__ClientProfileClient<runtime.Types.Result.GetResult<Prisma.$ClientProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   attachments<T extends Prisma.Media$attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Media$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leaveRequests<T extends Prisma.Media$leaveRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Media$leaveRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2240,6 +2404,30 @@ export type Media$attachmentsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.MediaAttachmentScalarFieldEnum | Prisma.MediaAttachmentScalarFieldEnum[]
+}
+
+/**
+ * Media.leaveRequests
+ */
+export type Media$leaveRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeaveRequest
+   */
+  select?: Prisma.LeaveRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeaveRequest
+   */
+  omit?: Prisma.LeaveRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeaveRequestInclude<ExtArgs> | null
+  where?: Prisma.LeaveRequestWhereInput
+  orderBy?: Prisma.LeaveRequestOrderByWithRelationInput | Prisma.LeaveRequestOrderByWithRelationInput[]
+  cursor?: Prisma.LeaveRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeaveRequestScalarFieldEnum | Prisma.LeaveRequestScalarFieldEnum[]
 }
 
 /**

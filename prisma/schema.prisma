@@ -202,6 +202,17 @@ model User {
   createdFollowUps                LeadFollowUp[]              @relation("FollowUpCreatedBy")
   assignedFollowUps               LeadFollowUp[]              @relation("FollowUpAssignedTo")
 
+  leaveBalances            LeaveBalance[]             @relation("UserLeaveBalances")
+  leaveRequests            LeaveRequest[]             @relation("EmployeeLeaveRequests")
+  reviewedLeaveRequests    LeaveRequest[]             @relation("ReviewedLeaveRequests")
+  cancelledLeaveRequests   LeaveRequest[]             @relation("CancelledLeaveRequests")
+  leaveApprovals           LeaveApproval[]            @relation("ReviewerLeaveApprovals")
+  cancellationRequests     LeaveCancellationRequest[] @relation("CancellationRequester")
+  reviewedCancellations    LeaveCancellationRequest[] @relation("CancellationReviewer")
+  leaveTransactions        LeaveTransaction[]         @relation("UserLeaveTransactions")
+  createdLeaveTransactions LeaveTransaction[]         @relation("CreatedLeaveTransactions")
+  weeklyOffOverride        WeeklyOffPolicy[]          @relation("UserWeeklyOffOverride")
+
   @@index([userTypeId, status])
   @@index([deletedAt])
   @@index([createdAt])
@@ -379,6 +390,9 @@ model Department {
   users    UserDepartment[]
   tasks    Task[]
   leads    Lead[]
+  leavePolicyVersions LeavePolicyVersion[]
+  holidays            Holiday[]
+  weeklyOffPolicies   WeeklyOffPolicy[]
 
   @@index([parentId, status])
   @@index([deletedAt])
@@ -470,6 +484,7 @@ model Media {
   profileOf    User?             @relation("UserProfileMedia")
   clientLogoOf ClientProfile?    @relation("ClientLogoMedia")
   attachments  MediaAttachment[]
+  leaveRequests LeaveRequest[]   @relation("LeaveAttachmentMedia")
 
   @@index([mediaType, status])
   @@index([uploadedById, createdAt])
@@ -1465,5 +1480,329 @@ model LeadFollowUp {
   @@index([leadId, status])
   @@index([assignedToId, scheduledAt, status])
   @@map("lead_follow_ups")
+}
+
+// =============================================================================
+// STAGE 9: LEAVE MANAGEMENT & WORK CALENDAR SUBSYSTEM
+// =============================================================================
+
+enum LeaveCategory {
+  PAID
+  UNPAID
+  COMPENSATORY
+  STATUTORY
+}
+
+enum LeaveRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLATION_REQUESTED
+  CANCELLED
+}
+
+enum HalfDayPeriod {
+  FIRST_HALF
+  SECOND_HALF
+}
+
+enum LeaveApprovalDecision {
+  PENDING
+  APPROVED
+  REJECTED
+  REASSIGNED
+  SKIPPED
+}
+
+enum LeaveCancellationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum LeaveTransactionType {
+  INITIAL_ALLOCATION
+  PERIODIC_ACCRUAL
+  CARRY_FORWARD
+  PENDING_HOLD
+  HOLD_RELEASE_REJECTED
+  HOLD_RELEASE_CANCELLED
+  UTILIZATION
+  UNPAID_UTILIZATION
+  REVERSAL_CANCELLATION
+  MANUAL_ADJUSTMENT_CREDIT
+  MANUAL_ADJUSTMENT_DEBIT
+  ENCASHMENT
+  LAPSED
+}
+
+enum BalanceFieldAffected {
+  ALLOCATED
+  CARRIED_FORWARD
+  ADJUSTED
+  USED
+  PENDING_HOLD
+  NONE
+}
+
+enum WorkCalendarScope {
+  GLOBAL
+  LOCATION
+  DEPARTMENT
+  USER_OVERRIDE
+}
+
+model LeaveType {
+  id          String        @id @default(cuid()) @db.VarChar(30)
+  code        String        @unique @db.VarChar(50)
+  name        String        @db.VarChar(100)
+  description String?       @db.VarChar(255)
+  category    LeaveCategory @default(PAID)
+  isPaid      Boolean       @default(true) @map("is_paid")
+  status      RecordStatus  @default(ACTIVE)
+
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+
+  policies     LeavePolicyVersion[]
+  balances     LeaveBalance[]
+  requests     LeaveRequest[]
+  transactions LeaveTransaction[]
+
+  @@index([status])
+  @@map("leave_types")
+}
+
+model LeavePolicyVersion {
+  id                       String       @id @default(cuid()) @db.VarChar(30)
+  leaveTypeId              String       @map("leave_type_id") @db.VarChar(30)
+  version                  Int          @default(1)
+  effectiveFrom            DateTime     @map("effective_from") @db.Date
+  effectiveTo              DateTime?    @map("effective_to") @db.Date
+
+  annualAllocation         Decimal      @default(0.00) @map("annual_allocation") @db.Decimal(5, 2)
+  maxConsecutiveDays       Int?         @map("max_consecutive_days")
+  allowHalfDay             Boolean      @default(true) @map("allow_half_day")
+  requiresDocument         Boolean      @default(false) @map("requires_document")
+  minNoticeDays            Int          @default(0) @map("min_notice_days")
+  carryForwardLimit        Decimal      @default(0.00) @map("carry_forward_limit") @db.Decimal(5, 2)
+  excludeWeeklyOffs        Boolean      @default(true) @map("exclude_weekly_offs")
+  excludeHolidays          Boolean      @default(true) @map("exclude_holidays")
+  status                   RecordStatus @default(ACTIVE)
+
+  applicableEmploymentType String?      @map("applicable_employment_type") @db.VarChar(50)
+  departmentId             String?      @map("department_id") @db.VarChar(30)
+
+  createdAt                DateTime     @default(now()) @map("created_at")
+  updatedAt                DateTime     @updatedAt @map("updated_at")
+
+  leaveType                LeaveType    @relation(fields: [leaveTypeId], references: [id], onDelete: Restrict)
+  department               Department?  @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  requests                 LeaveRequest[]
+
+  @@unique([leaveTypeId, version], name: "unique_policy_version_per_type")
+  @@index([effectiveFrom, effectiveTo])
+  @@index([departmentId])
+  @@map("leave_policy_versions")
+}
+
+model LeaveBalance {
+  id             String   @id @default(cuid()) @db.VarChar(30)
+  userId         String   @map("user_id") @db.VarChar(30)
+  leaveTypeId    String   @map("leave_type_id") @db.VarChar(30)
+  year           Int      @db.Year
+  allocatedDays  Decimal  @default(0.00) @map("allocated_days") @db.Decimal(5, 2)
+  carriedForward Decimal  @default(0.00) @map("carried_forward") @db.Decimal(5, 2)
+  adjustedDays   Decimal  @default(0.00) @map("adjusted_days") @db.Decimal(5, 2)
+  usedDays       Decimal  @default(0.00) @map("used_days") @db.Decimal(5, 2)
+  pendingDays    Decimal  @default(0.00) @map("pending_days") @db.Decimal(5, 2)
+  
+  version        Int      @default(1)
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  user           User      @relation("UserLeaveBalances", fields: [userId], references: [id], onDelete: Restrict)
+  leaveType      LeaveType @relation(fields: [leaveTypeId], references: [id], onDelete: Restrict)
+
+  @@unique([userId, leaveTypeId, year], name: "unique_user_leave_year")
+  @@index([userId, year])
+  @@map("leave_balances")
+}
+
+model LeaveRequest {
+  id                   String             @id @default(cuid()) @db.VarChar(30)
+  requestNumber        String             @unique @map("request_number") @db.VarChar(40)
+  userId               String             @map("user_id") @db.VarChar(30)
+  leaveTypeId          String             @map("leave_type_id") @db.VarChar(30)
+  leavePolicyVersionId String             @map("leave_policy_version_id") @db.VarChar(30)
+  startDate            DateTime           @map("start_date") @db.Date
+  endDate              DateTime           @map("end_date") @db.Date
+  isHalfDay            Boolean            @default(false) @map("is_half_day")
+  halfDayPeriod        HalfDayPeriod?     @map("half_day_period")
+  totalDays            Decimal            @map("total_days") @db.Decimal(4, 2)
+  reason               String             @db.VarChar(500)
+  attachmentMediaId    String?            @map("attachment_media_id") @db.VarChar(30)
+  status               LeaveRequestStatus @default(PENDING)
+
+  policySnapshot       Json               @map("policy_snapshot")
+
+  reviewedByUserId     String?            @map("reviewed_by_user_id") @db.VarChar(30)
+  reviewedAt           DateTime?          @map("reviewed_at")
+  managerNotes         String?            @map("manager_notes") @db.VarChar(500)
+  cancelledAt          DateTime?          @map("cancelled_at")
+  cancelledByUserId    String?            @map("cancelled_by_user_id") @db.VarChar(30)
+
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
+
+  user                 User                 @relation("EmployeeLeaveRequests", fields: [userId], references: [id], onDelete: Restrict)
+  reviewer             User?                @relation("ReviewedLeaveRequests", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+  canceller            User?                @relation("CancelledLeaveRequests", fields: [cancelledByUserId], references: [id], onDelete: SetNull)
+  leaveType            LeaveType            @relation(fields: [leaveTypeId], references: [id], onDelete: Restrict)
+  policyVersion        LeavePolicyVersion   @relation(fields: [leavePolicyVersionId], references: [id], onDelete: Restrict)
+  attachmentMedia      Media?               @relation("LeaveAttachmentMedia", fields: [attachmentMediaId], references: [id], onDelete: SetNull)
+
+  approvals            LeaveApproval[]
+  cancellationRequests LeaveCancellationRequest[]
+  transactions         LeaveTransaction[]
+
+  @@index([userId, startDate, endDate])
+  @@index([status])
+  @@map("leave_requests")
+}
+
+model LeaveApproval {
+  id             String                @id @default(cuid()) @db.VarChar(30)
+  leaveRequestId String                @map("leave_request_id") @db.VarChar(30)
+  approverUserId String                @map("approver_user_id") @db.VarChar(30)
+  level          Int                   @default(1)
+  decision       LeaveApprovalDecision @default(PENDING)
+  comments       String?               @db.VarChar(500)
+  assignedAt     DateTime              @default(now()) @map("assigned_at")
+  decidedAt      DateTime?             @map("decided_at")
+
+  createdAt      DateTime              @default(now()) @map("created_at")
+  updatedAt      DateTime              @updatedAt @map("updated_at")
+
+  leaveRequest   LeaveRequest          @relation(fields: [leaveRequestId], references: [id], onDelete: Cascade)
+  approver       User                  @relation("ReviewerLeaveApprovals", fields: [approverUserId], references: [id], onDelete: Restrict)
+
+  @@index([leaveRequestId, level])
+  @@index([approverUserId, decision])
+  @@map("leave_approvals")
+}
+
+model LeaveCancellationRequest {
+  id                String                  @id @default(cuid()) @db.VarChar(30)
+  leaveRequestId    String                  @map("leave_request_id") @db.VarChar(30)
+  requestedByUserId String                  @map("requested_by_user_id") @db.VarChar(30)
+  reason            String                  @db.VarChar(500)
+  status            LeaveCancellationStatus @default(PENDING)
+  reviewedByUserId  String?                 @map("reviewed_by_user_id") @db.VarChar(30)
+  reviewedAt        DateTime?               @map("reviewed_at")
+  reviewerNotes     String?                 @map("reviewer_notes") @db.VarChar(500)
+
+  createdAt         DateTime                @default(now()) @map("created_at")
+  updatedAt         DateTime                @updatedAt @map("updated_at")
+
+  leaveRequest      LeaveRequest            @relation(fields: [leaveRequestId], references: [id], onDelete: Cascade)
+  requestedBy       User                    @relation("CancellationRequester", fields: [requestedByUserId], references: [id], onDelete: Restrict)
+  reviewer          User?                   @relation("CancellationReviewer", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([leaveRequestId, status])
+  @@map("leave_cancellation_requests")
+}
+
+model LeaveTransaction {
+  id                    String               @id @default(cuid()) @db.VarChar(30)
+  userId                String               @map("user_id") @db.VarChar(30)
+  leaveTypeId           String               @map("leave_type_id") @db.VarChar(30)
+  leaveRequestId        String?              @map("leave_request_id") @db.VarChar(30)
+  transactionType       LeaveTransactionType @map("transaction_type")
+  balanceFieldAffected  BalanceFieldAffected @map("balance_field_affected")
+  amount                Decimal              @db.Decimal(5, 2)
+
+  previousAllocated     Decimal              @map("previous_allocated") @db.Decimal(5, 2)
+  newAllocated          Decimal              @map("new_allocated") @db.Decimal(5, 2)
+  previousCarriedForward Decimal             @map("previous_carried_forward") @db.Decimal(5, 2)
+  newCarriedForward     Decimal              @map("new_carried_forward") @db.Decimal(5, 2)
+  previousAdjusted      Decimal              @map("previous_adjusted") @db.Decimal(5, 2)
+  newAdjusted           Decimal              @map("new_adjusted") @db.Decimal(5, 2)
+  previousUsed          Decimal              @map("previous_used") @db.Decimal(5, 2)
+  newUsed               Decimal              @map("new_used") @db.Decimal(5, 2)
+  previousPending       Decimal              @map("previous_pending") @db.Decimal(5, 2)
+  newPending            Decimal              @map("new_pending") @db.Decimal(5, 2)
+  previousAvailable     Decimal              @map("previous_available") @db.Decimal(5, 2)
+  newAvailable          Decimal              @map("new_available") @db.Decimal(5, 2)
+
+  reason                String               @db.VarChar(255)
+  createdById           String               @map("created_by_id") @db.VarChar(30)
+  createdAt             DateTime             @default(now()) @map("created_at")
+
+  user                  User                 @relation("UserLeaveTransactions", fields: [userId], references: [id], onDelete: Restrict)
+  createdBy             User                 @relation("CreatedLeaveTransactions", fields: [createdById], references: [id], onDelete: Restrict)
+  leaveType             LeaveType            @relation(fields: [leaveTypeId], references: [id], onDelete: Restrict)
+  leaveRequest          LeaveRequest?        @relation(fields: [leaveRequestId], references: [id], onDelete: SetNull)
+
+  @@index([userId, leaveTypeId])
+  @@index([leaveRequestId])
+  @@map("leave_transactions")
+}
+
+model Holiday {
+  id           String            @id @default(cuid()) @db.VarChar(30)
+  name         String            @db.VarChar(120)
+  date         DateTime          @db.Date
+  year         Int               @db.Year
+  description  String?           @db.VarChar(255)
+  isOptional   Boolean           @default(false) @map("is_optional")
+  status       RecordStatus      @default(ACTIVE)
+
+  scopeType    WorkCalendarScope @default(GLOBAL) @map("scope_type")
+  scopeValue   String            @default("GLOBAL") @map("scope_value") @db.VarChar(50)
+  scopeKey     String            @map("scope_key") @db.VarChar(60)
+
+  departmentId String?           @map("department_id") @db.VarChar(30)
+  location     String?           @db.VarChar(100)
+
+  createdAt    DateTime          @default(now()) @map("created_at")
+  updatedAt    DateTime          @updatedAt @map("updated_at")
+
+  department   Department?       @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+
+  @@unique([date, scopeKey], name: "unique_holiday_date_scope")
+  @@index([year, date])
+  @@map("holidays")
+}
+
+model WeeklyOffPolicy {
+  id            String            @id @default(cuid()) @db.VarChar(30)
+  name          String            @db.VarChar(100)
+  description   String?           @db.VarChar(255)
+  
+  daysOfWeek    Json              @map("days_of_week")
+  pattern       String            @default("ALL") @db.VarChar(50)
+  status        RecordStatus      @default(ACTIVE)
+
+  effectiveFrom DateTime          @map("effective_from") @db.Date
+  effectiveTo   DateTime?         @map("effective_to") @db.Date
+
+  scopeType     WorkCalendarScope @default(GLOBAL) @map("scope_type")
+  scopeValue    String            @default("GLOBAL") @map("scope_value") @db.VarChar(50)
+  scopeKey      String            @map("scope_key") @db.VarChar(60)
+
+  departmentId  String?           @map("department_id") @db.VarChar(30)
+  location      String?           @db.VarChar(100)
+  userId        String?           @map("user_id") @db.VarChar(30)
+
+  createdAt     DateTime          @default(now()) @map("created_at")
+  updatedAt     DateTime          @updatedAt @map("updated_at")
+
+  department    Department?       @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  user          User?             @relation("UserWeeklyOffOverride", fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([scopeKey, effectiveFrom], name: "unique_weekly_off_scope_effective")
+  @@index([status, scopeType])
+  @@map("weekly_off_policies")
 }
 

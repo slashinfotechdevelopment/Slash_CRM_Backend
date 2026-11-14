@@ -219,6 +219,9 @@ export type DepartmentWhereInput = {
   users?: Prisma.UserDepartmentListRelationFilter
   tasks?: Prisma.TaskListRelationFilter
   leads?: Prisma.LeadListRelationFilter
+  leavePolicyVersions?: Prisma.LeavePolicyVersionListRelationFilter
+  holidays?: Prisma.HolidayListRelationFilter
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyListRelationFilter
 }
 
 export type DepartmentOrderByWithRelationInput = {
@@ -236,6 +239,9 @@ export type DepartmentOrderByWithRelationInput = {
   users?: Prisma.UserDepartmentOrderByRelationAggregateInput
   tasks?: Prisma.TaskOrderByRelationAggregateInput
   leads?: Prisma.LeadOrderByRelationAggregateInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionOrderByRelationAggregateInput
+  holidays?: Prisma.HolidayOrderByRelationAggregateInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyOrderByRelationAggregateInput
   _relevance?: Prisma.DepartmentOrderByRelevanceInput
 }
 
@@ -257,6 +263,9 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   users?: Prisma.UserDepartmentListRelationFilter
   tasks?: Prisma.TaskListRelationFilter
   leads?: Prisma.LeadListRelationFilter
+  leavePolicyVersions?: Prisma.LeavePolicyVersionListRelationFilter
+  holidays?: Prisma.HolidayListRelationFilter
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyListRelationFilter
 }, "id" | "code">
 
 export type DepartmentOrderByWithAggregationInput = {
@@ -303,6 +312,9 @@ export type DepartmentCreateInput = {
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateInput = {
@@ -319,6 +331,9 @@ export type DepartmentUncheckedCreateInput = {
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUpdateInput = {
@@ -335,6 +350,9 @@ export type DepartmentUpdateInput = {
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateInput = {
@@ -351,6 +369,9 @@ export type DepartmentUncheckedUpdateInput = {
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateManyInput = {
@@ -552,6 +573,54 @@ export type DepartmentUpdateOneWithoutLeadsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutLeadsInput, Prisma.DepartmentUpdateWithoutLeadsInput>, Prisma.DepartmentUncheckedUpdateWithoutLeadsInput>
 }
 
+export type DepartmentCreateNestedOneWithoutLeavePolicyVersionsInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutLeavePolicyVersionsInput, Prisma.DepartmentUncheckedCreateWithoutLeavePolicyVersionsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutLeavePolicyVersionsInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneWithoutLeavePolicyVersionsNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutLeavePolicyVersionsInput, Prisma.DepartmentUncheckedCreateWithoutLeavePolicyVersionsInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutLeavePolicyVersionsInput
+  upsert?: Prisma.DepartmentUpsertWithoutLeavePolicyVersionsInput
+  disconnect?: Prisma.DepartmentWhereInput | boolean
+  delete?: Prisma.DepartmentWhereInput | boolean
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutLeavePolicyVersionsInput, Prisma.DepartmentUpdateWithoutLeavePolicyVersionsInput>, Prisma.DepartmentUncheckedUpdateWithoutLeavePolicyVersionsInput>
+}
+
+export type DepartmentCreateNestedOneWithoutHolidaysInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutHolidaysInput, Prisma.DepartmentUncheckedCreateWithoutHolidaysInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutHolidaysInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneWithoutHolidaysNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutHolidaysInput, Prisma.DepartmentUncheckedCreateWithoutHolidaysInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutHolidaysInput
+  upsert?: Prisma.DepartmentUpsertWithoutHolidaysInput
+  disconnect?: Prisma.DepartmentWhereInput | boolean
+  delete?: Prisma.DepartmentWhereInput | boolean
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutHolidaysInput, Prisma.DepartmentUpdateWithoutHolidaysInput>, Prisma.DepartmentUncheckedUpdateWithoutHolidaysInput>
+}
+
+export type DepartmentCreateNestedOneWithoutWeeklyOffPoliciesInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutWeeklyOffPoliciesInput, Prisma.DepartmentUncheckedCreateWithoutWeeklyOffPoliciesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutWeeklyOffPoliciesInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneWithoutWeeklyOffPoliciesNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutWeeklyOffPoliciesInput, Prisma.DepartmentUncheckedCreateWithoutWeeklyOffPoliciesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutWeeklyOffPoliciesInput
+  upsert?: Prisma.DepartmentUpsertWithoutWeeklyOffPoliciesInput
+  disconnect?: Prisma.DepartmentWhereInput | boolean
+  delete?: Prisma.DepartmentWhereInput | boolean
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutWeeklyOffPoliciesInput, Prisma.DepartmentUpdateWithoutWeeklyOffPoliciesInput>, Prisma.DepartmentUncheckedUpdateWithoutWeeklyOffPoliciesInput>
+}
+
 export type DepartmentCreateWithoutChildrenInput = {
   id?: string
   code: string
@@ -565,6 +634,9 @@ export type DepartmentCreateWithoutChildrenInput = {
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutChildrenInput = {
@@ -580,6 +652,9 @@ export type DepartmentUncheckedCreateWithoutChildrenInput = {
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutChildrenInput = {
@@ -600,6 +675,9 @@ export type DepartmentCreateWithoutParentInput = {
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutParentInput = {
@@ -615,6 +693,9 @@ export type DepartmentUncheckedCreateWithoutParentInput = {
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutParentInput = {
@@ -651,6 +732,9 @@ export type DepartmentUpdateWithoutChildrenInput = {
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutChildrenInput = {
@@ -666,6 +750,9 @@ export type DepartmentUncheckedUpdateWithoutChildrenInput = {
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUpsertWithWhereUniqueWithoutParentInput = {
@@ -712,6 +799,9 @@ export type DepartmentCreateWithoutUsersInput = {
   children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
   tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutUsersInput = {
@@ -727,6 +817,9 @@ export type DepartmentUncheckedCreateWithoutUsersInput = {
   children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutUsersInput = {
@@ -758,6 +851,9 @@ export type DepartmentUpdateWithoutUsersInput = {
   children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutUsersInput = {
@@ -773,6 +869,9 @@ export type DepartmentUncheckedUpdateWithoutUsersInput = {
   children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateWithoutTasksInput = {
@@ -788,6 +887,9 @@ export type DepartmentCreateWithoutTasksInput = {
   children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutTasksInput = {
@@ -803,6 +905,9 @@ export type DepartmentUncheckedCreateWithoutTasksInput = {
   children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
   leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutTasksInput = {
@@ -834,6 +939,9 @@ export type DepartmentUpdateWithoutTasksInput = {
   children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutTasksInput = {
@@ -849,6 +957,9 @@ export type DepartmentUncheckedUpdateWithoutTasksInput = {
   children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateWithoutLeadsInput = {
@@ -864,6 +975,9 @@ export type DepartmentCreateWithoutLeadsInput = {
   children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateWithoutLeadsInput = {
@@ -879,6 +993,9 @@ export type DepartmentUncheckedCreateWithoutLeadsInput = {
   children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
   users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentCreateOrConnectWithoutLeadsInput = {
@@ -910,6 +1027,9 @@ export type DepartmentUpdateWithoutLeadsInput = {
   children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutLeadsInput = {
@@ -925,6 +1045,273 @@ export type DepartmentUncheckedUpdateWithoutLeadsInput = {
   children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutLeavePolicyVersionsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  parent?: Prisma.DepartmentCreateNestedOneWithoutChildrenInput
+  children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
+  leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutLeavePolicyVersionsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  parentId?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutLeavePolicyVersionsInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutLeavePolicyVersionsInput, Prisma.DepartmentUncheckedCreateWithoutLeavePolicyVersionsInput>
+}
+
+export type DepartmentUpsertWithoutLeavePolicyVersionsInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutLeavePolicyVersionsInput, Prisma.DepartmentUncheckedUpdateWithoutLeavePolicyVersionsInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutLeavePolicyVersionsInput, Prisma.DepartmentUncheckedCreateWithoutLeavePolicyVersionsInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutLeavePolicyVersionsInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutLeavePolicyVersionsInput, Prisma.DepartmentUncheckedUpdateWithoutLeavePolicyVersionsInput>
+}
+
+export type DepartmentUpdateWithoutLeavePolicyVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  parent?: Prisma.DepartmentUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutLeavePolicyVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutHolidaysInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  parent?: Prisma.DepartmentCreateNestedOneWithoutChildrenInput
+  children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
+  leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutHolidaysInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  parentId?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutHolidaysInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutHolidaysInput, Prisma.DepartmentUncheckedCreateWithoutHolidaysInput>
+}
+
+export type DepartmentUpsertWithoutHolidaysInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutHolidaysInput, Prisma.DepartmentUncheckedUpdateWithoutHolidaysInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutHolidaysInput, Prisma.DepartmentUncheckedCreateWithoutHolidaysInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutHolidaysInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutHolidaysInput, Prisma.DepartmentUncheckedUpdateWithoutHolidaysInput>
+}
+
+export type DepartmentUpdateWithoutHolidaysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  parent?: Prisma.DepartmentUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutHolidaysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutWeeklyOffPoliciesInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  parent?: Prisma.DepartmentCreateNestedOneWithoutChildrenInput
+  children?: Prisma.DepartmentCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutDepartmentInput
+  leads?: Prisma.LeadCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutWeeklyOffPoliciesInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  parentId?: string | null
+  status?: $Enums.RecordStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  children?: Prisma.DepartmentUncheckedCreateNestedManyWithoutParentInput
+  users?: Prisma.UserDepartmentUncheckedCreateNestedManyWithoutDepartmentInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutDepartmentInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutDepartmentInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedCreateNestedManyWithoutDepartmentInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutWeeklyOffPoliciesInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutWeeklyOffPoliciesInput, Prisma.DepartmentUncheckedCreateWithoutWeeklyOffPoliciesInput>
+}
+
+export type DepartmentUpsertWithoutWeeklyOffPoliciesInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutWeeklyOffPoliciesInput, Prisma.DepartmentUncheckedUpdateWithoutWeeklyOffPoliciesInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutWeeklyOffPoliciesInput, Prisma.DepartmentUncheckedCreateWithoutWeeklyOffPoliciesInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutWeeklyOffPoliciesInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutWeeklyOffPoliciesInput, Prisma.DepartmentUncheckedUpdateWithoutWeeklyOffPoliciesInput>
+}
+
+export type DepartmentUpdateWithoutWeeklyOffPoliciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  parent?: Prisma.DepartmentUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.DepartmentUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutWeeklyOffPoliciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  children?: Prisma.DepartmentUncheckedUpdateManyWithoutParentNestedInput
+  users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateManyParentInput = {
@@ -951,6 +1338,9 @@ export type DepartmentUpdateWithoutParentInput = {
   users?: Prisma.UserDepartmentUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateWithoutParentInput = {
@@ -966,6 +1356,9 @@ export type DepartmentUncheckedUpdateWithoutParentInput = {
   users?: Prisma.UserDepartmentUncheckedUpdateManyWithoutDepartmentNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutDepartmentNestedInput
   leads?: Prisma.LeadUncheckedUpdateManyWithoutDepartmentNestedInput
+  leavePolicyVersions?: Prisma.LeavePolicyVersionUncheckedUpdateManyWithoutDepartmentNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutDepartmentNestedInput
+  weeklyOffPolicies?: Prisma.WeeklyOffPolicyUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateManyWithoutParentInput = {
@@ -989,6 +1382,9 @@ export type DepartmentCountOutputType = {
   users: number
   tasks: number
   leads: number
+  leavePolicyVersions: number
+  holidays: number
+  weeklyOffPolicies: number
 }
 
 export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -996,6 +1392,9 @@ export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   users?: boolean | DepartmentCountOutputTypeCountUsersArgs
   tasks?: boolean | DepartmentCountOutputTypeCountTasksArgs
   leads?: boolean | DepartmentCountOutputTypeCountLeadsArgs
+  leavePolicyVersions?: boolean | DepartmentCountOutputTypeCountLeavePolicyVersionsArgs
+  holidays?: boolean | DepartmentCountOutputTypeCountHolidaysArgs
+  weeklyOffPolicies?: boolean | DepartmentCountOutputTypeCountWeeklyOffPoliciesArgs
 }
 
 /**
@@ -1036,6 +1435,27 @@ export type DepartmentCountOutputTypeCountLeadsArgs<ExtArgs extends runtime.Type
   where?: Prisma.LeadWhereInput
 }
 
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountLeavePolicyVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeavePolicyVersionWhereInput
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountHolidaysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HolidayWhereInput
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountWeeklyOffPoliciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeeklyOffPolicyWhereInput
+}
+
 
 export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1052,6 +1472,9 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   users?: boolean | Prisma.Department$usersArgs<ExtArgs>
   tasks?: boolean | Prisma.Department$tasksArgs<ExtArgs>
   leads?: boolean | Prisma.Department$leadsArgs<ExtArgs>
+  leavePolicyVersions?: boolean | Prisma.Department$leavePolicyVersionsArgs<ExtArgs>
+  holidays?: boolean | Prisma.Department$holidaysArgs<ExtArgs>
+  weeklyOffPolicies?: boolean | Prisma.Department$weeklyOffPoliciesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["department"]>
 
@@ -1076,6 +1499,9 @@ export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   users?: boolean | Prisma.Department$usersArgs<ExtArgs>
   tasks?: boolean | Prisma.Department$tasksArgs<ExtArgs>
   leads?: boolean | Prisma.Department$leadsArgs<ExtArgs>
+  leavePolicyVersions?: boolean | Prisma.Department$leavePolicyVersionsArgs<ExtArgs>
+  holidays?: boolean | Prisma.Department$holidaysArgs<ExtArgs>
+  weeklyOffPolicies?: boolean | Prisma.Department$weeklyOffPoliciesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1087,6 +1513,9 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     users: Prisma.$UserDepartmentPayload<ExtArgs>[]
     tasks: Prisma.$TaskPayload<ExtArgs>[]
     leads: Prisma.$LeadPayload<ExtArgs>[]
+    leavePolicyVersions: Prisma.$LeavePolicyVersionPayload<ExtArgs>[]
+    holidays: Prisma.$HolidayPayload<ExtArgs>[]
+    weeklyOffPolicies: Prisma.$WeeklyOffPolicyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1443,6 +1872,9 @@ export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runti
   users<T extends Prisma.Department$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserDepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tasks<T extends Prisma.Department$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leads<T extends Prisma.Department$leadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leavePolicyVersions<T extends Prisma.Department$leavePolicyVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$leavePolicyVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeavePolicyVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  holidays<T extends Prisma.Department$holidaysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$holidaysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HolidayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weeklyOffPolicies<T extends Prisma.Department$weeklyOffPoliciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$weeklyOffPoliciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeeklyOffPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1941,6 +2373,78 @@ export type Department$leadsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
+}
+
+/**
+ * Department.leavePolicyVersions
+ */
+export type Department$leavePolicyVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeavePolicyVersion
+   */
+  select?: Prisma.LeavePolicyVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeavePolicyVersion
+   */
+  omit?: Prisma.LeavePolicyVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeavePolicyVersionInclude<ExtArgs> | null
+  where?: Prisma.LeavePolicyVersionWhereInput
+  orderBy?: Prisma.LeavePolicyVersionOrderByWithRelationInput | Prisma.LeavePolicyVersionOrderByWithRelationInput[]
+  cursor?: Prisma.LeavePolicyVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeavePolicyVersionScalarFieldEnum | Prisma.LeavePolicyVersionScalarFieldEnum[]
+}
+
+/**
+ * Department.holidays
+ */
+export type Department$holidaysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Holiday
+   */
+  select?: Prisma.HolidaySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Holiday
+   */
+  omit?: Prisma.HolidayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HolidayInclude<ExtArgs> | null
+  where?: Prisma.HolidayWhereInput
+  orderBy?: Prisma.HolidayOrderByWithRelationInput | Prisma.HolidayOrderByWithRelationInput[]
+  cursor?: Prisma.HolidayWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HolidayScalarFieldEnum | Prisma.HolidayScalarFieldEnum[]
+}
+
+/**
+ * Department.weeklyOffPolicies
+ */
+export type Department$weeklyOffPoliciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeeklyOffPolicy
+   */
+  select?: Prisma.WeeklyOffPolicySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeeklyOffPolicy
+   */
+  omit?: Prisma.WeeklyOffPolicyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeeklyOffPolicyInclude<ExtArgs> | null
+  where?: Prisma.WeeklyOffPolicyWhereInput
+  orderBy?: Prisma.WeeklyOffPolicyOrderByWithRelationInput | Prisma.WeeklyOffPolicyOrderByWithRelationInput[]
+  cursor?: Prisma.WeeklyOffPolicyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeeklyOffPolicyScalarFieldEnum | Prisma.WeeklyOffPolicyScalarFieldEnum[]
 }
 
 /**

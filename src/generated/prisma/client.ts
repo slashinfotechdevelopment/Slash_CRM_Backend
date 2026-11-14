@@ -269,3 +269,48 @@ export type LeadActivity = Prisma.LeadActivityModel
  * 
  */
 export type LeadFollowUp = Prisma.LeadFollowUpModel
+/**
+ * Model LeaveType
+ * 
+ */
+export type LeaveType = Prisma.LeaveTypeModel
+/**
+ * Model LeavePolicyVersion
+ * 
+ */
+export type LeavePolicyVersion = Prisma.LeavePolicyVersionModel
+/**
+ * Model LeaveBalance
+ * 
+ */
+export type LeaveBalance = Prisma.LeaveBalanceModel
+/**
+ * Model LeaveRequest
+ * 
+ */
+export type LeaveRequest = Prisma.LeaveRequestModel
+/**
+ * Model LeaveApproval
+ * 
+ */
+export type LeaveApproval = Prisma.LeaveApprovalModel
+/**
+ * Model LeaveCancellationRequest
+ * 
+ */
+export type LeaveCancellationRequest = Prisma.LeaveCancellationRequestModel
+/**
+ * Model LeaveTransaction
+ * 
+ */
+export type LeaveTransaction = Prisma.LeaveTransactionModel
+/**
+ * Model Holiday
+ * 
+ */
+export type Holiday = Prisma.HolidayModel
+/**
+ * Model WeeklyOffPolicy
+ * 
+ */
+export type WeeklyOffPolicy = Prisma.WeeklyOffPolicyModel

@@ -96,7 +96,16 @@ export const ModelName = {
   PipelineStage: 'PipelineStage',
   Lead: 'Lead',
   LeadActivity: 'LeadActivity',
-  LeadFollowUp: 'LeadFollowUp'
+  LeadFollowUp: 'LeadFollowUp',
+  LeaveType: 'LeaveType',
+  LeavePolicyVersion: 'LeavePolicyVersion',
+  LeaveBalance: 'LeaveBalance',
+  LeaveRequest: 'LeaveRequest',
+  LeaveApproval: 'LeaveApproval',
+  LeaveCancellationRequest: 'LeaveCancellationRequest',
+  LeaveTransaction: 'LeaveTransaction',
+  Holiday: 'Holiday',
+  WeeklyOffPolicy: 'WeeklyOffPolicy'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -917,6 +926,192 @@ export const LeadFollowUpScalarFieldEnum = {
 export type LeadFollowUpScalarFieldEnum = (typeof LeadFollowUpScalarFieldEnum)[keyof typeof LeadFollowUpScalarFieldEnum]
 
 
+export const LeaveTypeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  category: 'category',
+  isPaid: 'isPaid',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeaveTypeScalarFieldEnum = (typeof LeaveTypeScalarFieldEnum)[keyof typeof LeaveTypeScalarFieldEnum]
+
+
+export const LeavePolicyVersionScalarFieldEnum = {
+  id: 'id',
+  leaveTypeId: 'leaveTypeId',
+  version: 'version',
+  effectiveFrom: 'effectiveFrom',
+  effectiveTo: 'effectiveTo',
+  annualAllocation: 'annualAllocation',
+  maxConsecutiveDays: 'maxConsecutiveDays',
+  allowHalfDay: 'allowHalfDay',
+  requiresDocument: 'requiresDocument',
+  minNoticeDays: 'minNoticeDays',
+  carryForwardLimit: 'carryForwardLimit',
+  excludeWeeklyOffs: 'excludeWeeklyOffs',
+  excludeHolidays: 'excludeHolidays',
+  status: 'status',
+  applicableEmploymentType: 'applicableEmploymentType',
+  departmentId: 'departmentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeavePolicyVersionScalarFieldEnum = (typeof LeavePolicyVersionScalarFieldEnum)[keyof typeof LeavePolicyVersionScalarFieldEnum]
+
+
+export const LeaveBalanceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  leaveTypeId: 'leaveTypeId',
+  year: 'year',
+  allocatedDays: 'allocatedDays',
+  carriedForward: 'carriedForward',
+  adjustedDays: 'adjustedDays',
+  usedDays: 'usedDays',
+  pendingDays: 'pendingDays',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeaveBalanceScalarFieldEnum = (typeof LeaveBalanceScalarFieldEnum)[keyof typeof LeaveBalanceScalarFieldEnum]
+
+
+export const LeaveRequestScalarFieldEnum = {
+  id: 'id',
+  requestNumber: 'requestNumber',
+  userId: 'userId',
+  leaveTypeId: 'leaveTypeId',
+  leavePolicyVersionId: 'leavePolicyVersionId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isHalfDay: 'isHalfDay',
+  halfDayPeriod: 'halfDayPeriod',
+  totalDays: 'totalDays',
+  reason: 'reason',
+  attachmentMediaId: 'attachmentMediaId',
+  status: 'status',
+  policySnapshot: 'policySnapshot',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  managerNotes: 'managerNotes',
+  cancelledAt: 'cancelledAt',
+  cancelledByUserId: 'cancelledByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeaveRequestScalarFieldEnum = (typeof LeaveRequestScalarFieldEnum)[keyof typeof LeaveRequestScalarFieldEnum]
+
+
+export const LeaveApprovalScalarFieldEnum = {
+  id: 'id',
+  leaveRequestId: 'leaveRequestId',
+  approverUserId: 'approverUserId',
+  level: 'level',
+  decision: 'decision',
+  comments: 'comments',
+  assignedAt: 'assignedAt',
+  decidedAt: 'decidedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeaveApprovalScalarFieldEnum = (typeof LeaveApprovalScalarFieldEnum)[keyof typeof LeaveApprovalScalarFieldEnum]
+
+
+export const LeaveCancellationRequestScalarFieldEnum = {
+  id: 'id',
+  leaveRequestId: 'leaveRequestId',
+  requestedByUserId: 'requestedByUserId',
+  reason: 'reason',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  reviewerNotes: 'reviewerNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeaveCancellationRequestScalarFieldEnum = (typeof LeaveCancellationRequestScalarFieldEnum)[keyof typeof LeaveCancellationRequestScalarFieldEnum]
+
+
+export const LeaveTransactionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  leaveTypeId: 'leaveTypeId',
+  leaveRequestId: 'leaveRequestId',
+  transactionType: 'transactionType',
+  balanceFieldAffected: 'balanceFieldAffected',
+  amount: 'amount',
+  previousAllocated: 'previousAllocated',
+  newAllocated: 'newAllocated',
+  previousCarriedForward: 'previousCarriedForward',
+  newCarriedForward: 'newCarriedForward',
+  previousAdjusted: 'previousAdjusted',
+  newAdjusted: 'newAdjusted',
+  previousUsed: 'previousUsed',
+  newUsed: 'newUsed',
+  previousPending: 'previousPending',
+  newPending: 'newPending',
+  previousAvailable: 'previousAvailable',
+  newAvailable: 'newAvailable',
+  reason: 'reason',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type LeaveTransactionScalarFieldEnum = (typeof LeaveTransactionScalarFieldEnum)[keyof typeof LeaveTransactionScalarFieldEnum]
+
+
+export const HolidayScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  date: 'date',
+  year: 'year',
+  description: 'description',
+  isOptional: 'isOptional',
+  status: 'status',
+  scopeType: 'scopeType',
+  scopeValue: 'scopeValue',
+  scopeKey: 'scopeKey',
+  departmentId: 'departmentId',
+  location: 'location',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HolidayScalarFieldEnum = (typeof HolidayScalarFieldEnum)[keyof typeof HolidayScalarFieldEnum]
+
+
+export const WeeklyOffPolicyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  daysOfWeek: 'daysOfWeek',
+  pattern: 'pattern',
+  status: 'status',
+  effectiveFrom: 'effectiveFrom',
+  effectiveTo: 'effectiveTo',
+  scopeType: 'scopeType',
+  scopeValue: 'scopeValue',
+  scopeKey: 'scopeKey',
+  departmentId: 'departmentId',
+  location: 'location',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WeeklyOffPolicyScalarFieldEnum = (typeof WeeklyOffPolicyScalarFieldEnum)[keyof typeof WeeklyOffPolicyScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -931,6 +1126,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullsOrder = {
@@ -1518,4 +1720,111 @@ export const LeadFollowUpOrderByRelevanceFieldEnum = {
 } as const
 
 export type LeadFollowUpOrderByRelevanceFieldEnum = (typeof LeadFollowUpOrderByRelevanceFieldEnum)[keyof typeof LeadFollowUpOrderByRelevanceFieldEnum]
+
+
+export const LeaveTypeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type LeaveTypeOrderByRelevanceFieldEnum = (typeof LeaveTypeOrderByRelevanceFieldEnum)[keyof typeof LeaveTypeOrderByRelevanceFieldEnum]
+
+
+export const LeavePolicyVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  leaveTypeId: 'leaveTypeId',
+  applicableEmploymentType: 'applicableEmploymentType',
+  departmentId: 'departmentId'
+} as const
+
+export type LeavePolicyVersionOrderByRelevanceFieldEnum = (typeof LeavePolicyVersionOrderByRelevanceFieldEnum)[keyof typeof LeavePolicyVersionOrderByRelevanceFieldEnum]
+
+
+export const LeaveBalanceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  leaveTypeId: 'leaveTypeId'
+} as const
+
+export type LeaveBalanceOrderByRelevanceFieldEnum = (typeof LeaveBalanceOrderByRelevanceFieldEnum)[keyof typeof LeaveBalanceOrderByRelevanceFieldEnum]
+
+
+export const LeaveRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  requestNumber: 'requestNumber',
+  userId: 'userId',
+  leaveTypeId: 'leaveTypeId',
+  leavePolicyVersionId: 'leavePolicyVersionId',
+  reason: 'reason',
+  attachmentMediaId: 'attachmentMediaId',
+  reviewedByUserId: 'reviewedByUserId',
+  managerNotes: 'managerNotes',
+  cancelledByUserId: 'cancelledByUserId'
+} as const
+
+export type LeaveRequestOrderByRelevanceFieldEnum = (typeof LeaveRequestOrderByRelevanceFieldEnum)[keyof typeof LeaveRequestOrderByRelevanceFieldEnum]
+
+
+export const LeaveApprovalOrderByRelevanceFieldEnum = {
+  id: 'id',
+  leaveRequestId: 'leaveRequestId',
+  approverUserId: 'approverUserId',
+  comments: 'comments'
+} as const
+
+export type LeaveApprovalOrderByRelevanceFieldEnum = (typeof LeaveApprovalOrderByRelevanceFieldEnum)[keyof typeof LeaveApprovalOrderByRelevanceFieldEnum]
+
+
+export const LeaveCancellationRequestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  leaveRequestId: 'leaveRequestId',
+  requestedByUserId: 'requestedByUserId',
+  reason: 'reason',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewerNotes: 'reviewerNotes'
+} as const
+
+export type LeaveCancellationRequestOrderByRelevanceFieldEnum = (typeof LeaveCancellationRequestOrderByRelevanceFieldEnum)[keyof typeof LeaveCancellationRequestOrderByRelevanceFieldEnum]
+
+
+export const LeaveTransactionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  leaveTypeId: 'leaveTypeId',
+  leaveRequestId: 'leaveRequestId',
+  reason: 'reason',
+  createdById: 'createdById'
+} as const
+
+export type LeaveTransactionOrderByRelevanceFieldEnum = (typeof LeaveTransactionOrderByRelevanceFieldEnum)[keyof typeof LeaveTransactionOrderByRelevanceFieldEnum]
+
+
+export const HolidayOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  scopeValue: 'scopeValue',
+  scopeKey: 'scopeKey',
+  departmentId: 'departmentId',
+  location: 'location'
+} as const
+
+export type HolidayOrderByRelevanceFieldEnum = (typeof HolidayOrderByRelevanceFieldEnum)[keyof typeof HolidayOrderByRelevanceFieldEnum]
+
+
+export const WeeklyOffPolicyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  pattern: 'pattern',
+  scopeValue: 'scopeValue',
+  scopeKey: 'scopeKey',
+  departmentId: 'departmentId',
+  location: 'location',
+  userId: 'userId'
+} as const
+
+export type WeeklyOffPolicyOrderByRelevanceFieldEnum = (typeof WeeklyOffPolicyOrderByRelevanceFieldEnum)[keyof typeof WeeklyOffPolicyOrderByRelevanceFieldEnum]
 

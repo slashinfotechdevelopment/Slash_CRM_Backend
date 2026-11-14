@@ -449,8 +449,15 @@ export class AttendanceCalculationService {
       } else {
         // Absence cutoff rule:
         // Only mark ABSENT if reconciliation has occurred AND server cutoff has passed;
-        // otherwise remain PENDING_RECONCILIATION
-        if (effectiveIsReconciled) {
+        // otherwise remain PENDING_RECONCILIATION.
+        // Invariant: approved leave, holidays, and weekly-offs must NEVER be converted to ABSENT.
+        if (
+          record.status === AttendanceStatus.ON_LEAVE ||
+          record.status === AttendanceStatus.HOLIDAY ||
+          record.status === AttendanceStatus.WEEKLY_OFF
+        ) {
+          status = record.status;
+        } else if (effectiveIsReconciled) {
           status = AttendanceStatus.ABSENT;
         } else {
           status = AttendanceStatus.PENDING_RECONCILIATION;

@@ -17,6 +17,7 @@ import { AttendanceModule } from './modules/attendance/attendance.module';
 import { TasksModule } from './modules/tasks/tasks.module';
 import { LeadsModule } from './modules/leads/leads.module';
 import { AdminDashboardModule } from './modules/admin-dashboard/admin-dashboard.module';
+import { LeaveModule } from './modules/leave/leave.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { AdminDashboardModule } from './modules/admin-dashboard/admin-dashboard.
     TasksModule,
     LeadsModule,
     AdminDashboardModule,
+    LeaveModule,
   ],
   controllers: [AppController],
   providers: [

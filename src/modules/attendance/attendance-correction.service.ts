@@ -16,6 +16,8 @@ import {
   AttendanceSessionStatus,
   AttendanceStatus,
   AuditAction,
+  HalfDayPeriod,
+  LeaveRequestStatus,
   VerificationOutcome,
 } from '../../generated/prisma/enums';
 import {
@@ -77,6 +79,25 @@ export class AttendanceCorrectionService {
       throw new BadRequestException(
         'requestedCheckInAt must be strictly before requestedCheckOutAt.',
       );
+    }
+
+    // Invariant: Verify correction requests cannot improperly override approved leave
+    const approvedLeave = await this.prisma.leaveRequest.findFirst({
+      where: {
+        userId,
+        status: LeaveRequestStatus.APPROVED,
+        startDate: { lte: attendanceDate },
+        endDate: { gte: attendanceDate },
+      },
+      include: { leaveType: true },
+    });
+
+    if (approvedLeave) {
+      if (!approvedLeave.isHalfDay) {
+        throw new BadRequestException(
+          `Cannot submit attendance punch correction on ${dto.attendanceDate}: An approved full-day leave (${approvedLeave.leaveType.name}, Request #${approvedLeave.requestNumber}) is active for this date. You must cancel the approved leave first.`,
+        );
+      }
     }
 
     // Ensure AttendanceRecord exists for this date; if not, initialize one

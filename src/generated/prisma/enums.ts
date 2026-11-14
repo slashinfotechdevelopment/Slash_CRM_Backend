@@ -351,3 +351,93 @@ export const FollowUpStatus = {
 } as const
 
 export type FollowUpStatus = (typeof FollowUpStatus)[keyof typeof FollowUpStatus]
+
+
+export const LeaveCategory = {
+  PAID: 'PAID',
+  UNPAID: 'UNPAID',
+  COMPENSATORY: 'COMPENSATORY',
+  STATUTORY: 'STATUTORY'
+} as const
+
+export type LeaveCategory = (typeof LeaveCategory)[keyof typeof LeaveCategory]
+
+
+export const LeaveRequestStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLATION_REQUESTED: 'CANCELLATION_REQUESTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type LeaveRequestStatus = (typeof LeaveRequestStatus)[keyof typeof LeaveRequestStatus]
+
+
+export const HalfDayPeriod = {
+  FIRST_HALF: 'FIRST_HALF',
+  SECOND_HALF: 'SECOND_HALF'
+} as const
+
+export type HalfDayPeriod = (typeof HalfDayPeriod)[keyof typeof HalfDayPeriod]
+
+
+export const LeaveApprovalDecision = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  REASSIGNED: 'REASSIGNED',
+  SKIPPED: 'SKIPPED'
+} as const
+
+export type LeaveApprovalDecision = (typeof LeaveApprovalDecision)[keyof typeof LeaveApprovalDecision]
+
+
+export const LeaveCancellationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type LeaveCancellationStatus = (typeof LeaveCancellationStatus)[keyof typeof LeaveCancellationStatus]
+
+
+export const LeaveTransactionType = {
+  INITIAL_ALLOCATION: 'INITIAL_ALLOCATION',
+  PERIODIC_ACCRUAL: 'PERIODIC_ACCRUAL',
+  CARRY_FORWARD: 'CARRY_FORWARD',
+  PENDING_HOLD: 'PENDING_HOLD',
+  HOLD_RELEASE_REJECTED: 'HOLD_RELEASE_REJECTED',
+  HOLD_RELEASE_CANCELLED: 'HOLD_RELEASE_CANCELLED',
+  UTILIZATION: 'UTILIZATION',
+  UNPAID_UTILIZATION: 'UNPAID_UTILIZATION',
+  REVERSAL_CANCELLATION: 'REVERSAL_CANCELLATION',
+  MANUAL_ADJUSTMENT_CREDIT: 'MANUAL_ADJUSTMENT_CREDIT',
+  MANUAL_ADJUSTMENT_DEBIT: 'MANUAL_ADJUSTMENT_DEBIT',
+  ENCASHMENT: 'ENCASHMENT',
+  LAPSED: 'LAPSED'
+} as const
+
+export type LeaveTransactionType = (typeof LeaveTransactionType)[keyof typeof LeaveTransactionType]
+
+
+export const BalanceFieldAffected = {
+  ALLOCATED: 'ALLOCATED',
+  CARRIED_FORWARD: 'CARRIED_FORWARD',
+  ADJUSTED: 'ADJUSTED',
+  USED: 'USED',
+  PENDING_HOLD: 'PENDING_HOLD',
+  NONE: 'NONE'
+} as const
+
+export type BalanceFieldAffected = (typeof BalanceFieldAffected)[keyof typeof BalanceFieldAffected]
+
+
+export const WorkCalendarScope = {
+  GLOBAL: 'GLOBAL',
+  LOCATION: 'LOCATION',
+  DEPARTMENT: 'DEPARTMENT',
+  USER_OVERRIDE: 'USER_OVERRIDE'
+} as const
+
+export type WorkCalendarScope = (typeof WorkCalendarScope)[keyof typeof WorkCalendarScope]
