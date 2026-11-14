@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -125,6 +126,7 @@ export class AttendanceCorrectionController {
   }
 
   @Post(':id/approve')
+  @Patch(':id/approve')
   @RequirePermissions('attendance.approve_correction')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
@@ -150,6 +152,7 @@ export class AttendanceCorrectionController {
   }
 
   @Post(':id/reject')
+  @Patch(':id/reject')
   @RequirePermissions('attendance.approve_correction')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({

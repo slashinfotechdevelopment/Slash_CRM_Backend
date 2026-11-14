@@ -27,3 +27,4 @@ export class QueryLeadTrendDto {
   @IsIn(['day', 'week', 'month'], { message: 'interval must be one of: day, week, month.' })
   interval?: 'day' | 'week' | 'month' = 'day';
 }
+

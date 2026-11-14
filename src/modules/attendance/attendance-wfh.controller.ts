@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -84,6 +85,7 @@ export class AttendanceWfhController {
   }
 
   @Post(':id/approve')
+  @Patch(':id/approve')
   @RequirePermissions('attendance.approve_wfh')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
@@ -100,6 +102,7 @@ export class AttendanceWfhController {
   }
 
   @Post(':id/reject')
+  @Patch(':id/reject')
   @RequirePermissions('attendance.approve_wfh')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({

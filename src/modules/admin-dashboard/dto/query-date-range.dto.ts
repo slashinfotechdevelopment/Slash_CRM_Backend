@@ -18,3 +18,4 @@ export class QueryDateRangeDto {
   @IsDateString({}, { message: 'to must be a valid date string (YYYY-MM-DD or ISO 8601).' })
   to?: string;
 }
+

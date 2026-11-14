@@ -6,3 +6,4 @@ CREATE INDEX `idx_leads_created_status` ON `leads`(`created_at`, `status`);
 
 -- CreateIndex
 CREATE INDEX `idx_leads_converted_at` ON `leads`(`converted_at`);
+

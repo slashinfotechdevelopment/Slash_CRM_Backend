@@ -51,3 +51,4 @@ export class QueryEmployeeActivityDto {
   @Max(100)
   limit?: number = 20;
 }
+

@@ -43,3 +43,4 @@ export class QueryEmployeeSessionsDto {
   @Max(100)
   limit?: number = 20;
 }
+
