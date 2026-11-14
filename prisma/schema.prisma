@@ -267,6 +267,7 @@ model UserSession {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, status])
+  @@index([userId, createdAt], map: "idx_user_sessions_user_created")
   @@index([expiresAt, status])
   @@map("user_sessions")
 }
@@ -1422,6 +1423,8 @@ model Lead {
   @@index([normalizedPhone])
   @@index([deletedAt])
   @@index([leadDate])
+  @@index([createdAt, status], map: "idx_leads_created_status")
+  @@index([convertedAt], map: "idx_leads_converted_at")
   @@map("leads")
 }
 
