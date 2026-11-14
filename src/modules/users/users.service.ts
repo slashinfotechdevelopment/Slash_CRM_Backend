@@ -855,11 +855,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to modify Super Admin accounts.',
+        'Only Super Admins are permitted to modify Super Admin accounts.',
       );
     }
 
@@ -1154,11 +1154,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to change Super Admin account status.',
+        'Only Super Admins are permitted to change Super Admin account status.',
       );
     }
 
@@ -1258,11 +1258,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to delete Super Admin accounts.',
+        'Only Super Admins are permitted to delete Super Admin accounts.',
       );
     }
 
@@ -1393,11 +1393,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to restore Super Admin accounts.',
+        'Only Super Admins are permitted to restore Super Admin accounts.',
       );
     }
 
@@ -1503,11 +1503,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to modify Super Admin roles.',
+        'Only Super Admins are permitted to modify Super Admin roles.',
       );
     }
 
@@ -1625,11 +1625,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to modify Super Admin roles.',
+        'Only Super Admins are permitted to modify Super Admin roles.',
       );
     }
 
@@ -1748,11 +1748,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to modify Super Admin roles.',
+        'Only Super Admins are permitted to modify Super Admin roles.',
       );
     }
 
@@ -1833,11 +1833,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to modify Super Admin departments.',
+        'Only Super Admins are permitted to modify Super Admin departments.',
       );
     }
 
@@ -1960,11 +1960,11 @@ export class UsersService {
     }
 
     if (
-      actorUserType === 'ADMIN' &&
+      actorUserType !== 'SUPER_ADMIN' &&
       targetUser.userType.code === 'SUPER_ADMIN'
     ) {
       throw new ForbiddenException(
-        'Admins are not permitted to modify Super Admin permissions.',
+        'Only Super Admins are permitted to modify Super Admin permissions.',
       );
     }
 
