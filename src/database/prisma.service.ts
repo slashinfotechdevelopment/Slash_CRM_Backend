@@ -26,8 +26,16 @@ export class PrismaService
   }
 
   async onModuleInit() {
-    await this.$connect();
-    console.log('MySQL database connected successfully');
+    try {
+      await this.$connect();
+      console.log('MySQL database connected successfully');
+    } catch (error) {
+      console.error(
+        'MySQL database connection failed:',
+        (error as any)?.message || error,
+      );
+      throw error;
+    }
   }
 
   async onModuleDestroy() {

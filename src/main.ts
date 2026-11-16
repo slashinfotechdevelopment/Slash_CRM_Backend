@@ -1,14 +1,51 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe, Logger } from '@nestjs/common';
+import { ValidationPipe, Logger, ConsoleLogger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import * as os from 'os';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
+class AppLogger extends ConsoleLogger {
+  log(message: any, ...optionalParams: any[]) {
+    const context = optionalParams[optionalParams.length - 1] || this.context;
+    // Only display bootstrap banner logs; suppress Nest's verbose internal route mappings and module initialization
+    if (context === 'Bootstrap') {
+      super.log(message, ...optionalParams);
+    }
+  }
+
+  debug() {
+    // Suppress debug logs
+  }
+
+  verbose() {
+    // Suppress verbose logs
+  }
+}
+
+function getLanIp(): string {
+  try {
+    const interfaces = os.networkInterfaces();
+    for (const name of Object.keys(interfaces)) {
+      for (const net of interfaces[name] || []) {
+        if (net.family === 'IPv4' && !net.internal) {
+          return net.address;
+        }
+      }
+    }
+  } catch {
+    // Ignore network inspection errors
+  }
+  return '<YOUR-LAN-IP>';
+}
+
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: new AppLogger(),
+  });
 
   // Security headers with Helmet
   app.use(helmet());
@@ -71,9 +108,11 @@ async function bootstrap() {
   // Listen on 0.0.0.0 to allow access from localhost (127.0.0.1) and LAN IP address
   await app.listen(port, host);
 
+  const lanIp = host === '0.0.0.0' ? getLanIp() : host;
+
   logger.log(`Slash Infotech CRM backend running on port ${port}`);
   logger.log(`Local API:        http://localhost:${port}/api`);
-  logger.log(`Network API:      http://${host === '0.0.0.0' ? '<YOUR-LAN-IP>' : host}:${port}/api`);
+  logger.log(`Network API:      http://${lanIp}:${port}/api`);
   logger.log(`Swagger Docs:     http://localhost:${port}/api/docs`);
 }
 

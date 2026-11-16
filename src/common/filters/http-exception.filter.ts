@@ -51,12 +51,20 @@ export class HttpExceptionFilter implements ExceptionFilter {
       }
     } else {
       // Unhandled runtime or database exception
+      message = 'Internal server error';
+    }
+
+    // Log error details for visibility in server logs while keeping successful requests clean
+    const errorDetails = errors.length > 0 ? JSON.stringify(errors) : message;
+    if (status >= 500) {
       this.logger.error(
-        `Unhandled exception on ${request.method} ${request.url}`,
+        `[${request.method}] ${request.url} - Status ${status} - ${message}`,
         exception instanceof Error ? exception.stack : String(exception),
       );
-      // Keep internal error details away from client
-      message = 'Internal server error';
+    } else {
+      this.logger.error(
+        `[${request.method}] ${request.url} - Status ${status} - ${errorDetails}`,
+      );
     }
 
     const payload: ApiResponse = {
