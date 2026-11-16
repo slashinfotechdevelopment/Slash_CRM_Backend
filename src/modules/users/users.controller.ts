@@ -120,6 +120,58 @@ export class UsersController {
     };
   }
 
+  @Get('me')
+  @ApiOperation({
+    summary: 'Get current user profile',
+    description:
+      'Retrieves the complete user details, assigned roles, effective permissions, and departments for the currently authenticated user.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Current user details retrieved successfully.',
+  })
+  async getMe(@CurrentUser() actor: any) {
+    const user = await this.usersService.findOne(
+      actor?.sub,
+      actor?.sub,
+      actor?.userType,
+    );
+
+    return {
+      success: true,
+      message: 'Profile retrieved successfully',
+      data: user,
+    };
+  }
+
+  @Patch('me')
+  @ApiOperation({
+    summary: 'Update current user profile (Edit Profile)',
+    description:
+      'Allows the currently logged in user to update their own name, phone, avatar (profileMediaId), and permitted profile fields without requiring admin permissions.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Profile updated successfully.',
+  })
+  async updateMe(
+    @Body() dto: UpdateUserDto,
+    @CurrentUser() actor: any,
+  ) {
+    const user = await this.usersService.update(
+      actor?.sub,
+      dto,
+      actor?.sub,
+      actor?.userType,
+    );
+
+    return {
+      success: true,
+      message: 'Profile updated successfully',
+      data: user,
+    };
+  }
+
   @Get(':id')
   @RequirePermissions('users.view')
   @ApiOperation({
