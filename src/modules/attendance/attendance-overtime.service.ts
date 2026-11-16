@@ -231,9 +231,10 @@ export class AttendanceOvertimeService {
 
     return {
       ...req,
-      attendanceDate: startDmy,
-      date: startDmy,
-      workDate: startDmy,
+      attendanceDate: startYmd,
+      date: startYmd,
+      workDate: startYmd,
+      rawAttendanceDate: req.attendanceDate,
       attendanceDateFormatted: startDmy,
       attendanceDateDisplay: startText,
       dateFormatted: startDmy,
@@ -244,6 +245,9 @@ export class AttendanceOvertimeService {
       attendanceDateIso: startIso,
       dateYmd: startYmd,
       workDateYmd: startYmd,
+      attendanceDateDmy: startDmy,
+      dateDmy: startDmy,
+      workDateDmy: startDmy,
       startTimeFormatted,
       endTimeFormatted,
       timeRange,

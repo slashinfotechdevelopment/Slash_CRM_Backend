@@ -237,14 +237,18 @@ export class AttendanceShiftsService {
 
     return {
       ...assignment,
-      startDate: startDmy,
-      endDate: endDmy,
+      startDate: startYmd,
+      endDate: endYmd,
+      rawStartDate: assignment.startDate,
+      rawEndDate: assignment.endDate,
       startDateFormatted: startDmy,
       endDateFormatted: endDmy,
       startDateDisplay: startText,
       endDateDisplay: endText,
       startDateYmd: startYmd,
       endDateYmd: endYmd,
+      startDateDmy: startDmy,
+      endDateDmy: endDmy,
       dateRange,
       dateRangeDisplay,
       dateRangeText: endDmy

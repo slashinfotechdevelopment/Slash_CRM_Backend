@@ -405,14 +405,20 @@ export class AttendanceCorrectionService {
       const ymd = formatDateOnly(rec.attendanceDate);
       mappedRecord = {
         ...rec,
-        attendanceDate: dmy,
-        date: dmy,
-        workDate: dmy,
+        attendanceDate: ymd,
+        date: ymd,
+        workDate: ymd,
+        rawAttendanceDate: rec.attendanceDate,
         dateFormatted: dmy,
         dateDisplay: dText,
         attendanceDateFormatted: dmy,
         attendanceDateDisplay: dText,
         attendanceDateYmd: ymd,
+        dateYmd: ymd,
+        workDateYmd: ymd,
+        attendanceDateDmy: dmy,
+        dateDmy: dmy,
+        workDateDmy: dmy,
       };
     }
 
