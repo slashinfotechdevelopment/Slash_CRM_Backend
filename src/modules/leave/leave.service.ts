@@ -27,6 +27,8 @@ import { CreateLeaveTypeDto } from './dto/create-leave-type.dto';
 import { UpdateLeaveTypeDto } from './dto/update-leave-type.dto';
 import { CreatePolicyVersionDto } from './dto/create-policy-version.dto';
 import { CreateHolidayDto } from './dto/create-holiday.dto';
+import { UpdateHolidayDto } from './dto/update-holiday.dto';
+import { SyncGoogleHolidaysDto } from './dto/sync-google-holidays.dto';
 import { CreateWeeklyOffPolicyDto } from './dto/create-weekly-off-policy.dto';
 import { ApplyLeaveRequestDto } from './dto/apply-leave-request.dto';
 import { ReviewLeaveRequestDto } from './dto/review-leave-request.dto';
@@ -172,7 +174,7 @@ export class LeaveService {
     });
 
     if (!leaveType) {
-      throw new NotFoundException(`Leave type with ID '${id}' not found.`);
+      throw new NotFoundException('The requested leave type could not be found or has been deactivated.');
     }
 
     return leaveType;
@@ -184,7 +186,7 @@ export class LeaveService {
   async updateLeaveType(id: string, dto: UpdateLeaveTypeDto, actorUserId: string) {
     const existing = await this.prisma.leaveType.findUnique({ where: { id } });
     if (!existing) {
-      throw new NotFoundException(`Leave type with ID '${id}' not found.`);
+      throw new NotFoundException('The requested leave type could not be found or has been deactivated.');
     }
 
     const updated = await this.prisma.leaveType.update({
@@ -223,7 +225,7 @@ export class LeaveService {
     });
 
     if (!leaveType) {
-      throw new NotFoundException(`Leave type with ID '${leaveTypeId}' not found.`);
+      throw new NotFoundException('The selected leave type could not be found.');
     }
 
     const nextVersion = (leaveType.policies[0]?.version ?? 0) + 1;
@@ -309,7 +311,7 @@ export class LeaveService {
 
     if (existing) {
       throw new ConflictException(
-        `Holiday already exists on ${dto.date} for scope '${scopeKey}'.`,
+        `A holiday named "${existing.name}" is already scheduled on ${dto.date}.`,
       );
     }
 
@@ -342,7 +344,7 @@ export class LeaveService {
   }
 
   /**
-   * Retrieves holidays filtered by year and scope.
+   * Retrieves holidays filtered by year and scope, including 1-click Google Calendar add links.
    */
   async getHolidays(query: QueryHolidaysDto) {
     const where: Prisma.HolidayWhereInput = {
@@ -362,11 +364,261 @@ export class LeaveService {
       where.location = query.location;
     }
 
-    return this.prisma.holiday.findMany({
+    const holidays = await this.prisma.holiday.findMany({
       where,
       orderBy: { date: 'asc' },
       include: { department: true },
     });
+
+    return holidays.map((h) => {
+      const ymd = formatDateOnly(h.date);
+      const cleanDate = ymd.replace(/-/g, '');
+      const nextDay = new Date(h.date);
+      nextDay.setDate(nextDay.getDate() + 1);
+      const nextYmd = formatDateOnly(nextDay).replace(/-/g, '');
+
+      // Official Google Calendar 1-click event link
+      const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+        h.name,
+      )}&dates=${cleanDate}/${nextYmd}&details=${encodeURIComponent(
+        h.description || 'Public Company Holiday',
+      )}&location=${encodeURIComponent(h.location || 'Company Wide')}`;
+
+      return {
+        ...h,
+        dateFormatted: ymd,
+        googleCalendarUrl,
+      };
+    });
+  }
+
+  /**
+   * Updates an existing holiday (e.g. adjust date, description, or pass/toggle active status).
+   */
+  async updateHoliday(id: string, dto: UpdateHolidayDto, actorUserId: string) {
+    const existing = await this.prisma.holiday.findUnique({ where: { id } });
+    if (!existing) {
+      throw new NotFoundException(
+        'The specified holiday could not be found or has already been removed.',
+      );
+    }
+
+    const updateData: Prisma.HolidayUpdateInput = {};
+
+    if (dto.name !== undefined) updateData.name = dto.name.trim();
+    if (dto.description !== undefined) updateData.description = dto.description?.trim() || null;
+    if (dto.isOptional !== undefined) updateData.isOptional = dto.isOptional;
+    if (dto.status !== undefined) updateData.status = dto.status;
+
+    let targetDate = existing.date;
+    if (dto.date !== undefined) {
+      targetDate = parseDateOnly(dto.date);
+      updateData.date = targetDate;
+      updateData.year = dto.year ?? targetDate.getUTCFullYear();
+    } else if (dto.year !== undefined) {
+      updateData.year = dto.year;
+    }
+
+    if (
+      dto.scopeType !== undefined ||
+      dto.departmentId !== undefined ||
+      dto.location !== undefined ||
+      dto.date !== undefined
+    ) {
+      const scopeType = dto.scopeType ?? existing.scopeType;
+      const deptId = dto.departmentId !== undefined ? dto.departmentId : existing.departmentId;
+      const loc = dto.location !== undefined ? dto.location : existing.location;
+      const { scopeKey, scopeValue } = computeScopeKey(scopeType, deptId || undefined, loc || undefined);
+
+      // Check collision if date/scope changed
+      if (scopeKey !== existing.scopeKey || targetDate.getTime() !== existing.date.getTime()) {
+        const collision = await this.prisma.holiday.findUnique({
+          where: {
+            unique_holiday_date_scope: {
+              date: targetDate,
+              scopeKey,
+            },
+          },
+        });
+        if (collision && collision.id !== id) {
+          throw new ConflictException(
+            `Another holiday named "${collision.name}" already exists on ${formatDateOnly(targetDate)} for this scope.`,
+          );
+        }
+      }
+
+      updateData.scopeType = scopeType;
+      updateData.scopeKey = scopeKey;
+      updateData.scopeValue = scopeValue;
+      updateData.department = deptId ? { connect: { id: deptId } } : { disconnect: true };
+      updateData.location = loc ? loc.trim() : null;
+    }
+
+    const updated = await this.prisma.holiday.update({
+      where: { id },
+      data: updateData,
+      include: { department: true },
+    });
+
+    await this.auditService.logAudit({
+      actorUserId,
+      action: AuditAction.UPDATE,
+      module: 'leave',
+      entityType: 'Holiday',
+      entityId: id,
+      oldValues: existing,
+      newValues: updated,
+    });
+
+    return updated;
+  }
+
+  /**
+   * Generates an RFC 5545 iCalendar (.ics) feed of holidays for Google Calendar subscription or import.
+   */
+  async getHolidaysIcsFeed(year?: number): Promise<string> {
+    const holidays = await this.prisma.holiday.findMany({
+      where: {
+        status: RecordStatus.ACTIVE,
+        ...(year ? { year } : {}),
+      },
+      orderBy: { date: 'asc' },
+    });
+
+    const nowStr = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    const icsLines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Slash Infotech CRM//Leave Management//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'X-WR-CALNAME:Slash Infotech Public Holidays',
+      'X-WR-TIMEZONE:Asia/Kolkata',
+    ];
+
+    for (const h of holidays) {
+      const dateStr = formatDateOnly(h.date).replace(/-/g, '');
+      const nextDay = new Date(h.date);
+      nextDay.setDate(nextDay.getDate() + 1);
+      const nextDateStr = formatDateOnly(nextDay).replace(/-/g, '');
+
+      icsLines.push(
+        'BEGIN:VEVENT',
+        `UID:holiday-${h.id}@slashinfotech.com`,
+        `DTSTAMP:${nowStr}`,
+        `DTSTART;VALUE=DATE:${dateStr}`,
+        `DTEND;VALUE=DATE:${nextDateStr}`,
+        `SUMMARY:${h.name}`,
+        `DESCRIPTION:${h.description || 'Public Company Holiday'}`,
+        'STATUS:CONFIRMED',
+        'TRANSP:TRANSPARENT',
+        'END:VEVENT',
+      );
+    }
+
+    icsLines.push('END:VCALENDAR');
+    return icsLines.join('\r\n');
+  }
+
+  /**
+   * Automatically populates standard government gazetted holidays for the specified year.
+   */
+  async syncGoogleCalendarHolidays(dto: SyncGoogleHolidaysDto, actorUserId: string) {
+    const targetYear = dto.year;
+    const presets = this.getGazettedHolidaysPreset(targetYear);
+
+    let createdCount = 0;
+    let updatedCount = 0;
+    let skippedCount = 0;
+
+    for (const item of presets) {
+      const holidayDate = parseDateOnly(item.date);
+      const { scopeKey, scopeValue } = computeScopeKey(WorkCalendarScope.GLOBAL);
+
+      const existing = await this.prisma.holiday.findUnique({
+        where: {
+          unique_holiday_date_scope: {
+            date: holidayDate,
+            scopeKey,
+          },
+        },
+      });
+
+      if (!existing) {
+        await this.prisma.holiday.create({
+          data: {
+            name: item.name,
+            date: holidayDate,
+            year: targetYear,
+            description: item.description,
+            isOptional: item.isOptional ?? false,
+            status: RecordStatus.ACTIVE,
+            scopeType: WorkCalendarScope.GLOBAL,
+            scopeValue,
+            scopeKey,
+          },
+        });
+        createdCount++;
+      } else if (dto.overwriteExisting) {
+        await this.prisma.holiday.update({
+          where: { id: existing.id },
+          data: {
+            name: item.name,
+            description: item.description,
+            isOptional: item.isOptional ?? false,
+            status: RecordStatus.ACTIVE,
+          },
+        });
+        updatedCount++;
+      } else {
+        skippedCount++;
+      }
+    }
+
+    await this.auditService.logAudit({
+      actorUserId,
+      action: AuditAction.CREATE,
+      module: 'leave',
+      entityType: 'HolidaySync',
+      entityId: `sync-${targetYear}`,
+      newValues: { targetYear, createdCount, updatedCount, skippedCount },
+    });
+
+    return {
+      year: targetYear,
+      totalPresets: presets.length,
+      createdCount,
+      updatedCount,
+      skippedCount,
+      message: `Successfully synchronized ${createdCount} new government holidays for ${targetYear} (${skippedCount} already existed).`,
+    };
+  }
+
+  private getGazettedHolidaysPreset(year: number) {
+    return [
+      { name: "New Year's Day", date: `${year}-01-01`, description: 'New Year celebration', isOptional: false },
+      { name: 'Pongal / Makar Sankranti', date: `${year}-01-14`, description: 'Harvest Festival', isOptional: false },
+      { name: 'Thiruvalluvar Day', date: `${year}-01-15`, description: 'Tamil Heritage Day', isOptional: false },
+      { name: 'Uzhavar Thirunal', date: `${year}-01-16`, description: "Farmers' Festival", isOptional: false },
+      { name: 'Republic Day', date: `${year}-01-26`, description: 'Indian Republic Day', isOptional: false },
+      { name: 'Maha Shivaratri', date: `${year}-02-15`, description: 'Religious Festival', isOptional: true },
+      { name: 'Holi', date: `${year}-03-04`, description: 'Festival of Colors', isOptional: false },
+      { name: 'Telugu New Year (Ugadi)', date: `${year}-03-19`, description: 'Regional New Year', isOptional: true },
+      { name: 'Eid ul-Fitr (Ramzan)', date: `${year}-03-20`, description: 'Islamic Festival', isOptional: false },
+      { name: 'Good Friday', date: `${year}-04-03`, description: 'Christian Holiday', isOptional: false },
+      { name: 'Tamil New Year / Dr. B.R. Ambedkar Jayanti', date: `${year}-04-14`, description: 'National and State Holiday', isOptional: false },
+      { name: 'May Day (International Workers Day)', date: `${year}-05-01`, description: 'Labor Day', isOptional: false },
+      { name: 'Bakrid / Eid al-Adha', date: `${year}-05-27`, description: 'Feast of the Sacrifice', isOptional: false },
+      { name: 'Muharram', date: `${year}-06-25`, description: 'Islamic New Year Observance', isOptional: false },
+      { name: 'Independence Day', date: `${year}-08-15`, description: 'Indian Independence Day', isOptional: false },
+      { name: 'Milad-un-Nabi', date: `${year}-08-25`, description: "Prophet's Birthday", isOptional: true },
+      { name: 'Vinayakar Chathurthi / Ganesh Chaturthi', date: `${year}-09-14`, description: 'Ganesh Chaturthi', isOptional: false },
+      { name: 'Mahatma Gandhi Jayanti', date: `${year}-10-02`, description: 'Birth of Mahatma Gandhi', isOptional: false },
+      { name: 'Ayutha Pooja', date: `${year}-10-19`, description: 'Worship of Tools and Crafts', isOptional: false },
+      { name: 'Vijaya Dasami (Dussehra)', date: `${year}-10-20`, description: 'Victory of Good over Evil', isOptional: false },
+      { name: 'Deepavali / Diwali', date: `${year}-11-08`, description: 'Festival of Lights', isOptional: false },
+      { name: 'Christmas Day', date: `${year}-12-25`, description: 'Christmas Celebration', isOptional: false },
+    ];
   }
 
   /**
@@ -375,7 +627,9 @@ export class LeaveService {
   async deleteHoliday(id: string, actorUserId: string) {
     const holiday = await this.prisma.holiday.findUnique({ where: { id } });
     if (!holiday) {
-      throw new NotFoundException(`Holiday with ID '${id}' not found.`);
+      throw new NotFoundException(
+        'The specified holiday could not be found or has already been removed.',
+      );
     }
 
     await this.prisma.holiday.delete({ where: { id } });
@@ -389,7 +643,7 @@ export class LeaveService {
       oldValues: holiday,
     });
 
-    return { message: `Holiday '${holiday.name}' deleted successfully.` };
+    return { message: `Holiday "${holiday.name}" has been successfully removed.` };
   }
 
   /**
@@ -903,7 +1157,7 @@ export class LeaveService {
         SELECT * FROM leave_requests WHERE id = ${requestId} FOR UPDATE
       `;
       if (!lockedReq || lockedReq.length === 0) {
-        throw new NotFoundException(`Leave request with ID '${requestId}' not found.`);
+        throw new NotFoundException('The requested leave application could not be found.');
       }
 
       const req = lockedReq[0];
@@ -1116,7 +1370,7 @@ export class LeaveService {
     });
 
     if (!request) {
-      throw new NotFoundException(`Leave request with ID '${requestId}' not found.`);
+      throw new NotFoundException('The requested leave application could not be found.');
     }
 
     if (request.status === LeaveRequestStatus.CANCELLED) {
@@ -1261,7 +1515,7 @@ export class LeaveService {
       });
 
       if (!cancellation) {
-        throw new NotFoundException(`Cancellation request with ID '${cancellationId}' not found.`);
+        throw new NotFoundException('The requested cancellation request could not be found.');
       }
 
       if (cancellation.status !== LeaveCancellationStatus.PENDING) {
@@ -1607,7 +1861,7 @@ export class LeaveService {
     });
 
     if (!request) {
-      throw new NotFoundException(`Leave request with ID '${id}' not found.`);
+      throw new NotFoundException('The requested leave application could not be found.');
     }
 
     return request;

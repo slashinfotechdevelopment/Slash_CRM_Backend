@@ -18,6 +18,7 @@ import { TasksModule } from './modules/tasks/tasks.module';
 import { LeadsModule } from './modules/leads/leads.module';
 import { AdminDashboardModule } from './modules/admin-dashboard/admin-dashboard.module';
 import { LeaveModule } from './modules/leave/leave.module';
+import { DepartmentsModule } from './modules/departments/departments.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { LeaveModule } from './modules/leave/leave.module';
     LeadsModule,
     AdminDashboardModule,
     LeaveModule,
+    DepartmentsModule,
   ],
   controllers: [AppController],
   providers: [

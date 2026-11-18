@@ -7,8 +7,10 @@ import {
   Patch,
   Post,
   Query,
+  Res,
   UseGuards,
 } from '@nestjs/common';
+import type { Response } from 'express';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -25,6 +27,8 @@ import { CreateLeaveTypeDto } from './dto/create-leave-type.dto';
 import { UpdateLeaveTypeDto } from './dto/update-leave-type.dto';
 import { CreatePolicyVersionDto } from './dto/create-policy-version.dto';
 import { CreateHolidayDto } from './dto/create-holiday.dto';
+import { UpdateHolidayDto } from './dto/update-holiday.dto';
+import { SyncGoogleHolidaysDto } from './dto/sync-google-holidays.dto';
 import { CreateWeeklyOffPolicyDto } from './dto/create-weekly-off-policy.dto';
 import { ApplyLeaveRequestDto } from './dto/apply-leave-request.dto';
 import { ReviewLeaveRequestDto } from './dto/review-leave-request.dto';
@@ -147,13 +151,61 @@ export class LeaveController {
   }
 
   @Get('holidays')
-  @ApiOperation({ summary: 'List holidays filtered by year and scope' })
+  @ApiOperation({ summary: 'List holidays filtered by year and scope with 1-click Google Calendar links' })
   @ApiResponse({ status: 200, description: 'Holidays retrieved successfully.' })
   async getHolidays(@Query() query: QueryHolidaysDto) {
     const data = await this.leaveService.getHolidays(query);
     return {
       success: true,
       message: 'Holidays retrieved successfully.',
+      data,
+    };
+  }
+
+  @Get('holidays/calendar.ics')
+  @ApiOperation({ summary: 'Export public company holidays as iCalendar (.ics) for Google Calendar synchronization' })
+  @ApiResponse({ status: 200, description: 'iCalendar feed returned for Google Calendar subscription.' })
+  async getHolidaysIcsFeed(
+    @Query('year') year: string,
+    @Res() res: Response,
+  ) {
+    const parsedYear = year ? parseInt(year, 10) : undefined;
+    const icsContent = await this.leaveService.getHolidaysIcsFeed(parsedYear);
+    res.setHeader('Content-Type', 'text/calendar; charset=utf-8');
+    res.setHeader('Content-Disposition', 'attachment; filename="company-holidays.ics"');
+    res.send(icsContent);
+  }
+
+  @Post('holidays/sync-google-calendar')
+  @RequirePermissions('leave.manage_holidays')
+  @ApiOperation({ summary: 'Synchronize / populate standard government gazetted holidays for a year' })
+  @ApiResponse({ status: 200, description: 'Government holidays synchronized successfully.' })
+  async syncGoogleCalendarHolidays(
+    @Body() dto: SyncGoogleHolidaysDto,
+    @CurrentUser() user: JwtPayload,
+  ) {
+    const result = await this.leaveService.syncGoogleCalendarHolidays(dto, user.sub);
+    return {
+      success: true,
+      message: result.message,
+      data: result,
+    };
+  }
+
+  @Patch('holidays/:id')
+  @RequirePermissions('leave.manage_holidays')
+  @ApiOperation({ summary: 'Customize, update, or pass/toggle status of an existing holiday' })
+  @ApiResponse({ status: 200, description: 'Holiday updated successfully.' })
+  @ApiResponse({ status: 404, description: 'Holiday not found.' })
+  async updateHoliday(
+    @Param('id') id: string,
+    @Body() dto: UpdateHolidayDto,
+    @CurrentUser() user: JwtPayload,
+  ) {
+    const data = await this.leaveService.updateHoliday(id, dto, user.sub);
+    return {
+      success: true,
+      message: `Holiday "${data.name}" updated successfully.`,
       data,
     };
   }
