@@ -965,7 +965,9 @@ model Task {
   category       String       @default("GENERAL") @map("category") @db.VarChar(50)
   progress       Int          @default(0) @map("progress")
   startDate      DateTime     @map("start_date") @db.Date
+  startTime      String?      @map("start_time") @db.VarChar(20)
   dueDate        DateTime?    @map("due_date") @db.Date
+  endTime        String?      @map("end_time") @db.VarChar(20)
   estimatedHours Decimal?     @map("estimated_hours") @db.Decimal(6, 2)
 
   // Ownership & Assignment

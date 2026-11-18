@@ -46,7 +46,9 @@ export type TaskMinAggregateOutputType = {
   category: string | null
   progress: number | null
   startDate: Date | null
+  startTime: string | null
   dueDate: Date | null
+  endTime: string | null
   estimatedHours: runtime.Decimal | null
   createdById: string | null
   assigneeId: string | null
@@ -68,7 +70,9 @@ export type TaskMaxAggregateOutputType = {
   category: string | null
   progress: number | null
   startDate: Date | null
+  startTime: string | null
   dueDate: Date | null
+  endTime: string | null
   estimatedHours: runtime.Decimal | null
   createdById: string | null
   assigneeId: string | null
@@ -90,7 +94,9 @@ export type TaskCountAggregateOutputType = {
   category: number
   progress: number
   startDate: number
+  startTime: number
   dueDate: number
+  endTime: number
   estimatedHours: number
   createdById: number
   assigneeId: number
@@ -124,7 +130,9 @@ export type TaskMinAggregateInputType = {
   category?: true
   progress?: true
   startDate?: true
+  startTime?: true
   dueDate?: true
+  endTime?: true
   estimatedHours?: true
   createdById?: true
   assigneeId?: true
@@ -146,7 +154,9 @@ export type TaskMaxAggregateInputType = {
   category?: true
   progress?: true
   startDate?: true
+  startTime?: true
   dueDate?: true
+  endTime?: true
   estimatedHours?: true
   createdById?: true
   assigneeId?: true
@@ -168,7 +178,9 @@ export type TaskCountAggregateInputType = {
   category?: true
   progress?: true
   startDate?: true
+  startTime?: true
   dueDate?: true
+  endTime?: true
   estimatedHours?: true
   createdById?: true
   assigneeId?: true
@@ -277,7 +289,9 @@ export type TaskGroupByOutputType = {
   category: string
   progress: number
   startDate: Date
+  startTime: string | null
   dueDate: Date | null
+  endTime: string | null
   estimatedHours: runtime.Decimal | null
   createdById: string
   assigneeId: string | null
@@ -322,7 +336,9 @@ export type TaskWhereInput = {
   category?: Prisma.StringFilter<"Task"> | string
   progress?: Prisma.IntFilter<"Task"> | number
   startDate?: Prisma.DateTimeFilter<"Task"> | Date | string
+  startTime?: Prisma.StringNullableFilter<"Task"> | string | null
   dueDate?: Prisma.DateTimeNullableFilter<"Task"> | Date | string | null
+  endTime?: Prisma.StringNullableFilter<"Task"> | string | null
   estimatedHours?: Prisma.DecimalNullableFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFilter<"Task"> | string
   assigneeId?: Prisma.StringNullableFilter<"Task"> | string | null
@@ -357,7 +373,9 @@ export type TaskOrderByWithRelationInput = {
   category?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
+  startTime?: Prisma.SortOrderInput | Prisma.SortOrder
   dueDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  endTime?: Prisma.SortOrderInput | Prisma.SortOrder
   estimatedHours?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -396,7 +414,9 @@ export type TaskWhereUniqueInput = Prisma.AtLeast<{
   category?: Prisma.StringFilter<"Task"> | string
   progress?: Prisma.IntFilter<"Task"> | number
   startDate?: Prisma.DateTimeFilter<"Task"> | Date | string
+  startTime?: Prisma.StringNullableFilter<"Task"> | string | null
   dueDate?: Prisma.DateTimeNullableFilter<"Task"> | Date | string | null
+  endTime?: Prisma.StringNullableFilter<"Task"> | string | null
   estimatedHours?: Prisma.DecimalNullableFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFilter<"Task"> | string
   assigneeId?: Prisma.StringNullableFilter<"Task"> | string | null
@@ -431,7 +451,9 @@ export type TaskOrderByWithAggregationInput = {
   category?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
+  startTime?: Prisma.SortOrderInput | Prisma.SortOrder
   dueDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  endTime?: Prisma.SortOrderInput | Prisma.SortOrder
   estimatedHours?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -461,7 +483,9 @@ export type TaskScalarWhereWithAggregatesInput = {
   category?: Prisma.StringWithAggregatesFilter<"Task"> | string
   progress?: Prisma.IntWithAggregatesFilter<"Task"> | number
   startDate?: Prisma.DateTimeWithAggregatesFilter<"Task"> | Date | string
+  startTime?: Prisma.StringNullableWithAggregatesFilter<"Task"> | string | null
   dueDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
+  endTime?: Prisma.StringNullableWithAggregatesFilter<"Task"> | string | null
   estimatedHours?: Prisma.DecimalNullableWithAggregatesFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringWithAggregatesFilter<"Task"> | string
   assigneeId?: Prisma.StringNullableWithAggregatesFilter<"Task"> | string | null
@@ -483,7 +507,9 @@ export type TaskCreateInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -514,7 +540,9 @@ export type TaskUncheckedCreateInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -545,7 +573,9 @@ export type TaskUpdateInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -576,7 +606,9 @@ export type TaskUncheckedUpdateInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -607,7 +639,9 @@ export type TaskCreateManyInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -629,7 +663,9 @@ export type TaskUpdateManyMutationInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -647,7 +683,9 @@ export type TaskUncheckedUpdateManyInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -685,7 +723,9 @@ export type TaskCountOrderByAggregateInput = {
   category?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
+  startTime?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   estimatedHours?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrder
@@ -712,7 +752,9 @@ export type TaskMaxOrderByAggregateInput = {
   category?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
+  startTime?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   estimatedHours?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrder
@@ -734,7 +776,9 @@ export type TaskMinOrderByAggregateInput = {
   category?: Prisma.SortOrder
   progress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
+  startTime?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   estimatedHours?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   assigneeId?: Prisma.SortOrder
@@ -1076,7 +1120,9 @@ export type TaskCreateWithoutCreatedByUserInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1106,7 +1152,9 @@ export type TaskUncheckedCreateWithoutCreatedByUserInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assigneeId?: string | null
   assignedById?: string | null
@@ -1146,7 +1194,9 @@ export type TaskCreateWithoutAssigneeInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1176,7 +1226,9 @@ export type TaskUncheckedCreateWithoutAssigneeInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assignedById?: string | null
@@ -1216,7 +1268,9 @@ export type TaskCreateWithoutAssignedByUserInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1246,7 +1300,9 @@ export type TaskUncheckedCreateWithoutAssignedByUserInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -1305,7 +1361,9 @@ export type TaskScalarWhereInput = {
   category?: Prisma.StringFilter<"Task"> | string
   progress?: Prisma.IntFilter<"Task"> | number
   startDate?: Prisma.DateTimeFilter<"Task"> | Date | string
+  startTime?: Prisma.StringNullableFilter<"Task"> | string | null
   dueDate?: Prisma.DateTimeNullableFilter<"Task"> | Date | string | null
+  endTime?: Prisma.StringNullableFilter<"Task"> | string | null
   estimatedHours?: Prisma.DecimalNullableFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFilter<"Task"> | string
   assigneeId?: Prisma.StringNullableFilter<"Task"> | string | null
@@ -1359,7 +1417,9 @@ export type TaskCreateWithoutDepartmentInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1389,7 +1449,9 @@ export type TaskUncheckedCreateWithoutDepartmentInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -1445,7 +1507,9 @@ export type TaskCreateWithoutAssignmentHistoryInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1475,7 +1539,9 @@ export type TaskUncheckedCreateWithoutAssignmentHistoryInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -1521,7 +1587,9 @@ export type TaskUpdateWithoutAssignmentHistoryInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1551,7 +1619,9 @@ export type TaskUncheckedUpdateWithoutAssignmentHistoryInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1581,7 +1651,9 @@ export type TaskCreateWithoutStatusHistoryInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1611,7 +1683,9 @@ export type TaskUncheckedCreateWithoutStatusHistoryInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -1657,7 +1731,9 @@ export type TaskUpdateWithoutStatusHistoryInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1687,7 +1763,9 @@ export type TaskUncheckedUpdateWithoutStatusHistoryInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1717,7 +1795,9 @@ export type TaskCreateWithoutActivityLogsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1747,7 +1827,9 @@ export type TaskUncheckedCreateWithoutActivityLogsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -1793,7 +1875,9 @@ export type TaskUpdateWithoutActivityLogsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1823,7 +1907,9 @@ export type TaskUncheckedUpdateWithoutActivityLogsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1853,7 +1939,9 @@ export type TaskCreateWithoutTagMappingsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -1883,7 +1971,9 @@ export type TaskUncheckedCreateWithoutTagMappingsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -1929,7 +2019,9 @@ export type TaskUpdateWithoutTagMappingsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1959,7 +2051,9 @@ export type TaskUncheckedUpdateWithoutTagMappingsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1989,7 +2083,9 @@ export type TaskCreateWithoutTimeEntriesInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -2019,7 +2115,9 @@ export type TaskUncheckedCreateWithoutTimeEntriesInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -2065,7 +2163,9 @@ export type TaskUpdateWithoutTimeEntriesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2095,7 +2195,9 @@ export type TaskUncheckedUpdateWithoutTimeEntriesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2125,7 +2227,9 @@ export type TaskCreateWithoutTimePausesInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -2155,7 +2259,9 @@ export type TaskUncheckedCreateWithoutTimePausesInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -2201,7 +2307,9 @@ export type TaskUpdateWithoutTimePausesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2231,7 +2339,9 @@ export type TaskUncheckedUpdateWithoutTimePausesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2261,7 +2371,9 @@ export type TaskCreateWithoutTimeCorrectionRequestsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -2291,7 +2403,9 @@ export type TaskUncheckedCreateWithoutTimeCorrectionRequestsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -2337,7 +2451,9 @@ export type TaskUpdateWithoutTimeCorrectionRequestsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2367,7 +2483,9 @@ export type TaskUncheckedUpdateWithoutTimeCorrectionRequestsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2397,7 +2515,9 @@ export type TaskCreateWithoutReviewsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -2427,7 +2547,9 @@ export type TaskUncheckedCreateWithoutReviewsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -2473,7 +2595,9 @@ export type TaskUpdateWithoutReviewsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2503,7 +2627,9 @@ export type TaskUncheckedUpdateWithoutReviewsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2533,7 +2659,9 @@ export type TaskCreateWithoutCommentsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Date | string | null
   deletedAt?: Date | string | null
@@ -2563,7 +2691,9 @@ export type TaskUncheckedCreateWithoutCommentsInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -2609,7 +2739,9 @@ export type TaskUpdateWithoutCommentsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2639,7 +2771,9 @@ export type TaskUncheckedUpdateWithoutCommentsInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2669,7 +2803,9 @@ export type TaskCreateManyCreatedByUserInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assigneeId?: string | null
   assignedById?: string | null
@@ -2690,7 +2826,9 @@ export type TaskCreateManyAssigneeInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assignedById?: string | null
@@ -2711,7 +2849,9 @@ export type TaskCreateManyAssignedByUserInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -2732,7 +2872,9 @@ export type TaskUpdateWithoutCreatedByUserInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2762,7 +2904,9 @@ export type TaskUncheckedUpdateWithoutCreatedByUserInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2792,7 +2936,9 @@ export type TaskUncheckedUpdateManyWithoutCreatedByUserInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2813,7 +2959,9 @@ export type TaskUpdateWithoutAssigneeInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2843,7 +2991,9 @@ export type TaskUncheckedUpdateWithoutAssigneeInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assignedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2873,7 +3023,9 @@ export type TaskUncheckedUpdateManyWithoutAssigneeInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assignedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2894,7 +3046,9 @@ export type TaskUpdateWithoutAssignedByUserInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2924,7 +3078,9 @@ export type TaskUncheckedUpdateWithoutAssignedByUserInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2954,7 +3110,9 @@ export type TaskUncheckedUpdateManyWithoutAssignedByUserInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2975,7 +3133,9 @@ export type TaskCreateManyDepartmentInput = {
   category?: string
   progress?: number
   startDate: Date | string
+  startTime?: string | null
   dueDate?: Date | string | null
+  endTime?: string | null
   estimatedHours?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById: string
   assigneeId?: string | null
@@ -2996,7 +3156,9 @@ export type TaskUpdateWithoutDepartmentInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3026,7 +3188,9 @@ export type TaskUncheckedUpdateWithoutDepartmentInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3056,7 +3220,9 @@ export type TaskUncheckedUpdateManyWithoutDepartmentInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   progress?: Prisma.IntFieldUpdateOperationsInput | number
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedHours?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   assigneeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3180,7 +3346,9 @@ export type TaskSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   category?: boolean
   progress?: boolean
   startDate?: boolean
+  startTime?: boolean
   dueDate?: boolean
+  endTime?: boolean
   estimatedHours?: boolean
   createdById?: boolean
   assigneeId?: boolean
@@ -3218,7 +3386,9 @@ export type TaskSelectScalar = {
   category?: boolean
   progress?: boolean
   startDate?: boolean
+  startTime?: boolean
   dueDate?: boolean
+  endTime?: boolean
   estimatedHours?: boolean
   createdById?: boolean
   assigneeId?: boolean
@@ -3230,7 +3400,7 @@ export type TaskSelectScalar = {
   updatedAt?: boolean
 }
 
-export type TaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "taskCode" | "title" | "description" | "priority" | "status" | "category" | "progress" | "startDate" | "dueDate" | "estimatedHours" | "createdById" | "assigneeId" | "assignedById" | "assignedAt" | "departmentId" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
+export type TaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "taskCode" | "title" | "description" | "priority" | "status" | "category" | "progress" | "startDate" | "startTime" | "dueDate" | "endTime" | "estimatedHours" | "createdById" | "assigneeId" | "assignedById" | "assignedAt" | "departmentId" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
 export type TaskInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   createdByUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   assignee?: boolean | Prisma.Task$assigneeArgs<ExtArgs>
@@ -3275,7 +3445,9 @@ export type $TaskPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     category: string
     progress: number
     startDate: Date
+    startTime: string | null
     dueDate: Date | null
+    endTime: string | null
     estimatedHours: runtime.Decimal | null
     createdById: string
     assigneeId: string | null
@@ -3676,7 +3848,9 @@ export interface TaskFieldRefs {
   readonly category: Prisma.FieldRef<"Task", 'String'>
   readonly progress: Prisma.FieldRef<"Task", 'Int'>
   readonly startDate: Prisma.FieldRef<"Task", 'DateTime'>
+  readonly startTime: Prisma.FieldRef<"Task", 'String'>
   readonly dueDate: Prisma.FieldRef<"Task", 'DateTime'>
+  readonly endTime: Prisma.FieldRef<"Task", 'String'>
   readonly estimatedHours: Prisma.FieldRef<"Task", 'Decimal'>
   readonly createdById: Prisma.FieldRef<"Task", 'String'>
   readonly assigneeId: Prisma.FieldRef<"Task", 'String'>

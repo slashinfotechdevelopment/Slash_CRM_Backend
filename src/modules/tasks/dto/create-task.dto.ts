@@ -65,12 +65,30 @@ export class CreateTaskDto {
   startDate?: string;
 
   @ApiPropertyOptional({
+    description: 'Task start time (e.g. "09:30" or "09:30 AM").',
+    example: '09:30',
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(20)
+  startTime?: string;
+
+  @ApiPropertyOptional({
     description: 'Task due date in YYYY-MM-DD format.',
     example: '2026-11-12',
   })
   @IsOptional()
   @IsDateString({}, { message: 'dueDate must be a valid ISO date string (YYYY-MM-DD).' })
   dueDate?: string;
+
+  @ApiPropertyOptional({
+    description: 'Task end time (e.g. "17:30" or "05:30 PM").',
+    example: '17:30',
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(20)
+  endTime?: string;
 
   @ApiPropertyOptional({
     description: 'Estimated effort in hours (up to 2 decimal places).',
@@ -91,6 +109,17 @@ export class CreateTaskDto {
   @IsString()
   @IsNotEmpty()
   assigneeId?: string;
+
+  @ApiPropertyOptional({
+    description:
+      'Array of target assignee User IDs for team/multi-person task creation. Creates linked task for each assignee.',
+    example: ['clx01user0001', 'clx01user0002'],
+    type: [String],
+  })
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  assigneeIds?: string[];
 
   @ApiPropertyOptional({
     description: 'Array of tag names to associate with the task.',

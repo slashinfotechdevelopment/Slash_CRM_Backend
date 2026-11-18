@@ -89,12 +89,30 @@ export class UpdateTaskDto {
   startDate?: string;
 
   @ApiPropertyOptional({
+    description: 'Updated task start time (e.g. "09:30" or "09:30 AM").',
+    example: '09:30',
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(20)
+  startTime?: string;
+
+  @ApiPropertyOptional({
     description: 'Updated task due date in YYYY-MM-DD format.',
     example: '2026-11-20',
   })
   @IsOptional()
   @IsDateString({}, { message: 'dueDate must be a valid ISO date string (YYYY-MM-DD).' })
   dueDate?: string;
+
+  @ApiPropertyOptional({
+    description: 'Updated task end time (e.g. "17:30" or "05:30 PM").',
+    example: '17:30',
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(20)
+  endTime?: string;
 
   @ApiPropertyOptional({
     description: 'Updated estimated hours.',

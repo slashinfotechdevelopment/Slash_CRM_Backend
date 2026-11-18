@@ -44,7 +44,12 @@ function parseCalendarDate(dateStr?: string): Date {
     const now = new Date();
     return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   }
-  const [year, month, day] = dateStr.split('-').map(Number);
+  const clean = dateStr.includes('T') ? dateStr.split('T')[0] : dateStr.trim();
+  const [year, month, day] = clean.split('-').map(Number);
+  if (isNaN(year) || isNaN(month) || isNaN(day)) {
+    const d = new Date(dateStr);
+    return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+  }
   return new Date(Date.UTC(year, month - 1, day));
 }
 
@@ -130,12 +135,19 @@ export class TasksService {
       throw new ForbiddenException('Client users cannot create internal tasks.');
     }
 
+    // Determine assignee (supports single assigneeId or multi-member assigneeIds)
+    const assigneeList: string[] =
+      Array.isArray(dto.assigneeIds) && dto.assigneeIds.length > 0
+        ? [...new Set(dto.assigneeIds.map((id) => id.trim()))]
+        : dto.assigneeId
+          ? [dto.assigneeId.trim()]
+          : [];
+
     let targetAssigneeId: string | null = null;
     let targetDepartmentId: string;
 
-    // Determine assignee
-    if (dto.assigneeId) {
-      targetAssigneeId = dto.assigneeId;
+    if (assigneeList.length > 0) {
+      targetAssigneeId = assigneeList[0];
 
       if (targetAssigneeId !== actorUserId) {
         // Assigning to someone else requires tasks.assign permission (unless SUPER_ADMIN)
@@ -208,7 +220,9 @@ export class TasksService {
             category: dto.category || 'GENERAL',
             progress: 0,
             startDate,
+            startTime: dto.startTime ? dto.startTime.trim() : null,
             dueDate,
+            endTime: dto.endTime ? dto.endTime.trim() : null,
             estimatedHours: dto.estimatedHours ? new Prisma.Decimal(dto.estimatedHours) : null,
             createdById: actorUserId,
             assigneeId: targetAssigneeId,
@@ -274,6 +288,75 @@ export class TasksService {
                   tagId: tag.id,
                 },
               });
+            }
+          }
+        }
+
+        // If multi-assignee team task, create instances for remaining team members
+        if (assigneeList.length > 1) {
+          for (const memberId of assigneeList.slice(1)) {
+            const memberDeptId = await this.resolveUserDepartment(memberId);
+            const memberCode = await this.taskCodeService.generateNextCode(tx);
+            const memberTask = await tx.task.create({
+              data: {
+                taskCode: memberCode,
+                title: dto.title,
+                description: dto.description,
+                priority: dto.priority || TaskPriority.MEDIUM,
+                status: TaskStatus.TODO,
+                category: dto.category || 'GENERAL',
+                progress: 0,
+                startDate,
+                startTime: dto.startTime ? dto.startTime.trim() : null,
+                dueDate,
+                endTime: dto.endTime ? dto.endTime.trim() : null,
+                estimatedHours: dto.estimatedHours ? new Prisma.Decimal(dto.estimatedHours) : null,
+                createdById: actorUserId,
+                assigneeId: memberId,
+                assignedById: actorUserId,
+                assignedAt: new Date(),
+                departmentId: memberDeptId,
+              },
+            });
+
+            await tx.taskAssignmentHistory.create({
+              data: {
+                taskId: memberTask.id,
+                previousAssigneeId: null,
+                newAssigneeId: memberId,
+                assignedById: actorUserId,
+                reason: 'Team task multi-assignment',
+                assignedAt: new Date(),
+              },
+            });
+
+            await tx.taskStatusHistory.create({
+              data: {
+                taskId: memberTask.id,
+                previousStatus: null,
+                newStatus: TaskStatus.TODO,
+                changedById: actorUserId,
+                comment: 'Team task created in backlog (TODO).',
+              },
+            });
+
+            if (dto.tags && dto.tags.length > 0) {
+              for (const tagName of dto.tags) {
+                const cleanName = tagName.trim().toLowerCase();
+                if (cleanName) {
+                  const tag = await tx.taskTag.upsert({
+                    where: { name: cleanName },
+                    update: {},
+                    create: { name: cleanName },
+                  });
+                  await tx.taskTagMapping.create({
+                    data: {
+                      taskId: memberTask.id,
+                      tagId: tag.id,
+                    },
+                  });
+                }
+              }
             }
           }
         }
@@ -620,7 +703,9 @@ export class TasksService {
     if (dto.category !== undefined) updateData.category = dto.category;
     if (dto.progress !== undefined) updateData.progress = dto.progress;
     if (dto.startDate !== undefined) updateData.startDate = parseCalendarDate(dto.startDate);
+    if (dto.startTime !== undefined) updateData.startTime = dto.startTime ? dto.startTime.trim() : null;
     if (dto.dueDate !== undefined) updateData.dueDate = parseCalendarDate(dto.dueDate);
+    if (dto.endTime !== undefined) updateData.endTime = dto.endTime ? dto.endTime.trim() : null;
     if (dto.estimatedHours !== undefined) {
       updateData.estimatedHours = new Prisma.Decimal(dto.estimatedHours);
     }

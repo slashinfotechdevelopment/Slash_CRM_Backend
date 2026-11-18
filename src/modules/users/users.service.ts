@@ -1989,7 +1989,7 @@ export class UsersService {
     }> = [];
 
     if (dto.permissions && dto.permissions.length > 0) {
-      const codes = dto.permissions.map((p) => p.code);
+      const codes = dto.permissions.map((p) => (p.code || p.permissionId || '').trim());
       const permissions = await this.prisma.permission.findMany({
         where: {
           OR: [{ id: { in: codes } }, { code: { in: codes } }],
@@ -2011,10 +2011,11 @@ export class UsersService {
 
         for (const item of dto.permissions) {
           if (item.effect === PermissionEffect.ALLOW) {
+            const itemKey = (item.code || item.permissionId || '').trim();
             const perm = permissions.find(
               (p) =>
-                p.id === item.code ||
-                p.code.toLowerCase() === item.code.toLowerCase(),
+                p.id === itemKey ||
+                p.code.toLowerCase() === itemKey.toLowerCase(),
             )!;
             if (!actorPermissions.has(perm.code)) {
               unauthorized.push(perm.code);
@@ -2030,10 +2031,11 @@ export class UsersService {
       }
 
       resolvedOverrides = dto.permissions.map((item) => {
+        const itemKey = (item.code || item.permissionId || '').trim();
         const perm = permissions.find(
           (p) =>
-            p.id === item.code ||
-            p.code.toLowerCase() === item.code.toLowerCase(),
+            p.id === itemKey ||
+            p.code.toLowerCase() === itemKey.toLowerCase(),
         )!;
         return {
           permissionId: perm.id,

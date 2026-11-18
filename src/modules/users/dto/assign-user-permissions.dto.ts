@@ -14,15 +14,29 @@ import { Transform } from 'class-transformer';
 import { DataScope, PermissionEffect } from '../../../generated/prisma/enums';
 
 export class UserPermissionOverrideItemDto {
-  @ApiProperty({
+  @ApiPropertyOptional({
+    description: 'Permission ID (accepted as alternative or complement to code)',
+    example: 'cmw0kg0jyw00015...',
+  })
+  @IsOptional()
+  @IsString({ message: 'permissionId must be a string.' })
+  @MaxLength(60, { message: 'permissionId cannot exceed 60 characters.' })
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  permissionId?: string;
+
+  @ApiPropertyOptional({
     description: 'Permission code (e.g. leads.view) or permission ID',
     example: 'leads.view',
   })
-  @IsNotEmpty({ message: 'code is required.' })
+  @IsOptional()
   @IsString({ message: 'code must be a string.' })
   @MaxLength(120, { message: 'code cannot exceed 120 characters.' })
-  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
-  code!: string;
+  @Transform(({ value, obj }) => {
+    if (typeof value === 'string' && value.trim()) return value.trim();
+    if (typeof obj?.permissionId === 'string' && obj.permissionId.trim()) return obj.permissionId.trim();
+    return value;
+  })
+  code?: string;
 
   @ApiProperty({
     description: 'Permission override effect (ALLOW or DENY)',
@@ -79,7 +93,7 @@ export class AssignUserPermissionsDto {
   @IsArray({ message: 'permissions must be an array.' })
   @ValidateNested({ each: true })
   @Type(() => UserPermissionOverrideItemDto)
-  @ArrayUnique((o: UserPermissionOverrideItemDto) => o.code?.toLowerCase(), {
+  @ArrayUnique((o: UserPermissionOverrideItemDto) => (o.code || o.permissionId)?.toLowerCase(), {
     message: 'Duplicate permission codes are not allowed in permissions array.',
   })
   permissions!: UserPermissionOverrideItemDto[];

@@ -853,9 +853,9 @@ export class LeaveService {
         const hrUser = await tx.user.findFirst({
           where: {
             id: { not: targetUserId },
-            userType: { in: ['SUPER_ADMIN', 'EMPLOYEE'] },
+            userType: { code: { in: ['SUPER_ADMIN', 'ADMIN', 'EMPLOYEE'] } },
             status: RecordStatus.ACTIVE,
-            roles: {
+            userRoles: {
               some: {
                 role: {
                   code: { in: ['HR', 'SUPER_ADMIN', 'ADMIN'] },
