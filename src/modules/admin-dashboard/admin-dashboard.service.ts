@@ -525,6 +525,7 @@ export class AdminDashboardService {
       createdAndConvertedCount,
       stages,
       statusGroups,
+      unassignedNewLeadsCount,
     ] = await Promise.all([
       this.prisma.lead.count({
         where: { createdAt: { gte: from, lte: to }, deletedAt: null },
@@ -568,15 +569,25 @@ export class AdminDashboardService {
         where: { createdAt: { gte: from, lte: to }, deletedAt: null },
         _count: { _all: true },
       }),
+      this.prisma.lead.count({
+        where: {
+          pipelineStageId: null,
+          createdAt: { gte: from, lte: to },
+          deletedAt: null,
+        },
+      }),
     ]);
 
-    const countByStage = stages.map((s) => ({
-      stageId: s.id,
-      stageCode: s.code,
-      stageName: s.name,
-      color: s.color,
-      count: s._count.leads,
-    }));
+    const countByStage = stages.map((s, idx) => {
+      const extra = (s.code === 'NEW' || idx === 0) ? unassignedNewLeadsCount : 0;
+      return {
+        stageId: s.id,
+        stageCode: s.code,
+        stageName: s.name,
+        color: s.color,
+        count: s._count.leads + extra,
+      };
+    });
 
     const countByStatus: Record<string, number> = {};
     for (const g of statusGroups) {

@@ -206,6 +206,18 @@ export class LeadsService {
       const createdLead = await this.prisma.$transaction(async (tx) => {
         const leadCode = await this.leadCodeService.generateNextCode(tx);
 
+        let resolvedPipelineStageId = dto.pipelineStageId || null;
+        if (!resolvedPipelineStageId) {
+          const defaultStage = await tx.pipelineStage.findFirst({
+            where: { status: RecordStatus.ACTIVE },
+            orderBy: [{ order: 'asc' }],
+            select: { id: true },
+          });
+          if (defaultStage) {
+            resolvedPipelineStageId = defaultStage.id;
+          }
+        }
+
         const lead = await tx.lead.create({
           data: {
             leadCode,
@@ -244,7 +256,7 @@ export class LeadsService {
             priority: dto.priority || LeadPriority.MEDIUM,
             status: dto.status || LeadStatus.NEW,
             qualificationStatus: dto.qualificationStatus || LeadQualificationStatus.PENDING,
-            pipelineStageId: dto.pipelineStageId || null,
+            pipelineStageId: resolvedPipelineStageId,
           },
           include: {
             createdBy: { select: { id: true, userCode: true, name: true, email: true } },
